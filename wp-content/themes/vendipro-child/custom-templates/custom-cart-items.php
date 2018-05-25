@@ -47,10 +47,10 @@ do_action( 'woocommerce_before_cart' ); ?>
 							<span class="subtotal"><?php echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); ?></span>
 							<div class="name">
 							<?php if ( ! $_product->is_visible() ) : ?>
-                                <?php echo $product_name . '&nbsp;'; ?>
+                                <?php echo $product_name; ?>
                             <?php else : ?>
                                 <a href="<?php echo esc_url( $product_permalink ); ?>">
-                                    <?php echo $product_name . '&nbsp;'; ?>
+                                    <?php echo $product_name; ?>
                                 </a>
                             <?php endif; ?>
 							</div>
