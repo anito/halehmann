@@ -1030,13 +1030,10 @@ li.product .added_to_cart {
 .woocommerce .register p.form-row label{
     width: inherit;
 }
-.woocommerce .login p.form-row label,
-.woocommerce .register, p.form-row label {
+.woocommerce .login p.form-row label, .woocommerce .login, p.form-row label {
     margin: 0 15px 0 0;
 }
-#customer_login p:not([class*="woocomm"]).form-row,
-p.mc4wp-checkbox-wp-registration-form,
-p.lost_password {
+#customer_login p:not([class*="woocomm"]).form-row, p.mc4wp-checkbox-wp-registration-form, p.lost_password {
     margin-left: 34%;
     text-align: left;
 }
