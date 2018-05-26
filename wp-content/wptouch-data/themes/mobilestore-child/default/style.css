@@ -961,7 +961,7 @@
         font-size: 80%;
         float: none; 
     }
-    #order-review .shop_table td.product-name dl.variation {
+    #order_review .shop_table td.product-name dl.variation {
         padding-left: 0;
     }
     .product .woocommerce-tabs .tabs a{
