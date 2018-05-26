@@ -252,7 +252,7 @@ function add_scripts() {
 	wp_enqueue_script( 'kaeufersiegel' );
 	wp_register_script( 'readmore', get_stylesheet_directory_uri() . '/js/node_modules/readmore-js/readmore.js', array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'readmore' );
-	if ( !IS_DEV_MODE || !IS_PRODUCTION ) {
+	if ( !IS_DEV_MODE && IS_PRODUCTION ) {
 		$current_user = wp_get_current_user();
         $id =  (0 == $current_user->ID) ? '' : $current_user->ID;
         // hand over the userID to the analytics script
