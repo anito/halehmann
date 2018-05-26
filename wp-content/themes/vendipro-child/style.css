@@ -1056,6 +1056,10 @@ p.mc4wp-checkbox-wp-registration-form, p.lost_password {
 .u-columns {
     margin-top: 30px;
 }
+.woocommerce .login button,
+.woocommerce .register button {
+    float: right;
+}
 #customer_login [class*="u-column"]::after,
 .vp-product-grid-wrapper::after {
     content: ".";
