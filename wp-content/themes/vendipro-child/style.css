@@ -229,6 +229,10 @@ a, a:hover, a:visited, a:focus {
     table.shop_table .entry-content table, .entry-content table {
         border: 0px solid !important;
     }
+    .entry-content table tbody tr:nth-child(even) td,
+    .entry-content table tbody tr:nth-child(even) th {
+        background-color: #444;
+    }
     table.shop_table,
     table.shop_table .entry-content table tbody tr:nth-child(even) td,
     .entry-content table tbody tr:nth-child(even) th {
