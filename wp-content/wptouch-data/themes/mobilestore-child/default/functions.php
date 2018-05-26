@@ -36,7 +36,7 @@ function add_scripts() {
 	wp_enqueue_script('readmore');
 	wp_register_script( 'kaeufersiegel', get_stylesheet_directory_uri() . '/js/kaeufersiegel.js', array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'kaeufersiegel' );
-	if( ! IS_DEV_MODE ) {
+	if( ! IS_DEV_MODE || !IS_PRODUCTION ) {
 		// Register analyticstracking.php file (Google Analytics)
 		wp_register_script('google-analytics', get_stylesheet_directory_uri() . '/js/analyticstracking.js', false, '1.0', true);
 		// Enqueue the registered script file
