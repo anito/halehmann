@@ -171,9 +171,9 @@ function archive_term_image() {
 		$thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
 		
 	} elseif ( may_be_filtered_post() ) {
-		$thumbnail_id = get_woocommerce_term_meta( NEW_CAT_ID, 'thumbnail_id', true );
+		$thumbnail_id = get_woocommerce_term_meta( get_main_category_id(), 'thumbnail_id', true );
 	}
-	if ( $thumbnail_id ) {
+	if ( !empty( $thumbnail_id ) ) {
 		$thumbnail_post = get_post( $thumbnail_id );
 		$image = wp_get_attachment_url( $thumbnail_id );
 		if ( $image ) { ?>
