@@ -964,6 +964,9 @@
     #order_review .shop_table td.product-name dl.variation {
         padding-left: 0;
     }
+    .shop_table td.product-name dl.variation * {
+        color: inherit;
+    }
     .product .woocommerce-tabs .tabs a{
         color: rgba(255, 255, 255, 0.5);
     }
