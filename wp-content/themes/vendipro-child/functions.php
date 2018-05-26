@@ -259,7 +259,7 @@ function add_scripts() {
         wp_localize_script('google-analytics', 'user', array('id' => $id));
 		// Register analyticstracking.js file (Google Analytics)
 		wp_register_script( 'google-analytics', get_stylesheet_directory_uri() . '/js/analyticstracking.js', false, '1.0', true );
-		wp_enqueue_script( 'google-analytics' );
+//		wp_enqueue_script( 'google-analytics' );
 	}
 	wp_register_script( 'fb', get_stylesheet_directory_uri() . '/js/fb.js', array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'fb' );
