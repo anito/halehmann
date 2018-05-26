@@ -1025,6 +1025,8 @@ li.product .added_to_cart {
 .woocommerce form.login,
 .woocommerce form.register {
     border: 0 none;
+    background: #3c3c3c;
+    overflow: auto;
 }
 .woocommerce .login p.form-row label,
 .woocommerce .register p.form-row label{
@@ -1049,13 +1051,6 @@ p.mc4wp-checkbox-wp-registration-form, p.lost_password {
 }
 #customer_login .form-row input[type=submit] {
     float: right;
-}
-#customer_login [class*="u-column"] {
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #656565;
-    border-radius: 8px;
-    margin-bottom: 18px;
 }
 #customer_login [class*="u-column"]::after,
 .vp-product-grid-wrapper::after {
