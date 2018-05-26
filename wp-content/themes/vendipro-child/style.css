@@ -1022,13 +1022,15 @@ li.product .added_to_cart {
 .woocommerce form.login {
     width: 100%;
 }
-.woocommerce form.login, .woocommerce form.register {
+.woocommerce .login,
+.woocommerce form.register {
     border: 0 none;
 }
-.woocommerce form.login p.form-row label {
+.woocommerce .login p.form-row label,
+.woocommerce .register p.form-row label{
     width: inherit;
 }
-.woocommerce form.login p.form-row label, .woocommerce form.login, p.form-row label {
+.woocommerce .login p.form-row label, .woocommerce .login, p.form-row label {
     margin: 0 15px 0 0;
 }
 #customer_login p:not([class*="woocomm"]).form-row, p.mc4wp-checkbox-wp-registration-form, p.lost_password {
