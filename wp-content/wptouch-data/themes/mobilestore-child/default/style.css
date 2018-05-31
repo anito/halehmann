@@ -1005,8 +1005,11 @@
         top: 3px;
         right: 13px;
     }
-    
     .back-button, .smartphone.web-app-mode.pushit-active .back-button{
         
     }
+    .powered-by-webpremiere .logo {
+        width: 100px;
+    }
+    
 }
