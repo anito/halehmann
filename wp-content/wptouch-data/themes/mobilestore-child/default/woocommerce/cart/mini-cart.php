@@ -54,7 +54,7 @@ global $woocommerce;
 						<a href="<?php echo get_permalink( $product_id ); ?>">
 							<?php echo str_replace( array( 'http:', 'https:' ), '', $thumbnail ) . '<p class="product-title">' . $product_name . '</p>'; ?>
 
-							<?php echo WC()->cart->get_item_data( $cart_item ); ?>
+							<?php echo wc_get_formatted_cart_item_data( $cart_item ); ?>
 
 							<?php echo apply_filters( 'woocommerce_widget_cart_item_quantity', '<span class="quantity">' . sprintf( '%s &times; %s', $cart_item['quantity'], $product_price ) . '</span>', $cart_item, $cart_item_key ); ?>
 						</a>

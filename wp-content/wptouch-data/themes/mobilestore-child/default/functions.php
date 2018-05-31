@@ -167,13 +167,17 @@ function archive_term_image() {
 	
 	if ( is_product_category() ) {
 		global $wp_query;
+		
 		$cat = $wp_query->get_queried_object();
 		$thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
 		
-	} elseif ( may_be_filtered_post() ) {
+	} elseif ( function_exists( 'may_be_filtered_post' )  && may_be_filtered_post() ) {
+		
 		$thumbnail_id = get_woocommerce_term_meta( get_main_category_id(), 'thumbnail_id', true );
+		
 	}
 	if ( !empty( $thumbnail_id ) ) {
+		
 		$thumbnail_post = get_post( $thumbnail_id );
 		$image = wp_get_attachment_url( $thumbnail_id );
 		if ( $image ) { ?>
