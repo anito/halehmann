@@ -1009,7 +1009,8 @@
         
     }
     .powered-by-webpremiere .logo {
-        width: 100px;
+        height: 23px;
+        margin-bottom: -1%;
     }
     
 }
