@@ -26,14 +26,6 @@ body {
 related.products {
     display: inherit;
 }
-#content h1,
-#content h2,
-#content h3,
-#content h4,
-#content h5,
-#content h6 {
-
-}
 #content {
     padding: 0;
     margin: 0;
@@ -1124,17 +1116,14 @@ h3#billing_fields_heading, h3#order_review_heading {
     display: inline-block;
     position: relative;
 }
-.address-box::before {
+.boxzilla .address-box::before {
     content: "";
+    display: inline-block;
     background: url(/wp-content/uploads/2017/06/mail.png) no-repeat;
     width: 200px;
     height: 300px;
-    display: inline-block;
     position: absolute;
-    top: -66px;
     right: -15px;
-}
-.boxzilla .address-box::before {
     top: -115px;
 }
 .address-box p {

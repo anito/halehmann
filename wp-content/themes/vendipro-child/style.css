@@ -2108,8 +2108,8 @@ table.shop_table td.product-thumbnail img {
     line-height: 1.5em;
 }
 #primary div.address-box {
-/*    background: #424242;
-    padding: 20px 100px 30px;*/
+    background: #424242;
+    padding: 20px 100px 30px;
     border-radius: 10px;
     display: inline-block;
     position: relative;
