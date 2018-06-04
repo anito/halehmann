@@ -23,7 +23,7 @@ global $woocommerce;
 			<a href="<?php mobilestore_woo_cart_url(); ?>" class="button edit_button"><?php _e( 'edit cart', 'wptouch-pro' ); ?></a>
 		<?php } ?>
 		<?php if ( !is_checkout() ) { ?>
-			<a href="<?php mobilestore_woo_checkout_url(); ?>" class="button checkout_button"><?php _e( 'checkout', 'wptouch-pro' ); ?></a>
+			<a href="<?php mobilestore_woo_checkout_url(); ?>" class="button checkout_button"><?php _e( 'Checkout', 'woocommerce' ); ?></a>
 		<?php } ?>
 	</div>
 
