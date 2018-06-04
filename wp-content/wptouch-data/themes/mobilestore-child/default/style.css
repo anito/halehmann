@@ -314,6 +314,12 @@
         font-weight: 700;
         text-decoration: underline;
     }
+    .post a,
+    .post a:hover,
+    .post a:visited,
+    .post a:focus {
+        color: inherit;
+    }
     .woocommerce .shop_table tfoot {
         font-size: 90%;
     }
