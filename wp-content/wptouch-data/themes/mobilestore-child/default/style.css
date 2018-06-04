@@ -17,30 +17,25 @@
     .wptouch-menu ul ul {
         background: rgb(55, 55, 55);
     }
-
     .nomobile, .tagged_as {
         display: none !important;
     }
-    
     .nomargin {
         margin: 0 !important;
     }
-    
     related.products {
         display: inherit;
     }
-
     #content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
         padding: 0;
         margin: 0;
     }
-
     #content {
         padding: 0;
         margin: 0;
     }
-    
-    #content .post h2, #content h1:not(.product_title)  {
+    .post h2,
+    h1:not(.product_title)  {
         line-height: 1em;
         font-size: 2.0rem;
         margin: 0.4em 0 0.5em !important;
@@ -48,27 +43,22 @@
         text-shadow: 1px 1px rgba(0, 0, 0, 1) !important;
         display: inherit;
     }
-
     #content h1:not(.product_title) {
         margin: 0.4em 0.2em 0.1em !important;
         text-align: left;
     }
-
     .small-header #header-logo {
         height: 65px !important;
         padding: 0;
         max-width: 67%;
         margin: 5px;
     }
-    
     .products .vertical a {
         margin: 5px 0;
     }
-    
     .products .sale.vertical a {
         margin-top: 15px;
     }
-    
     .products a .onsale {
         padding-top: 5px !important;
         height: 0;
@@ -77,7 +67,6 @@
     .products a .onsale i {
         text-indent: 0;
     }
-    
     .smartphone ul.products li:not(.vertical) {
         min-height: 258px !important;
         padding-bottom: 0px;
@@ -339,6 +328,15 @@
     }
     .shop_table td.product-name dl.variation * {
         color: inherit;
+    }
+    .col2-set [class*="col-"] {
+        background: #4c4c4c;
+        padding: 10px;
+        border-radius: 3px;
+        margin-bottom: 10px;
+    }
+    .col2-set [class*="col-"] > h2 {
+        font-size: 1.5em;
     }
     .woocommerce .shop_table,
     .entry-content table tbody td:nth-child(even),
@@ -701,7 +699,7 @@
     }
     .woocommerce-message,
     .woocommerce-info,
-    .woocommerce-error {
+    .woocommerce-error li {
         font-size: 0.8em;
         line-height: 1.5em;
         display: block;
@@ -711,7 +709,7 @@
     }
     .woocommerce-message,
     .woocommerce-info,
-    .woocommerce-error {
+    .woocommerce-error li {
 	background-color: #BDE5F8;
         font-weight: 300;
     }
@@ -732,9 +730,6 @@
         list-style-type:none;
         background-color:pink;
         color: #de4a64;
-        padding:12px;
-        margin-bottom:15px;
-        border-radius:3px;
     }
     .woocommerce-cart .cart-empty {
         background: #fff;
