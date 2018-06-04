@@ -130,14 +130,6 @@ input[type="button"]:hover
     background-color: rgb(227, 0, 1) !important;
     border-color: rgb(227, 0, 1) !important;
 }
-.boxzilla-container form.mc4wp-form,
-.boxzilla-container form.mc4wp-form input[type=email] {
-    background: inherit !important;
-    color: #222222 !important;
-}
-.boxzilla-container form.mc4wp-form p {
-	line-height: 2em;
-}
 
 /* other Forms */
 p.form-row input[type=text],
