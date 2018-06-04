@@ -330,13 +330,18 @@
         color: inherit;
     }
     .woocommerce-account .col2-set [class*="col-"] {
-        background: #4c4c4c;
+        color: #5a5a5a;
+        background: #ffffff;
         padding: 10px;
         border-radius: 3px;
         margin-bottom: 10px;
+        border: 1px solid #4a4a4a;
+        box-shadow: 0px 0px 8px rgba(0, 0, 0,.1);
     }
     .col2-set [class*="col-"] > h2 {
         font-size: 1.5em;
+        color: inherit;
+        text-shadow: none !important;
     }
     .woocommerce .shop_table,
     .entry-content table tbody td:nth-child(even),
