@@ -329,7 +329,7 @@
     .shop_table td.product-name dl.variation * {
         color: inherit;
     }
-    .col2-set [class*="col-"] {
+    .woocommerce-account .col2-set [class*="col-"] {
         background: #4c4c4c;
         padding: 10px;
         border-radius: 3px;
