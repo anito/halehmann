@@ -700,13 +700,18 @@
         color: #5a5a5a;
     }
     .woocommerce-message,
-    .woocommerce-info {
+    .woocommerce-info,
+    .woocommerce-error {
         font-size: 0.8em;
         line-height: 1.5em;
         display: block;
         padding: 0.5em;
         margin: 1em 0;
         border-radius: 3px;
+    }
+    .woocommerce-message,
+    .woocommerce-info,
+    .woocommerce-error {
 	background-color: #BDE5F8;
         font-weight: 300;
     }
