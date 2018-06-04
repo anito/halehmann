@@ -572,3 +572,17 @@ function allow_svg_upload( $m ) {
     $m['svgz'] = 'image/svg+xml';
     return $m;
 }
+
+/**
+ * Add  custom classes to the mailchimp form (mc4wp) wrapper element.
+ *
+ * @param array $classes
+ * @param MC4WP_Form $form
+ *
+ * @return array
+ */
+function prefix_add_css_class_to_form( $classes = array(), MC4WP_Form $form ) {
+	$classes[] = 'address-box';
+	return $classes;
+}
+add_filter( 'mc4wp_form_css_classes', 'prefix_add_css_class_to_form', 10, 2 );

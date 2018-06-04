@@ -59,12 +59,11 @@ select, .select2-container--default .select2-selection--single,
     color: #ffffff !important;
     outline: 0 !important;
     padding: 2px 10px !important;
-    box-sizing: border-box; 
+    box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     border-radius: 2px !important;
     line-height: 1.4rem !important;
-    
 }
 .select2-results__option {
     background: #4c4c4c !important;
@@ -117,6 +116,7 @@ select {
 input[type="submit"],
 input[type="button"]
 {
+    
 }
 input[type="submit"]:hover,
 input[type="button"]:hover
@@ -125,16 +125,20 @@ input[type="button"]:hover
 }
 
 /* Mail Chimp */
-.entry-content .mc4wp-form-theme-dark button, .mc4wp-form-theme-dark input[type=submit], div:not(.boxzilla-content) .mc4wp-form-theme input[type="email"] {
-    color: #fff!important;
-}
-.entry-content .mc4wp-form-theme-dark button, .mc4wp-form-theme-dark input[type=submit] {
+.mc4wp-form button,
+.mc4wp-form input[type=submit] {
     background-color: rgb(227, 0, 1) !important;
     border-color: rgb(227, 0, 1) !important;
 }
-.boxzilla-container form.mc4wp-form-theme {
-    color: #222222;
+.boxzilla-container form.mc4wp-form,
+.boxzilla-container form.mc4wp-form input[type=email] {
+    background: inherit !important;
+    color: #222222 !important;
 }
+.boxzilla-container form.mc4wp-form p {
+	line-height: 2em;
+}
+
 /* other Forms */
 p.form-row input[type=text],
 p.form-row select,
