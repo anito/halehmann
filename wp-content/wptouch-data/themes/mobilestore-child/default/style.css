@@ -1111,6 +1111,7 @@ h3#billing_fields_heading, h3#order_review_heading {
     padding: 15px;
     background: #424242;
     border-radius: 10px;
+    width: 100%;
 }
 .address-box {
     display: inline-block;
@@ -1132,4 +1133,28 @@ h3#billing_fields_heading, h3#order_review_heading {
 .powered-by-webpremiere .logo {
     height: 23px;
     margin-bottom: -1%;
+}
+.flex {
+    display: flex;
+}
+.flex.row {
+    flex-flow: row wrap;
+}
+.col {
+    flex: 1 1 50%;
+}
+.pad {
+    padding: 5%;
+}
+@media only screen and (min-width: 769px) {
+    .address-box::before {
+        content: "";
+        display: inline-block;
+        background: url(/wp-content/uploads/2017/06/mail.png) no-repeat;
+        width: 200px;
+        height: 300px;
+        position: absolute;
+        right: -15px;
+        top: -115px;
+    }
 }

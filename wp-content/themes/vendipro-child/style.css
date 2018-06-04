@@ -2113,6 +2113,7 @@ table.shop_table td.product-thumbnail img {
     border-radius: 10px;
     display: inline-block;
     position: relative;
+    width: 100%;
 }
 .sidebar .address-box:before {
     background: none; 
@@ -2363,4 +2364,16 @@ ul.page-numbers li a:hover, a .pag-item:hover {
 }
 nav.woocommerce-pagination ul li a:focus, .woocommerce nav.woocommerce-pagination ul li a:hover, .woocommerce nav.woocommerce-pagination ul li span.current {
     color: #eee;
+}
+.flex {
+    display: flex;
+}
+.flex.row {
+    flex-flow: row wrap;
+}
+.col {
+    flex: 1 1 50%;
+}
+.pad {
+    padding: 5%;
 }
