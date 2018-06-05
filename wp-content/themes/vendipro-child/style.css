@@ -161,11 +161,24 @@ dl dt, dl dd {
 a, a:hover, a:visited, a:focus {
      color: #ffffff; 
 }
+.flex {
+    display: flex;
+}
+.flex.row {
+    flex-flow: row wrap;
+}
+.col {
+    flex: 1 1 50%;
+}
+.pad {
+    padding: 5%;
+}
 @media only screen and (min-width: 660px) and (max-width: 900px) {
     
-	.woocommerce ul.products:not(.columns-3):not(.columns-2) li.product {
-		width: 22% !important;
-	}
+    .woocommerce ul.products:not(.columns-3):not(.columns-2) li.product {
+            width: 22% !important;
+    }
+    
 }
 @media only screen and (min-width: 268px) {
     body {
@@ -961,6 +974,12 @@ label[for="order_comments"] {
     width: 100%;
     border-radius: 5px;
     padding: 6px 12px;
+}
+.woocommerce form.checkout_coupon,
+.woocommerce form.login,
+.woocommerce form.register {
+    border: 0 none;
+    background: #3c3c3c;
 }
 ul.tabs li.active a,
 ul.tabs li a {
@@ -2364,16 +2383,4 @@ ul.page-numbers li a:hover, a .pag-item:hover {
 }
 nav.woocommerce-pagination ul li a:focus, .woocommerce nav.woocommerce-pagination ul li a:hover, .woocommerce nav.woocommerce-pagination ul li span.current {
     color: #eee;
-}
-.flex {
-    display: flex;
-}
-.flex.row {
-    flex-flow: row wrap;
-}
-.col {
-    flex: 1 1 50%;
-}
-.pad {
-    padding: 5%;
 }
