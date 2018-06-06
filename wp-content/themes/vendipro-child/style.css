@@ -2134,9 +2134,11 @@ table.shop_table td.product-thumbnail img {
     font-size: 1em;
     max-width: 240px;
     height: 50px;
+    line-height: initial;
     margin-bottom: 10px;
     padding: 0 14px;
     display: inline;
+    -webkit-appearance: none;
 }
 .boxzilla .mc4wp-form input[type="email"] {
     border-radius: 2px 0 0 2px !important;
