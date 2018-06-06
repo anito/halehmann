@@ -168,7 +168,10 @@ a, a:hover, a:visited, a:focus {
     flex-flow: row wrap;
 }
 .col, .col2-set [class*="col-"] {
-    flex: 1 1 50%;
+    flex: 0 1 100%;
+    width: auto;
+    padding: 0;
+    margin: 0;
 }
 .pad {
     padding: 5%;
@@ -984,6 +987,10 @@ label[for="order_comments"] {
 .woocommerce form.register {
     border: 0 none;
     background: #3c3c3c;
+}
+.woocommerce-account #customer_login [class*="col-"] {
+    padding: 0 !important;
+    margin: 0 !important;
 }
 ul.tabs li.active a,
 ul.tabs li a {
@@ -2117,25 +2124,42 @@ table.shop_table td.product-thumbnail img {
     background: inherit !important;
     color: #222222 !important;
 }
-.boxzilla form p {
-	line-height: 2em;
-}
 .boxzilla-newsletter-box {
     overflow-y: visible !important;
 }
+.boxzilla .mc4wp-form {
+    text-align: center;
+}
+.boxzilla .mc4wp-form input[type="email"], .boxzilla .mc4wp-form input[type="submit"] {
+    font-size: 1em;
+    max-width: 240px;
+    height: 50px;
+    margin-bottom: 10px;
+    padding: 0 14px;
+    display: inline;
+}
+.boxzilla .mc4wp-form input[type="email"] {
+    border-radius: 2px 0 0 2px !important;
+}
+.boxzilla .mc4wp-form input[type="submit"] {
+    border-radius: 0 2px 2px 0!important;
+}
 .address-box::before {
     content: "";
-    background: url(/wp-content/uploads/2017/06/mail.png) no-repeat;
-    width: 200px;
-    height: 300px;
+    background: url(/wp-content/uploads/2017/06/mail.png) no-repeat center/cover;
+    width: 110px;
+    height: 122px;
     display: inline-block;
     position: absolute;
-    top: -119px;
-    right: -39px;
+    top: -55px;
+    left: -9px;
     z-index: 0;
+    transform: rotate(-22deg);
 }
-.boxzilla .address-box::before {
+.page .address-box::before {
     right: 20px;
+    left: unset;
+    transform: rotate(22deg);
 }
 .address-box p {
     line-height: 1.5em;

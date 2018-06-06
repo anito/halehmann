@@ -1125,7 +1125,7 @@ h3#billing_fields_heading, h3#order_review_heading {
     display: inline-block;
     position: relative;
 }
-.boxzilla .address-box::before {
+.boxzilla_ .address-box::before {
     content: "";
     display: inline-block;
     background: url(/wp-content/uploads/2017/06/mail.png) no-repeat;
@@ -1137,6 +1137,35 @@ h3#billing_fields_heading, h3#order_review_heading {
 }
 .address-box p {
     line-height: 1em;
+}
+.boxzilla .mc4wp-form {
+    text-align: center;
+}
+
+.boxzilla .mc4wp-form input[type="email"], .boxzilla .mc4wp-form input[type="submit"] {
+    font-size: 1em;
+    max-width: 240px;
+    height: 50px;
+    margin-bottom: 10px;
+    padding: 0 14px;
+    display: inline;
+}
+.address-box::before {
+    content: "";
+    background: url(/wp-content/uploads/2017/06/mail.png) no-repeat center/cover;
+    width: 110px;
+    height: 122px;
+    display: inline-block;
+    position: absolute;
+    top: -78px;
+    left: -9px;
+    z-index: 0;
+    transform: rotate(-22deg);
+}
+.page-wrapper .address-box::before {
+    right: 9px;
+    left: unset;
+    transform: rotate(22deg);
 }
 .powered-by-webpremiere .logo {
     height: 23px;
@@ -1155,14 +1184,5 @@ h3#billing_fields_heading, h3#order_review_heading {
     padding: 5%;
 }
 @media only screen and (min-width: 769px) {
-    .address-box::before {
-        content: "";
-        display: inline-block;
-        background: url(/wp-content/uploads/2017/06/mail.png) no-repeat;
-        width: 200px;
-        height: 300px;
-        position: absolute;
-        right: -15px;
-        top: -115px;
-    }
+    
 }
