@@ -2158,7 +2158,7 @@ table.shop_table td.product-thumbnail img {
     z-index: 0;
     transform: rotate(-22deg);
 }
-.page .address-box::before {
+#primary .address-box::before {
     right: 20px;
     left: unset;
     transform: rotate(22deg);
