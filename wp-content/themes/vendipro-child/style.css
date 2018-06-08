@@ -2182,10 +2182,10 @@ table.shop_table td.product-thumbnail img {
     left: unset;
     transform: rotate(22deg);
 }
-.address-box p {
+.info-box p {
     line-height: 1.5em;
 }
-#primary div.address-box {
+#primary div.info-box {
     background: #424242;
     padding: 20px 100px 30px;
     border-radius: 10px;
