@@ -155,6 +155,9 @@ th {
 li {
     list-style-type: none;
 }
+ol li {
+    list-style-type: unset;
+}
 dl dt, dl dd {
     display: inline-block;
 }
