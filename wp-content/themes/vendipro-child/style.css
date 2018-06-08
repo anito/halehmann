@@ -1865,7 +1865,7 @@ header#hmain .navbar ul li:hover > ul > li > ul {
     margin-left: 20px;
     margin-top: 0px;
 }
-.post-1008 > .entry-post > h2 {
+.home > .entry-post > h2 {
     margin: 20px 0 !important;
     padding: 20px;
     position: absolute;
@@ -1875,9 +1875,22 @@ header#hmain .navbar ul li:hover > ul > li > ul {
     text-transform: uppercase;
     background-color: rgba(0,0,0, 0.5);
 }
-.post-1008 > .entry-post h3 {
+.home > .entry-post h3 {
     text-transform: uppercase;
     margin-bottom: 20px;
+}
+.home dl {
+    margin: 20px 0;
+}
+.home dl dt, .home dl dd {
+    padding: 5px;
+}
+.home dl dt {
+	font-weight: 700;
+}
+.home dl dd {
+	margin-left: 20%;
+	display: block !important;
 }
 .cart-sidebar table.empty {
     display: none;
