@@ -82,6 +82,9 @@ ul.products .price del {
 .woocommerce-Address {
     position: relative;
 }
+.woocommerce-account #recent_orders time, .woocommerce-account #recent_orders .order-total {
+    color: unset !important;
+}
 .page #content .woocommerce ul.products {
     margin: 0 !important;
 }
