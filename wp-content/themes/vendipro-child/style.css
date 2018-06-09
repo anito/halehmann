@@ -2190,7 +2190,7 @@ table.shop_table td.product-thumbnail img {
     left: unset;
     transform: rotate(22deg);
 }
-#primary div.info-box {
+#primary .info-box {
     background: #424242;
     padding: 20px 100px 30px;
     border-radius: 10px;
@@ -2200,7 +2200,7 @@ table.shop_table td.product-thumbnail img {
 .info-box p {
     line-height: 1.5em;
 }
-#info-box-1 {
+#info-box-1 .info-box {
     max-width: 35%;
     margin: 30px auto;
     display: block;
