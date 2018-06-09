@@ -1887,16 +1887,16 @@ header#hmain .navbar ul li:hover > ul > li > ul {
     text-transform: uppercase;
     margin-bottom: 20px;
 }
-.home dl {
+.info-box dl {
     margin: 20px 0;
 }
-.home dl dt, .home dl dd {
+.info-box dl dt, .info-box dl dd {
     padding: 5px;
 }
-.home dl dt {
+.info-box dl dt {
 	font-weight: 700;
 }
-.home dl dd {
+.info-box dl dd {
 	margin-left: 20%;
 	display: block !important;
 }
