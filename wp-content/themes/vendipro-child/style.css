@@ -2193,6 +2193,16 @@ table.shop_table td.product-thumbnail img {
 .info-box p {
     line-height: 1.5em;
 }
+#info-box-1 {
+    max-width: 35%;
+    margin: 30px auto;
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 22px;
+    background: #424242dd;
+}
 .sidebar .address-box:before {
     background: none; 
 }
