@@ -1870,7 +1870,7 @@ header#hmain .navbar ul li:hover > ul > li > ul {
     margin-left: 20px;
     margin-top: 0px;
 }
-.home > .entry-post > h2 {
+.home .entry-post > h2 {
     margin: 20px 0 !important;
     padding: 20px;
     position: absolute;
@@ -1880,7 +1880,7 @@ header#hmain .navbar ul li:hover > ul > li > ul {
     text-transform: uppercase;
     background-color: rgba(0,0,0, 0.5);
 }
-.home > .entry-post h3 {
+.home .entry-post h3 {
     text-transform: uppercase;
     margin-bottom: 20px;
 }
