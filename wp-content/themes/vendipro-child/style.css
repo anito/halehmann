@@ -2200,7 +2200,7 @@ table.shop_table td.product-thumbnail img {
 .info-box p {
     line-height: 1.5em;
 }
-#info-box-1 .info-box {
+#info-box-1.info-box {
     max-width: 35%;
     margin: 30px auto;
     display: block;
