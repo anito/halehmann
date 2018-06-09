@@ -179,6 +179,11 @@ a, a:hover, a:visited, a:focus {
 .pad {
     padding: 5%;
 }
+.pee {
+    padding: 0px 30px;
+    margin-top: 10px;
+    font-size: 110%;
+}
 @media only screen and (min-width: 660px) and (max-width: 900px) {
     
     .woocommerce ul.products:not(.columns-3):not(.columns-2) li.product {
