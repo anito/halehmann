@@ -2342,6 +2342,7 @@ table.shop_table td.product-thumbnail img {
 }
 .sidebar_table .subtotal {
     line-height: 1em;
+    float: right;
 }
 .boxzilla-betriebsferien {
     background-image: url(/wp-content/uploads/2017/07/illustrator-urlaub.png) !important;
