@@ -184,6 +184,9 @@ a, a:hover, a:visited, a:focus {
     margin: 20px 0;
     font-size: 110%;
 }
+p.pee {
+    margin-bottom: 30px;
+}
 @media only screen and (min-width: 660px) and (max-width: 900px) {
     
     .woocommerce ul.products:not(.columns-3):not(.columns-2) li.product {
