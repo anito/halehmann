@@ -114,7 +114,7 @@ ul.products .price del {
     margin-top: 0;
     margin-bottom: 0px;
 }
-.post-1008 .promotion, .post-1008 .entry-post {
+.home .promotion, .home .entry-post {
     margin-bottom: 3px;
 }
 .table-parent {
@@ -793,16 +793,19 @@ h3.label, h4.label {
     padding: 15px 20px !important;
     margin: 0 !important;*/
 }
-.post-1008 h3.label, .post-1008 h4.label {
+.home h3.label, .home h4.label {
     width: 100%;
     color: #8c8c8c;
-    padding: 0 29px !important;
-    margin: 0 -19px !important;
+    margin: 0 20px -5px !important;
+    display: block;
     position: relative;
-    bottom: -5px;
     z-index: 9;
+    text-align: inherit;
     font-size: 1.9em;
     text-shadow: rgba(0,0,0,1) 1px 0 1px !important;
+}
+.home h3 {
+    text-align: center;
 }
 .entry-post {
     margin-top: 20px;
@@ -835,7 +838,7 @@ h3.label, h4.label {
     margin-left: 0px;
     margin-right: 0px;
 }
-.post-1008 .post-title {
+.home .post-title {
     display: none !important;
 }
 #content .product .images {
