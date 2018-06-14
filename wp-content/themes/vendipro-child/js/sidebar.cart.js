@@ -37,7 +37,6 @@
      * @param {JQuery Object} $node
      */
     var block = function ($node) {
-        console.log($node)
         if (!is_blocked($node)) {
             $node.addClass('processing').block({
                 message: null,
@@ -184,10 +183,8 @@
          * Update entire cart via ajax.
          */
         update_cart: function (preserve_notices) {
-            var $form = $('.my-cart-form');
-            
-            console.log($form);
-            var $blocked_div = $(".my-cart-form, .woocommerce-cart-form, .cart_totals, .sidebar-cart-subtotals");
+            var $form = $('.my-cart-form'),
+                $blocked_div = $(".my-cart-form, .woocommerce-cart-form, .cart_totals, .sidebar-cart-subtotals");
             
             block( $blocked_div );
             
@@ -201,7 +198,7 @@
                     update_wc_div(response, preserve_notices);
                 },
                 complete: function () {
-                    unblock($blocked_div);
+                    unblock( $blocked_div );
                 }
             });
         },
@@ -209,8 +206,7 @@
          * Update the cart after something has changed.
          */
         update_cart_totals: function () {
-            var $form = $('.sidebar_table.ajax-cart').closest('form'),
-                $blocked_div = $( '.sidebar-cart-totals');
+            var $blocked_div = $( '.sidebar-cart-totals');
         
             block( $blocked_div );
 
