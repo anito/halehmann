@@ -954,7 +954,7 @@ p.pee {
 .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button {
     line-height: 1.7em;
 }
-.woocommerce a.button.add_to_cart_button {
+.woocommerce a.button.add_to_cart_button, .woocommerce a.button.product_type_simple, .woocommerce a.product_type_variable {
     line-height: 2.7em;
 }
 .entry-post.wrapper:not(.entry-content), .related, .upsells, .sidebar .widget, .products {

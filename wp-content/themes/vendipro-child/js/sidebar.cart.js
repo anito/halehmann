@@ -37,6 +37,7 @@
      * @param {JQuery Object} $node
      */
     var block = function ($node) {
+        console.log($node)
         if (!is_blocked($node)) {
             $node.addClass('processing').block({
                 message: null,
@@ -72,10 +73,8 @@
         
         // Remove errors
         if ( ! preserve_notices ) {
-            $( '.woocommerce-error, .woocommerce-message, .woocommerce-info' ).remove();
+//            $( '.woocommerce-error, .woocommerce-message, .woocommerce-info' ).remove();
         }
-        
-        $('.sidebar_table.ajax-cart').closest('form').replaceWith($new_form_sidebar);
         
         update_cart_subtotals_div( $new_subtotals_sidebar);
         
@@ -164,7 +163,7 @@
             this.update_cart = this.update_cart.bind(this);
 
             $(document).on(
-                    'wc_update_cart',
+                    'wc_update_sidebar_cart',
                     function() { sidebar_cart.update_cart.apply( sidebar_cart, [].slice.call( arguments, 1 ) ); } );
             $(document).on(
                     'submit',
@@ -185,9 +184,13 @@
          * Update entire cart via ajax.
          */
         update_cart: function (preserve_notices) {
-            var $form = $('.sidebar_table.ajax-cart').closest('form');
-
-            block($('div.cart_totals, .sidebar-cart-subtotals', $form));
+            var $form = $('.my-cart-form');
+            
+            console.log($form);
+            var $blocked_div = $(".my-cart-form, .woocommerce-cart-form, .cart_totals, .sidebar-cart-subtotals");
+            
+            block( $blocked_div );
+            
             // Make call to actual form post URL.
             $.ajax({
                 type: $form.attr('method'),
@@ -198,7 +201,7 @@
                     update_wc_div(response, preserve_notices);
                 },
                 complete: function () {
-                    unblock($('div.cart_totals', '.sidebar-cart-subtotals', $form));
+                    unblock($blocked_div);
                 }
             });
         },
@@ -206,8 +209,10 @@
          * Update the cart after something has changed.
          */
         update_cart_totals: function () {
-            var $form = $('.sidebar_table.ajax-cart').closest('form');
-            block( $( 'div.cart_totals', '.sidebar-cart-totals', $form) );
+            var $form = $('.sidebar_table.ajax-cart').closest('form'),
+                $blocked_div = $( '.sidebar-cart-totals');
+        
+            block( $blocked_div );
 
             $.ajax({
                 url: get_url('get_cart_totals'),
@@ -216,7 +221,7 @@
                     update_cart_totals_div( response );
                 },
                 complete: function () {
-                    unblock( $( 'div.cart_totals', '.sidebar-cart-totals', $form ) );
+                    unblock( $blocked_div );
                 }
             });
         },
@@ -226,9 +231,9 @@
          * @param {Object} evt The JQuery event
          */
         cart_submit: function (evt) {
-            var $submit = $(document.activeElement);
-            var $clicked = $(':input[type=submit][clicked=true]');
-            var $form = $(evt.currentTarget);
+            var $submit = $(document.activeElement),
+                $clicked = $(':input[type=submit][clicked=true]'),
+                $form = $(evt.currentTarget);
 
             // For submit events, currentTarget is form.
             // For keypress events, currentTarget is input.
@@ -261,9 +266,9 @@
                     .attr('value', 'Update Cart')
                     .appendTo($form);
             
-            var $blocked_div = $(".woocommerce-cart-form, .my-cart-form");
+            var $blocked_div = $( '.woocommerce-cart-form, .my-cart-form, .sidebar-cart-totals' );
 
-            block($('.sidebar-cart-totals'), $blocked_div);
+            block( $blocked_div );
 
             // Make call to actual form post URL.
             $.ajax({
@@ -273,9 +278,10 @@
                 dataType: 'html',
                 success: function( response ) {
                     update_wc_div( response );
+                    $(document.body).trigger('quantity_updated');
                 },
                 complete: function () {
-                    unblock($('.sidebar-cart-totals'), $blocked_div);
+                    unblock( $blocked_div );
                 }
             });
         },
@@ -287,10 +293,10 @@
         item_remove_clicked: function (evt) {
             evt.preventDefault();
             
-            var $a = $(evt.currentTarget);
-            var $blocked_div = $(".my-cart-form, .woocommerce-cart-form, .cart_totals, .sidebar-cart-subtotals");
+            var $a = $(evt.currentTarget),
+                $blocked_div = $(".my-cart-form, .woocommerce-cart-form, .cart_totals, .sidebar-cart-subtotals");
 
-            block($blocked_div);
+            block( $blocked_div );
 
             $.ajax({
                 type: 'GET',
@@ -312,10 +318,10 @@
         item_restore_clicked: function( evt ) {
             evt.preventDefault();
 
-            var $a = $(evt.currentTarget);
-            var $blocked_div = $('.woocommerce-cart-form, .my-cart-form, .sidebar-cart-subtotals' );
+            var $a = $(evt.currentTarget),
+                $blocked_div = $('.woocommerce-cart-form, .my-cart-form, .sidebar-cart-subtotals' );
 
-            block($blocked_div);
+            block( $blocked_div );
 
             $.ajax({
                 type: 'GET',
@@ -325,7 +331,7 @@
                     update_wc_div(response);
                 },
                 complete: function () {
-                    unblock($blocked_div);
+                    unblock( $blocked_div );
                 }
             });
         }
@@ -336,19 +342,19 @@
 
     //receiving event from default cart
     $(document.body).on('item_restored', $.proxy(function () {
-        $(document).trigger('wc_update_cart');
+        $(document).trigger('wc_update_sidebar_cart');
     }, sidebar_cart));
     $(document.body).on('quantity_updated', $.proxy(function () {
-        $(document).trigger('wc_update_cart');
+        $(document).trigger('wc_update_sidebar_cart');
     }, sidebar_cart));
     $(document.body).on('added_to_cart', $.proxy(function () {
-        $(document).trigger('wc_update_cart');
+        $(document).trigger('wc_update_sidebar_cart');
     }, sidebar_cart));
     $(document.body).on('applied_coupon', $.proxy(function () {
-        $(document).trigger('wc_update_cart');
+        $(document).trigger('wc_update_sidebar_cart');
     }, sidebar_cart));
     $(document.body).on('removed_coupon', $.proxy(function () {
-        $(document).trigger('wc_update_cart');
+        $(document).trigger('wc_update_sidebar_cart');
     }, sidebar_cart));
 
 })(jQuery);
