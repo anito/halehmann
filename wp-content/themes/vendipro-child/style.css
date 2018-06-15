@@ -1061,6 +1061,7 @@ p.pee {
 }
 .cart-sidebar .cart-collaterals.empty {
     font-size: 1.3em;
+    font-weight: 400;
 }
 .cart-sidebar .cart-collaterals .amount {
     font-size: 1em;
