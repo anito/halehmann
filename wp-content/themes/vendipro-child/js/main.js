@@ -112,7 +112,7 @@
             sidebar.removeClass('is--open');
             return false;
         });
-        $(document.body).on('added_to_cart applied_coupon removed_coupon', function(e, fragments, cart_hash, button) {
+        $(document.body).on('added_to_cart removed_from_cart quantity_updated applied_coupon removed_coupon', function(e, fragments, cart_hash, button) {
             e.preventDefault();
             $('.mini-cart').click();
         });
