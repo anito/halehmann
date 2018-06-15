@@ -162,9 +162,6 @@
             this.item_restore_clicked  = this.item_restore_clicked.bind( this );
             this.update_cart = this.update_cart.bind(this);
 
-//            $(document).on(
-//                    'wc_update_cart',
-//                    function() { sidebar_cart.update_cart.apply( sidebar_cart, [].slice.call( arguments, 1 ) ); } );
             $( document ).on(
                     'submit',
                     '.woocommerce-cart-form',
@@ -182,12 +179,9 @@
             $(document).on(
                     'cart_page_refreshed',
                     function() { sidebar_cart.update_cart.apply( sidebar_cart, [].slice.call( arguments, 1 ) ); } );
-//            $(document).on(
-//                    'cart_totals_refreshed',
-//                    function() { sidebar_cart.update_cart.apply( sidebar_cart, [].slice.call( arguments, 1 ) ); } );
             $( document ).on(
                     'click',
-                    '.cart-sidebar .restore-item',
+                    '.restore-item',
                     this.item_restore_clicked);
 
             $('div.woocommerce > form :input[name="update_cart"]').prop('disabled', true);
