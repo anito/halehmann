@@ -974,6 +974,14 @@ p.pee {
 .woocommerce #respond input#submit.loading::after, .woocommerce a.button.loading::after, .woocommerce button.button.loading::after, .woocommerce input.button.loading::after {
     top: 0em;
 }
+.woocommerce-remove::before {
+    font-family: WooCommerce;
+    display: inline-block;
+}
+.woocommerce-remove::before {
+    content: '\e013';
+    color: #b81c23;
+}
 label[for="order_comments"] {
     display: block !important;
 }
@@ -1235,22 +1243,12 @@ p.mc4wp-checkbox-wp-registration-form, p.lost_password {
     color: #303030;
     text-decoration: none !important;
 }
-a.remove {
-    padding: 0.15em 0.45em;
+.woocommerce-remove::before {
+    transition: color .3s linear !important;
 }
-.woocommerce a.remove, .remove {
-    border-radius: 50%;
-    padding: 0;
-    background-color: rgba(200, 200, 200, 0.1);
-    line-height: 1em;
-    text-decoration: none !important;
-    font-size: 1em;
-    transition: background-color .3s linear !important;
-}
-.remove:hover {
-    background-color: #d30001;
+.woocommerce-remove:hover::before {
     color: #ffffff;
-    transition: background-color .3s linear !important;
+    transition: color .3s linear !important;
 }
 .btn:hover {
     background: #fff;
@@ -1532,6 +1530,9 @@ table.shop_table tbody td.product-name a {
 .cart-sidebar .bottom > .message-wrapper > [class*='woocommerce-'] a {
     text-decoration: underline;
 }
+.cart-sidebar .woocommerce-message {
+    display: inherit;
+}
 .cart-sidebar .cross-sells {
     display: none;
 }
@@ -1763,6 +1764,10 @@ header#hmain .navbar ul li a:hover {
 .woocommerce-gzpd-checkout-verify-data .data-container {
     width: 90%;
     margin-bottom: 1em;
+}
+.product p.wc-gzd-additional-info, div.product .summary .product_meta span.posted_in {
+    font-size: 0.8em;
+    font-weight: 100;
 }
 table.shop_table tr.cart_item td, table.shop_table thead tr th {
     border-bottom: 1px solid #5a5a5a;

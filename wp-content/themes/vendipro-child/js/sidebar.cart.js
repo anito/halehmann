@@ -72,7 +72,7 @@
         
         // Remove errors
         if ( ! preserve_notices ) {
-//            $( '.woocommerce-error, .woocommerce-message, .woocommerce-info' ).remove();
+            $( '.woocommerce-error, .woocommerce-message, .woocommerce-info', $('.cart-sidebar') ).remove();
         }
         
         update_cart_subtotals_div( $new_subtotals_sidebar);
@@ -113,6 +113,7 @@
             update_cart_totals_div( $new_totals );
         }
 
+        // update mini-cart
         $(document.body).trigger('updated_wc_div');
     };
 
@@ -161,20 +162,32 @@
             this.item_restore_clicked  = this.item_restore_clicked.bind( this );
             this.update_cart = this.update_cart.bind(this);
 
-            $(document).on(
-                    'wc_update_sidebar_cart',
-                    function() { sidebar_cart.update_cart.apply( sidebar_cart, [].slice.call( arguments, 1 ) ); } );
-            $(document).on(
+//            $(document).on(
+//                    'wc_update_cart',
+//                    function() { sidebar_cart.update_cart.apply( sidebar_cart, [].slice.call( arguments, 1 ) ); } );
+            $( document ).on(
                     'submit',
-                    'div.woocommerce:not(.widget_product_search) > form',
-                    this.cart_submit);
+                    '.woocommerce-cart-form',
+                    this.cart_submit );
             $(document).on(
                     'click',
                     '.product-remove > a',
                     this.item_remove_clicked);
+            $(document).on(
+                    'added_to_cart',
+                    function() { sidebar_cart.update_cart.apply( sidebar_cart, [].slice.call( arguments, 1 ) ); } );
+            $(document).on(
+                    'removed_from_cart',
+                    function() { sidebar_cart.update_cart.apply( sidebar_cart, [].slice.call( arguments, 1 ) ); } );
+            $(document).on(
+                    'cart_page_refreshed',
+                    function() { sidebar_cart.update_cart.apply( sidebar_cart, [].slice.call( arguments, 1 ) ); } );
+//            $(document).on(
+//                    'cart_totals_refreshed',
+//                    function() { sidebar_cart.update_cart.apply( sidebar_cart, [].slice.call( arguments, 1 ) ); } );
             $( document ).on(
                     'click',
-                    '.restore-item',
+                    '.cart-sidebar .restore-item',
                     this.item_restore_clicked);
 
             $('div.woocommerce > form :input[name="update_cart"]').prop('disabled', true);
@@ -262,7 +275,7 @@
                     .attr('value', 'Update Cart')
                     .appendTo($form);
             
-            var $blocked_div = $( '.woocommerce-cart-form, .my-cart-form, .sidebar-cart-totals' );
+            var $blocked_div = $( '.my-cart-form, .sidebar-cart-totals' );
 
             block( $blocked_div );
 
@@ -272,9 +285,11 @@
                 url: $form.attr('action'),
                 data: $form.serialize(),
                 dataType: 'html',
+                beforeSend: function( response ) {
+                    $(document.body).trigger('quantity_updated');
+                },
                 success: function( response ) {
                     update_wc_div( response );
-                    $(document.body).trigger('quantity_updated');
                 },
                 complete: function () {
                     unblock( $blocked_div );
