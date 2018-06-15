@@ -28,6 +28,7 @@
      * @return {bool} True if the DOM Element is UI Blocked, false if not.
      */
     var is_blocked = function ($node) {
+        return false;
         return $node.is('.processing') || $node.parents('.processing').length;
     };
 
@@ -67,6 +68,8 @@
         var $new_form = $('.woocommerce-cart-form', $html);
         var $new_form_sidebar = $('.sidebar_table.ajax-cart', $html).closest('form');
         var $new_totals = $( '.cart_totals', $html );
+        var $new_subtotals_sidebar = $('.sidebar-cart-subtotals', $html);
+        var $new_totals_sidebar = $('.sidebar-cart-totals', $html);
         var $new_total_amount = $('.order-total .amount', $html);
         var $new_subtotal_amount = $('.cart-subtotal .amount', $html);
         var $notices = $('.woocommerce-error, .woocommerce-message, .woocommerce-info', $html);
@@ -76,7 +79,10 @@
             $( '.woocommerce-error, .woocommerce-message, .woocommerce-info', $('.cart-sidebar') ).remove();
         }
         
-        update_cart_subtotals_div( $new_subtotal_amount);
+        update_cart_subtotals_div( $new_subtotals_sidebar);
+//        update_cart_subtotals_div( $new_subtotal_amount);
+//        update_cart_totals_div( $new_total_amount[0] );
+        update_cart_totals_div( $new_totals_sidebar );
         
         if ( $notices.length > 0 ) {
             show_notice( $notices);
@@ -111,7 +117,7 @@
             $( '.woocommerce-cart-form' ).replaceWith( $new_form );
             $( '.woocommerce-cart-form' ).find( ':input[name="update_cart"]' ).prop( 'disabled', true );
 
-            update_cart_totals_div( $new_total_amount[0] );
+//            update_cart_totals_div( $new_total_amount[0] );
         }
 
         // update mini-cart
@@ -124,8 +130,8 @@
      * @param {String} html_str The HTML string with which to replace the div.
      */
     var update_cart_totals_div = function (html_str) {
-        console.log(html_str)
-        $( '.cart-sidebar .sidebar-cart-totals .amount' ).replaceWith( html_str );
+        $( '.sidebar-cart-totals' ).replaceWith( html_str );
+//        $( '.cart-sidebar .sidebar-cart-totals .amount' ).replaceWith( html_str );
         $(document.body).trigger('updated_cart_totals');
     };
     
@@ -135,8 +141,8 @@
      * @param {String} html_str The HTML string with which to replace the div.
      */
     var update_cart_subtotals_div = function (html_str) {
-        console.log(html_str.html())
-        $( '.sidebar-cart-subtotals .amount' ).replaceWith( html_str );
+        $( '.sidebar-cart-subtotals' ).replaceWith( html_str );
+//        $( '.sidebar-cart-subtotals .amount' ).replaceWith( html_str );
         $(document.body).trigger('updated_cart_subtotals');
     };
 
@@ -184,10 +190,10 @@
                     function() { sidebar_cart.update_cart.apply( sidebar_cart, [].slice.call( arguments, 1 ) ); } );
             $(document).on(
                     'removed_coupon',
-                    function() { sidebar_cart.update_cart.apply( sidebar_cart, [].slice.call( arguments, 1 ) ); } );
+                    function() { sidebar_cart.update_cart.apply( sidebar_cart ); } );
             $(document).on(
                     'applied_coupon',
-                    function() { sidebar_cart.update_cart.apply( sidebar_cart, [].slice.call( arguments, 1 ) ); } );
+                    function() { sidebar_cart.update_cart.apply( sidebar_cart ); } );
             $(document).on(
                     'click',
                     '.restore-item',
@@ -200,7 +206,7 @@
          */
         update_cart: function (preserve_notices) {
             var $form = $('.my-cart-form'),
-                $blocked_div = $(".my-cart-form, .woocommerce-cart-form, .cart_totals, .sidebar-cart-subtotals, .sidebar-cart-totals");
+                $blocked_div = $(".my-cart-form, .woocommerce-cart-form, .cart_totals, .cart-collaterals-wrapper");
             
             block( $blocked_div );
             
@@ -279,7 +285,7 @@
                     .attr('value', 'Update Cart')
                     .appendTo($form);
             
-            var $blocked_div = $( '.my-cart-form, .sidebar-cart-totals' );
+            var $blocked_div = $( '.my-cart-form, .cart-collaterals-wrapper' );
 
             block( $blocked_div );
 
@@ -309,7 +315,7 @@
             evt.preventDefault();
             
             var $a = $(evt.currentTarget),
-                $blocked_div = $(".my-cart-form, .woocommerce-cart-form, .cart_totals, .sidebar-cart-subtotals");
+                $blocked_div = $(".my-cart-form, .woocommerce-cart-form, .cart_totals, .cart-collaterals-wrapper");
 
             block( $blocked_div );
 
@@ -334,7 +340,7 @@
             evt.preventDefault();
 
             var $a = $(evt.currentTarget),
-                $blocked_div = $('.woocommerce-cart-form, .my-cart-form, .sidebar-cart-subtotals' );
+                $blocked_div = $('.woocommerce-cart-form, .my-cart-form, .cart-collaterals-wrapper' );
 
             block( $blocked_div );
 

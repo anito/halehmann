@@ -40,16 +40,11 @@ global $woocommerce;
 			<?php endif; ?>
 
 		</div>
-		<?php
-		if ( ! WC()->cart->is_empty() ) : ?>
-		<div class="cart-collaterals sidebar-cart-totals">
-
-
-			<span><?php echo _e( 'Total', 'woocommerce' ); ?>:</span><span class="amount"><?php wc_cart_totals_order_total_html(); ?></span>
-			<?php else : ?>
-			<span><?php echo _e( 'Your cart is currently empty.', 'woocommerce' ); ?></span>
-
+		<div class="cart-collaterals sidebar-cart-totals <?php  if ( WC()->cart->is_empty() ) { echo "empty"; } ?>">
+			<?php
+			if ( ! WC()->cart->is_empty() ) : ?>
+			<span><?php echo _e( 'Total', 'woocommerce' ); ?>:</span><span class="amount animated"><?php wc_cart_totals_order_total_html(); ?></span>
+			<?php endif; ?>
 		</div>
-		<?php endif; ?>
 	</div>
 </div>

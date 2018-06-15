@@ -1060,7 +1060,7 @@ p.pee {
     text-align: left !important;
 }
 .cart-sidebar .cart-collaterals.empty {
-    border-top: 0 none;
+    font-size: 1.3em;
 }
 .cart-sidebar .cart-collaterals .amount {
     font-size: 1em;
@@ -1073,12 +1073,121 @@ p.pee {
 .cart-sidebar .cart-collaterals > span:first-child {
     font-size: 0.9em;
 }
+.cart-collaterals.sidebar-cart-totals.empty {
+    display: none;
+}
 .cart-collaterals-wrapper {
-    background: #a9a9a9;
+    background: #d4d4d4;
     color: #222;
     font-family: sans-serif;
     box-shadow: 0 0 110px inset rgba(0,0,0,0.5);
 }
+.cart-sidebar .amount.animated {
+    -webkit-animation-name: rubberBand;
+    -moz-animation-name: rubberBand;
+    -ms-animation-name: rubberBand;
+    -o-animation-name: rubberBand;
+    animation-name: rubberBand;
+    -webkit-animation-delay: 1250ms;
+    -moz-animation-delay: 1250ms;
+    -ms-animation-delay: 1250ms;
+    -o-animation-delay: 1250ms;
+    animation-delay: 1250ms;
+}
+/* @group Rubber Banding Cart Effect */
+
+.animated {
+	-webkit-animation-duration: 1s;
+	-moz-animation-duration: 1s;
+	-ms-animation-duration: 1s;
+	-o-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+
+@-webkit-keyframes rubberBand {
+	0% {
+	-webkit-transform: scale3d(1, 1, 1);
+	transform: scale3d(1, 1, 1);
+}
+
+30% {
+	-webkit-transform: scale3d(1.25, 0.75, 1);
+	transform: scale3d(1.25, 0.75, 1);
+}
+
+40% {
+	-webkit-transform: scale3d(0.75, 1.25, 1);
+	transform: scale3d(0.75, 1.25, 1);
+}
+
+50% {
+	-webkit-transform: scale3d(1.15, 0.85, 1);
+	transform: scale3d(1.15, 0.85, 1);
+}
+
+65% {
+	-webkit-transform: scale3d(.95, 1.05, 1);
+	transform: scale3d(.95, 1.05, 1);
+}
+
+75% {
+	-webkit-transform: scale3d(1.05, .95, 1);
+	transform: scale3d(1.05, .95, 1);
+}
+
+100% {
+	-webkit-transform: scale3d(1, 1, 1);
+	transform: scale3d(1, 1, 1);
+}
+
+}
+@keyframes rubberBand {
+	0% {
+	-webkit-transform: scale3d(1, 1, 1);
+	-ms-transform: scale3d(1, 1, 1);
+	transform: scale3d(1, 1, 1);
+}
+
+30% {
+	-webkit-transform: scale3d(1.25, 0.75, 1);
+	-ms-transform: scale3d(1.25, 0.75, 1);
+	transform: scale3d(1.25, 0.75, 1);
+}
+
+40% {
+	-webkit-transform: scale3d(0.75, 1.25, 1);
+	-ms-transform: scale3d(0.75, 1.25, 1);
+	transform: scale3d(0.75, 1.25, 1);
+}
+
+50% {
+	-webkit-transform: scale3d(1.15, 0.85, 1);
+	-ms-transform: scale3d(1.15, 0.85, 1);
+	transform: scale3d(1.15, 0.85, 1);
+}
+
+65% {
+	-webkit-transform: scale3d(.95, 1.05, 1);
+	-ms-transform: scale3d(.95, 1.05, 1);
+	transform: scale3d(.95, 1.05, 1);
+}
+
+75% {
+	-webkit-transform: scale3d(1.05, .95, 1);
+	-ms-transform: scale3d(1.05, .95, 1);
+	transform: scale3d(1.05, .95, 1);
+}
+
+100% {
+	-webkit-transform: scale3d(1, 1, 1);
+	-ms-transform: scale3d(1, 1, 1);
+	transform: scale3d(1, 1, 1);
+}
+}
+
+/* @end */
 /*
 /   WOOCOMMERCE
 */
