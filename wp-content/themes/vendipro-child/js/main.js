@@ -116,26 +116,6 @@
             e.preventDefault();
             $('.mini-cart').click();
         });
-        $(document.body).on('removed_from_cart', function(e, fragments, cart_hash, button) {
-            e.preventDefault();
-            $('.mini-cart').click();
-        });
-        $(document.body).on('quantity_updated', function (e) {
-            e.preventDefault();
-//            $('.mini-cart').click();
-        });
-        $(document.body).on('applied_coupon', function (e) {
-            e.preventDefault();
-//            $('.mini-cart').click();
-        });
-        $(document.body).on('removed_coupon', function (e) {
-            e.preventDefault();
-//            $('.mini-cart').click();
-        });
-        $(document.body).on('updated_wc_div', function (e) {
-            e.preventDefault();
-//            $('.mini-cart').click();
-        });
         $(document).on('click', '.continue-shopping', function (e) {
             e.preventDefault();
 

@@ -67,7 +67,8 @@
         var $new_form = $('.woocommerce-cart-form', $html);
         var $new_form_sidebar = $('.sidebar_table.ajax-cart', $html).closest('form');
         var $new_totals = $( '.cart_totals', $html );
-        var $new_subtotals_sidebar = $('.sidebar-cart-subtotals', $html);
+        var $new_total_amount = $('.order-total .amount', $html);
+        var $new_subtotal_amount = $('.cart-subtotal .amount', $html);
         var $notices = $('.woocommerce-error, .woocommerce-message, .woocommerce-info', $html);
         
         // Remove errors
@@ -75,7 +76,7 @@
             $( '.woocommerce-error, .woocommerce-message, .woocommerce-info', $('.cart-sidebar') ).remove();
         }
         
-        update_cart_subtotals_div( $new_subtotals_sidebar);
+        update_cart_subtotals_div( $new_subtotal_amount);
         
         if ( $notices.length > 0 ) {
             show_notice( $notices);
@@ -110,7 +111,7 @@
             $( '.woocommerce-cart-form' ).replaceWith( $new_form );
             $( '.woocommerce-cart-form' ).find( ':input[name="update_cart"]' ).prop( 'disabled', true );
 
-            update_cart_totals_div( $new_totals );
+            update_cart_totals_div( $new_total_amount[0] );
         }
 
         // update mini-cart
@@ -123,17 +124,19 @@
      * @param {String} html_str The HTML string with which to replace the div.
      */
     var update_cart_totals_div = function (html_str) {
-        $( '.cart_totals' ).replaceWith( html_str );
+        console.log(html_str)
+        $( '.cart-sidebar .sidebar-cart-totals .amount' ).replaceWith( html_str );
         $(document.body).trigger('updated_cart_totals');
     };
     
     /**
-     * Update the .cart_totals div with a string of html.
+     * Update the .sidebar-cart-subtotals div with a string of html.
      *
      * @param {String} html_str The HTML string with which to replace the div.
      */
     var update_cart_subtotals_div = function (html_str) {
-        $( '.sidebar-cart-subtotals' ).replaceWith( html_str );
+        console.log(html_str.html())
+        $( '.sidebar-cart-subtotals .amount' ).replaceWith( html_str );
         $(document.body).trigger('updated_cart_subtotals');
     };
 
@@ -179,7 +182,13 @@
             $(document).on(
                     'cart_page_refreshed',
                     function() { sidebar_cart.update_cart.apply( sidebar_cart, [].slice.call( arguments, 1 ) ); } );
-            $( document ).on(
+            $(document).on(
+                    'removed_coupon',
+                    function() { sidebar_cart.update_cart.apply( sidebar_cart, [].slice.call( arguments, 1 ) ); } );
+            $(document).on(
+                    'applied_coupon',
+                    function() { sidebar_cart.update_cart.apply( sidebar_cart, [].slice.call( arguments, 1 ) ); } );
+            $(document).on(
                     'click',
                     '.restore-item',
                     this.item_restore_clicked);
@@ -191,7 +200,7 @@
          */
         update_cart: function (preserve_notices) {
             var $form = $('.my-cart-form'),
-                $blocked_div = $(".my-cart-form, .woocommerce-cart-form, .cart_totals, .sidebar-cart-subtotals");
+                $blocked_div = $(".my-cart-form, .woocommerce-cart-form, .cart_totals, .sidebar-cart-subtotals, .sidebar-cart-totals");
             
             block( $blocked_div );
             
@@ -222,6 +231,7 @@
                 dataType: 'html',
                 success: function (response) {
                     update_cart_totals_div( response );
+                    update_cart_subtotals_div( response );
                 },
                 complete: function () {
                     unblock( $blocked_div );
@@ -344,22 +354,5 @@
     };
 
     sidebar_cart.init();
-
-    //receiving event from default cart
-    $(document.body).on('item_restored', $.proxy(function () {
-        $(document).trigger('wc_update_sidebar_cart');
-    }, sidebar_cart));
-    $(document.body).on('quantity_updated', $.proxy(function () {
-        $(document).trigger('wc_update_sidebar_cart');
-    }, sidebar_cart));
-    $(document.body).on('added_to_cart', $.proxy(function () {
-        $(document).trigger('wc_update_sidebar_cart');
-    }, sidebar_cart));
-    $(document.body).on('applied_coupon', $.proxy(function () {
-        $(document).trigger('wc_update_sidebar_cart');
-    }, sidebar_cart));
-    $(document.body).on('removed_coupon', $.proxy(function () {
-        $(document).trigger('wc_update_sidebar_cart');
-    }, sidebar_cart));
 
 })(jQuery);

@@ -29,14 +29,27 @@ global $woocommerce;
 </div>
 <div class="message-wrapper"></div>
 <div class="bottom">
-	<div class="cart-collaterals sidebar-cart-subtotals <?php  if ( WC()->cart->is_empty() ) { echo "empty"; } ?>">
+	<div class="cart-collaterals-wrapper">
+		<div class="cart-collaterals sidebar-cart-subtotals <?php  if ( WC()->cart->is_empty() ) { echo "empty"; } ?>">
+			<?php
+
+			if ( ! WC()->cart->is_empty() ) : ?>
+			<span><?php echo _e( 'Subtotal', 'woocommerce' ); ?>:</span><span class="amount"><?php wc_cart_totals_subtotal_html(); ?></span>
+			<?php else : ?>
+			<span><?php echo _e( 'Your cart is currently empty.', 'woocommerce' ); ?></span>
+			<?php endif; ?>
+
+		</div>
 		<?php
-
 		if ( ! WC()->cart->is_empty() ) : ?>
-		<span><?php echo _e( 'Subtotal', 'woocommerce' ); ?>:</span><span class="amount"><?php echo WC()->cart->get_cart_subtotal(); ?></span>
-		<?php else : ?>
-		<span><?php echo _e( 'Your cart is currently empty.', 'woocommerce' ); ?></span>
-		<?php endif; ?>
+		<div class="cart-collaterals sidebar-cart-totals">
 
+
+			<span><?php echo _e( 'Total', 'woocommerce' ); ?>:</span><span class="amount"><?php wc_cart_totals_order_total_html(); ?></span>
+			<?php else : ?>
+			<span><?php echo _e( 'Your cart is currently empty.', 'woocommerce' ); ?></span>
+
+		</div>
+		<?php endif; ?>
 	</div>
 </div>
