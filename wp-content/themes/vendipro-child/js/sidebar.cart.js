@@ -79,10 +79,9 @@
             $( '.woocommerce-error, .woocommerce-message, .woocommerce-info', $('.cart-sidebar') ).remove();
         }
         
-        update_cart_subtotals_div( $new_subtotals_sidebar);
-//        update_cart_subtotals_div( $new_subtotal_amount);
-//        update_cart_totals_div( $new_total_amount[0] );
-        update_cart_totals_div( $new_totals_sidebar );
+        update_sidebar_cart_subtotals_div( $new_subtotals_sidebar);
+        update_sidebar_cart_totals_div( $new_totals_sidebar );
+        update_cart_totals_div( $new_totals );
         
         if ( $notices.length > 0 ) {
             show_notice( $notices);
@@ -117,7 +116,6 @@
             $( '.woocommerce-cart-form' ).replaceWith( $new_form );
             $( '.woocommerce-cart-form' ).find( ':input[name="update_cart"]' ).prop( 'disabled', true );
 
-//            update_cart_totals_div( $new_total_amount[0] );
         }
 
         // update mini-cart
@@ -130,8 +128,17 @@
      * @param {String} html_str The HTML string with which to replace the div.
      */
     var update_cart_totals_div = function (html_str) {
+        $( '.cart_totals' ).replaceWith( html_str );
+        $(document.body).trigger('updated_cart_totals');
+    };
+    
+    /**
+     * Update the .cart_totals div with a string of html.
+     *
+     * @param {String} html_str The HTML string with which to replace the div.
+     */
+    var update_sidebar_cart_totals_div = function (html_str) {
         $( '.sidebar-cart-totals' ).replaceWith( html_str );
-//        $( '.cart-sidebar .sidebar-cart-totals .amount' ).replaceWith( html_str );
         $(document.body).trigger('updated_cart_totals');
     };
     
@@ -140,9 +147,8 @@
      *
      * @param {String} html_str The HTML string with which to replace the div.
      */
-    var update_cart_subtotals_div = function (html_str) {
+    var update_sidebar_cart_subtotals_div = function (html_str) {
         $( '.sidebar-cart-subtotals' ).replaceWith( html_str );
-//        $( '.sidebar-cart-subtotals .amount' ).replaceWith( html_str );
         $(document.body).trigger('updated_cart_subtotals');
     };
 
@@ -236,8 +242,8 @@
                 url: get_url('get_cart_totals'),
                 dataType: 'html',
                 success: function (response) {
-                    update_cart_totals_div( response );
-                    update_cart_subtotals_div( response );
+                    update_sidebar_cart_totals_div( response );
+                    update_sidebar_cart_subtotals_div( response );
                 },
                 complete: function () {
                     unblock( $blocked_div );
