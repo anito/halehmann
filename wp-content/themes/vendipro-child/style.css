@@ -192,6 +192,9 @@ a, a:hover, a:visited, a:focus {
 p.pee {
     margin-bottom: 30px;
 }
+.woocommerce form .form-row.woocommerce-invalid label {
+    color: inherit;
+}
 @media only screen and (min-width: 660px) and (max-width: 900px) {
     
     .woocommerce ul.products:not(.columns-3):not(.columns-2) li.product {
@@ -268,7 +271,7 @@ p.pee {
     table.shop_table,
     .entry-content table tbody tr:nth-child(even) td,
     .entry-content table tbody tr:nth-child(even) th {
-        background-color: inherit;
+        background-color: inherit !important;
     }
     .woocommerce-checkout .order_details tr td {
 	padding: 2em;
