@@ -265,7 +265,7 @@ p.pee {
     body:not(.woocommerce-cart) .entry-content table tbody tr:nth-child(even) th {
         background-color: #444;
     }
-    .woocommerce-checkout table.shop_table,
+    table.shop_table,
     .entry-content table tbody tr:nth-child(even) td,
     .entry-content table tbody tr:nth-child(even) th {
         background-color: inherit;
