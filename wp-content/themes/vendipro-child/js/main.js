@@ -142,6 +142,21 @@
             message: "Hi"
         };
     };
+    
+    var add_animate_scroll = function() {
+        
+        $('a[href^=#]').on('click', function(e){
+            
+            var href = $(this).attr('href');
+            $('html, body').animate({
+                scrollTop:$(href).offset().top
+            },'slow');
+            
+            e.preventDefault();
+            
+        });
+        
+    }
 
     add_fb_div();
     add_adult_badge();
@@ -151,6 +166,7 @@
     add_mini_cart();
     add_image_disclaimer();
     add_jQuery_blocking();
+    add_animate_scroll();
 //        add_readmore();
 
 })(jQuery)

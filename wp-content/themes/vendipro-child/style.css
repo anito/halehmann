@@ -530,6 +530,13 @@ p.pee {
         z-index: 2;
         box-shadow: rgba(0,0,0,1) 0px 0px 10px;
     }
+    i.link:nth-child(2) {
+        right: 12rem;
+    }
+    .link > a {
+        text-decoration: none !important;
+        font-size: 0.8em;
+    }
     .term-description p {
 
     }
