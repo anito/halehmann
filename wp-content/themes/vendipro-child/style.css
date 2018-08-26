@@ -517,7 +517,7 @@ p.pee {
     }
     i.link {
         position: absolute;
-        bottom: 3rem;
+        top: 2rem;
         right: 2rem;
         font-size: 1.2rem;
         color: #ddd;
@@ -529,9 +529,6 @@ p.pee {
         line-height: 1em;
         z-index: 2;
         box-shadow: rgba(0,0,0,1) 0px 0px 10px;
-    }
-    i.link:nth-child(2) {
-        right: 12rem;
     }
     .link > a {
         text-decoration: none !important;

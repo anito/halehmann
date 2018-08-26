@@ -413,7 +413,7 @@ function get_day_diff( $time, $time_unit = "d" ) {
 	if ( !isset( $time ) )
 		$time = $now;
 
-	$lst = date_create( date( "Y-m-d h:i:s", $time ) );
+	$lst = date_create( date( "Y-m-d H:i:s", $time ) );
 	$diff = date_diff( $lst, $now );
 	switch( $time_unit ) {
 		case "y":
