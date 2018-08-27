@@ -156,8 +156,8 @@
             
         });
         
-    }
-
+    };
+    
     add_fb_div();
     add_adult_badge();
     add_background_image();
