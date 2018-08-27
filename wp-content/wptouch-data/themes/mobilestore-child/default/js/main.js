@@ -37,6 +37,9 @@
             $('a[href^=#]').on('click', function(e){
 
                 var href = $(this).attr('href');
+                
+                if(typeof $(href).offset() == 'undefined') return;
+                
                 $('html, body').animate({
                     scrollTop:$(href).offset().top
                 },'slow');
@@ -57,7 +60,7 @@
                     height = $(window).height(),
                     scrollTop = $(window).scrollTop();
 
-                if( scrollTop > height/2 ) {
+                if( scrollTop > height ) {
                     make_div( cl );
                 } else {
                     $( cl ).addClass( 'nomobile' );
