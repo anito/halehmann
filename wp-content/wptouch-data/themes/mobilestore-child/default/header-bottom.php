@@ -8,7 +8,23 @@
 	<?php if ( $settings->mobilestore_show_categories && function_exists( 'wptouch_fdn_hierarchical_cat_list' ) ) { ?>
 		<div class="wptouch-menu menu categories">
 			<h3><?php _e( 'Product Categories', 'wptouch-pro' ); ?></h3>
-			<?php wptouch_fdn_hierarchical_cat_list( 99, false, 'product_cat', '<ul class="menu-tree">', '</ul>' ); ?>
+			<?php
+			$menu = 'mobilestore-product-categories';
+			if ( has_nav_menu( $menu ) ) {
+				wp_nav_menu(
+					array(
+						'menu' => $menu,
+						'menu_class' => 'menu-tree',
+						'menu_id' => false,
+						'container' => '',
+						'fallback_cb' => false,
+						'theme_location' => $menu,
+					)
+				);
+			} else {
+				wptouch_fdn_hierarchical_cat_list( 0, false, 'product_cat', '<ul class="menu-tree">', '</ul>' );
+			}
+			?>
 		</div>
 	<?php } ?>
 	<?php if ( $settings->mobilestore_show_recently_viewed && function_exists( 'is_shop' ) ) { ?>
@@ -43,7 +59,7 @@
 				<?php if ( foundation_has_logo_image() ) { ?>
 					<img id="header-logo" src="<?php foundation_the_logo_image(); ?>" alt="logo image" />
 				<?php } else { ?>
-					<h1 class="heading-font"><span><?php wptouch_bloginfo( 'site_title' ); ?></span></h1>
+					<div class="heading-font site-title"><span><?php wptouch_bloginfo( 'site_title' ); ?></span></div>
 				<?php } ?>
 			</a>
 			<?php if ( mobilestore_header_type_large() ) { ?>

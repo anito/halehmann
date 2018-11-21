@@ -176,6 +176,9 @@ function fix_sales_handler_from_post($id) {
 function fix_cat($post_id, $term_id) {
 	global $woocommerce;
 	
+	if( !defined( 'SALES_CAT_ID' ) )
+		return;
+	
 	$post_id = intval($post_id);
 	$term_id = intval($term_id);
 	

@@ -52,40 +52,58 @@
 	
         var add_check_scroll = function() {
             
+            var timer_id;
+            
             $('body').attr('id', 'the-top');
             
             $(window).on('scroll', function(e) {
 
-                var cl = '.hal-scroll-top',
+                e.preventDefault();
+                
+                var cl = '.scroll-top',
                     height = $(window).height(),
                     scrollTop = $(window).scrollTop();
 
                 if( scrollTop > height ) {
-                    make_div( cl );
+                    div_handler( cl );
+                    
+                    $( cl ).removeClass( 'dimmed' ).addClass( 'active' );;
+                    
+                    clearTimeout( timer_id );
+                    timer_id = setTimeout( function() {
+                        $( cl ).addClass( 'dimmed' );
+                    }, 4000);
+                    
                 } else {
-                    $( cl ).addClass( 'nomobile' );
+                    $( cl ).addClass( 'away' ).removeClass( 'active' );
+                    
+                    if( timer_id ) {
+                        clearTimeout(timer_id);
+                        timer_id = null;
+                    }
                 }
 
-                e.preventDefault();
 
             });
-
-            var make_div = function( cl ) {
+            
+            var div_handler = function( cl ) {
                 
-                var str = cl,
-                    tmpl,
-                    el;
+                var cl, tmpl, el;
                 
                 el  = $( cl );
-                str = cl.replace(/(^\.|\.)/g, " ");
-                tmpl = `<div class="${str}"><a href="#the-top" class="scroll-top wptouch-icon-angle-up"></a></div>`;
                 
                 if( !el.length ) {
+                    
+                    str = cl.replace(/(^\.|\.)/g, " ");
+                    tmpl = `<div class="${str} away"><a href="#the-top" class="scroll-top-inner wptouch-icon-angle-up"></a></div>`;
+                    
                     $('body').append( $(tmpl) );
                     add_animate_scroll();
+                    
                 }
 
-                el.removeClass( 'nomobile' );
+                el.removeClass( 'away' );
+                
             };
 
         }

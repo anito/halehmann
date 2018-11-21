@@ -5,6 +5,9 @@ require_once( __DIR__ . '/includes/sender_email.php');
 add_shortcode('my_sales','shortcode_handler_my_sales');
 add_action('init', 'fix_sales_handler_from_post', 998);
 
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 20 );
+add_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 14 );
+
 function ret_false() {
 	return false;
 }
@@ -103,7 +106,8 @@ function on_save_post($post_id , $post, $is_update){
 		$product_id = $variation->get_parent_id();
 		$product = wc_get_product($product_id);
 	}
-	fix_cat($product_id, SALES_CAT_ID);
+	if( defined( 'SALES_CAT_ID' ) )
+		fix_cat($product_id, SALES_CAT_ID);
 	
 }
 
@@ -111,7 +115,8 @@ function on_save_post($post_id , $post, $is_update){
 add_action("woocommerce_before_product_object_save", "before_product_object_save", 99, 2);
 function before_product_object_save($product, $data_store) {
 	$is_featured = $product->is_featured();
-	set_product_cats($product, FEATURED_CAT_ID, $is_featured);
+	if( defined( 'FEATURE_CAT_ID' ) )
+		set_product_cats($product, FEATURED_CAT_ID, $is_featured);
 }
 
 add_action( 'init', 'disable_wp_emojicons' );
