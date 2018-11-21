@@ -789,7 +789,7 @@ p.pee {
     .entry-content table tbody tr td, .entry-content table tbody tr th {
         /*padding-right: 0 !important;*/
     }
-    .entry-content h3, .related > h2, , .product .upsells h2 {
+    .entry-content h3, .related > h2, .product .upsells h2 {
         font-size: 1.3em;
     }
     .wc-proceed-to-checkout, .wc-gzd-order-submit {
