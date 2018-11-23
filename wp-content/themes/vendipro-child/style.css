@@ -1937,6 +1937,9 @@ header#hmain .navbar ul li a:hover {
     font-size: 0.8em;
     font-weight: 100;
 }
+input.stock_alert_email {
+    margin-bottom: 10px !important;
+}
 table.shop_table tr.cart_item td, table.shop_table thead tr th {
     border-bottom: 1px solid #5a5a5a;
 }
