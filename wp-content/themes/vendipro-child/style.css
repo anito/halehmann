@@ -1932,7 +1932,8 @@ header#hmain .navbar ul li a:hover {
     width: 90%;
     margin-bottom: 1em;
 }
-.product p.wc-gzd-additional-info, div.product .summary .product_meta span.posted_in {
+.product p.wc-gzd-additional-info, div.product .summary .product_meta span.posted_in,
+.subscribe_for_interest_text {
     font-size: 0.8em;
     font-weight: 100;
 }
