@@ -63,7 +63,7 @@
 
 (function ($) {
 
-    var disclaimer = "Abbildung kann ähnlich sein. Änderungen und Irrtümer vorbehalten";
+    var disclaimer = "Abbildung kann ähnlich sein. Änderungen und Irrtümer vorbehalten.<br\>Mögliches Zubehör auf Bildern ist nicht Teil des Angebots.";
     //Init Adult Badges
     var add_adult_badge = function () {
         $('.product_tag-ab-18 .images').each(function ($i) {
@@ -92,7 +92,7 @@
 
     //add disclaimer to MagicToolbox Container
     var add_image_disclaimer = function () {
-        $('.MagicToolboxContainer').prepend('<span class="disclaimer">' + disclaimer + '</span>');
+        $('.MagicToolboxContainer').append('<span class="disclaimer">' + disclaimer + '</span>');
     }
 
     //add cart sidebar behaviour
