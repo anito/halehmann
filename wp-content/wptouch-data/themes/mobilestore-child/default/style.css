@@ -1156,7 +1156,7 @@ h3#billing_fields_heading, h3#order_review_heading {
     height: 120px;
     display: inline-block;
     position: absolute;
-    top: -78px;
+    top: -20px;
     left: -9px;
     z-index: 0;
     transform: rotate(-22deg);

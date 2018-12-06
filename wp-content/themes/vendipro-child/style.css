@@ -1931,13 +1931,18 @@ header#hmain .navbar ul li a:hover {
     width: 90%;
     margin-bottom: 1em;
 }
-.product p.wc-gzd-additional-info, div.product .summary .product_meta span.posted_in,
-.subscribe_for_interest_text {
+.product p.wc-gzd-additional-info, div.product .summary .product_meta span.posted_in {
     font-size: 0.8em;
     font-weight: 100;
 }
-input.stock_alert_email {
-    margin-bottom: 10px !important;
+.alert_container h6 {
+    font-size: 1em;
+    font-weight: 100;
+    line-height: 1.3em;
+}
+.alert_container button {
+    padding: 0.2em .5em;
+	margin-top: 10px;
 }
 table.shop_table tr.cart_item td, table.shop_table thead tr th {
     border-bottom: 1px solid #5a5a5a;
@@ -2324,6 +2329,16 @@ table.shop_table td.product-thumbnail img {
 .boxzilla .mc4wp-form input[type="submit"] {
     border-radius: 0 2px 2px 0!important;
 }
+.address-box {
+    display: inline-block;
+    position: relative;
+}
+.page .address-box {
+    padding: 15px;
+    background: #424242;
+    border-radius: 10px;
+    width: 100%;
+}
 .address-box::before {
     content: "";
     background: url(/wp-content/uploads/2018/06/briefmarke-poststempel-ha-lehmann.png) no-repeat center/cover;
@@ -2331,7 +2346,7 @@ table.shop_table td.product-thumbnail img {
     height: 122px;
     display: inline-block;
     position: absolute;
-    top: -55px;
+    top: -20px;
     left: -9px;
     z-index: 0;
     transform: rotate(-22deg);
