@@ -1118,23 +1118,12 @@ h3#billing_fields_heading, h3#order_review_heading {
     display: inline-block;
     position: relative;
 }
-.boxzilla_ .address-box::before {
-    content: "";
-    display: inline-block;
-    background: url(/wp-content/uploads/2018/06/briefmarke-poststempel-ha-lehmann.png) no-repeat;
-    width: 200px;
-    height: 300px;
-    position: absolute;
-    right: -15px;
-    top: -115px;
-}
 .address-box p {
     line-height: 1em;
 }
 .boxzilla .mc4wp-form {
     text-align: center;
 }
-
 .boxzilla .mc4wp-form input[type="email"], .boxzilla .mc4wp-form input[type="submit"] {
     font-size: 1em;
     max-width: 240px;
@@ -1153,13 +1142,19 @@ h3#billing_fields_heading, h3#order_review_heading {
     content: "";
     background: url(/wp-content/uploads/2017/06/mail.png) no-repeat center/cover;
     width: 120px;
-    height: 120px;
+    height: 135px;
     display: inline-block;
     position: absolute;
     top: -20px;
     left: -9px;
     z-index: 0;
     transform: rotate(-22deg);
+}
+.boxzilla .address-box::before {
+    width: 120px;
+    height: 133px;
+    left: -25px;
+    top: -80px;
 }
 .page-wrapper .address-box::before {
     right: 9px;
