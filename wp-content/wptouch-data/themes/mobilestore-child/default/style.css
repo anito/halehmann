@@ -1140,26 +1140,22 @@ h3#billing_fields_heading, h3#order_review_heading {
 }
 .address-box::before {
     content: "";
-    background: url(/wp-content/uploads/2017/06/mail.png) no-repeat center/cover;
-    width: 120px;
-    height: 135px;
+    background: url(/wp-content/uploads/2018/06/briefmarke-poststempel-ha-lehmann.png) no-repeat center/cover;
     display: inline-block;
     position: absolute;
-    top: -20px;
-    left: -9px;
+    width: 120px;
+    height: 135px;
     z-index: 0;
-    transform: rotate(-22deg);
 }
 .boxzilla .address-box::before {
-    width: 120px;
-    height: 133px;
     left: -25px;
     top: -80px;
+    transform: rotate(-22deg);
 }
 .page-wrapper .address-box::before {
     right: 9px;
-    left: unset;
-    transform: rotate(22deg);
+    top: -28px;
+    transform: rotate(17deg);
 }
 .powered-by-webpremiere .logo {
     height: 23px;
