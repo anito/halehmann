@@ -2346,15 +2346,19 @@ table.shop_table td.product-thumbnail img {
     height: 122px;
     display: inline-block;
     position: absolute;
-    top: -20px;
-    left: -9px;
     z-index: 0;
+}
+.page .address-box::before {
+    right: 20px;
+    top: -20px;
+    transform: rotate(22deg);
+}
+.boxzilla .address-box::before {
+    left: -25px;
+    top: -80px;
     transform: rotate(-22deg);
 }
 #primary .address-box::before {
-    right: 20px;
-    left: unset;
-    transform: rotate(22deg);
 }
 #primary .info-box {
     background: #424242;
