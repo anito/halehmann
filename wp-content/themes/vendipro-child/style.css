@@ -929,6 +929,14 @@ p.pee {
  */
 
 /*
+ * Widgets
+ *
+ */
+#ks_rating_link img {
+    width: 101px;
+    height: auto;
+}
+/*
  * Cart Sidebar
  *
  */

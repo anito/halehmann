@@ -1237,6 +1237,10 @@ a.scroll-top-inner:before {
     width: 60px !important;
     margin: 0;
 }
+#ks_rating_link img {
+    width: 80px;
+    height: auto;
+}
 @media only screen and (min-width: 420px) {
     .boxzilla .mc4wp-form input[type="email"] {
         border-radius: 2px 0 0 2px !important;
