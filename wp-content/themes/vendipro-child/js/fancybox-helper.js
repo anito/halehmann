@@ -15,7 +15,7 @@
             src_big = function (src) {
 
                 regex = /(.*)(-\d{1,}x\d{1,})(.)(jpg|jpeg|png|gif)/g;
-                subst = '$1$3$4';
+                subst = '$1$2$3$4';
 
                 return src.replace(regex, subst);
 
