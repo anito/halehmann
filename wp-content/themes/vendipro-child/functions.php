@@ -271,6 +271,14 @@ function add_scripts() {
 	wp_enqueue_script( 'main' );
 	wp_register_script( 'cart', get_stylesheet_directory_uri() . '/js/sidebar.cart.js', array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'cart' );
+	
+	/*
+	 *  Fancybox
+	 */
+	wp_enqueue_script('fancybox', get_stylesheet_directory_uri() . '/js/fancybox/jquery.fancybox.js', array( 'jquery' ), '1.0', true);
+    wp_enqueue_script('fancybox-helper', get_stylesheet_directory_uri() . '/js/fancybox-helper.js', array( 'jquery' ), '1.0', true);
+    wp_enqueue_style('fancybox', get_stylesheet_directory_uri() . '/css/fancybox/jquery.fancybox.css');
+    wp_enqueue_style('fancy-metaslider', get_stylesheet_directory_uri() . '/css/fancy-metaslider.css');
 }
 
 // Display number of Products per page
