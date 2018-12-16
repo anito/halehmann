@@ -204,6 +204,17 @@ blockquote > p {
 .woocommerce div.product div.images .woocommerce-product-gallery__image--placeholder {
     display: none;
 }
+/*
+ * WP Gallery
+ *
+ */
+.gallery_pages_list {
+    text-align: center;
+    margin-top: 20px;
+}
+nav.woocommerce-pagination ul.page-numbers li a, nav.woocommerce-pagination ul.page-numbers li span {
+    padding: .5em 1em;
+}
 @media only screen and (min-width: 660px) and (max-width: 900px) {
     
     .woocommerce ul.products:not(.columns-3):not(.columns-2) li.product {
