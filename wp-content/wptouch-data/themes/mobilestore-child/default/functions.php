@@ -65,6 +65,15 @@ function add_scripts() {
 		true
 	);
 	
+	/*
+	 * WP Block Library
+	 * load Block Library if WP Version < 5.0
+	 */
+	global $wp_version;
+	if ( version_compare( $wp_version, '5.0', '<' ) ) {
+		// WordPress version is smaller than 5.0
+		wp_enqueue_style('block-library', get_stylesheet_directory_uri() . '/css/wp/block-library/style.css');
+	}
 	
 	/*
 	 *  Fancybox

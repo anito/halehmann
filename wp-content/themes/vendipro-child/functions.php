@@ -281,6 +281,7 @@ function add_scripts() {
 		// WordPress version is smaller than 5.0
 		wp_enqueue_style('block-library', get_stylesheet_directory_uri() . '/css/wp/block-library/style.css');
 	}
+	
 	/*
 	 *  Fancybox
 	 */
