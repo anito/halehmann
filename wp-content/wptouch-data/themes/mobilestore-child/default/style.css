@@ -320,13 +320,6 @@ h1:not(.product_title)  {
     text-shadow: none !important;
     color: inherit;
 }
-ul.page-numbers,
-.nav-controls a {
-    margin: 0 7%;
-    padding: 10px;
-    border-radius: 3px;
-    background: #ddd;
-}
 .woocommerce .shop_table tfoot {
     font-size: 90%;
 }
@@ -1240,6 +1233,54 @@ a.scroll-top-inner:before {
 #ks_rating_link img {
     width: 80px;
     height: auto;
+}
+
+/* Pagination */
+
+.woocommerce-pagination {
+    text-align: right;
+}
+ul.page-numbers, .nav-controls a {
+    margin: 0 7%;
+    padding: 10px;
+    border-radius: 3px;
+    background: #6b6969;
+}
+ul.page-numbers, .page-link {
+    list-style: none;
+}
+.page-link .pag-item {
+    cursor: default;
+    padding: 0.5em;
+    background-color: #7b9f35;
+    border: 1px solid #7b9f35;
+    color: #FFF;
+}
+ul.page-numbers li a, ul.page-numbers li a:visited, ul.page-numbers li a:hover, ul.page-numbers li a:focus,
+ul.page-numbers li .current, .page-link a .pag-item  {
+    border: 1px solid #EEE;
+    background-color: #EEE;
+    color: #333;
+    padding: 0.5em;
+    height: 40px;
+    width: 40px;
+    line-height: 1.2em;
+    display: inline-block;
+    cursor: pointer;
+}
+ul.page-numbers li, .page-link a .pag-item, .page-link .pag-item {
+    display: inline-block;
+    text-decoration: none !important;
+    margin-right: 0.2em;
+}
+ul.page-numbers li .current {
+    background-color: #d30001;
+    border: 1px solid #d30001;
+    color: #FFF;
+}
+ul.page-numbers li a:hover, a .pag-item:hover {
+    background-color: #CCC;
+    border: 1px solid #CCC;
 }
 @media only screen and (min-width: 420px) {
     .boxzilla .mc4wp-form input[type="email"] {

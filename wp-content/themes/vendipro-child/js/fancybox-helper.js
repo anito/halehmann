@@ -23,23 +23,23 @@
 
             caption = $(this).parents('[class*="slide-"]').find('.caption').text();
             
-            if( $(this).find('a').length ) {
-                console.log(a)
+            if( (a = $(this).parent('a')) && a.length ) {
+                
+                // Links found
                 outer = a[0];
             } else {
-//                console.log('2')
+                // No Links found
                 outer = '<a></a>';
+                inner.wrap($(outer));
             }
 //            console.log(outer)
-            outer = $(outer);
+//            outer = $(outer);
             $(outer).attr( {
                 'href': src_big(this.src),
                 'data-fancybox' : 'gallery-' + galleryIndex,
                 'data-caption' : caption
-            } );// = '<a href="' + src_big(this.src) + '" data-fancybox="gallery-' + galleryIndex + '" data-caption="' + caption + '">';
-//            outer = '<a href="' + src_big(this.src) + '" data-fancybox="gallery-' + galleryIndex + '" data-caption="' + caption + '">';
+            } );
 
-            inner.wrap(outer);
 
         });
         
