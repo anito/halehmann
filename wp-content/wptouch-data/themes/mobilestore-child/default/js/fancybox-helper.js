@@ -26,9 +26,11 @@
             if( (a = $(this).parent('a')) && a.length ) {
                 
                 // Links found
+                console.log('1')
                 outer = a[0];
             } else {
                 // No Links found
+                console.log('2')
                 outer = '<a></a>';
                 inner.wrap($(outer));
             }
