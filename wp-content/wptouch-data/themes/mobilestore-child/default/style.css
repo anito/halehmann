@@ -1241,7 +1241,6 @@ a.scroll-top-inner:before {
     text-align: right;
 }
 ul.page-numbers, .nav-controls a {
-    margin: 0 7%;
     padding: 10px;
     border-radius: 3px;
     background: #6b6969;

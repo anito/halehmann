@@ -3,7 +3,7 @@ require_once( __DIR__ . '/includes/my_cat_handler.php');
 require_once( __DIR__ . '/includes/sender_email.php');
 
 add_shortcode('my_sales','shortcode_handler_my_sales');
-add_action( 'init', 'fix_sales_handler_from_post', 998 );
+add_action('init', 'fix_sales_handler_from_post', 998);
 add_action( 'init', 'reorder_upsell_action' );
 
 function reorder_upsell_action() {
