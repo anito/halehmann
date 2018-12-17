@@ -536,7 +536,7 @@ nav.woocommerce-pagination ul.page-numbers li a, nav.woocommerce-pagination ul.p
         margin-top: 0 !important;
     }
     i.link {
-        min-width: 200px;
+        min-width: 220px;
         position: absolute;
         top: 2rem;
         right: 2rem;
