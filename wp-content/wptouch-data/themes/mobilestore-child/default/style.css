@@ -1271,7 +1271,7 @@ ul.page-numbers li .current, .page-link a .pag-item  {
 ul.page-numbers li, .page-link a .pag-item, .page-link .pag-item {
     display: inline-block;
     text-decoration: none !important;
-    margin-right: 0.2em;
+    margin: 1% 2%;
 }
 ul.page-numbers li .current {
     background-color: #d30001;
