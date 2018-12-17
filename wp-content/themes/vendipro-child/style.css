@@ -536,6 +536,7 @@ nav.woocommerce-pagination ul.page-numbers li a, nav.woocommerce-pagination ul.p
         margin-top: 0 !important;
     }
     i.link {
+        min-width: 200px;
         position: absolute;
         top: 2rem;
         right: 2rem;
@@ -543,6 +544,7 @@ nav.woocommerce-pagination ul.page-numbers li a, nav.woocommerce-pagination ul.p
         color: #ddd;
         text-transform: uppercase;
         font-style: normal;
+        text-align: center;
         padding: 1rem 1.5rem;
         background-color: #de0303;
         border-radius: .2em;
@@ -550,10 +552,15 @@ nav.woocommerce-pagination ul.page-numbers li a, nav.woocommerce-pagination ul.p
         z-index: 2;
         box-shadow: rgba(0,0,0,1) 0px 0px 10px;
     }
+    i.link.link-2 {
+        top: 6rem;
+        right: 2rem;
+    }
     .link > a {
         text-decoration: none !important;
         font-size: 0.8em;
     }
+    
     .term-description p {
 
     }
