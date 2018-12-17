@@ -1282,6 +1282,12 @@ ul.page-numbers li a:hover, a .pag-item:hover {
     background-color: #CCC;
     border: 1px solid #CCC;
 }
+blockquote > p {
+    border-left: 2px solid #EEE;
+    padding-left: 1em;
+    font-style: initial;
+    font-size: 1em;
+}
 @media only screen and (min-width: 420px) {
     .boxzilla .mc4wp-form input[type="email"] {
         border-radius: 2px 0 0 2px !important;
