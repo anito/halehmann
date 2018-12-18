@@ -1371,7 +1371,7 @@ li.product .added_to_cart {
     font-weight: normal !important;
     line-height: 1.8em;
 }
-.page .entry-content > h2:not(.entry-title) + h5, .term-description > *:not(:first-child), .page-description > *:not(:first-child), .product[class*="ab-18"] i.note-ab-18 {
+.page .entry-content > h2:not(.entry-title) ~ h5, .term-description > *:not(:first-child), .page-description > *:not(:first-child), .product[class*="ab-18"] i.note-ab-18 {
     color: rgb(227, 0, 1) !important;
     padding: 10px !important;
     font-size: 1em !important;
