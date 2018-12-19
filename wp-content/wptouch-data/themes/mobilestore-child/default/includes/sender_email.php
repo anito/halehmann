@@ -5,12 +5,12 @@ function wpb_sender_email( $original_email_address ) {
     $url = home_url();
     $pattern = '/(https?):\/\/(.*)/';
     preg_match( $pattern, $url, $matches );
-    return 'ssv' . $matches[2];
+    return 'HA Lehmann' . $matches[2];
 }
  
 // Function to change sender name
 function wpb_sender_name( $original_email_from ) {
-    return 'SSV';
+    return 'HA Lehmann';
 }
  
 // Hooking up our functions to WordPress filters 

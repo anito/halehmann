@@ -6,6 +6,17 @@ add_shortcode('my_sales','shortcode_handler_my_sales');
 add_action('init', 'fix_sales_handler_from_post', 998);
 add_action( 'init', 'reorder_upsell_action' );
 
+add_action( 'shutdown', 'retrieve_post_via_mail' );
+function retrieve_post_via_mail() {
+	flush(); // Display the page before the mail fetching begins
+	if ( get_transient( 'retrieve_post_via_mail' ) ) { 
+		return; // The mail has been checked recently; don't check again
+	} else { // The mail has not been checked in more than 15 minutes
+		do_action( 'wp-mail.php' );
+		set_transient( 'retrieve_post_via_mail', 1, 15 * MINUTE_IN_SECONDS ); // check again in 15 minutes.
+	}
+}
+
 function reorder_upsell_action() {
 	remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 20 );
 	add_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 14 );
