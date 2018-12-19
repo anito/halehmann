@@ -13,7 +13,7 @@ function retrieve_post_via_mail() {
 		return; // The mail has been checked recently; don't check again
 	} else { // The mail has not been checked in more than 15 minutes
 		do_action( 'wp-mail.php' );
-		set_transient( 'retrieve_post_via_mail', 1, 15 * MINUTE_IN_SECONDS ); // check again in 15 minutes.
+		set_transient( 'retrieve_post_via_mail', 1, 1 * MINUTE_IN_SECONDS ); // check again in 15 minutes.
 	}
 }
 
