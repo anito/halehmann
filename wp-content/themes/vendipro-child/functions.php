@@ -619,3 +619,13 @@ function prefix_add_css_class_to_form( $classes = array(), MC4WP_Form $form ) {
 	return $classes;
 }
 add_filter( 'mc4wp_form_css_classes', 'prefix_add_css_class_to_form', 10, 2 );
+
+add_action( 'publicize_save_meta',  'publicize_save_meta');
+function publicize_save_meta( $submit_post, $post_id, $service_name, $connection ) {
+	
+	write_log($submit_post);
+	write_log($post_id);
+	write_log($service_name);
+	write_log($connection);
+	
+}
