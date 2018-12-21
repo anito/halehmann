@@ -6,6 +6,8 @@ add_shortcode('my_sales','shortcode_handler_my_sales');
 add_action('init', 'fix_sales_handler_from_post', 998);
 add_action( 'init', 'reorder_upsell_action' );
 
+add_theme_support( 'html5', array( 'gallery' ) );
+
 add_action( 'shutdown', 'retrieve_post_via_mail' );
 function retrieve_post_via_mail() {
 	flush(); // Display the page before the mail fetching begins
