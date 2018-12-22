@@ -630,3 +630,7 @@ function rest_api_inserted_post( $post_id, $insert, $new ) {
 	write_log($new);
 	
 }
+add_action( 'add_attachment', 'add_attachment_via_rest' );
+function add_attachment_via_rest() {
+	write_log( !empty( $_FILES['.api.media.item.'] ) ? $_FILES['.api.media.item.']: 'no files' );
+}
