@@ -2,6 +2,8 @@
 require_once( __DIR__ . '/includes/my_cat_handler.php');
 require_once( __DIR__ . '/includes/sender_email.php');
 
+add_theme_support( 'html5', array( 'gallery' ) );
+
 /**
  * WooCommerce Extra Feature Related Products
  * --------------------------
