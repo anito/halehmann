@@ -630,7 +630,13 @@ function rest_api_inserted_post( $post_id, $insert, $new ) {
 	write_log($new);
 	
 }
-add_action( 'add_attachment', 'add_attachment_via_rest' );
-function add_attachment_via_rest() {
-	write_log( !empty( $_FILES['.api.media.item.'] ) ? $_FILES['.api.media.item.']: 'no files' );
+add_filter( 'wp_insert_attachment_data', 'wp_insert_attachment_data_via_rest', 20, 2 );
+function add_attachment_via_rest( $data, $postarr ) {
+	write_log($data);
+	write_log($postarr);
+	if( !empty( $_FILES['.api.media.item.'] ) ) {
+		write_log( $_FILES['.api.media.item.']: 'no files' );
+	} else {
+		write_log( 'no files' );
+	}
 }
