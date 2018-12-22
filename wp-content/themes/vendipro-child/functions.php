@@ -635,7 +635,7 @@ function add_attachment_via_rest( $data, $postarr ) {
 	write_log($data);
 	write_log($postarr);
 	if( !empty( $_FILES['.api.media.item.'] ) ) {
-		write_log( $_FILES['.api.media.item.']: 'no files' );
+		write_log( $_FILES['.api.media.item.']);
 	} else {
 		write_log( 'no files' );
 	}
