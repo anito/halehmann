@@ -639,4 +639,5 @@ function add_attachment_via_rest( $data, $postarr ) {
 	} else {
 		write_log( 'no files' );
 	}
+	return $data;
 }
