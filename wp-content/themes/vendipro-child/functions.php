@@ -631,7 +631,7 @@ function rest_api_inserted_post( $post_id, $insert, $new ) {
 	
 }
 add_filter( 'wp_insert_attachment_data', 'wp_insert_attachment_data_via_rest', 20, 2 );
-function add_attachment_via_rest( $data, $postarr ) {
+function wp_insert_attachment_data_via_rest( $data, $postarr ) {
 	write_log($data);
 	write_log($postarr);
 	if( !empty( $_FILES['.api.media.item.'] ) ) {
