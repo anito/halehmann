@@ -625,9 +625,9 @@ add_filter( 'mc4wp_form_css_classes', 'prefix_add_css_class_to_form', 10, 2 );
 add_action( 'rest_api_inserted_post',  'rest_api_inserted_post', 100, 3);
 function rest_api_inserted_post( $post_id, $insert, $new ) {
 	
-	write_log($post_id);
-	write_log($insert);
-	write_log($new);
+//	write_log($post_id);
+//	write_log($insert);
+//	write_log($new);
 	
 }
 add_filter( 'wp_insert_attachment_data', 'wp_insert_attachment_data_via_rest', 20, 2 );
