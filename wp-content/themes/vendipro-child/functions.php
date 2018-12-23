@@ -626,8 +626,8 @@ add_action( 'rest_api_inserted_post',  'rest_api_inserted_post', 100, 3);
 function rest_api_inserted_post( $post_id, $insert, $new ) {
 	write_log( '--------- rest_api_inserted_post START---------' );
 	
-	if( !empty( $_FILES['.api.media.item.'] ) ) {
-		write_log( $_FILES['.api.media.item.']);
+	if( !empty( $_FILES ) ) {
+		write_log( $_FILES);
 	} else {
 		write_log( 'no files' );
 	}
@@ -640,13 +640,13 @@ function rest_api_inserted_post( $post_id, $insert, $new ) {
 add_filter( 'wp_insert_attachment_data', 'wp_insert_attachment_data_via_rest', 20, 2 );
 function wp_insert_attachment_data_via_rest( $data, $postarr ) {
 	write_log( '--------- wp_insert_attachment_data START---------' );
-	write_log($data);
-	write_log($postarr);
-	if( !empty( $_FILES['.api.media.item.'] ) ) {
-		write_log( $_FILES['.api.media.item.']);
+	if( !empty( $_FILES ) ) {
+		write_log( $_FILES);
 	} else {
 		write_log( 'no files' );
 	}
+	write_log($data);
+	write_log($postarr);
 	write_log( '--------- wp_insert_attachment_data END---------' );
 	return $data;
 }
