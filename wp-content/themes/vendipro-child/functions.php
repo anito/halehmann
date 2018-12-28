@@ -653,3 +653,7 @@ function wp_insert_attachment_data_via_rest( $data, $postarr ) {
 	write_log( '--------- wp_insert_attachment_data END---------' );
 	return $data;
 }
+add_action( 'wpcom_json_api_objects', 'wpcom_json_api_objects' );
+function wpcom_json_api_objects( $posts ) {
+	write_log($posts);
+}
