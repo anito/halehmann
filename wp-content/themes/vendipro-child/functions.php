@@ -622,11 +622,12 @@ function prefix_add_css_class_to_form( $classes = array(), MC4WP_Form $form ) {
 }
 add_filter( 'mc4wp_form_css_classes', 'prefix_add_css_class_to_form', 10, 2 );
 
-add_action( 'rest_api_inserted_post',  'rest_api_inserted_post', 100, 3);
+//add_action( 'rest_api_inserted_post',  'rest_api_inserted_post', 100, 3);
 function rest_api_inserted_post( $post_id, $insert, $new ) {
 	write_log( '--------- rest_api_inserted_post START---------' );
 	
 	if( !empty( $_FILES ) ) {
+		write_log( '$_FILES:');
 		write_log( $_FILES);
 	} else {
 		write_log( 'no files' );
@@ -637,10 +638,12 @@ function rest_api_inserted_post( $post_id, $insert, $new ) {
 	write_log( '--------- rest_api_inserted_post END---------' );
 	
 }
-add_filter( 'wp_insert_attachment_data', 'wp_insert_attachment_data_via_rest', 20, 2 );
+
+//add_filter( 'wp_insert_attachment_data', 'wp_insert_attachment_data_via_rest', 20, 2 );
 function wp_insert_attachment_data_via_rest( $data, $postarr ) {
 	write_log( '--------- wp_insert_attachment_data START---------' );
 	if( !empty( $_FILES ) ) {
+		write_log( '$_FILES:');
 		write_log( $_FILES);
 	} else {
 		write_log( 'no files' );
