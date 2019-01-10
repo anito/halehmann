@@ -282,8 +282,8 @@ function add_scripts() {
 	wp_enqueue_script( 'fb' );
 	wp_register_script( 'main', get_stylesheet_directory_uri() . '/js/main.js', array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'main' );
-	wp_register_script( 'cart', get_stylesheet_directory_uri() . '/js/sidebar.cart.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'cart' );
+	wp_register_script( 'sidebar-cart', get_stylesheet_directory_uri() . '/js/sidebar.cart.js', array( 'jquery' ), '1.0', true );
+	wp_enqueue_script( 'sidebar-cart' );
 	
 	/*
 	 * WP Block Library
