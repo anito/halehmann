@@ -970,6 +970,13 @@ nav.woocommerce-pagination ul li a:focus, .woocommerce nav.woocommerce-paginatio
     height: auto;
 }
 /*
+ * Cart
+ *
+ */
+#add_payment_method .cart-collaterals .shipping-calculator-button::after, .woocommerce-cart .cart-collaterals .shipping-calculator-button::after, .woocommerce-checkout .cart-collaterals .shipping-calculator-button::after {
+    content: "\e01a";
+}
+/*
  * Cart Sidebar
  *
  */
