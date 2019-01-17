@@ -639,7 +639,7 @@ function rest_api_inserted_post( $post_id, $insert, $new ) {
 	
 }
 
-add_filter( 'wp_insert_attachment_data', 'wp_insert_attachment_data_via_rest', 20, 2 );
+//add_filter( 'wp_insert_attachment_data', 'wp_insert_attachment_data_via_rest', 20, 2 );
 function wp_insert_attachment_data_via_rest( $data, $postarr ) {
 	write_log( '--------- wp_insert_attachment_data START---------' );
 	if( !empty( $_FILES ) ) {

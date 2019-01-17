@@ -209,6 +209,7 @@ button#catapultCookie {
 a.load-more-products-link, a.load-more-link, input.button, button_.button,
 #content .button,
 #content a.button,
+#content .stock_alert_button,
 .cart a.button,
 .order-actions a,
 .pushit .button,
@@ -1288,6 +1289,10 @@ blockquote > p {
     padding-left: 1em;
     font-style: initial;
     font-size: 1em;
+}
+#content .product button.stock_alert_button[name=alert_button] {
+    margin-top: 20px;
+    margin-left: 0;
 }
 @media only screen and (min-width: 420px) {
     .boxzilla .mc4wp-form input[type="email"] {
