@@ -2103,7 +2103,7 @@ header#hmain .navbar ul li:hover > ul > li > ul {
     margin-left: 20px;
     margin-top: 0px;
 }
-.home .entry-post > h2 {
+.home h2.entry-title {
     margin: 20px 0 !important;
     padding: 20px;
     position: absolute;
