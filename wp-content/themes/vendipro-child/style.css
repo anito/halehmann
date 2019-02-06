@@ -2410,7 +2410,7 @@ table.shop_table td.product-thumbnail img {
 }
 #primary .info-box {
     background: #424242;
-    padding: 20px 100px 30px;
+    padding: 20px 40px 30px;
     border-radius: 10px;
     display: inline-block;
     width: 100%;
@@ -2427,6 +2427,7 @@ table.shop_table td.product-thumbnail img {
     bottom: 0;
     right: 22px;
     background: #424242dd;
+    overflow: auto;
 }
 .sidebar .address-box:before {
     background: none; 
