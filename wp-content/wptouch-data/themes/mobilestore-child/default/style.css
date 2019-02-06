@@ -1182,12 +1182,12 @@ h3#billing_fields_heading, h3#order_review_heading {
 .home .info-box {
     max-width: 95%;
     margin: 30px auto;
+    padding-bottom: 30px;
     display: block;
     text-align: center;
     top: 0;
     bottom: 0;
     right: 22px;
-    background: #424242dd;
 }
 /*scrollTop*/
 .scroll-top {
