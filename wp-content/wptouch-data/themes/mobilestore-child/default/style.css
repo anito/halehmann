@@ -88,7 +88,7 @@ ul.products .price del {
 .page #content .woocommerce ul.products {
     margin: 0 !important;
 }
-.page .post-1008, .search-no-results .post {
+.home .page, .search-no-results .post {
     padding: 0;
     margin: 0;
 }
