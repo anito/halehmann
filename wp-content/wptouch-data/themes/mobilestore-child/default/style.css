@@ -1173,12 +1173,10 @@ h3#billing_fields_heading, h3#order_review_heading {
     margin: 0;
     display: block;
 }
-
 .home dt {
     font-weight: 700;
     margin-bottom: 10px;
 }
-
 .home .info-box {
     max-width: 95%;
     margin: 30px auto;
