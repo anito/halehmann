@@ -13,14 +13,14 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 $url_logo  = array(
     
-    get_option( 'fallback_email_header_image_mobile' ),
+    get_option( 'fallback_email_header_image' ),
     get_option( 'woocommerce_email_header_image' ),
 //    vp_get_option( 'logo' ),
     
 );
 
-$mobile_badge = get_option( 'email_image_mobile_bage' );
-
+$mobile_badge = get_option( 'header_image_mobile_indicator' );
+write_log($mobile_badge);
 foreach ($url_logo as $logo) {
     $image = '';
 	
@@ -68,6 +68,7 @@ $template_header = "
     font-weight:bold;
     line-height:100%;
     vertical-align:middle;
+	position: relative;
 ";
 $body_content = "
     background-color: " . esc_attr( $body ) . ";
@@ -94,6 +95,11 @@ $header_content_h1 = "
 ";
 $header_image = "
 	width: 300px;"
+;
+$mobile_badge_style = "
+	width: 68px;
+    top: -10px;
+    right: 10px;"
 ;
 ?>
 
@@ -167,10 +173,19 @@ $header_image = "
 							<tr>
 								<td align="center" valign="top">
 									<!-- Header -->
-									<table border="0" cellpadding="0" cellspacing="0" width="600" id="template_header">
+									<table style="<?php echo $template_header; ?>" border="0" cellpadding="0" cellspacing="0" width="600" id="template_header">
 										<tr>
 											<td id="header_wrapper">
 												<h1><?php echo $email_heading; ?></h1>
+											</td>
+											<?php if ( $mobile_badge ) : ?>
+											<td id="">
+												<img style="<?php echo $mobile_badge_style ?>" src="<?php echo $mobile_badge; ?>" alt="" />
+											</td>
+											<?php endif; ?>
+										</tr>
+										<tr>
+											<td id="">
 											</td>
 										</tr>
 									</table>
