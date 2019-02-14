@@ -612,7 +612,7 @@ function allow_svg_upload( $m ) {
  * E-Mail Settings
  * add extra field for png image in header
  */
-function fallback_header_image( $arr ) {
+function fallback_header_image_( $arr ) {
 	
 	$pos = array_search( 'woocommerce_email_header_image', array_column( $arr, 'id'));
 	
@@ -628,7 +628,29 @@ function fallback_header_image( $arr ) {
 			'desc_tip'    => true,
 	);
 	
+	
 	return $arr;
+	
+}
+function fallback_header_image( $arr ) {
+	
+	$pos = array_search( 'woocommerce_email_header_image', array_column( $arr, 'id')) + 0;
+	
+	$ret = array_slice( $arr, 0, $pos+2, TRUE ) +
+		array( $pos+2 => array(
+			'title'       => __( 'Fallback Header Bild', 'woocommerce' ),
+			'desc'        => __( 'Fallback URL to PNG image since Google Mail doesn\'t like SVG type. Upload images using the media uploader (Admin > Media).', 'woocommerce' ),
+			'id'          => 'fallback_email_header_image',
+			'type'        => 'text',
+			'css'         => 'min-width:300px;',
+			'placeholder' => __( 'N/A', 'woocommerce' ),
+			'default'     => '',
+			'autoload'    => false,
+			'desc_tip'    => true,
+		)) +
+		array_slice( $arr, $pos, count( $arr ) - 1, TRUE );
+	write_log($ret);
+	return $ret;
 	
 }
 add_filter( 'woocommerce_email_settings', 'fallback_header_image', 20, 2 );
