@@ -61,8 +61,8 @@ $template_container = "
 $template_header = "
     background-color: " . esc_attr( $base ) .";
     color: $base_text;
-    border-top-left-radius:6px !important;
-    border-top-right-radius:6px !important;
+    border-top-left-radius:3px !important;
+    border-top-right-radius:3px !important;
     border-bottom: 0;
     font-family:Arial;
     font-weight:bold;
