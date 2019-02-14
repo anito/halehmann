@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 $url_logo  = array(
     
-    get_option( 'fallback_email_header_image' ),
+    esc_url( home_url( '/' ) . 'wp-content/uploads/2019/02/new_logo_1_army_online_shop_b-01.svg'),
     get_option( 'woocommerce_email_header_image' ),
     vp_get_option( 'logo' ),
     
@@ -21,8 +21,7 @@ $url_logo  = array(
 
 foreach ($url_logo as $logo) {
     $image = '';
-	
-    if( ( !empty(pathinfo($logo)['extension']) && 'svg' === pathinfo($logo)['extension'] ) || '' === $logo )
+    if( 'svg_' === pathinfo($logo)['extension'] || '' === $logo )
         continue;
     else {
         $image = $logo;
@@ -157,7 +156,7 @@ $header_image = "
                                     </p>
                                 <?php else : ?>
                                     <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
-                                        <h1 style="font-size: 1em; color: #333; text-align: center;"><?php echo bloginfo( 'name' );?></h1>
+                                        <h1 style="font-size: 2em; color: #333"><?php echo bloginfo( 'name' );?></h1>
                                     </a>
                                 <?php endif; ?>
                             </div>
