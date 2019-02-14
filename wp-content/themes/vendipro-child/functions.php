@@ -614,23 +614,35 @@ function allow_svg_upload( $m ) {
  */
 function fallback_header_image( $arr ) {
 	
-	$pos = array_search( 'woocommerce_email_header_image', array_column( $arr, 'id')) + 0;
+	$offset = array_search( 'woocommerce_email_header_image', array_column( $arr, 'id'))+2;
 	
-	$ret = array_slice( $arr, 0, $pos+2, TRUE ) +
-		array( $pos+2 => array(
-			'title'       => __( 'Fallback Header Bild', 'woocommerce' ),
-			'desc'        => __( 'Fallback URL to PNG image since Google Mail doesn\'t like SVG type. Upload images using the media uploader (Admin > Media).', 'woocommerce' ),
-			'id'          => 'fallback_email_header_image',
-			'type'        => 'text',
-			'css'         => 'min-width:300px;',
-			'placeholder' => __( 'N/A', 'woocommerce' ),
-			'default'     => '',
-			'autoload'    => false,
-			'desc_tip'    => true,
-		)) +
-		array_slice( $arr, $pos, count( $arr ) - 1, TRUE );
-	write_log($ret);
-	return $ret;
+	$insert = array(
+			$offset+3 => array(
+				'title'       => __( 'Fallback Header Bild', 'woocommerce' ),
+				'desc'        => __( 'Fallback URL to PNG image since Google Mail doesn\'t like SVG type. Upload images using the media uploader (Admin > Media).', 'woocommerce' ),
+				'id'          => 'fallback_email_header_image',
+				'type'        => 'text',
+				'css'         => 'min-width:300px;',
+				'placeholder' => __( 'N/A', 'woocommerce' ),
+				'default'     => '',
+				'autoload'    => false,
+				'desc_tip'    => true,
+			),
+			$offset+4 => array(
+				'title'       => __( 'Header Mobile Indikator', 'woocommerce' ),
+				'desc'        => __( 'Indicates Order from Mobile Devices', 'woocommerce' ),
+				'id'          => 'header_image_mobile_indicator',
+				'type'        => 'text',
+				'css'         => 'min-width:300px;',
+				'placeholder' => __( 'N/A', 'woocommerce' ),
+				'default'     => '',
+				'autoload'    => false,
+				'desc_tip'    => true,
+			)
+		);
+	array_splice($arr, $offset, 0, $insert );
+	
+	return $arr;
 	
 }
 add_filter( 'woocommerce_email_settings', 'fallback_header_image', 20, 2 );

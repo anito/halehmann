@@ -13,11 +13,13 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 $url_logo  = array(
     
-    get_option( 'fallback_email_header_image' ),
+    get_option( 'fallback_email_header_image_mobile' ),
     get_option( 'woocommerce_email_header_image' ),
-    vp_get_option( 'logo' ),
+//    vp_get_option( 'logo' ),
     
 );
+
+$mobile_badge = get_option( 'email_image_mobile_bage' );
 
 foreach ($url_logo as $logo) {
     $image = '';
