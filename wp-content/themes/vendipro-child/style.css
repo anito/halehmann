@@ -2688,8 +2688,8 @@ a.shipping-calculator-button {
     overflow: scroll;
     margin: 3px auto;
 }
-.ivpa_attribute .ivpa-terms span {
-    margin: 3px;
+.ivpa-content .ivpa_attribute.ivpa_color .ivpa_term {
+    padding: 2px;
 }
 .ivpa-required-short {
     display: none !important;
