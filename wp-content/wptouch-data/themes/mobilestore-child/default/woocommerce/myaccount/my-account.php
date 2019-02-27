@@ -16,13 +16,17 @@ wc_print_notices(); ?>
 <p class="myaccount_user">
 	<?php
 	printf(
-		__( 'Hello %1$s (not %1$s? <a href="%2$s">Sign out</a>)', 'woocommerce' ),
+		__( 'Hello %1$s (not %1$s? <a href="%2$s">Log out</a>)', 'woocommerce' ),
 		'<strong>' . esc_html( $current_user->display_name ) . '</strong>',
 		esc_url( wc_logout_url( wc_get_page_permalink( 'myaccount' ) ) )
 	);
 	?>
 </p>
-	<a href="<?php echo wc_customer_edit_account_url(); ?>" class="edit"><?php _e( 'Edit', 'woocommerce' ); ?></a>
+<?php
+	printf( __( '<a href="%s" class="edit">Bearbeiten</a>', 'woocommerce' ),
+		wc_customer_edit_account_url()
+	);
+?>
 
 
 <?php do_action( 'woocommerce_before_my_account' ); ?>

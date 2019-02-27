@@ -217,7 +217,7 @@ a.load-more-products-link, a.load-more-link, input.button, button_.button,
 .woocommerce-account #content .shop_table input,
 a.edit,
 input#submit,
-.boxzilla input.button {
+.boxzilla input.button, .myaccount_user > a {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     border-radius: 4px;
     text-transform: uppercase;

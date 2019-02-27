@@ -2675,3 +2675,19 @@ div.product .summary .single_add_to_cart_button.disabled {
 a.shipping-calculator-button {
     color: #666;
 }
+
+/**
+ *  Improved Variants
+ *
+ */
+.ivpa-content {
+    margin-top: 10px;
+}
+.ivpa_attribute {
+    height: 50px;
+    overflow: scroll;
+    margin: 3px auto;
+}
+.ivpa_attribute .ivpa-terms span {
+    margin: 3px;
+}
