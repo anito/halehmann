@@ -2682,11 +2682,11 @@ a.shipping-calculator-button {
  */
 .ivpa-content {
     margin-top: 10px;
-    min-height: 65px;
+    min-height: 122px;
 }
 .archive .ivpa_attribute {
-    max-height: 80px;
-    height: 33px;
+/*    max-height: 80px;
+    height: 33px;*/
     min-height: 33px;
     overflow: auto;
     margin: 3px auto;
