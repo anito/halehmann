@@ -2691,3 +2691,6 @@ a.shipping-calculator-button {
 .ivpa_attribute .ivpa-terms span {
     margin: 3px;
 }
+.ivpa-required-short {
+    display: none !important;
+}
