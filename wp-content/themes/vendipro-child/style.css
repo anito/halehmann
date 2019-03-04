@@ -402,7 +402,7 @@ nav.woocommerce-pagination ul li a:focus, .woocommerce nav.woocommerce-paginatio
     /*media all*/
     header#hmain .navbar {
         background-color: rgba(227, 0, 1, 1) !important;
-        background-image: linear-gradient(to bottom, #000606 0%, #c80000 100%);
+        background-image: linear-gradient(to bottom, #ff0606 0%, #c80000 100%);
         border: 0 none;
         border-radius: 0px;
         margin: 0 0px;
