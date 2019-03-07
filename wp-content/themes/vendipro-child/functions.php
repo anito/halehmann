@@ -305,7 +305,9 @@ function add_scripts() {
 }
 
 // Display number of Products per page
-add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 24;' ), 20 );
+add_filter( 'loop_shop_per_page', function( $cols ) {
+	return 24;
+}, 20 );
 
 // Add specific body CSS class by filter if needed
 add_filter( 'body_class', function( $classes ) {

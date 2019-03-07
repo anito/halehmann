@@ -1,0 +1,42 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 06.03.2019, 17:16:18
+    Author     : axel
+*/
+/**
+ *  Improved Variants
+ *
+ */
+.ivpa-content {
+    position: absolute;
+    top: 140px;
+    margin-top: 38px;
+    text-align: center;
+}
+.woocommerce ul.products li.product .price {
+    min-height: 24px;
+}
+.ivpa-required-short {
+    display: none !important;
+}
+.variations_form .variations {
+    display: inherit !important;
+}
+.ivpa-content {
+    position: absolute;
+}
+.ivpa-content .ivpa_attribute {
+    text-align: center;
+    display: inline-block;
+}
+/**
+ * Smartphone & Tablet WP-Touch
+ *
+ */
+.tablet .ivpa-content {
+    top: 200px;
+}
