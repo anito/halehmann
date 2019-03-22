@@ -43,19 +43,19 @@
         top: 10px;
         padding-top: .5em;
         padding-bottom: 1.3em;
-        line-height: 1em !important;
+        line-height: 1em;
     }
     .wc-new-badge.right {
         right: -30px;
         top: 10px;
         padding: .4em 0;
-        line-height: 1em !important;
+        line-height: 1em;
     }
     .onsale ~ .wc-new-badge.right {
         top: 36px;
         right: -50px;
-        max-width: 200px !important;
-        width: 200px !important;
+        max-width: 200px;
+        width: 200px;
     }
     
 }

@@ -74,7 +74,7 @@ global $woocommerce;
 
 <?php if ( sizeof( WC()->cart->get_cart() ) > 0 ) : ?>
 
-	<p class="total test"><span class="subtotal"><?php _e( 'Subtotal', 'woocommerce' ); ?>:</span> <?php echo WC()->cart->get_cart_subtotal(); ?></p>
+	<p class="total"><span class="subtotal"><?php _e( 'Subtotal', 'woocommerce' ); ?>:</span> <?php echo WC()->cart->get_cart_subtotal(); ?></p>
 
 	<?php //do_action( 'woocommerce_widget_shopping_cart_before_buttons' ); ?>
 

@@ -12,13 +12,17 @@ and open the template in the editor.
  *
  */
 .ivpa-content {
-    position: absolute;
-    top: 140px;
-    margin-top: 38px;
     text-align: center;
+    margin-top: 0;
 }
-.woocommerce ul.products li.product .price {
-    min-height: 24px;
+.ivpa-terms {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.ivpa_term {
+    flex: 0 0 auto;
 }
 .ivpa-required-short {
     display: none !important;
@@ -26,17 +30,19 @@ and open the template in the editor.
 .variations_form .variations {
     display: inherit !important;
 }
-.ivpa-content {
-    position: absolute;
-}
 .ivpa-content .ivpa_attribute {
     text-align: center;
     display: inline-block;
 }
-/**
- * Smartphone & Tablet WP-Touch
- *
- */
+.woocommerce ul.products li.product .ivpa-terms .ivpa_term img {
+    margin: 0;
+}
 .tablet .ivpa-content {
-    top: 200px;
+    top: 190px;
+}
+.smartphone .ivpa-content {
+    top: 190px;
+}
+.smartphone.landscape .ivpa-content {
+    top: 50px;
 }

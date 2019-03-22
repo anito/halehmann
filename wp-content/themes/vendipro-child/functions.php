@@ -663,6 +663,18 @@ function prefix_add_css_class_to_form( $classes = array(), MC4WP_Form $form ) {
 }
 add_filter( 'mc4wp_form_css_classes', 'prefix_add_css_class_to_form', 10, 2 );
 
+/*
+ * Renamer
+ */
+function my_filename_check( $new_filename, $old_filename_no_ext ) {
+	$uuid = wp_generate_uuid4();
+	write_log($new_filename);
+	write_log($old_filename_no_ext);
+	write_log($uuid);
+	return $new_filename;
+}
+add_filter( 'mfrh_new_filename', 'my_filename_check', 10, 2 );
+
 //add_action( 'rest_api_inserted_post',  'rest_api_inserted_post', 100, 3);
 function rest_api_inserted_post( $post_id, $insert, $new ) {
 	write_log( '--------- rest_api_inserted_post START---------' );

@@ -38,20 +38,10 @@ if ( in_array( 'improved-variable-product-attributes/improved-variable-product-a
 
 			public function __construct() {
 				
-				if ( !class_exists( 'Woocommerce' ) || !class_exists( 'WC_Improved_Variable_Product_Attributes' )) {
-//					return;
-				}
-				
                 if( !is_admin() ) {
                     add_action( 'wp_enqueue_scripts', array( $this, 'setup_styles' ), 999999 );  // Enqueue the styles
                 }
                 
-				if ( is_options_active() ) {
-//					add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'show_product_loop_new_badge' ), 30 );
-//					add_filter( 'woocommerce_before_single_product_summary', array( $this, 'show_single_product_new_badge' ), 30 );
-				}
-				
-//				add_action( 'plugins_loaded', array($this, 'init_settings') );
 				add_action( 'init', array($this, 'init_settings') );
 				
 			}
@@ -70,14 +60,12 @@ if ( in_array( 'improved-variable-product-attributes/improved-variable-product-a
 				$product_categories = array();
                 
 				foreach ( $terms as $category ) {
-					
-                    $category_name = $category->name;
-                    $category_id = $category->term_id;
-                    $category_option_id = intval( get_option( 'wc_av_categories' ) );
+					$category_name = $category->name;
+					$category_id = $category->term_id;
+					$category_option_id = intval( get_option( 'wc_av_categories' ) );
 					$product_categories[$category_id] = $category_name;
-					
 				}
-				
+
 				$this->settings = array(
 					array(
 						'title' => __( 'Archiv Varianten', 'woocommerce' ),
@@ -115,7 +103,9 @@ if ( in_array( 'improved-variable-product-attributes/improved-variable-product-a
 				add_filter( 'woocommerce_get_sections_products', array( $this, 'admin_sections' ), 20 );
 				add_filter( 'woocommerce_get_settings_products', array( $this, 'admin_settings' ), 20, 2 );
 				
-				add_action( 'init', array( $this, 'remove_ivpa_action' ), 999 );
+				if( !is_admin() ) {
+					add_action( 'init', array( $this, 'remove_ivpa_action' ), 999 );
+				}
 				
 			}
 
@@ -167,6 +157,7 @@ if ( in_array( 'improved-variable-product-attributes/improved-variable-product-a
 				}
 				
 				global $product;
+
 				$instance = WC_Improved_Variable_Product_Attributes::this();
 				$settings = $instance::$settings;
 				$wc_archive_action = $settings['wc_settings_ivpa_archive_action'];
@@ -175,22 +166,24 @@ if ( in_array( 'improved-variable-product-attributes/improved-variable-product-a
 					$archive_action = $explode[0];
 					$priority = $explode[1];
 				} else {
-					$archive_action = 'woocommerce_after_shop_loop_item_title';
-					$priority = 10;
+					$archive_action = 'woocommerce_before_shop_loop_item';
+					$priority = 999;
 				}
 				$settings['archive_action'] = $archive_action;
 				$cat_ids = $product->get_category_ids();
 				$allowed_cat_ids = $this->get_allowed_categories();
-				$found = false;
+				$str = '';
 				foreach ( $cat_ids as $cat_id ) {
-					if( in_array( $cat_id, $allowed_cat_ids ) ) {
-						$found = true;
-						break;
-					}
+					$parents = get_ancestors( $cat_id, 'product_cat' );
+					$merged = array_merge( [ $cat_id], $parents );
+					$imploded = implode( ',', $merged );
+					$str .= $str != '' ? ',' . $imploded : $imploded;
 				}
-				if ($found) {
+				$ids = explode( ',', $str );
+				if( array_intersect( $ids, $allowed_cat_ids ) ) {
 					add_action( $archive_action, array( $instance, 'ivpa_attributes' ), $priority );
 				} else {
+					// remove original ivpa plugin action
 					remove_action( $archive_action, array( $instance, 'ivpa_attributes' ), $priority );
 				}
 			}
