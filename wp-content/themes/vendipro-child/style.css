@@ -21,6 +21,7 @@
 @import url('css/forms.css');
 @import url('css/animations.css');
 @import url('css/payments.css');
+@import url('css/tooltips.css');
 
 @-webkit-keyframes keyframe--spin {
     from {
@@ -2239,16 +2240,6 @@ table.shop_table td.product-thumbnail img {
 #menu-right .product-name  {
     position: relative;
 }
-.vp-add-to-cart-success ul.products li.product {
-    width: 41% !important;
-    margin-bottom: 15px;
-}
-.vp-add-to-cart-success ul.products li.product:nth-child(3n) {
-    margin-right: 2%; 
-}
-.woocommerce-checkout table.shop_table {
-    
-}
 .woocommerce-order .order_details,
 .woocommerce-order-details h2,
 .woocommerce-order > p,
@@ -2730,9 +2721,10 @@ ul.products.columns-5 li.product {
     margin-top: -6px;
     margin-bottom: 3px;
 }
-.up-sells ul.products[class*="columns-"] li.product {
+.vp-add-to-cart-success ul.products[class*="columns-"]  li.product {
     flex: 46%;
     max-width: 46%;
+    margin-right: 10px !important;
 }
 @media (max-width: 660px) {
     
