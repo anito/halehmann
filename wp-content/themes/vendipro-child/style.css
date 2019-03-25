@@ -21,7 +21,7 @@
 @import url('css/forms.css');
 @import url('css/animations.css');
 @import url('css/payments.css');
-@import url('css/tooltips.css');
+/*@import url('css/tooltips.css');*/
 
 @-webkit-keyframes keyframe--spin {
     from {
