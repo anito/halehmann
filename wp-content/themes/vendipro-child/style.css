@@ -1300,7 +1300,8 @@ nav.woocommerce-pagination ul li a:focus, .woocommerce nav.woocommerce-paginatio
     color: inherit;
 }
 .woocommerce #respond input#submit.loading::after, .woocommerce a.button.loading::after, .woocommerce button.button.loading::after, .woocommerce input.button.loading::after {
-    top: 0em;
+    top: 11px;
+    right: 4px;
 }
 .woocommerce-remove::before {
     font-family: WooCommerce;
