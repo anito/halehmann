@@ -2716,7 +2716,7 @@ a.shipping-calculator-button {
     white-space: nowrap;
     font-size: 0.85em;
     margin: 0 auto;
-    padding: 12px;
+    padding: 12px 20px;
     line-height: 1.3em;
 }
 .woocommerce ul.products li.product a img {
