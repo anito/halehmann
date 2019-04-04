@@ -2812,6 +2812,15 @@ input.age-gate-submit {
     color: red;
     font-size: 1rem
 }
+.wp-block-gallery.columns-2 .blocks-gallery-item {
+    flex: calc((100% - 16px)/2);
+}
+.wp-block-gallery.columns-3 .blocks-gallery-item {
+    flex: calc((100% - 32px)/3);
+}
+.wp-block-gallery.columns-4 .blocks-gallery-item {
+    flex: calc((100% - 48px)/4);
+}
 @media (max-width: 660px) {
     
     .woocommerce ul.products:not(.columns-2):not(.columns-3) li.product:nth-child(3n) {
