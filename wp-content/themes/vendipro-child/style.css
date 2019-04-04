@@ -1904,7 +1904,7 @@ li.product a.button {
     padding-left: 0;
 }
 .product .images {
-    background: #fff;
+    /*background: #fff;*/
 }
 .product .images .thumbnails {
     border-top: 0px solid #eeeeee;
