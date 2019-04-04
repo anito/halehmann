@@ -214,7 +214,7 @@ a.load-more-products-link, a.load-more-link, input.button, button_.button,
 .woocommerce-account #content .shop_table input,
 a.edit,
 input#submit,
-.boxzilla input.button, .myaccount_user > a {
+.boxzilla input.button, .myaccount_user > a, .age-gate-form .button, .age-gate-form input[type=submit] {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     border-radius: 4px;
     text-transform: uppercase;
@@ -224,6 +224,7 @@ input#submit,
     border-style: solid;
     border-width: 1px;
     font-size: 75%;
+    font-style: normal;
     display: inline-block;
     font-weight: 600;
     text-align: center;
@@ -474,7 +475,7 @@ i.adult:before {
 #searchform {
     position: relative;
 }
-#searchform input#search-text {
+#searchform input#search-text, .age-gate-form select {
     height: 30px;
     background: #565656;
     border: none;
@@ -832,6 +833,9 @@ h3.label, h4.label {
     -moz-transition-duration: .5s;
     -o-transition-duration: .5s;
     transition-duration: .5s;
+}
+.tablet #content .product .images {
+    max-height: none;
 }
 #content .thumbnails {
     display: none;
@@ -1382,6 +1386,74 @@ ul.products li:not(.vertical) a {
 .alert_container {
     margin-top: 20px;
     margin-bottom: 20px;
+}
+.image-glossary {
+    display: inline-block;
+    border-radius: 3px;
+    padding: 10px;
+    margin: 0 auto;
+    text-align: center;
+    background: #676767;
+}
+.image-glossary.light {
+    background: #fff;
+}
+.image-glossary img {
+    width: 83px;
+    height: auto;
+    margin: 10px !important;
+}
+.image-glossary img[class*="align"] {
+    margin: 0;
+    display: inline-block !important;
+}
+.age-gate-error-message {
+    margin-bottom: 20px;
+}
+
+.age-gate-logo-image {
+    width: 115px;
+    height: auto;
+}
+input.age-gate-submit {
+    margin: 16px 0;
+}
+.age-gate-form-section {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+.age-gate-select {
+    margin-bottom: 7px !important;
+}
+.age-gate .container {
+    background: #f3f3f3;
+    padding: 10px 20px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+.age-gate ol {
+    padding: 0;
+}
+.age-gate .age-gate-error-message {
+    color: red;
+    font-size: 1rem
+}
+.payments {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.payment {
+    flex: auto;
+    padding: 4px 14px;
+    background: #464646;
+    margin-bottom: 5px;
+}
+.payments img {
+    text-align: center!important;
+    border-radius: 4px;
+    width: 130px;
 }
 @media only screen and (min-width: 420px) {
     .boxzilla .mc4wp-form input[type="email"] {

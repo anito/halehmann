@@ -21,7 +21,6 @@
 @import url('css/forms.css');
 @import url('css/animations.css');
 @import url('css/payments.css');
-@import url('css/tooltips.css');
 
 @-webkit-keyframes keyframe--spin {
     from {
@@ -959,7 +958,10 @@ nav.woocommerce-pagination ul li a:focus, .woocommerce nav.woocommerce-paginatio
     .clear {
         clear: both;
     }
-
+    .age-gate-form .button {
+        font-style: normal;
+        color: #fff;
+    }
 }
 /*
  * Desktop
@@ -2257,6 +2259,22 @@ table.shop_table td.product-thumbnail img {
 .woocommerce-order {
     margin: 0 30px;
 }
+.payments {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.payment {
+    flex: 49%;
+    padding: 40px;
+    max-width: 49%;
+    background: #464646;
+    margin: 5px 5px 0 0;
+}
+.payments img {
+    border-radius: 4px;
+    width: 130px;
+}
 .payments img.alignright {
     display: block;
     margin: 40px 0;
@@ -2675,6 +2693,7 @@ a.shipping-calculator-button {
 .woocommerce ul.products li.product .woocommerce-loop-product__title + .price {
     display: flex;
     justify-content: center;
+    margin-top: 10px;
 }
 /*
  * Shop Loop Flex Mode
@@ -2683,7 +2702,7 @@ a.shipping-calculator-button {
 .woocommerce ul.products {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    /*justify-content: center;*/
 }
 .woocommerce ul.products li.product {
     display: flex;
@@ -2712,6 +2731,12 @@ ul.products.columns-5 li.product {
     flex: 18%;
     max-width: 18%;
 }
+.woocommerce ul.products li.product a:first-child {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    flex: 1 0;
+}
 .ivpa-content {
     margin-top: 0;
 }
@@ -2725,6 +2750,67 @@ ul.products.columns-5 li.product {
     flex: 46%;
     max-width: 46%;
     margin-right: 10px !important;
+}
+.image-glossary {
+    display: inline-block;
+    border-radius: 3px;
+    padding: 10px;
+}
+.image-glossary.light {
+    background: #fff;
+}
+.image-glossary img {
+    width: 83px;
+    height: auto;
+    margin: 10px !important;
+}
+.image-glossary img[class*="align"] {
+    margin: 0;
+    display: inline-block !important;
+}
+.wpforms-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.wpforms-form {
+    font-size: 1rem;
+}
+.age-gate-error-message {
+    margin-bottom: 20px;
+}
+
+.age-gate-logo-image {
+    width: 115px;
+    height: auto;
+}
+input.age-gate-submit {
+    margin: 16px 0;
+}
+.age-gate-form-section {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+.age-gate-select {
+    margin-bottom: 7px !important;
+}
+.age-gate-form .button {
+    margin: 10px 0;
+    display: inherit;
+}
+.age-gate .container {
+    background: #f3f3f3;
+    padding: 10px 20px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+.age-gate ol {
+    padding: 0;
+}
+.age-gate .age-gate-error-message {
+    color: red;
+    font-size: 1rem
 }
 @media (max-width: 660px) {
     

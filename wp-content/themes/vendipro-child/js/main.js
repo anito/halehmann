@@ -145,7 +145,7 @@
     
     var add_animate_scroll = function() {
         
-        $('a[href^=#]').on('click', function(e){
+        $('.scroll-top a[href^=#]').on('click', function(e){
             
             var href = $(this).attr('href');
             $('html, body').animate({
