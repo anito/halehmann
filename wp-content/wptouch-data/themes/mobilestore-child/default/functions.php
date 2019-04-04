@@ -84,6 +84,7 @@ function add_scripts() {
     wp_enqueue_script('fancybox-helper', get_stylesheet_directory_uri() . '/js/fancybox-helper.js', array( 'jquery' ), '1.0', true);
     wp_enqueue_style('fancybox', get_stylesheet_directory_uri() . '/css/fancybox/jquery.fancybox.css');
     wp_enqueue_style('fancy-metaslider', get_stylesheet_directory_uri() . '/css/fancy-metaslider.css');
+	wp_enqueue_style('font-awesome', get_stylesheet_directory_uri() . '/assets/font-awesome/font-awesome' . (IS_PRODUCTION ? '.min' : '') . '.css');
 	
 	wp_localize_script( 'my-mobilestore-js', 'translated_strings', $translation_array );
 	wp_enqueue_script( 'my-mobilestore-js' );
@@ -283,3 +284,12 @@ function prefix_add_css_class_to_form( $classes = array(), MC4WP_Form $form ) {
 	return $classes;
 }
 add_filter( 'mc4wp_form_css_classes', 'prefix_add_css_class_to_form', 10, 2 );
+
+/**
+ * Add some javascript to the age gate form
+ */
+add_filter( 'age_gate_after', 'js_age_gate_after' );
+function js_age_gate_after( $ret ) {
+	wp_register_script( 'history.back', get_stylesheet_directory_uri() . '/js/age-gate/age-gate.js', array( 'jquery' ), '0.1', true );
+	wp_enqueue_script( 'history.back' );
+}
