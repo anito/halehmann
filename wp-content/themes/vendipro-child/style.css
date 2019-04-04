@@ -2813,13 +2813,13 @@ input.age-gate-submit {
     font-size: 1rem
 }
 .wp-block-gallery.columns-2 .blocks-gallery-item {
-    flex: 1 0 calc((100% - 16px)/2);
+    flex: 0 calc((100% - 16px)/2);
 }
 .wp-block-gallery.columns-3 .blocks-gallery-item {
-    flex: 1 0 calc((100% - 32px)/3);
+    flex: 0 calc((100% - 32px)/3);
 }
 .wp-block-gallery.columns-4 .blocks-gallery-item {
-    flex: 1 0 calc((100% - 48px)/4);
+    flex: 0 calc((100% - 48px)/4);
 }
 @media (max-width: 660px) {
     
