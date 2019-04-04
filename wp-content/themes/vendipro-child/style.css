@@ -1764,8 +1764,7 @@ table.shop_table tbody td.product-name a {
 span.disclaimer {
     font-size: 0.9em;
     margin: 5px;
-    display: block;
-    top: -10px;
+    display: inline-block;
 }
 .mini-cart {
     position: absolute;
@@ -1904,7 +1903,10 @@ li.product a.button {
     margin-left: 0;
     padding-left: 0;
 }
-div.product .images .thumbnails {
+.product .images {
+    background: #fff;
+}
+.product .images .thumbnails {
     border-top: 0px solid #eeeeee;
 }
 .product > a {
