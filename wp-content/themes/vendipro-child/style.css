@@ -2723,13 +2723,11 @@ a.shipping-calculator-button {
 }
 .columns-4 ul.products li.product,
 ul.products.columns-4 li.product {
-    flex: 23%;
-    max-width: 23%;
+    flex: 0 0 23.5%;
 }
 .columns-5 ul.products li.product,
 ul.products.columns-5 li.product {
-    flex: 18%;
-    max-width: 18%;
+    flex: 0 0 18%;
 }
 .woocommerce ul.products li.product a:first-child {
     display: flex;
