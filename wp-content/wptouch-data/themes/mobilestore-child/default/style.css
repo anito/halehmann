@@ -937,12 +937,14 @@ h3.label, h4.label {
 .product .product-top .sale-badge.badge {
     background: rgb(227, 0, 1) none repeat scroll 0 0;
     color: #fff;
-    right: -39px;
+    right: -40px;
     transform: rotate(45deg);
     width: 134px;
     max-width: 134px;
-    top: 15px;
+    top: 5px;
     padding: 5px 0;
+    line-height: 2em;
+    position: absolute;
 }
 .wc-new-badge {
     background: rgb(32, 181, 37) none repeat scroll 0 0;
