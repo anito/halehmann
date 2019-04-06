@@ -2822,6 +2822,16 @@ input.age-gate-submit {
 .wp-block-gallery.columns-4 .blocks-gallery-item {
     flex: 0 calc((100% - 48px)/4);
 }
+#interesting::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    bottom: 9px;
+    right: 22px;
+    width: 300px;
+    height: 86px;
+    background: url(/wp-content/uploads/2019/02/new_logo_1_army_online_shop_w-01.svg);
+}
 @media (max-width: 660px) {
     
     .woocommerce ul.products:not(.columns-2):not(.columns-3) li.product:nth-child(3n) {
