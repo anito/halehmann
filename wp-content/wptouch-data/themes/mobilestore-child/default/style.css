@@ -1469,6 +1469,7 @@ input.age-gate-submit {
     width: 100px;
     height: 35px;
     background: url(/wp-content/uploads/2019/02/new_logo_1_army_online_shop_w-01.svg) no-repeat;
+    z-index: 1;
 }
 @media only screen and (min-width: 420px) {
     .boxzilla .mc4wp-form input[type="email"] {

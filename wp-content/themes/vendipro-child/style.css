@@ -2831,6 +2831,7 @@ input.age-gate-submit {
     width: 300px;
     height: 79px;
     background: url(/wp-content/uploads/2019/02/new_logo_1_army_online_shop_w-01.svg) no-repeat;
+    z-index: 1;
 }
 @media (max-width: 660px) {
     
