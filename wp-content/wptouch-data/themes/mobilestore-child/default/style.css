@@ -114,6 +114,9 @@ ul.products .price del {
 .home .promotion, .home .entry-post {
     margin-bottom: 3px;
 }
+.home .entry-post.wrapper {
+    position: relative;
+}
 .table-parent {
     max-width: 100%;
     overflow: initial;
@@ -1456,6 +1459,16 @@ input.age-gate-submit {
     text-align: center!important;
     border-radius: 4px;
     width: 130px;
+}
+#interesting::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    right: 9px;
+    width: 100px;
+    height: 35px;
+    background: url(/wp-content/uploads/2019/02/new_logo_1_army_online_shop_w-01.svg) no-repeat;
 }
 @media only screen and (min-width: 420px) {
     .boxzilla .mc4wp-form input[type="email"] {
