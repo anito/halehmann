@@ -1464,11 +1464,12 @@ input.age-gate-submit {
     content: "";
     display: inline-block;
     position: absolute;
-    bottom: 0;
+    bottom: 12px;
     right: 9px;
-    width: 100px;
-    height: 35px;
-    background: url(/wp-content/uploads/2019/02/new_logo_1_army_online_shop_w-01.svg) no-repeat;
+    width: 30%;
+    height: 18%;
+    background: url(https://ha-lehmann.at/wp-content/uploads/2019/02/new_logo_1_army_online_shop_w-01.svg) no-repeat;
+    background-size: cover;
     z-index: 1;
 }
 @media only screen and (min-width: 420px) {
