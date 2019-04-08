@@ -2844,6 +2844,17 @@ li.product.product_tag-iwa-2019::after {
     background-size: cover;
     z-index: 1;
 }
+div.product.product_tag-iwa-2019 > .entry-post.wrapper:after {
+    content: "";
+    position: absolute;
+    right: -5px;
+    top: 67px;
+    width: 7%;
+    height: 83px;
+    background: url(/wp-content/uploads/2019/04/iwa-badge.png) no-repeat;
+    background-size: cover;
+    z-index: -1;
+}
 @media (max-width: 660px) {
     
     .woocommerce ul.products:not(.columns-2):not(.columns-3) li.product:nth-child(3n) {
