@@ -2833,6 +2833,17 @@ input.age-gate-submit {
     background: url(/wp-content/uploads/2019/02/new_logo_1_army_online_shop_w-01.svg) no-repeat;
     z-index: 1;
 }
+li.product.product_tag-iwa-2019::after {
+    content: "";
+    position: absolute;
+    right: 5px;
+    top: 16px;
+    width: 80px;
+    height: 80px;
+    background: url("/wp-content/uploads/2019/04/iwa-badge.png") no-repeat;
+    background-size: cover;
+    z-index: 1;
+}
 @media (max-width: 660px) {
     
     .woocommerce ul.products:not(.columns-2):not(.columns-3) li.product:nth-child(3n) {

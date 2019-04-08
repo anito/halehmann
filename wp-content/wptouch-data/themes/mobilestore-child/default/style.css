@@ -1301,6 +1301,17 @@ blockquote > p {
     font-style: initial;
     font-size: 1em;
 }
+li.product.product_tag-iwa-2019::after {
+    content: "";
+    position: absolute;
+    right: 5px;
+    top: 16px;
+    width: 80px;
+    height: 80px;
+    background: url("/wp-content/uploads/2019/04/iwa-badge.png") no-repeat;
+    background-size: cover;
+    z-index: 1;
+}
 /*
  * Stock Alert
  */
