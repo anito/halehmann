@@ -131,7 +131,7 @@ function on_save_post($post_id , $post, $is_update){
 add_action("woocommerce_before_product_object_save", "before_product_object_save", 99, 2);
 function before_product_object_save($product, $data_store) {
 	$is_featured = $product->is_featured();
-	if( defined( 'FEATURE_CAT_ID' ) )
+	if( defined( 'FEATURED_CAT_ID' ) )
 		set_product_cats($product, FEATURED_CAT_ID, $is_featured);
 }
 
