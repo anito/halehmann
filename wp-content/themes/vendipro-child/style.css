@@ -2741,6 +2741,9 @@ ul.products.columns-5 li.product {
 .ivpa-content {
     margin-top: 0;
 }
+.ivpa-terms {
+    margin: 0 5px;
+}
 .ivpa-content  .ivpa_attribute {
     text-align: center;
     display: inline-block;
