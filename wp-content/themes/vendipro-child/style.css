@@ -2730,7 +2730,7 @@ ul.products.columns-4 li.product {
 }
 .columns-5 ul.products li.product,
 ul.products.columns-5 li.product {
-    flex: 0 0 18.4%;
+    flex: 0 0 18.3%;
 }
 .woocommerce ul.products li.product a:first-child {
     display: flex;
