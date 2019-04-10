@@ -799,7 +799,6 @@ nav.woocommerce-pagination ul li a:focus, .woocommerce nav.woocommerce-paginatio
         width: 294px;
         left: 0;
         top: 20px !important;
-        min-height: 27%;
         right: 0 !important;
         bottom: inherit;
         line-height: 2.5em;
@@ -2448,14 +2447,14 @@ table.shop_table td.product-thumbnail img {
 .sidebar .address-box:before {
     background: none; 
 }
-.term-description > .metaslider, .term-description > pre:not(.need_this_for_specifity), .cat-thumb {
+.term-description > pre:not(.need_this_for_specifity), .cat-thumb {
     border: 0px none;
     background-color: transparent;
     padding: 0 !important;
     margin: 0 !important;
     -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
 }
-.term-description > .metaslider, .term-description > pre > img, .cat-thumb > img, .cat-thumb > .metaslider {
+.term-description > pre > img, .cat-thumb > img {
     margin: 0;
     padding: 0;
     border-radius: 5px;
