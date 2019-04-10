@@ -2448,11 +2448,17 @@ table.shop_table td.product-thumbnail img {
     background: none; 
 }
 .term-description pre:not(.need_this_for_specifity) {
-    border: 0px solid;
+    border: 0px none;
     background-color: transparent;
-    padding: 0px;
-    padding: 0px !important;
-    margin-bottom: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+}
+.term-description > pre > img {
+    margin: 0;
+    padding: 0;
+    border-radius: 5px;
+    background: #4c4c4c;
 }
 .checkout .grid .column:first-child, .woocommerce-additional-fields__field-wrapper, .woocommerce-shipping-fields__field-wrapper {
     padding-right: 5%;
