@@ -1388,6 +1388,7 @@ li.product .added_to_cart {
 .page .entry-content > h2:not(.entry-title) ~ h5, .term-description > *:not(:first-child), .page-description > *:not(:first-child), .product[class*="ab-18"] i.note-ab-18 {
     color: rgb(227, 0, 1);
     padding: 10px;
+    margin: 1em 0;
     font-size: 1em;
     line-height: 1.6em;
     border-radius: 0px;
