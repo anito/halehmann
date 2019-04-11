@@ -254,7 +254,12 @@ function woocommerce_styles() {
 add_action( 'wp_enqueue_scripts', 'vp_child_theme_styles', PHP_INT_MAX );
 function vp_child_theme_styles() {
 	$parent_style = 'vendipro-style';
+	wp_enqueue_style( 'child-style-fonts', get_stylesheet_directory_uri() . '/css/fonts.css' );
+	wp_enqueue_style( 'child-style-form', get_stylesheet_directory_uri() . '/css/forms.css' );
+	wp_enqueue_style( 'child-style-animation', get_stylesheet_directory_uri() . '/css/animations.css' );
+	wp_enqueue_style( 'child-style-payments', get_stylesheet_directory_uri() . '/css/payments.css' );
 	wp_enqueue_style( 'child-style', get_stylesheet_uri(), array( 'vendipro' ) );
+	wp_enqueue_style('font-awesome', get_stylesheet_directory_uri() . '/assets/font-awesome/font-awesome' . (IS_PRODUCTION ? '.min' : '') . '.css');
 }
 
 
@@ -284,7 +289,6 @@ function add_scripts() {
 	wp_enqueue_script( 'main' );
 	wp_register_script( 'sidebar-cart', get_stylesheet_directory_uri() . '/js/sidebar.cart.js', array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'sidebar-cart' );
-	wp_enqueue_style('font-awesome', get_stylesheet_directory_uri() . '/assets/font-awesome/font-awesome' . (IS_PRODUCTION ? '.min' : '') . '.css');
 	
 	/*
 	 * WP Block Library
