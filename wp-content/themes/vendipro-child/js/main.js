@@ -80,9 +80,14 @@
         $('body').addClass('camouflage');
     }
 
-    //pimp search aws field
-    var add_aws_badge_el = function () {
-        $('.aws-search-form').prepend('<span class="icon"><i class="fa fa-search"></i></span>');
+    //add icon to links with target _blank
+    var add_target_blank_icon = function () {
+        var arr;
+        $('a[target=_blank]').each( function( i, el) {
+            if( (arr = $(el).find('*')) && !arr.length) {
+                $(el).addClass('target-blank-icon');
+            }
+        });
     };
 
     //add cart sidebar cart
@@ -161,7 +166,7 @@
     add_fb_div();
     add_adult_badge();
     add_background_image();
-//    add_aws_badge_el();
+    add_target_blank_icon();
     add_sidebar_cart();
     add_mini_cart();
     add_image_disclaimer();

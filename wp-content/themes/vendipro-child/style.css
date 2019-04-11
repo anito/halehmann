@@ -2859,7 +2859,7 @@ div.product.product_tag-iwa-2019 > .entry-post.wrapper:after {
     background-size: cover;
     z-index: -1;
 }
-[target="_blank"] + .wp-caption-text:after, a[target="_blank"]:after {
+a.target-blank-icon:after {
     content: '\f504';
     display: inline-block;
     -webkit-font-smoothing: antialiased;
