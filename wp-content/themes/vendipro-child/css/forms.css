@@ -11,9 +11,6 @@
 
 /* =Theme customization starts here
 -------------------------------------------------------------- */
-.aws-container {
-    margin-left: 20px;
-}
 .aws-search-form input.aws-search-field {
     background: #565656;
     font-size: 10pt;
@@ -38,6 +35,7 @@
 }
 .aws-container .aws-search-field:focus {
     background-color: #fff !important;
+    color: #121212 !important;
 }
 input[type="text"]:not(.aws-search-field), input[type="date"], input[type="datetime"], input[type="email"], input[type="number"], input[type="search"], input[type="time"], input[type="url"], input[type="tel"], input[type="password"], textarea, select, .select2-container--default .select2-selection--single, .select2-container .select2-choice {
     background: #4c4c4c !important;
