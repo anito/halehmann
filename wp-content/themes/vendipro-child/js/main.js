@@ -161,7 +161,7 @@
     add_fb_div();
     add_adult_badge();
     add_background_image();
-    add_aws_badge_el();
+//    add_aws_badge_el();
     add_sidebar_cart();
     add_mini_cart();
     add_image_disclaimer();
