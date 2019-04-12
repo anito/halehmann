@@ -78,6 +78,12 @@ function add_scripts() {
 	}
 	
 	/*
+	 *  Fonts & Payment Styles
+	 */
+	wp_enqueue_style( 'child-style-fonts', get_stylesheet_directory_uri() . '/css/fonts.css' );
+	wp_enqueue_style( 'child-style-payments', get_stylesheet_directory_uri() . '/css/payments.css' );
+	
+	/*
 	 *  Fancybox
 	 */
 	wp_enqueue_script('fancybox', get_stylesheet_directory_uri() . '/js/fancybox/jquery.fancybox.js', array( 'jquery' ), '1.0', true);

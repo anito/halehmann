@@ -17,6 +17,11 @@
 		$( '.page-wrapper' ).addClass('camouflage');
 	}
 	
+        //pimp search field
+	var add_search_badge_el = function() {
+		$( '#searchform' ).prepend('<span class="icon"><i class="wptouch-icon-search"></i></span>');
+	}
+        
 	//add icon to links with target _blank
         var add_target_blank_icon = function () {
             var arr;
@@ -115,6 +120,7 @@
 	
 	add_adult_badge();
 	add_background_image();
+        add_search_badge_el();
 	add_target_blank_icon();
 	add_readmore();
         add_animate_scroll();
