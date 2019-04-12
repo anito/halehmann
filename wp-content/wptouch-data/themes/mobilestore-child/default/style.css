@@ -1298,7 +1298,7 @@ blockquote > p {
     font-style: initial;
     font-size: 1em;
 }
-li.product.product_tag-iwa-2019::after {
+li.product.product_tag-iwa-2019 > a::after {
     content: "";
     position: absolute;
     right: 5px;
