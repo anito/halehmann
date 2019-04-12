@@ -276,7 +276,7 @@ function override_pwb_description() {
 			wc_format_content( wc_get_template( 'templ/brand/description_line.php' ) );
 		}, 1);
 		remove_action( 'woocommerce_archive_description', 'woocommerce_result_count', 0 );
-		add_action( 'woocommerce_archive_description', 'woocommerce_result_count', 2 );
+//		add_action( 'woocommerce_archive_description', 'woocommerce_result_count', 2 );
 	}
 }
 

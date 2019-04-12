@@ -957,6 +957,12 @@ h3.label, h4.label {
     right: -26px;
     top: 22px;
 }
+.pwb-after-loop {
+    margin-top: 19px;
+}
+.pwb-before-loop {
+    margin-bottom: 0;
+}
 .pwb-badge {
     background: rgb(255, 220, 31) none repeat scroll 0 0;
     color: #0d0f0e;
