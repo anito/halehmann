@@ -378,7 +378,7 @@ add_action( 'wp_enqueue_scripts', 'remove_styles', 30 );
 function remove_styles() {
     wp_dequeue_style( 'pac-styles' );
     wp_dequeue_style( 'pac-layout-styles' );
-    wp_dequeue_style( 'pwb-styles-frontend' );
+//    wp_dequeue_style( 'pwb-styles-frontend' );
 }
 
 // cleanup Banner and Description Hooks from PWB Plugin
