@@ -2870,6 +2870,10 @@ a.target-blank-icon:after {
     font-weight: normal;
     line-height: 1em;
     padding-left: 5px;
+    vertical-align: middle;
+    margin-left: -4px;
+    margin-right: 4px;
+    opacity: .6;
 }
 @media (max-width: 660px) {
     
