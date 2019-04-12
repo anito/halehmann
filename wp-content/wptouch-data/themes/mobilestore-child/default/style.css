@@ -1321,9 +1321,7 @@ a.target-blank-icon:after {
     line-height: 1em;
     padding-left: 5px;
     vertical-align: middle;
-    margin-left: -4px;
     margin-right: 4px;
-    opacity: .6;
 }
 /*
  * Stock Alert
