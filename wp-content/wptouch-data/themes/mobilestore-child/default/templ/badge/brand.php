@@ -22,6 +22,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 ?>
-<?php if (\Perfect_Woocommerce_Brands\Perfect_Woocommerce_Brands::is_brand_archive_page()) : ?>
+<?php if ( is_brand_archive_page() ) : ?>
 <i class='pwb-badge badge'>Brand</i>
 <?php endif ?>
