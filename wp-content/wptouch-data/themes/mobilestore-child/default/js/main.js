@@ -17,10 +17,15 @@
 		$( '.page-wrapper' ).addClass('camouflage');
 	}
 	
-	//pimp search field
-	var add_search_badge_el = function() {
-		$( '#searchform' ).prepend('<span class="icon"><i class="wptouch-icon-search"></i></span>');
-	}
+	//add icon to links with target _blank
+        var add_target_blank_icon = function () {
+            var arr;
+            $('a[target=_blank]').each( function( i, el) {
+                if( (arr = $(el).find('*')) && !arr.length) {
+                    $(el).addClass('target-blank-icon');
+                }
+            });
+        };
 	
 	//add readmore behaviour
 	var add_readmore = function() {
@@ -110,7 +115,7 @@
 	
 	add_adult_badge();
 	add_background_image();
-	add_search_badge_el();
+	add_target_blank_icon();
 	add_readmore();
         add_animate_scroll();
         add_check_scroll();

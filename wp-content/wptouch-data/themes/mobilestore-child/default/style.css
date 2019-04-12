@@ -1312,6 +1312,22 @@ li.product.product_tag-iwa-2019::after {
     background-size: cover;
     z-index: 1;
 }
+a.target-blank-icon:after {
+    content: '\f504';
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'dashicons';
+    font-size: 1rem;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1em;
+    padding-left: 5px;
+    vertical-align: middle;
+    margin-left: -4px;
+    margin-right: 4px;
+    opacity: .6;
+}
 /*
  * Stock Alert
  */
