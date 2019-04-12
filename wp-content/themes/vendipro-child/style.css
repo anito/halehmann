@@ -1821,11 +1821,11 @@ span.disclaimer {
     margin-top: 1rem;
     width: 74%;
 }
-.pwb-after-loop {
-    margin-top: 19px;
-}
 .pwb-before-loop {
     margin-bottom: 0;
+}
+.pwb-after-loop {
+    margin-top: 19px;
 }
 .pwb-single-product-brands {
     position: absolute;

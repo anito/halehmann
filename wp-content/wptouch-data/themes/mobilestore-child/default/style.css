@@ -958,7 +958,7 @@ h3.label, h4.label {
     top: 22px;
 }
 .pwb-after-loop {
-    margin-top: 19px;
+    margin-top: 0;
 }
 .pwb-before-loop {
     margin-bottom: 0;
