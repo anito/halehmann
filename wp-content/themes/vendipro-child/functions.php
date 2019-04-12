@@ -378,11 +378,35 @@ add_action( 'wp_enqueue_scripts', 'remove_styles', 30 );
 function remove_styles() {
     wp_dequeue_style( 'pac-styles' );
     wp_dequeue_style( 'pac-layout-styles' );
+    wp_dequeue_style( 'pwb-styles-frontend' );
 }
 
-add_action('woocommerce_archive_description', 'reorder_description', -1);
-function reorder_description() {
-	if( \Perfect_Woocommerce_Brands\Perfect_Woocommerce_Brands::is_brand_archive_page() ) {
+// cleanup Banner and Description Hooks from PWB Plugin
+add_action('woocommerce_archive_description', 'override_pwb_brand_banner_and_description' );
+function override_pwb_brand_banner_and_description() {
+	$instance = \Perfect_Woocommerce_Brands\Perfect_Woocommerce_Brands::this();
+	
+	// remove banner and description from shop_loop
+	remove_action( 'woocommerce_after_main_content', array( $instance, 'print_brand_banner_and_desc' ), 9);
+	remove_action( 'woocommerce_after_main_content', array( $instance, 'print_brand_desc' ), 9 );
+	
+	remove_action( 'woocommerce_archive_description', array( $instance, 'print_brand_banner_and_desc' ), 15);
+	remove_action( 'woocommerce_archive_description', array( $instance, 'print_brand_banner' ), 15 );
+	remove_action( 'woocommerce_archive_description', array( $instance, 'print_brand_desc' ), 15 );
+	
+}
+
+// add banner to main_content
+add_action( 'woocommerce_before_main_content', 'add_perfect_brand_banner' );
+function add_perfect_brand_banner() {
+	$instance = \Perfect_Woocommerce_Brands\Perfect_Woocommerce_Brands::this();
+	add_action( 'woocommerce_before_main_content', array( $instance, 'print_brand_banner_and_desc'), 20 );
+}
+
+// add description, result count and button before main content
+add_action('woocommerce_archive_description', 'override_pwb_description', -1 );
+function override_pwb_description() {
+	if( is_brand_archive_page() ) {
 		remove_action('woocommerce_archive_description', 'woocommerce_taxonomy_archive_description', 10 );
 		add_action('woocommerce_archive_description', function() {
 			wc_format_content( wc_get_template( 'templ/brand/description_line.php' ) );
@@ -392,30 +416,13 @@ function reorder_description() {
 	}
 }
 
-// change order of appearance to match our layout
-// add banner to main_content
-add_action( 'woocommerce_before_main_content', 'add_perfect_brand_banner' );
-function add_perfect_brand_banner() {
-	$instance = \Perfect_Woocommerce_Brands\Perfect_Woocommerce_Brands::this();
-	
-	add_action( 'woocommerce_before_main_content', array( $instance, 'archive_page_banner'), 20 );
-}
-
-// remove banner from shop_loop
-add_action( 'woocommerce_before_shop_loop', 'remove_perfect_brand_banner', 0 );
-function remove_perfect_brand_banner() {
-	$instance = \Perfect_Woocommerce_Brands\Perfect_Woocommerce_Brands::this();
-	
-	remove_action( 'woocommerce_before_shop_loop', array( $instance, 'archive_page_banner' ), 9 );
-}
-
-add_action( 'woocommerce_page_title', 'pwb_page_title' );
-function pwb_page_title( $title ) {
-	if( \Perfect_Woocommerce_Brands\Perfect_Woocommerce_Brands::is_brand_archive_page() ) {
-		return $title . "";
+function is_brand_archive_page() {
+	$queried_object = get_queried_object();
+	if ( is_a( $queried_object, 'WP_Term' ) && $queried_object->taxonomy == 'pwb-brand' ) {
+		return true;
 	}
+	return false;
 }
-
 /*
  * wc_remove_related_products (disabled)
  * 

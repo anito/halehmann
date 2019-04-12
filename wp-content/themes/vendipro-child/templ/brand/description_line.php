@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 ?>
-<?php if (\Perfect_Woocommerce_Brands\Perfect_Woocommerce_Brands::is_brand_archive_page()) : ?>
+<?php if ( is_brand_archive_page() ) : ?>
 	<?php
 		$description = wc_format_content( term_description() );
 		echo '<div class="term-description first-description-line"><button  class="button overview"><a href="' . get_permalink( BRANDS_ID ) . '">' . _('zur Marken-Übersicht') . '</a></button>' . $description . '</div>';
