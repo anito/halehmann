@@ -84,7 +84,7 @@
     var add_target_blank_icon = function () {
         var arr;
         $('a[target=_blank]').each( function( i, el) {
-            if( (arr = $(el).find('*')) && !arr.length) {
+            if( (arr = $(el).find('img')) && ( !arr.length)) {
                 $(el).addClass('target-blank-icon');
             }
         });

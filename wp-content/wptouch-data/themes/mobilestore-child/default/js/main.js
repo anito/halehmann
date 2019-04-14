@@ -25,8 +25,8 @@
 	//add icon to links with target _blank
         var add_target_blank_icon = function () {
             var arr;
-            $('a[target=_blank]').each( function( i, el) {
-                if( (arr = $(el).find('*')) && !arr.length) {
+            $('a[target=_blank]:not([role=button])').each( function( i, el) {
+                if( (arr = $(el).find('img')) && !arr.length ) {
                     $(el).addClass('target-blank-icon');
                 }
             });
