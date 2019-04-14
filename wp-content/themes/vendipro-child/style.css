@@ -1887,6 +1887,9 @@ li.product a.button {
         margin-right: 2.5%;
     }
 }
+.product section.upsells ul.products li.product {
+    margin-right: inherit;
+}
 .product section.upsells ul.products.columns-5 li.product:nth-child(5n),
 .product section.upsells ul.products.columns-4 li.product:nth-child(4n) {
     margin-right: 0 !important;
