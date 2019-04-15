@@ -1817,19 +1817,6 @@ span.disclaimer {
     margin-top: 1rem;
     width: 74%;
 }
-.pwb-before-loop {
-    margin-bottom: 0;
-}
-.pwb-after-loop {
-    margin-top: 19px;
-}
-.pwb-single-product-brands {
-    position: absolute;
-    right: 3%;
-    bottom: 6%;
-    background: #4c4c4c;
-    border: 1px solid #313131;
-}
 .metaslider .flex-prev::before, .metaslider .flex-next::before {
     visibility: hidden;
 }
@@ -2596,6 +2583,26 @@ table.shop_table td.product-thumbnail img {
 .boxzilla-betriebsferien .boxzilla-content {
     position: absolute;
     bottom: 50px;
+}
+.pwb-before-loop {
+    margin-bottom: 0;
+}
+.pwb-after-loop {
+    margin-top: 19px;
+}
+.pwb-single-product-brands {
+    position: absolute;
+    right: 3%;
+    bottom: 6%;
+    background: #4c4c4c;
+    border: 1px solid #313131;
+}
+.pwb-single-product-brands > a {
+    display: inline-block;
+    background: #fff;
+}
+.pwb-single-product-brands > a > img {
+    display: block;
 }
 .pwb-brands-cols-outer {
     display: flex;
