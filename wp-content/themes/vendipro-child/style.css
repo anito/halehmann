@@ -11,12 +11,6 @@
 
 /* =Theme customization starts here
 -------------------------------------------------------------- */
-/*
-@import url('index.css');
-@import url('css/klu.css');
-@import url('css/klu_.css');
-*/
-
 @-webkit-keyframes keyframe--spin {
     from {
         -webkit-transform: rotate(0);
@@ -2602,28 +2596,31 @@ table.shop_table td.product-thumbnail img {
 .boxzilla-betriebsferien .boxzilla-content {
     position: absolute;
     bottom: 50px;
-}.pwb-brands-cols-outer {
 }
-.pwb-brands-col3 {
+.pwb-brands-cols-outer {
+    display: flex;
+    flex-flow: row wrap;
+}
+.pwb-brands-cols-outer > [class*=pwb-brands-col] {
     border-radius: 3px;
-    background: rgb(72, 72, 72);
+    background: #484848;
     margin: 3px;
-    padding: 15px !important;
-    width: 157px !important;
+    padding: 15px!important;
     position: relative;
+    flex: 19% 0;
 }
-.pwb-brands-col3 > p + div:nth-child(2) {
-    margin-top: 30px;
-}
-.pwb-all-brands .pwb-brands-cols-outer .pwb-brands-col3 > p:first-child {
+.pwb-brands-cols-outer > [class*=pwb-brands-col] > p:first-child {
     line-height: 1em;
-    height: unset;
-    font-size: 0.8rem;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    padding: 10px;
-    top: 0;
+    width: 80%;
+    font-size: .8rem;
+    margin: 0 0 10px 0;
+}
+.pwb-brands-cols-outer > [class*=pwb-brands-] p + div a {
+    display: inline-block;
+    background: #fff;
+}
+.pwb-brands-cols-outer > [class*=pwb-brands-] p + div img {
+    display: block;
 }
 .pwb-all-brands .pwb-pagination-wrapper {
     border-top: 0 none;
@@ -2632,6 +2629,22 @@ table.shop_table td.product-thumbnail img {
     padding: 8px;
     border-radius: 10px;
     background: #303030;
+}
+[class*=pwb-brands-] small {
+    background: #3c3c3c;
+    line-height: 1em;
+    padding: 6px 2px;
+    border-radius: 50%;
+    max-width: 20%;
+    color: #cacaca;
+    font-size: .75em;
+    min-width: 22px;
+    overflow: hidden;
+    display: inline-block;
+    text-align: center;
+    position: absolute;
+    top: 11px;
+    right: 13px;
 }
 .badge-sale {
     padding: 0.3em;
@@ -2657,22 +2670,6 @@ button.button.overview {
     position: absolute;
     top: 0;
     right: 0;
-}
-[class*="pwb-brands-"] small {
-    background: #3c3c3c;
-    line-height: 1em;
-    padding: 6px 2px;
-    border-radius: 50%;
-    max-width: 22px;
-    color: #cacaca;
-    font-size: .75em;
-    min-width: 22px;
-    overflow: hidden;
-    display: inline-block;
-    text-align: center;
-    position: absolute;
-    top: 3px;
-    right: 13px;
 }
 [class^=trustami-icon-], [class*=" trustami-icon-"] {
     font-family: TrustamiFont;
