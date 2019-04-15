@@ -1390,7 +1390,7 @@ li.product .added_to_cart {
     border-right: 1px solid #2f2e2e;
     border-bottom: 1px solid #2f2e2e;
 }
-.page .entry-content > h2:not(.entry-title) ~ h5, .term-description > h5:not(:first-child), .page-description > h5:not(:first-child) {
+.page .entry-content > h2:not(.entry-title) ~ h5, .term-description > h5:not(:first-child), .page-description > h5:not(:first-child), .term-description > p:not(:first-child), .page-description > p:not(:first-child) {
     font-size: 1em;
     color: #c1c1c1 !important;
     border-left: 5px solid #c1c1c1;
@@ -2612,7 +2612,7 @@ table.shop_table td.product-thumbnail img {
 .pwb-brands-cols-outer > [class*=pwb-brands-col] > p:first-child {
     line-height: 1em;
     width: 80%;
-    font-size: .8rem;
+    font-size: .8rem !important;
     margin: 0 0 10px 0;
 }
 .pwb-brands-cols-outer > [class*=pwb-brands-] p + div a {
