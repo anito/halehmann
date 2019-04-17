@@ -163,6 +163,21 @@
         
     };
     
+    var add_submit_search = function() {
+        
+        var $form = $('.aws-search-form');
+        
+        $('.aws-search-btn', $form).on('click', function(e){
+            
+            if( $form.hasClass( 'aws-form-active' ) ) {
+                e.preventDefault();
+                $form.submit();
+            }
+            
+        });
+        
+    };
+    
     add_fb_div();
     add_adult_badge();
     add_background_image();
@@ -172,6 +187,7 @@
     add_image_disclaimer();
     add_jQuery_blocking();
     add_animate_scroll();
+    add_submit_search();
 //        add_readmore();
 
 })(jQuery)
