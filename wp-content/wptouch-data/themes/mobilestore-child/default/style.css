@@ -1502,6 +1502,9 @@ input.age-gate-submit {
     background-size: cover;
     z-index: 1;
 }
+.product .woocommerce-tabs .pwb_tab_tab a:before {
+    content: "\e830";
+}
 @media only screen and (min-width: 420px) {
     .boxzilla .mc4wp-form input[type="email"] {
         border-radius: 2px 0 0 2px !important;
