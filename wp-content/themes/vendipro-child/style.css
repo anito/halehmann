@@ -2857,11 +2857,13 @@ li.product.product_tag-iwa-2019::after {
     position: absolute;
     right: 5px;
     top: 16px;
-    width: 80px;
-    height: 80px;
-    background: url("/wp-content/uploads/2019/04/iwa-badge.png") no-repeat;
+    width: 58px;
+    height: 58px;
+    background: url(/wp-content/uploads/2019/04/iwa-badge.png) no-repeat;
     background-size: cover;
     z-index: 1;
+    border-radius: 50%;
+    box-shadow: 0px 0px 16px rgba(29, 192, 239, 0.45) inset;
 }
 div.product.product_tag-iwa-2019 > .entry-post.wrapper:after {
     content: "";
