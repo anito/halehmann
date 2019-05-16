@@ -1143,6 +1143,7 @@ h3#billing_fields_heading, h3#order_review_heading {
 .boxzilla .mc4wp-form input[type="email"] {
     border: 1px solid #121212;
     background: #121212;
+    color: #d3d3d3;
 }
 .address-box::before {
     content: "";
