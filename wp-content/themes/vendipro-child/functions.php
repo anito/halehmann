@@ -264,7 +264,7 @@ function vp_child_theme_styles() {
 
 
 // Function to add analyticstracking.js to the site
-add_action( 'wp_enqueue_scripts', 'add_scripts', 900 );
+add_action( 'wp_enqueue_scripts', 'add_scripts' );
 function add_scripts() {
 	wp_register_script( 'spin.jquery', get_stylesheet_directory_uri() . '/js/spinjs/spin-jquery.min.js', false, '0.1', true );
 	wp_enqueue_script( 'spin.jquery' );
