@@ -10,7 +10,7 @@
 
         jQuery('figure img', $(this)).each(function () {
 
-            var src = $(this).attr('srcset'), a, c, caption, regex, subst, inner = $(this), outer;
+            var src = $(this).data('src'), a, c, caption, regex, subst, inner = $(this), outer;
 
             src_big = function (src) {
 
