@@ -29,6 +29,7 @@
                 outer = a[0];
             } else {
                 // No Links found
+                console.log($(outer))
                 outer = '<a></a>';
                 inner.wrap($(outer));
             }
