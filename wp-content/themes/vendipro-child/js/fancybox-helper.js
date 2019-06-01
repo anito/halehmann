@@ -32,9 +32,8 @@
                 outer = '<a></a>';
                 inner.wrap($(outer));
             }
-            console.log($(outer))
             $(outer).attr( {
-                'href': src_big(this.src),
+                'href': src_big(src),
                 'data-fancybox' : 'gallery-' + galleryIndex,
                 'data-caption' : caption
             } );
