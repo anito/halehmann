@@ -728,3 +728,22 @@ function js_age_gate_after( $ret ) {
 	wp_register_script( 'history.back', get_stylesheet_directory_uri() . '/js/age-gate/age-gate.js', array( 'jquery' ), '0.1', true );
 	wp_enqueue_script( 'history.back' );
 }
+
+add_action( 'add_meta_boxes', 'my_add_meta_box' );
+
+function my_add_meta_box( $post_type ) {
+    $post_types = array('product');     //limit meta box to certain post types
+    global $post;
+    $product = get_product( $post->ID );
+	write_log($product);
+    if ( in_array( $post_type, $post_types ) && ($product->product_type == 'simple' ) ) {
+//        add_meta_box(
+//            'wf_child_letters'
+//            ,__( 'Picture Preview', 'woocommerce' )
+//            ,array( $this, 'render_meta_box_content' )
+//            ,$post_type
+//            ,'advanced'
+//            ,'high'
+//        );
+    }
+}
