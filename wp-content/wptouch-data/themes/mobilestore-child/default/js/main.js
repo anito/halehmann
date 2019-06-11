@@ -44,7 +44,7 @@
         
         var add_animate_scroll = function() {
             
-            $('a[href^=#]').on('click', function(e){
+            $('a[href^="#"]').on('click', function(e){
 
                 var href = $(this).attr('href');
                 
