@@ -587,6 +587,9 @@ i.adult:before {
 #content .product .summary .stock {
     font-weight: normal;
 }
+#content .product .summary .stock.out-of-stock {
+    color:  #red;
+}
 tbody td,
 .entry-content table tbody td {
     font-size: 0.8rem !important;
@@ -1340,6 +1343,9 @@ a.target-blank-icon:after {
     padding: 10px;
     border-radius: 5px;
     background: #f5f5f5;
+}
+.alert_container h6 {
+    font-size: 1em;
 }
 #content .product button.stock_alert_button[name=alert_button] {
     margin-top: 20px;
