@@ -732,13 +732,12 @@ function js_age_gate_after( $ret ) {
 /**
  * Change In Stock / Out of Stock Text
  */
-//apply_filters( 'woocommerce_get_availability_text', 
 add_filter( 'woocommerce_get_availability', 'wcs_custom_get_availability', 1, 2);
 function wcs_custom_get_availability( $availability, $_product ) {
    
    	// Change In Stock Text
     if ( $_product->is_in_stock() ) {
-//        $availability['availability'] = __('available', 'woocommerce');
+        $availability['availability'] = __('In Stock', 'woocommerce');
     }
     // Change Out of Stock Text
     if ( ! $_product->is_in_stock() ) {
