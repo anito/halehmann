@@ -588,7 +588,7 @@ i.adult:before {
     font-weight: normal;
 }
 #content .product .summary .stock.out-of-stock {
-    color:  #red;
+    color:  #d30001;
 }
 tbody td,
 .entry-content table tbody td {
