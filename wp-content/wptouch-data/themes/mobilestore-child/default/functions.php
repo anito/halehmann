@@ -227,7 +227,7 @@ add_action( 'init', 'child_remove_parent_function' );
 add_action('wp_print_scripts', 'remove_scripts');
 add_action('wp_enqueue_scripts', 'add_scripts');
 //add_filter('woocommerce_related_products_args','wc_remove_related_products', 10);
-add_filter( 'woocommerce_is_attribute_in_product_name', function () { return false; } );#show meta for product like Größe XXL
+//add_filter( 'woocommerce_is_attribute_in_product_name', function () { return false; } );#show meta for product like Größe XXL
 add_filter( 'woocommerce_output_related_products_args', 'woo_related_products_limit' );
 add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 20;' ), 999 );
 add_filter( 'woocommerce_sale_flash', 'set_sale_flash', 1, 3 );
