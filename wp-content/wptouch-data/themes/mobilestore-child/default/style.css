@@ -577,9 +577,11 @@ i.adult:before {
 .backorder_notification {
     font-size: 0.7em !important;
 }
-.woocommerce-cart .cart .variation,
 .woocommerce-cart .cart li span.quantity {
     padding-left: 0;
+}
+.woocommerce-cart .cart .variation * {
+    display: inherit;
 }
 #content .product.product-type-simple .summary .stock {
     padding-top: 0;
