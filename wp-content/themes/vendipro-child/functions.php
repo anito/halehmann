@@ -354,7 +354,7 @@ function filter_woocommerce_output_upsell_products_args( $args ) {
 }
 
 // show an extra variation attributes line in cart
-add_filter( 'woocommerce_is_attribute_in_product_name', function () { return false; } );
+//add_filter( 'woocommerce_is_attribute_in_product_name', function () { return false; } );
 
 // add wrapper classes to multistep checkout
 add_filter('woocommerce_gzdp_checkout_wrapper_classes', 'active_step_wrapper_classes');
