@@ -410,8 +410,7 @@ nav.woocommerce-pagination ul li a:focus, .woocommerce nav.woocommerce-paginatio
         margin-top: 8px;
     }
     header#hmain .navbar ul.slimmenu > li:last-child a {
-        text-align: right;
-        padding-bottom: 0px;
+        
     }
     header#hmain .navbar ul.slimmenu > li:last-child a i::before {
         font-size: 2em;
