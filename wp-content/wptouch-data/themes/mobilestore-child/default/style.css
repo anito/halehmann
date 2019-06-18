@@ -581,7 +581,7 @@ i.adult:before {
     padding-left: 0;
 }
 .woocommerce-cart .cart .variation * {
-    display: inline;
+    display: block;
 }
 .woocommerce-cart .cart .variation dd {
     display: inline-block;
