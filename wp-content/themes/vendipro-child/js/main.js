@@ -86,7 +86,7 @@
         $('a[target=_blank]').each( function( i, el) {
             if( (arr = $(el).find('img')) && ( !arr.length)) {
                 $(el).addClass('target-blank-icon');
-                $(el).append('<i class="fa-external-link"></i>')
+                $(el).parent().append('<i class="fa-external-link"></i>');
             }
         });
     };
