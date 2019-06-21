@@ -2422,12 +2422,11 @@ table.shop_table td.product-thumbnail img {
 }
 #info-box-1.info-box {
     max-width: 35%;
-    margin: 30px auto;
-    display: block;
+    height: auto;
+    display: inline-block;
     position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 22px;
+    top: 30px;
+    right: 30px;
     background: #424242dd;
     overflow: auto;
 }
