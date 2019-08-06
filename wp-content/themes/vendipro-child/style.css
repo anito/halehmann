@@ -2729,21 +2729,6 @@ a.shipping-calculator-button {
     flex-direction: column;
     justify-content: space-between;
 }
-/* IE Hack */
-@media all and (-ms-high-contrast:none)
-{
-    /* IE10
-    ....
-    */
-    /* IE 11 */
-    *::-ms-backdrop,
-    .woocommerce ul.products li.product{
-        display: block;
-    }
-    *::-ms-backdrop,.woocommerce ul.products li.product a img{
-        flex: none;
-    }
-}
 .woocommerce ul.products li.product .button {
     white-space: nowrap;
     font-size: 0.85em;
@@ -2922,4 +2907,19 @@ a.target-blank-icon:after {
         margin-right: 2% !important;
     }
     
+}
+/* IE Hack */
+@media all and (-ms-high-contrast:none)
+{
+    /* IE10
+    ....
+    */
+    /* IE 11 */
+    *::-ms-backdrop,
+    .woocommerce ul.products li.product{
+        display: block;
+    }
+    *::-ms-backdrop,.woocommerce ul.products li.product a img{
+        flex: none;
+    }
 }
