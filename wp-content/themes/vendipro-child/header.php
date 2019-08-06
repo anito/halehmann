@@ -19,6 +19,8 @@
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
+	<div id="UA"></div>
+	<div id="browser"></div>
 	<header id="hmain">
 		<div id="hbar">
 			<div class="container container-nomargin">

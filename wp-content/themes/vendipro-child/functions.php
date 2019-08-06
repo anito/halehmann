@@ -745,3 +745,27 @@ function wcs_custom_get_availability( $availability, $_product ) {
     }
     return $availability;
 }
+
+/*
+/	Unsupprted Browsers IE 11 and lower
+*/
+add_action( 'wp_enqueue_scripts', 'detectTrident' );
+function detectTrident($current_theme) {
+	define('TRIDENT', 'Trident/');
+	$ua = $_SERVER['HTTP_USER_AGENT']; 
+	$browser = ['name', 'version', 'platform'];
+	preg_match('/Trident\/([0-9.]*)/u', $ua, $match);
+	$match = (int) array_pop($match);
+	if(!empty( $match ) && ( $match <= 7 ) ) {
+		$browser['name'] = 'ie';
+		$browser['version'] = $match;
+		add_action('wp_footer', 'unsupported_browsers_template', 100);
+		
+	}
+	// wp_register_script( 'browser_sniffer', get_stylesheet_directory_uri() . '/js/browser_support.js', ['jquery'], '0.1', true );
+	// wp_localize_script('browser_sniffer', '__browser', array('name' => $browser['name'], 'version' => (int) $browser['version'], 'platform' => $browser['platform'] ));
+	// wp_enqueue_script( 'browser_sniffer' );
+}
+function unsupported_browsers_template() {
+	get_template_part('custom-templates/custom', 'unsupported-browser');
+}
