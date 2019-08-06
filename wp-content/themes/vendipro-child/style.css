@@ -2919,7 +2919,13 @@ a.target-blank-icon:after {
     .woocommerce ul.products li.product{
         display: block;
     }
-    *::-ms-backdrop,.woocommerce ul.products li.product a img{
+    *::-ms-backdrop,
+    .woocommerce ul.products li.product a img{
         flex: none;
     }
+    *::-ms-backdrop,
+    .columns-4 ul.products li.product, ul.products.columns-4 li.product {
+        flex: none;
+    }
+
 }
