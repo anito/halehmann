@@ -504,7 +504,7 @@ function read_last_backup( $human = "" ) {
 	
 	$arrContextOptions = array(
 		"ssl" => array(
-			"verify_peer" => false, // ignore SSL Cert
+			"verify_peer" => false, // ignore falsy SSL Cert
 			"verify_peer_name" => true,
 		),
 	);
