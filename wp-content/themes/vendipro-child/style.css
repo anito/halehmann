@@ -2622,7 +2622,7 @@ table.shop_table td.product-thumbnail img {
     margin: 0 0 10px 0;
 }
 .pwb-brands-cols-outer > [class*=pwb-brands-] p + div a {
-    display: inline-block;
+    display: block;
     background: #fff;
 }
 .pwb-brands-cols-outer > [class*=pwb-brands-] p + div img {
