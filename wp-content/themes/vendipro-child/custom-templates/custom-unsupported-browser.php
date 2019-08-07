@@ -37,7 +37,7 @@ Army-Shop Lehmann wird nicht zufriedenstellend funktionieren mit diesem Browser.
       top: 80px;
       margin: auto;
       width: 90%;
-      max-width: 520px;
+      max-width: 690px;
       max-height: 90%;
       padding: 40px 20px;
       box-shadow: 0 10px 30px #000;
