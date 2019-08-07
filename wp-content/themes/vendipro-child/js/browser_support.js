@@ -23,9 +23,6 @@ var BrowserSniffing = {
     init: function() {
         __browser.version = parseInt(__browser.version);
         __browser.platform = __browser.platform ? __browser.platform : '';
-        if(__browser.version <= 7) {
-            alert('Unsupported Browser');
-        }
         this.isIE11OrLess() && this.addIEclasses(),
         this._hasClassList() && (document.documentElement.classList.add(__browser.platform),
         document.documentElement.classList.add(this.getBrowserClassname()))
