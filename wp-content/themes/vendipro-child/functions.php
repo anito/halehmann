@@ -439,7 +439,7 @@ function wc_remove_related_products( $args ) {
 /* ----------------------------------------------------------------------------------- */
 /* Display a Backup Warning
 /* ----------------------------------------------------------------------------------- */
-add_action( 'admin_notices', 'add_notices' );
+// add_action( 'admin_notices', 'add_notices' );
 
 /*
  * 	return a given subdomain for home_url
@@ -510,9 +510,9 @@ function read_last_backup( $human = "" ) {
 	);
 
 	if ( IS_DEV_MODE )
-		$response = file_get_contents( $backup_domain . 'read/' . $human, false, stream_context_create( $arrContextOptions ) );
+		$response = file_get_contents( $backup_domain . 'api/mysql', false, stream_context_create( $arrContextOptions ) );
 	else
-		$response = file_get_contents( $backup_domain . 'read/' . $human );
+		$response = file_get_contents( $backup_domain . 'api/mysql' );
 
 	return $response;
 }
@@ -532,7 +532,7 @@ function add_notices() {
 	$backup_domain = get_subdomain_url( 'backup' );
 	$current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 	$return_url = urlencode($current_url);
-
+	$date = '';
 	$date = read_last_backup( TRUE ); // human readable time
 	if( !$date ) {
 		$date	= '<strong><span style="color: #f00;">Noch kein Backup vorhanden!</span></strong>';
@@ -557,16 +557,6 @@ function add_notices() {
 	$current_user = wp_get_current_user();
 	$notices['make_backup'] = array(
 		'class' => 'notice notice-info',
-//		'msg' => sprintf( __( '<form action="%s" method="post" accept-charset="utf-8">'
-//				. '<div class="ha-admin backup-info">'
-//				. '<input type="hidden" name="data[User][username]" val="' . $current_user->user_login . '">'
-//				. '<input type="hidden" name="data[User][password]" val="' . $current_user->user_pass . '">'
-//				. '<input type="hidden" name="data[User][redirect]" val="/users">'
-//				. '<input type="hidden" name="data[ret]" val="%s">'
-//				. '<button type="submit">Datenbank Backup</button>'
-//				. '<span> nicht vergessen! %s</span>'
-//				. '</div>'
-//				. '</form>', '' ), $backup_domain, $return_url, $text ),
 		'msg' => sprintf( __( '<div class="ha-admin backup-info"> %s</div>', '' ), $text )
 	);
 
