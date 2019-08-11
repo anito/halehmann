@@ -3,7 +3,7 @@
 Plugin Name: Spine App
 Plugin URI: https://webpremiere.de
 Description: Extend Wordpress by SpineJS
-Version: 1.0.5
+Version: 1.0.6
 Author: Webpremiere
 Author URI: https://webpremiere.de
 Text Domain: spine-app

@@ -16,6 +16,8 @@ class App extends Spine.Controller
         'form'          : 'form'
         '#opt-download' : 'downloadEl'
         '#opt-restore'  : 'restoreEl'
+        '#opt-dump'     : 'dumpEl'
+        '#opt-time-info' : 'timeInfoEl'
         '#opt-options'  : 'optionsEl'
         '#opt-logout'   : 'logoutEl'
 

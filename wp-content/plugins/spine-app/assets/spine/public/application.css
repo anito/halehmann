@@ -7,6 +7,9 @@
 .is-saving {
   animation: edit-post__loading-fade-animation 0.5s infinite;
 }
+.backup-info {
+  line-height: 2em;
+}
 .backup-info .time-span {
   font-weight: 400;
   padding: 0.3em 0.5em;

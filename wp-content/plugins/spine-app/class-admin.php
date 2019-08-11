@@ -71,7 +71,7 @@ class spinejs_admin {
         add_action( 'admin_init', array($this, 'create_form'), 40 );
         add_action( 'admin_init', array($this, 'listen_for_deactivation'), 40 );
 
-        add_action( 'admin_footer', array ( $this, 'add_spine_js' ), 1001) ;
+        add_action( 'admin_footer', array ( $this, 'init_spine_js' ), 999) ;
 
     }
 
@@ -170,8 +170,7 @@ class spinejs_admin {
     * Add SpineJS App	
     * @since 2.0.0		
     */
-    public function add_spine_js() {
-
+    public function init_spine_js() {
         echo '<!-- #spine-app -->';
         $options = get_option('spine_js_db_options');
         ?>
@@ -185,8 +184,7 @@ class spinejs_admin {
                 var initApp = function() {
                     var App = require("index");
                     exports.app = new App({
-                        timeInfoEl: $("#<?= $this->db_notice_id ?>"),
-                        dumpEl: $("#opt-dump"),
+                        el: "#<?= $this->db_notice_id ?>",
                         savingProgressEl: $("#opt-db-saving"),
                         isProduction:<?= (IS_PRODUCTION) ? 'true': 'false'; ?>,
                         isAdmin:<?= (current_user_can('edit_pages')) ? 'true': 'false'; ?>,
