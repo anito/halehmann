@@ -37,6 +37,9 @@ class App extends Spine.Controller
   
     timeInfoTemplate:  (item) ->
         $('#timeInfoTemplate').tmpl item
+    
+    errorTemplate: (error) ->
+        $('#errorTemplate').tmpl error
 
     constructor: ->
         super
@@ -49,70 +52,61 @@ class App extends Spine.Controller
 
         @dumpEl.bind('click', @proxy @submit)
 
-        @settings =
-            dump:
-                processDefault: $(@dumpEl).html()
-                processAsk: 'Datensicherung starten?\n\nFortfahren?'
-                processBefore:'Sicherung läuft...'
-                processDone: 'Gesichert'
-                processFail: 'Fehler'
-            restore:
-                processDefault:$(@restoreEl).html()
-                processAsk: 'Soll diese Sicherung wiederhergestellt werden?'
-                processBefore: 'Wiederherstellung läuft...'
-                processDone: 'Wiederhergestellt'
-                processFail: 'Fehler'
-            
-
         @routes
             '/item/:pid': (params) ->
                 @showDetails params.pid
             '/*glob' : (params) ->
     
-    renderStatus: (item) ->
-        @statusEl.html @statusTemplate item
-
-    renderOptions: (items) ->
-        if items.length
-            emptyText = 'Sicherung auswählen'
-        else
-            emptyText = 'keine Sicherung vorhanden'
-
-        items.unshift
-            created: emptyText
-
-        @optionsEl.html @optionsTemplate items
-        @change()
-
     renderInfo: (item) ->
         @timeInfoEl.html @timeInfoTemplate item
 
+    renderError: (item) ->
+        @timeInfoEl.html @errorTemplate item
+
     init: ->
+        @settings =
+            'mysql-dump':
+                processDefault: $(@dumpEl).html()
+                processAsk: 'Datensicherung starten?\n\nFortfahren?'
+                processBefore:'Sicherung läuft...'
+                processDone: 'Gesichert'
+                processFail: 'Fehler'
+            'mysql-restore':
+                processDefault: $(@restoreEl).html()
+                processAsk: 'Soll diese Sicherung wiederhergestellt werden?'
+                processBefore: 'Wiederherstellung läuft...'
+                processDone: 'Wiederhergestellt'
+                processFail: 'Fehler'
+
         Spine.Model.host = Settings.host = @host = @url
         @fetchToken @user
 
-    fetchToken: (user)=>
-        host = @url
+    fetchToken: (user) =>
+        User.fetch()
+        User.destroyAll()
+        @disableControl()
+        
         $.ajax
-            url: host + '/api/users/token'
+            url: @url + '/api/users/token'
             data: user
             type: 'POST'
+            # beforeSend: @proxy @disableControl
             headers:
                 Accept : 'application/json'
-        .done( @doneResponse user)
-        .fail( @failResponse )
-        .always( @completeResponse )
+        .done( @doneResponse user )
+        .fail( @failResponse user )
     
     doneResponse: (user) =>
-        (json, status, xhr) =>
+        ( json, status, xhr ) =>
+            @enableControl()
             user = $.extend(user, json.data)
             user = new User
                 'username': user.username
                 'token': json.data.token
             user.save()
 
-    failResponse: =>
-    completeResponse: =>
+    failResponse: ( user ) =>
+        ( xhr, responseText, error ) => @renderError xhr.responseJSON
 
     # bound to users save event
     authorized: ->
@@ -121,9 +115,7 @@ class App extends Spine.Controller
         @getMysql( token )
         @loadSettings()
 
-    getMysql: ( token ) =>
-        token = @getToken() unless token
-
+    getMysql: ( token = @getToken() ) =>
         Mysql.fetch
             headers:
                 Accept: 'application/json'
@@ -139,7 +131,6 @@ class App extends Spine.Controller
         Model.token = user.token
 
     mysqlRefreshed: (items) ->
-        @refreshElements()
         if items.length
             item = items[0]
         else
@@ -178,8 +169,8 @@ class App extends Spine.Controller
             alert("Vorgang wurde abgebrochen")
 
     submit: (e) =>
-        @data = @dumpEl.data()
-        @dataType = @data.type
+        el = $(e.currentTarget)
+        @data = el.data()
         
         token = @getToken()
 
@@ -189,7 +180,7 @@ class App extends Spine.Controller
             data:
                 filename: 'test.sql'
                 description: 'test description'
-            beforeSend: @mysqlBeforeSend
+            beforeSend: @proxy @mysqlBeforeSend
             headers:
                 Accept: 'application/json'
                 Authorization: 'Bearer ' + token
@@ -197,29 +188,35 @@ class App extends Spine.Controller
         .fail( @mysqlFail() )
 
     mysqlBeforeSend: =>
-        buttonTextEl = $('[data-type='+@dataType+']')
-        buttonTextEl.html( @settings[@dataType].processBefore ).attr('disabled', 'disabled')
-
+        @disableControl @data.type
         @savingProgressEl.removeClass('hide')
 
     mysqlDone: ( settings ) =>
         (data, state, xhr) =>
 
-            buttonTextEl = $('[data-type='+@dataType+']')
-            buttonTextEl.html( @settings[@dataType].processDone )
+            buttonTextEl = $('[data-type='+@data.type+']')
+            buttonTextEl.html( @settings[@data.type].processDone )
             @savingProgressEl.addClass('hide')
             func = =>
                 @getMysql( @getToken() )
-                buttonTextEl = $('[data-type='+@dataType+']').html( @settings[@dataType].processDefault ).attr('disabled', false)
+                buttonTextEl = $('[data-type='+@data.type+']').html( @settings[@data.type].processDefault ).attr('disabled', false)
             @delay func, 3000
 
     mysqlFail: =>
         (xhr, state, responseText) =>
-            buttonTextEl = $('[data-type='+@dataType+']')
-            buttonTextEl.html( @settings[@dataType].processFail + ': ' + responseText )
+            buttonTextEl = $('[data-type='+@data.type+']')
+            buttonTextEl.html( @settings[@data.type].processFail + ': ' + responseText )
             func = ->
-                buttonTextEl = $('[data-type='+@dataType+']').html( @settings[@dataType].processDefault )
-            @delay func, 20000
+                buttonTextEl = $('[data-type='+@data.type+']').html( @settings[@data.type].processDefault )
+            @delay func, 2000
+
+    disableControl: ( type = '' ) =>
+        if type then type = type.replace /mysql-/, ''
+        buttonTextEl = $('[data-type^=mysql-'+type+']').attr('disabled', 'disabled')
+
+    enableControl: ( type = '' ) =>
+        if type then type = type.replace /mysql-/, ''
+        buttonTextEl = $('[data-type^=mysql-'+type+']').attr('disabled', false)
 
     logout: (e) ->
         e.preventDefault()

@@ -29,8 +29,8 @@ config =
 			libs: [
 				'lib/jquery.js',
 				'lib/jade_runtime.js',
-				'lib/jquery.tmpl.js',
-				'node_modules/bootstrap/dist/js/bootstrap.js'
+				'lib/jquery.tmpl.js'
+				# 'node_modules/bootstrap/dist/js/bootstrap.js'
 			]
 			modules: [
 				"spine",
