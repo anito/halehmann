@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Spine App\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-13 22:38+0000\n"
-"PO-Revision-Date: 2019-08-13 22:45+0000\n"
+"POT-Creation-Date: 2019-08-13 22:58+0000\n"
+"PO-Revision-Date: 2019-08-13 22:59+0000\n"
 "Last-Translator: Axel <axel@webpremiere.dev>\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -104,6 +104,10 @@ msgstr "Dein DB Backup Tool Passwort"
 #: class-admin.php:488
 msgid "Enable this option to show DB Tool notice"
 msgstr "Aktiviere diese Option um die Notiz anzuzeigen "
+
+#: class-admin.php:502
+msgid "Settings needed for Authorization in DB Backup Tool"
+msgstr "Einstellungen zur Autorisierung im DB Backup Tool"
 
 #: class-help.php:9
 #, php-format
