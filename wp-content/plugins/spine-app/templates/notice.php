@@ -19,9 +19,9 @@ foreach ($notices as $key => $notice) {
 
 <script type="text/x-jquery-tmpl" id="timeInfoTemplate">
     {{if human}}
-        Letztes <strong><a href="${url}" target="_blank">Datenbank Backup</a></strong> vor <i class="time-span">${human.total} ${human.name}</i><span> am ${created}</span>
+        Letztes Backup vor <i class="time-span">${human.total} ${human.name}</i><span> am ${created}</span>
     {{else}}
-        Letztes <strong><a href="${url}" target="_blank">Datenbank Backup</a></strong>: <span style="color: #f00;"><strong>Noch kein Backup vorhanden!</strong></span>
+        Letztes Backup: <span style="color: #f00;"><strong>Noch kein Backup vorhanden!</strong></span>
     {{/if}}
 </script>
 
