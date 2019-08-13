@@ -25,6 +25,8 @@ config =
 
 	application:
 		defaults: "spine"
+		css:
+			target: "public/application.css"
 		js:
 			libs: [
 				'lib/jquery.js',
@@ -42,7 +44,7 @@ config =
 			src: [
 				"./app"
 			]
-			target: "/public/application.js"
+			target: "public/application.js"
 		test:
 			after: "require('lib/setup')"
 

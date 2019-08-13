@@ -110,8 +110,8 @@ class spinejs_admin {
 
         global $spine_js_admin_page;
         $spine_js_admin_page = add_options_page(
-            __("Lehmann Settings", "spine-js"), //link title
-            __("Lehmann GmbH", "spine-js"), //page title
+            __("Lehmann Settings", "spine-app"), //link title
+            __("Lehmann GmbH", "spine-app"), //page title
             $this->capability, //capability
             'spine_js', //url
             array($this, 'settings_page')); //function
@@ -268,7 +268,7 @@ class spinejs_admin {
                         *   First tab, configuration
                         */
                         ?>
-                        <h2><?php echo __("Setup", "spine-js"); ?></h2>
+                        <h2><?php echo __("Setup", "spine-app"); ?></h2>
                         <table class="spine-js-table">
 
                             <?php if (1) { ?>
@@ -276,9 +276,9 @@ class spinejs_admin {
                                     <td><?php echo $this->test ? $this->img("success") : $this->img("error"); ?></td>
                                     <td><?php
                                         if ($this->test) {
-                                            _e("Test is enabled on your site.", "spine-js") . "&nbsp;";
+                                            __("Test is enabled on your site.", "spine-app") . "&nbsp;";
                                         } else {
-                                            _e("Test is not enabled yet", "spine-js") . "&nbsp;";
+                                            __("Test is not enabled yet", "spine-app") . "&nbsp;";
                                             $this->show_enable_test_button();
                                         }
                                         ?>
@@ -292,9 +292,9 @@ class spinejs_admin {
                                     <td><?php echo $this->test ? $this->img("success") : $this->img("error"); ?></td>
                                     <td><?php
                                         if ($this->test) {
-                                            _e("Test is enabled on your site.", "spine-js") . "&nbsp;";
+                                            __("Test is enabled on your site.", "spine-app") . "&nbsp;";
                                         } else {
-                                            _e("Test is not enabled yet", "spine-js") . "&nbsp;";
+                                            __("Test is not enabled yet", "spine-app") . "&nbsp;";
                                             $this->show_enable_test_button();
                                         }
                                         ?>
@@ -320,7 +320,7 @@ class spinejs_admin {
                             do_settings_sections('spine_js');
                             ?>
                             <input class="button button-primary" name="Submit" type="submit"
-                                   value="<?php echo __("Save", "spine-js"); ?>"/>
+                                   value="<?php echo __("Save", "spine-app"); ?>"/>
                         </form>
                         <?php
                         break;
@@ -333,8 +333,8 @@ class spinejs_admin {
                         <div>
                             <?php
                             if ($this->debug) {
-                                echo "<h2>" . __("Log for debugging purposes", "spine-js") . "</h2>";
-                                echo "<p>" . __("Send me a copy of these lines if you have any issues. The log will be erased when debug is set to false", "spine-js") . "</p>";
+                                echo "<h2>" . __("Log for debugging purposes", "spine-app") . "</h2>";
+                                echo "<p>" . __("Send me a copy of these lines if you have any issues. The log will be erased when debug is set to false", "spine-app") . "</p>";
                                 echo "<div class='debug-log'>";
                                 if (defined('RSSSL_SAFE_MODE') && RSSSL_SAFE_MODE) echo "SAFE MODE<br>";
                                 echo "Options:<br>";
@@ -356,7 +356,7 @@ class spinejs_admin {
                                 $this->save_options();
                             } else {
                                 echo "<br>";
-                                _e("To view results here, enable the debug option in the settings tab.", "spine-js");
+                                __("To view results here, enable the debug option in the settings tab.", "spine-app");
                             }
 
                             ?>
@@ -382,9 +382,9 @@ class spinejs_admin {
      */
     public function admin_tabs($current = 'homepage') {
         $tabs = array(
-            $this->default_tab => __("DB Backup Tool", "spine-js"),
-            // 'configuration' => __("Configuration", "spine-js"),
-            // 'debug' => __("Debug", "spine-js")
+            $this->default_tab => __("DB Backup Tool", "spine-app"),
+            // 'configuration' => __("Configuration", "spine-app"),
+            // 'debug' => __("Debug", "spine-app")
         );
 
         $tabs = apply_filters("spine_js_tabs", $tabs);
@@ -409,12 +409,12 @@ class spinejs_admin {
     public function create_form() {
         register_setting('spine_js_db_options', 'spine_js_db_options', array($this, 'options_validate'));
 
-        add_settings_section('spine_js_settings', __("Settings", "spine-js"), array($this, 'section_text'), 'spine_js');
+        add_settings_section('spine_js_settings', __("Settings", "spine-app"), array($this, 'section_text'), 'spine_js');
 
-        add_settings_field('id_backup_domain', __("Backup Domain", "spine-js"), array($this, 'get_backup_domain'), 'spine_js', 'spine_js_settings');
-        add_settings_field('id_username', __("Username", "spine-js"), array($this, 'get_option_username'), 'spine_js', 'spine_js_settings');
-        add_settings_field('id_password', __("Password", "spine-js"), array($this, 'get_option_password'), 'spine_js', 'spine_js_settings');
-        add_settings_field('id_show_db_notice', __("Show DB Notice", "spine-js"), array($this, 'get_option_show_db_notice'), 'spine_js', 'spine_js_settings');
+        add_settings_field('id_backup_domain', __("Backup Domain", "spine-app"), array($this, 'get_backup_domain'), 'spine_js', 'spine_js_settings');
+        add_settings_field('id_username', __("Username", "spine-app"), array($this, 'get_option_username'), 'spine_js', 'spine_js_settings');
+        add_settings_field('id_password', __("Password", "spine-app"), array($this, 'get_option_password'), 'spine_js', 'spine_js_settings');
+        add_settings_field('id_show_db_notice', __("Show DB Notice", "spine-app"), array($this, 'get_option_show_db_notice'), 'spine_js', 'spine_js_settings');
     }
 
     /**
@@ -429,9 +429,9 @@ class spinejs_admin {
                     <form action="" method="post">
                         <?php wp_nonce_field('spine_js_nonce', 'spine_js_nonce'); ?>
                         <input type="submit" class='button button-primary'
-                            value="<?php _e("Go ahead, activate test!", "spine-js"); ?>" id="spine-js-test"
+                            value="<?php __("Go ahead, activate test!", "spine-app"); ?>" id="spine-js-test"
                             name="spine_js_test">
-                        <br><?php _e("You may need to login in again.", "spine-js") ?>
+                        <br><?php __("You may need to login in again.", "spine-app") ?>
                     </form>
                 </div>
             </p>
@@ -444,11 +444,11 @@ class spinejs_admin {
 
         ?>
         <label class="spine-js-">
-            <input id="spine_js_options_backup_domain" name="spine_js_db_options[backup_domain]" size="40" value="<?= $this->backup_domain ?>" placeholder="<?= __('Domain for Backup', "spine-js") ?>"
+            <input id="spine_js_options_backup_domain" name="spine_js_db_options[backup_domain]" size="40" value="<?= $this->backup_domain ?>" placeholder="<?= __('Domain for Backup', "spine-app") ?>"
             type="text"  />
             </label>
             <?php
-        SPINEJS()->spine_js_help->get_help_tip(__("Domain where DB Backup Tool is located", "spine-js"));
+        SPINEJS()->spine_js_help->get_help_tip(__("Domain where DB Backup Tool is located", "spine-app"));
     }
 
     public function get_option_username() {
@@ -456,11 +456,11 @@ class spinejs_admin {
 
         ?>
         <label class="spine-js-">
-            <input id="spine_js_options_username" name="spine_js_db_options[user][username]" size="40" value="<?= $user['username'] ?>" placeholder="<?= __('Username', "spine-js") ?>"
+            <input id="spine_js_options_username" name="spine_js_db_options[user][username]" size="40" value="<?= $user['username'] ?>" placeholder="<?= __('Username', "spine-app") ?>"
             type="text"  />
             </label>
             <?php
-        SPINEJS()->spine_js_help->get_help_tip(__("Your DB Backup Tool Username", "spine-js"));
+        SPINEJS()->spine_js_help->get_help_tip(__("Your DB Backup Tool Username", "spine-app"));
     }
 
     public function get_option_password() {
@@ -468,11 +468,11 @@ class spinejs_admin {
 
         ?>
         <label class="spine-js-">
-            <input id="spine_js_options_password" name="spine_js_db_options[user][password]" size="40" value="<?=$user['password'] ?>" placeholder="<?= __('Password', "spine-js") ?>" 
+            <input id="spine_js_options_password" name="spine_js_db_options[user][password]" size="40" value="<?=$user['password'] ?>" placeholder="<?= __('Password', "spine-app") ?>" 
                    type="password"  />
         </label>
         <?php
-        SPINEJS()->spine_js_help->get_help_tip(__("Your DB Backup Tool Password", "spine-js"));
+        SPINEJS()->spine_js_help->get_help_tip(__("Your DB Backup Tool Password", "spine-app"));
     }
 
     public function get_option_show_db_notice()
@@ -485,7 +485,7 @@ class spinejs_admin {
             <span class="spine-js-slider spine-js-round"></span>
         </label>
         <?php
-        SPINEJS()->spine_js_help->get_help_tip(__("Enable this option to show DB Tool notice", "spine-js"));
+        SPINEJS()->spine_js_help->get_help_tip(__("Enable this option to show DB Tool notice", "spine-app"));
 
     }
 

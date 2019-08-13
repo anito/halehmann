@@ -6,7 +6,7 @@ if ( ! class_exists( 'spine_js_help' ) ) {
 
   function __construct() {
     if ( isset( self::$_this ) )
-        wp_die( sprintf( __( '%s is a singleton class and you cannot create a second instance.','really-simple-ssl' ), get_class( $this ) ) );
+        wp_die( sprintf( __( '%s is a singleton class and you cannot create a second instance.','spine-app' ), get_class( $this ) ) );
 
     self::$_this = $this;
   }
