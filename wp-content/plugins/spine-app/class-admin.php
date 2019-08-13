@@ -499,7 +499,7 @@ class spinejs_admin {
      */
     public function section_text() {
         ?>
-        <p><?php __("Settings needed for Authorization in DB Backup Tool", "spine-app"); ?></p>
+        <p><?= __("Settings needed for Authorization in DB Backup Tool", "spine-app"); ?></p>
         <?php
     }
 
