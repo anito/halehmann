@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Spine App\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-13 22:58+0000\n"
-"PO-Revision-Date: 2019-08-13 22:59+0000\n"
+"PO-Revision-Date: 2019-08-13 23:04+0000\n"
 "Last-Translator: Axel <axel@webpremiere.dev>\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -63,7 +63,7 @@ msgstr "Einstellungen"
 
 #: class-admin.php:414
 msgid "Backup Domain"
-msgstr "Domain für DB Backup Tool"
+msgstr "Domain"
 
 #: class-admin.php:415 class-admin.php:459
 msgid "Username"
