@@ -17,9 +17,10 @@ class App extends Spine.Controller
         '#opt-download' : 'downloadEl'
         '#opt-restore'  : 'restoreEl'
         '#opt-dump'     : 'dumpEl'
-        '#opt-time-info' : 'timeInfoEl'
+        '#opt-time-info': 'timeInfoEl'
         '#opt-options'  : 'optionsEl'
         '#opt-logout'   : 'logoutEl'
+        '#opt-more'     : 'moreEl'
 
     events:
         'change #opt-options' : 'change'
@@ -79,12 +80,13 @@ class App extends Spine.Controller
                 processFail: 'Fehler'
 
         Spine.Model.host = Settings.host = @host = @url
+        @moreEl.attr('href', @url)
+        @disableControl()
         @fetchToken @user
 
     fetchToken: (user) =>
         User.fetch()
         User.destroyAll()
-        @disableControl()
         
         $.ajax
             url: @url + '/api/users/token'
@@ -106,7 +108,9 @@ class App extends Spine.Controller
             user.save()
 
     failResponse: ( user ) =>
-        ( xhr, responseText, error ) => @renderError xhr.responseJSON
+        ( xhr, responseText, error ) =>
+            @disableControl()
+            @renderError xhr.responseJSON
 
     # bound to users save event
     authorized: ->

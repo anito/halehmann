@@ -39,6 +39,10 @@ config =
 				"spine/lib/manager",
 				"spine/lib/local"
 			]
+			src: [
+				"./app"
+			]
+			target: "/public/application.js"
 		test:
 			after: "require('lib/setup')"
 
