@@ -219,6 +219,8 @@ class App extends Spine.Controller
 
     mysqlBeforeSend: =>
         @disableControl @data.type
+        buttonTextEl = $('[data-type='+@data.type+']')
+        buttonTextEl.html( @localeSettings[@data.type].processBefore )
         @savingProgressEl.removeClass('hide')
 
     mysqlDone: ( settings ) =>
@@ -230,7 +232,7 @@ class App extends Spine.Controller
             func = =>
                 @getMysql( @getToken() )
                 buttonTextEl = $('[data-type='+@data.type+']').html( @localeSettings[@data.type].processDefault ).attr('disabled', false)
-            @delay func, 3000
+            @delay func, 2000
 
     mysqlFail: =>
         (xhr, state, responseText) =>
