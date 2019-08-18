@@ -19,7 +19,7 @@ foreach ($notices as $key => $notice) {
 
 <script type="text/x-jquery-tmpl" id="timeInfoTemplate">
     {{if human}}
-        Letztes Backup vor <i class="timespan">${human.total} ${human.name}</i><span> am ${created}</span>
+        Letztes Backup vor <i class="timespan ${overdue(human)}">${human.total} ${human.name}</i><span> am ${created}</span>
     {{else}}
         Letztes Backup: <span style="color: #f00;"><strong>Noch kein Backup vorhanden!</strong></span>
     {{/if}}

@@ -65,7 +65,7 @@ class App extends Spine.Controller
         @timeInfoEl.html @errorTemplate item
 
     init: ->
-        @settings =
+        @localeSettings =
             'mysql-dump':
                 processDefault: $(@dumpEl).html()
                 processAsk: 'Datensicherung starten?\n\nFortfahren?'
@@ -116,7 +116,6 @@ class App extends Spine.Controller
     authorized: ->
         token = @getToken()
         Mysql.url += token
-        @getMysql( token )
         @loadSettings()
 
     getMysql: ( token = @getToken() ) =>
@@ -142,9 +141,33 @@ class App extends Spine.Controller
 
         item = $.extend( item, {
             url: @url
+            overdue: @overdue
         } )
         @renderInfo item
         @refreshElements()
+
+    overdue: (item) =>
+        clss = ''
+        overdue = @settings.Overdue
+
+        dateNow = new Date( Date.now() )
+        dateTimestamp = new Date( parseInt( item.timestamp ))
+
+        diff = Math.floor( dateNow.getTime() / 1000 ) - dateTimestamp.getTime()
+        @log diff / ( 60 * 60 * 24 )
+        days = Math.round(diff / ( 60 * 60 * 24 ))
+        @log days
+
+        if days >= ( if overdue.alert is true then 1 else  parseInt( overdue.alert ) )
+            clss = 'info-alert'
+            @el.addClass('notice-error').removeClass('notice-info notice-warning')
+        else if days >= ( if overdue.warning is true then 1 else  parseInt( overdue.warning ) )
+            clss = 'info-warning'
+            @el.addClass('notice-warning').removeClass('notice-info notice-error')
+        else
+            @el.addClass('notice-info').removeClass('notice-warning notice-error')
+
+        clss
 
     loadSettings: ->
         Settings.load
@@ -152,6 +175,9 @@ class App extends Spine.Controller
             fail: @settingsFail
 
     settingsDone: ( settings ) =>
+        token = @getToken()
+        @settings = settings
+        @getMysql( token )
         @pingInterval = settings.Refresh.rate #ping interval in seconds
         @startPing()
 
@@ -162,7 +188,7 @@ class App extends Spine.Controller
         el = $(e.currentTarget)
         @dataType = type = el.data('type')
 
-        res = (res = @settings[type].processAsk) ? res : null;
+        res = (res = @localeSettings[type].processAsk) ? res : null;
 
         return unless res
 
@@ -199,19 +225,19 @@ class App extends Spine.Controller
         (data, state, xhr) =>
 
             buttonTextEl = $('[data-type='+@data.type+']')
-            buttonTextEl.html( @settings[@data.type].processDone )
+            buttonTextEl.html( @localeSettings[@data.type].processDone )
             @savingProgressEl.addClass('hide')
             func = =>
                 @getMysql( @getToken() )
-                buttonTextEl = $('[data-type='+@data.type+']').html( @settings[@data.type].processDefault ).attr('disabled', false)
+                buttonTextEl = $('[data-type='+@data.type+']').html( @localeSettings[@data.type].processDefault ).attr('disabled', false)
             @delay func, 3000
 
     mysqlFail: =>
         (xhr, state, responseText) =>
             buttonTextEl = $('[data-type='+@data.type+']')
-            buttonTextEl.html( @settings[@data.type].processFail + ': ' + responseText )
+            buttonTextEl.html( @localeSettings[@data.type].processFail + ': ' + responseText )
             func = ->
-                buttonTextEl = $('[data-type='+@data.type+']').html( @settings[@data.type].processDefault )
+                buttonTextEl = $('[data-type='+@data.type+']').html( @localeSettings[@data.type].processDefault )
             @delay func, 2000
 
     disableControl: ( type = '' ) =>

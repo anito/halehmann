@@ -7,7 +7,7 @@ Extender  = require("extensions/model_extender")
 require('spine/lib/local')
 
 class Settings extends Spine.Model
-    @configure 'Settings', 'Refresh', 'Error'
+    @configure 'Settings', 'Refresh', 'Error', 'Overdue'
   
     @extend Model.Local
     @extend Extender
