@@ -85,8 +85,11 @@
         var arr;
         $('a[target=_blank]').each( function( i, el) {
             if( (arr = $(el).find('img')) && ( !arr.length)) {
-                $(el).parent().append('<i class="fa-external-link"></i>');
+                elm = $(el).parent()
+            } else {
+                elm = $(el)
             }
+            elm.append('<i class="fa-external-link"></i>');
         });
     };
 

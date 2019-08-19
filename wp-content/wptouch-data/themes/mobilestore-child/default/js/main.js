@@ -26,9 +26,12 @@
         var add_target_blank_icon = function () {
             var arr;
             $('a[target=_blank]:not([role=button])').each( function( i, el) {
-                if( (arr = $(el).find('img')) && !arr.length ) {
-                    $(el).addClass('target-blank-icon');
+                if( (arr = $(el).find('img')) && ( !arr.length)) {
+                    elm = $(el).parent()
+                } else {
+                    elm = $(el)
                 }
+                elm.append('<i class="fa-external-link"></i>');
             });
         };
 	
@@ -120,10 +123,10 @@
 	
 	add_adult_badge();
 	add_background_image();
-        add_search_badge_el();
+    add_search_badge_el();
 	add_target_blank_icon();
 	add_readmore();
-        add_animate_scroll();
-        add_check_scroll();
+    add_animate_scroll();
+    add_check_scroll();
 	
 })(jQuery);
