@@ -21,7 +21,7 @@
 			</div>
 		</div>
 		<div class="subfooter-container">
-			<div class="widgettitle">Partner</div>
+			<div class="widgettitle">Unsere Partner</div>
 			<div class="subfooter items-<?php echo vendipro()->widgets->get_widget_count( 'vp_sub_footer' ); ?>">
 					<?php dynamic_sidebar( 'vp_sub_footer' ); ?>
 			</div>
