@@ -154,9 +154,7 @@ class App extends Spine.Controller
         dateTimestamp = new Date( parseInt( item.timestamp ))
 
         diff = Math.floor( dateNow.getTime() / 1000 ) - dateTimestamp.getTime()
-        @log diff / ( 60 * 60 * 24 )
         days = Math.round(diff / ( 60 * 60 * 24 ))
-        @log days
 
         if days >= ( if overdue.alert is true then 1 else  parseInt( overdue.alert ) )
             clss = 'info-alert'
