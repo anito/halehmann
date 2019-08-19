@@ -2840,12 +2840,12 @@ input.age-gate-submit {
 .wp-block-gallery.columns-4 .blocks-gallery-item {
     flex: 0 calc((100% - 48px)/4);
 }
-#interesting::after {
+#interesting li a::after {
     content: "";
     display: inline-block;
     position: absolute;
     bottom: 9px;
-    left: 22px;
+    right: 22px;
     width: 300px;
     height: 79px;
     background: url(/wp-content/uploads/2019/02/new_logo_1_army_online_shop_w-01.svg) no-repeat;
