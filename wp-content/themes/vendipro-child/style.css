@@ -2915,6 +2915,7 @@ a.target-blank-icon:after {
 .subfooter-container .widgettitle {
     text-align: center;
     padding: 20px;
+    font-size: 1.1em;
 }
 .subfooter img {
     width: 130px;
