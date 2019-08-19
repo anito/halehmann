@@ -84,12 +84,9 @@
     var add_target_blank_icon = function () {
         var arr;
         $('a[target=_blank]').each( function( i, el) {
-            if( (arr = $(el).find('img')) && ( !arr.length)) {
-                elm = $(el).parent()
-            } else {
-                elm = $(el)
+            if( !( $(el).find('img').length) ) {
+                $(el).after('<i class="fa-external-link"></i>');
             }
-            elm.append('<i class="fa-external-link"></i>');
         });
     };
 

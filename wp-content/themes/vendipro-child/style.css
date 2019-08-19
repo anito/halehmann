@@ -1482,6 +1482,9 @@ p.mc4wp-checkbox-wp-registration-form, p.lost_password {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+.fa-external-link {
+    margin-left: 5px;
+}
 .off-canvas {
     -webkit-transform: translate(0, 0);
     -moz-transform: translate(0, 0);
