@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Spine App\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-13 22:56+0000\n"
+"POT-Creation-Date: 2019-08-13 22:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -107,7 +107,6 @@ msgid "Enable this option to show DB Tool notice"
 msgstr ""
 
 #: class-admin.php:502
-msgctxt "Einstellungen zur Autorisierung im DB Backup Tool"
 msgid "Settings needed for Authorization in DB Backup Tool"
 msgstr ""
 

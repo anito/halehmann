@@ -445,9 +445,9 @@ class spinejs_admin {
         ?>
         <label class="spine-js-">
             <input id="spine_js_options_backup_domain" name="spine_js_db_options[backup_domain]" size="40" value="<?= $this->backup_domain ?>" placeholder="<?= __('Domain for Backup', "spine-app") ?>"
-            type="text"  />
-            </label>
-            <?php
+                   type="text"  />
+        </label>
+        <?php
         SPINEJS()->spine_js_help->get_help_tip(__("Domain where DB Backup Tool is located", "spine-app"));
     }
 
@@ -457,9 +457,9 @@ class spinejs_admin {
         ?>
         <label class="spine-js-">
             <input id="spine_js_options_username" name="spine_js_db_options[user][username]" size="40" value="<?= $user['username'] ?>" placeholder="<?= __('Username', "spine-app") ?>"
-            type="text"  />
-            </label>
-            <?php
+                   type="text"  />
+        </label>
+        <?php
         SPINEJS()->spine_js_help->get_help_tip(__("Your DB Backup Tool Username", "spine-app"));
     }
 
@@ -473,6 +473,14 @@ class spinejs_admin {
         </label>
         <?php
         SPINEJS()->spine_js_help->get_help_tip(__("Your DB Backup Tool Password", "spine-app"));
+        if( $this->backup_domain ) { ?>
+        <p>
+            <a href="<?= $this->backup_domain . '/register' ?>" target="_blank"><?= __("Register new user", "spine-app") ?></a>
+            <?php
+            SPINEJS()->spine_js_help->get_help_tip(__("Register new user", "spine-app"));
+            ?>
+        </p>
+        <?php };
     }
 
     public function get_option_show_db_notice()
