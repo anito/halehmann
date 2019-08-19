@@ -20,10 +20,11 @@
 				<?php dynamic_sidebar( 'vp_footer' ); ?>
 			</div>
 		</div>
-		<div class="payments">
-			<a href="/zahlungsarten/">
-				<?php //get_footer("payments")?>
-			</a>
+		<div class="subfooter-container">
+			<div class="widgettitle">Partner</div>
+			<div class="subfooter items-<?php echo vendipro()->widgets->get_widget_count( 'vp_sub_footer' ); ?>">
+					<?php dynamic_sidebar( 'vp_sub_footer' ); ?>
+			</div>
 		</div>
 		<div class="footer-msg"><?php do_action( 'woocommerce_gzd_footer_msg' ) ; ?></div>
 	</div>

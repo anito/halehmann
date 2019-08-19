@@ -2900,6 +2900,26 @@ a.target-blank-icon:after {
 .aws-container .aws-search-form .aws-search-btn_icon {
     cursor: pointer;
 }
+.subfooter-container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.subfooter {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.subfooter-container .widgettitle {
+    text-align: center;
+    padding: 20px;
+}
+.subfooter img {
+    width: 130px;
+    border-radius: 3px;
+}
 @media (max-width: 660px) {
     
     .woocommerce ul.products:not(.columns-2):not(.columns-3) li.product:nth-child(3n) {
