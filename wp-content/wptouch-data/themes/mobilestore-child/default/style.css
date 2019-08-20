@@ -1535,6 +1535,7 @@ label[for*="quantity_"] {
 }
 .fa-external-link {
     margin-left: 5px;
+    position: initial !important;
 }
 @media only screen and (min-width: 420px) {
     .boxzilla .mc4wp-form input[type="email"] {
