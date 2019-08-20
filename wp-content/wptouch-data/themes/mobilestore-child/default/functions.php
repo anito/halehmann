@@ -44,10 +44,27 @@ function add_scripts() {
         $user_id =  (0 == $current_user->ID) ? '' : $current_user->ID;
 		// Register analyticstracking.php file (Google Analytics)
 		wp_register_script('google-analytics', get_stylesheet_directory_uri() . '/js/analyticstracking.js', false, '1.0', true);
-		// Enqueue the registered script file
 		wp_enqueue_script('google-analytics');
         // hand over the userID to the analytics script
         wp_localize_script('google-analytics', 'atts', array('user_id' => $user_id, 'ga_id' => GA_ID ));
+	}
+	
+	
+	/*
+	*  Fonts & Payment Styles
+	*/
+	wp_enqueue_style( 'child-style-fonts', get_stylesheet_directory_uri() . '/css/fonts.css' );
+	wp_enqueue_style( 'child-style-payments', get_stylesheet_directory_uri() . '/css/payments.css' );
+	wp_enqueue_style( 'font-awesome', get_stylesheet_directory_uri() . '/assets/font-awesome/font-awesome' . (IS_PRODUCTION ? '.min' : '') . '.css' );
+	
+	/*
+	*  Require Fancybox JS for Action Gallery Page only
+	*/
+	if(is_page('action-galerie')) {// using the slug here
+		wp_enqueue_script('fancybox', get_stylesheet_directory_uri() . '/js/fancybox/jquery.fancybox' . (IS_PRODUCTION ? '.min' : '') . '.js', array( 'jquery' ), '1.0', true);
+		wp_enqueue_script('fancybox-helper', get_stylesheet_directory_uri() . '/js/fancybox-helper.js', array( 'jquery' ), '1.0', true);
+		wp_enqueue_style('fancybox', get_stylesheet_directory_uri() . '/css/fancybox/jquery.fancybox.css');
+		wp_enqueue_style('fancy-metaslider', get_stylesheet_directory_uri() . '/css/fancy-metaslider.css');
 	}
 	
 	$translation_array = array(
@@ -58,73 +75,20 @@ function add_scripts() {
 		'<a href="%s">Edit your password and account details</a>.' => __( '<a href="%s">Passwort und Konto-Daten bearbeiten</a>.', 'wptouch-pro' ),
 		'cvc' => __( 'CVC', 'wptouch-pro' )
 	);
-	wp_localize_script( 'my-mobilestore-js', 'translated_strings', $translation_array );
+
+	wp_dequeue_script( 'mobilestore-js' );
 	wp_register_script(
-		'my-mobilestore-js',
-		get_stylesheet_directory_uri() . '/js/my_mobilestore.js',
-		array( 'jquery', 'mobilestore-libraries-js' ),
+		'my-mobilestore-js', get_stylesheet_directory_uri() . '/js/my_mobilestore.js', array( 'jquery', 'mobilestore-libraries-js' ),
 		MOBILESTORE_THEME_VERSION,
 		true
 	);
-	
-	/*
-	 * WP Block Library
-	 * load Block Library if WP Version < 5.0
-	 */
-	global $wp_version;
-	if ( version_compare( $wp_version, '5.0', '<' ) ) {
-		// WordPress version is smaller than 5.0
-		wp_enqueue_style('block-library', get_stylesheet_directory_uri() . '/css/wp/block-library/style.css');
-	}
-	
-	/*
-	 *  Fonts & Payment Styles
-	 */
-	wp_enqueue_style( 'child-style-fonts', get_stylesheet_directory_uri() . '/css/fonts.css' );
-	wp_enqueue_style( 'child-style-payments', get_stylesheet_directory_uri() . '/css/payments.css' );
-	
-	/*
-	 *  Fancybox
-	 */
-	wp_enqueue_script('fancybox', get_stylesheet_directory_uri() . '/js/fancybox/jquery.fancybox.js', array( 'jquery' ), '1.0', true);
-    wp_enqueue_script('fancybox-helper', get_stylesheet_directory_uri() . '/js/fancybox-helper.js', array( 'jquery' ), '1.0', true);
-    wp_enqueue_style('fancybox', get_stylesheet_directory_uri() . '/css/fancybox/jquery.fancybox.css');
-    wp_enqueue_style('fancy-metaslider', get_stylesheet_directory_uri() . '/css/fancy-metaslider.css');
-	wp_enqueue_style('font-awesome', get_stylesheet_directory_uri() . '/assets/font-awesome/font-awesome' . (IS_PRODUCTION ? '.min' : '') . '.css');
-	
+
 	wp_localize_script( 'my-mobilestore-js', 'translated_strings', $translation_array );
 	wp_enqueue_script( 'my-mobilestore-js' );
-	// Enqueue the registered script file
-	wp_register_script('main', get_stylesheet_directory_uri() . '/js/main.js', false, '1.0', true);
-	// Enqueue the registered script file
-	wp_enqueue_script('main');
+	wp_register_script( 'main', get_stylesheet_directory_uri() . '/js/main.js', false, '1.0', true );
+	wp_enqueue_script( 'main' );
 }
 
-// Function to remove javascript
-function remove_scripts() {
-	wp_dequeue_script( 'mobilestore-js' );
-}
-
-function remove_magic_plus() {
-	remove_action("magictoolbox_WooCommerce_MagicZoomPlus_config_page_menu");
-    remove_action('WooCommerce_MagicZoomPlus_load_admin_scripts');
-    remove_action('WooCommerce_MagicZoomPlus_load_frontend_scripts');
-	remove_action('wp_ajax_WooCommerce_MagicZoomPlus_import', 'WooCommerce_MagicZoomPlus_import');
-    remove_action('wp_ajax_WooCommerce_MagicZoomPlus_export', 'WooCommerce_MagicZoomPlus_export');
-    remove_action('wp_ajax_magictoolbox_WooCommerce_MagicZoomPlus_set_license', 'magictoolbox_WooCommerce_MagicZoomPlus_set_license');
-    remove_filter( 'magictoolbox_WooCommerce_MagicZoomPlus_magictoolbox_wc_ajax_variation_threshold', 10, 2 );
-    remove_action ("magictoolbox_WooCommerce_MagicZoomPlus_start_parsing",10);
-    remove_action ("magictoolbox_WooCommerce_MagicZoomPlus_end_parsing",10);
-    remove_action ("magictoolbox_WooCommerce_MagicZoomPlus_start_alternative_parsing",11);
-    remove_action ("magictoolbox_WooCommerce_MagicZoomPlus_end_alternative_parsing",11);
-	remove_action( 'WooCommerce_MagicZoomPlus_get_packed_js', 10, 2 );
-	add_action("wp_footer", "magictoolbox_WooCommerce_MagicZoomPlus_add_src_to_footer", $priority);
-    remove_action("magictoolbox_WooCommerce_MagicZoomPlus_add_options_script", 10001);
-	remove_action( 'WooCommerceMagicZoomPlus_welcome_license_do_redirect' );
-	remove_action('WooCommerce_MagicZoomPlus_add_admin_src_to_menu_page');
-	remove_action( 'WooCommerceMagicZoomPlus_welcome_license_do_redirect' );
-	
-}
 /**
  * Manipulates the sale badge to show percentage instead of just SALE
  *  
@@ -223,11 +187,11 @@ function archive_term_image() {
 }
 
 add_action( 'init', 'child_remove_parent_function' );
-//add_action('wp_print_scripts', 'remove_magic_plus');
-add_action('wp_print_scripts', 'remove_scripts');
-add_action('wp_enqueue_scripts', 'add_scripts');
+add_action('wp_print_scripts', 'add_scripts');
+
 //add_filter('woocommerce_related_products_args','wc_remove_related_products', 10);
 //add_filter( 'woocommerce_is_attribute_in_product_name', function () { return false; } );#show meta for product like Größe XXL
+
 add_filter( 'woocommerce_output_related_products_args', 'woo_related_products_limit' );
 add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 20;' ), 999 );
 add_filter( 'woocommerce_sale_flash', 'set_sale_flash', 1, 3 );
