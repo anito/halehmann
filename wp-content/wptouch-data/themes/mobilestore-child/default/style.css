@@ -1502,16 +1502,18 @@ input.age-gate-submit {
     border-radius: 4px;
     width: 130px;
 }
-#interesting::after {
+#interesting [class*="metaslider"] ul li img {
+    position: relative;
+}
+#interesting [class*="metaslider"] ul li::after {
     content: "";
-    display: inline-block;
+    display: inline-block !important;
     position: absolute;
-    bottom: 12px;
-    left: 9px;
+    bottom: 10px !important;
+    right: 9px;
     width: 30%;
     height: 18%;
-    background: url(https://ha-lehmann.at/wp-content/uploads/2019/02/new_logo_1_army_online_shop_w-01.svg) no-repeat;
-    background-size: cover;
+    background: url(/wp-content/uploads/2019/02/new_logo_1_army_online_shop_w-01.svg) no-repeat;
     z-index: 1;
 }
 .product .woocommerce-tabs .pwb_tab_tab a:before {
