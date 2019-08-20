@@ -2843,10 +2843,10 @@ input.age-gate-submit {
 .wp-block-gallery.columns-4 .blocks-gallery-item {
     flex: 0 calc((100% - 48px)/4);
 }
-[class*="metaslider"] ul li img {
+#interesting [class*="metaslider"] ul li img {
     position: relative;
 }
-[class*="metaslider"] ul li::after {
+#interesting [class*="metaslider"] ul li::after {
     content: "";
     display: inline-block !important;
     position: absolute;
