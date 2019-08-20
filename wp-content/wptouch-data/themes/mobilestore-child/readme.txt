@@ -1,7 +1,7 @@
 Theme Name: My MobileStore Child
 Theme URI: http://www.wptouch.com/
 Description: A new child-theme based on MobileStore for HA Lehmann.
-Version: 1.0
+Version: 1.2
 Depends on: 4.0
 Parent: MobileStore
 Author: Axel Nitzschner

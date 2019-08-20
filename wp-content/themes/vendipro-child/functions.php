@@ -264,26 +264,21 @@ function vp_child_theme_styles() {
 }
 
 
-// Function to add analyticstracking.js to the site
 add_action( 'wp_enqueue_scripts', 'add_scripts' );
 function add_scripts() {
-	wp_register_script( 'spin.jquery', get_stylesheet_directory_uri() . '/js/spinjs/spin-jquery.min.js', false, '0.1', true );
-	wp_enqueue_script( 'spin.jquery' );
-	wp_register_script( 'spin', get_stylesheet_directory_uri() . '/js/spinjs/spin.min.js', false, '0.1', true );
-	wp_enqueue_script( 'spin' );
 	wp_register_script( 'kaeufersiegel', get_stylesheet_directory_uri() . '/js/kaeufersiegel.js', array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'kaeufersiegel' );
-	wp_register_script( 'readmore', get_stylesheet_directory_uri() . '/js/node_modules/readmore-js/readmore.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'readmore' );
+
+	// Function to add analyticstracking.js to the site
 	if ( !IS_DEV_MODE && IS_PRODUCTION  ) {
 		$current_user = wp_get_current_user();
         $user_id =  (0 == $current_user->ID) ? '' : $current_user->ID;
-		// Register analyticstracking.js file (Google Analytics)
 		wp_register_script( 'google-analytics', get_stylesheet_directory_uri() . '/js/analyticstracking.js', false, '1.0', true );
 		wp_enqueue_script( 'google-analytics' );
         // hand over the userID to the analytics script
         wp_localize_script('google-analytics', 'atts', array('user_id' => $user_id, 'ga_id' => GA_ID ));
 	}
+
 	wp_register_script( 'fb', get_stylesheet_directory_uri() . '/js/fb.js', array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'fb' );
 	wp_register_script( 'main', get_stylesheet_directory_uri() . '/js/main.js', array( 'jquery' ), '1.0', true );
@@ -302,12 +297,14 @@ function add_scripts() {
 	}
 	
 	/*
-	 *  Fancybox
+	 *  Require Fancybox JS for Action Gallery Page only
 	 */
-	wp_enqueue_script('fancybox', get_stylesheet_directory_uri() . '/js/fancybox/jquery.fancybox' . (IS_PRODUCTION ? '.min' : '') . '.js', array( 'jquery' ), '1.0', true);
-    wp_enqueue_script('fancybox-helper', get_stylesheet_directory_uri() . '/js/fancybox-helper.js', array( 'jquery' ), '1.0', true);
-    wp_enqueue_style('fancybox', get_stylesheet_directory_uri() . '/css/fancybox/jquery.fancybox.css');
-    wp_enqueue_style('fancy-metaslider', get_stylesheet_directory_uri() . '/css/fancy-metaslider.css');
+	if(is_page('action-galerie')) {// using the slug here
+		wp_enqueue_script('fancybox', get_stylesheet_directory_uri() . '/js/fancybox/jquery.fancybox' . (IS_PRODUCTION ? '.min' : '') . '.js', array( 'jquery' ), '1.0', true);
+		wp_enqueue_script('fancybox-helper', get_stylesheet_directory_uri() . '/js/fancybox-helper.js', array( 'jquery' ), '1.0', true);
+		wp_enqueue_style('fancybox', get_stylesheet_directory_uri() . '/css/fancybox/jquery.fancybox.css');
+		wp_enqueue_style('fancy-metaslider', get_stylesheet_directory_uri() . '/css/fancy-metaslider.css');
+	}
 }
 
 // Display number of Products per page

@@ -9,16 +9,16 @@
     jQuery('.fancybox').each(function (galleryIndex) {
 
         jQuery('figure img', $(this)).each(function () {
-
-            var src = $(this).data('src'), a, c, caption, regex, subst, inner = $(this), outer;
-
+            var src = ( s = $(this).data('src') ) ? s : $(this).attr('src'),
+                a, c, caption, regex, subst, inner = $(this), outer;
+            
             src_big = function (src) {
-
+                
                 regex = /(.*)(-\d{1,}x\d{1,})(.)(jpg|jpeg|png|gif)/g;
                 subst = '$1$3$4';
-
+                
                 return src.replace(regex, subst);
-
+                
             }
 
             caption = $(this).parents('[class*="slide-"]').find('.caption').text();

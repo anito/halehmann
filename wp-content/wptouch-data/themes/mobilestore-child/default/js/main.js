@@ -23,100 +23,100 @@
 	}
         
 	//add icon to links with target _blank
-        var add_target_blank_icon = function () {
-            var arr;
-            $('a[target=_blank]:not([role=button])').each( function( i, el) {
-                if( !( $(el).find('img').length) ) {
-                    $(el).after('<i class="fa-external-link"></i>');
-                }
-            });
-        };
+    var add_target_blank_icon = function () {
+        var arr;
+        $('a[target=_blank]:not([role=button])').each( function( i, el) {
+            if( !( $(el).find('img').length) ) {
+                $(el).after('<i class="fa-external-link"></i>');
+            }
+        });
+    };
 	
 	//add readmore behaviour
 	var add_readmore = function() {
-            $('#tab-description h2 + p').readmore({
-              speed: 75,
-              collapsedHeight: 200,
-              moreLink: '<a href="#">[mehr lesen]</a>',
-              lessLink: '<a href="#">[weniger lesen]</a>'
-            });
-        };
+        $('#tab-description h2 + p').readmore({
+            speed: 75,
+            collapsedHeight: 200,
+            moreLink: '<a href="#">[mehr lesen]</a>',
+            lessLink: '<a href="#">[weniger lesen]</a>'
+        });
+    };
         
-        var add_animate_scroll = function() {
+    var add_animate_scroll = function() {
+        
+        $('a[href^="#"]').on('click', function(e){
+
+            var href = $(this).attr('href');
             
-            $('a[href^="#"]').on('click', function(e){
+            if(typeof $(href).offset() == 'undefined') return;
+            
+            $('html, body').animate({
+                scrollTop:$(href).offset().top
+            },'slow');
 
-                var href = $(this).attr('href');
-                
-                if(typeof $(href).offset() == 'undefined') return;
-                
-                $('html, body').animate({
-                    scrollTop:$(href).offset().top
-                },'slow');
+            e.preventDefault();
 
-                e.preventDefault();
+        });
 
-            });
-
-        };
+    };
 	
-        var add_check_scroll = function() {
-            
-            var timer_id;
-            
-            $('body').attr('id', 'the-top');
-            
-            $(window).on('scroll', function(e) {
+    var add_check_scroll = function() {
+        
+        var timer_id;
+        
+        $('body').attr('id', 'the-top');
+        
+        $(window).on('scroll', function(e) {
 
-                e.preventDefault();
+            e.preventDefault();
+            
+            var cl = '.scroll-top',
+                height = $(window).height(),
+                scrollTop = $(window).scrollTop();
+
+            if( scrollTop > height ) {
+                div_handler( cl );
                 
-                var cl = '.scroll-top',
-                    height = $(window).height(),
-                    scrollTop = $(window).scrollTop();
-
-                if( scrollTop > height ) {
-                    div_handler( cl );
-                    
-                    $( cl ).removeClass( 'dimmed' ).addClass( 'active' );;
-                    
-                    clearTimeout( timer_id );
-                    timer_id = setTimeout( function() {
-                        $( cl ).addClass( 'dimmed' );
-                    }, 4000);
-                    
-                } else {
-                    $( cl ).addClass( 'away' ).removeClass( 'active' );
-                    
-                    if( timer_id ) {
-                        clearTimeout(timer_id);
-                        timer_id = null;
-                    }
+                $( cl ).removeClass( 'dimmed' ).addClass( 'active' );;
+                
+                clearTimeout( timer_id );
+                timer_id = setTimeout( function() {
+                    $( cl ).addClass( 'dimmed' );
+                }, 4000);
+                
+            } else {
+                $( cl ).addClass( 'away' ).removeClass( 'active' );
+                
+                if( timer_id ) {
+                    clearTimeout(timer_id);
+                    timer_id = null;
                 }
+            }
 
 
-            });
+        });
+        
+        var div_handler = function( cl ) {
             
-            var div_handler = function( cl ) {
+            var cl, tmpl, el;
+            
+            el  = $( cl );
+            
+            if( !el.length ) {
                 
-                var cl, tmpl, el;
+                str = cl.replace(/(^\.|\.)/g, " ");
+                tmpl = `<div class="${str} away"><a href="#the-top" class="scroll-top-inner wptouch-icon-angle-up"></a></div>`;
                 
-                el  = $( cl );
+                $('body').append( $(tmpl) );
+                add_animate_scroll();
                 
-                if( !el.length ) {
-                    
-                    str = cl.replace(/(^\.|\.)/g, " ");
-                    tmpl = `<div class="${str} away"><a href="#the-top" class="scroll-top-inner wptouch-icon-angle-up"></a></div>`;
-                    
-                    $('body').append( $(tmpl) );
-                    add_animate_scroll();
-                    
-                }
+            }
 
-                el.removeClass( 'away' );
-                
-            };
+            el.removeClass( 'away' );
+            
+        };
 
-        }
+    }
 	
 	add_adult_badge();
 	add_background_image();
