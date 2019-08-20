@@ -287,16 +287,6 @@ function add_scripts() {
 	wp_enqueue_script( 'sidebar-cart' );
 	
 	/*
-	 * WP Block Library
-	 * load Block Library if WP Version < 5.0
-	 */
-	global $wp_version;
-	if ( version_compare( $wp_version, '5.0', '<' ) ) {
-		// WordPress version is smaller than 5.0
-		wp_enqueue_style('block-library', get_stylesheet_directory_uri() . '/css/wp/block-library/style.css');
-	}
-	
-	/*
 	 *  Require Fancybox JS for Action Gallery Page only
 	 */
 	if(is_page('action-galerie')) {// using the slug here
