@@ -66,7 +66,7 @@ global $woocommerce;
 
 	<?php else : ?>
 
-		<li class="empty"><?php _e( 'No products in the cart.', 'woocommerce' ); ?></li>
+		<li class="empty"><?php _e( 'No products in the cart...', 'woocommerce' ); ?></li>
 
 	<?php endif; ?>
 
