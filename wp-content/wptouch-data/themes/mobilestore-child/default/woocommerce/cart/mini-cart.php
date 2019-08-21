@@ -66,7 +66,19 @@ global $woocommerce;
 
 	<?php else : ?>
 
-		<li class="empty"><?php _e( 'No products in the cart...', 'woocommerce' ); ?></li>
+		<li class="empty"><?php _e( 'No products in the cart.', 'woocommerce' ); ?></li>
+		<li class="empty">
+			<div class="mini-cart widget_shopping_cart_content">
+				<p class="cart-text">
+					<a class="wc-forward cart-link" href="<?php echo esc_url( wc_get_cart_url() ); ?>"><?php _e( 'Go to Cart', 'vendipro' );?></a>
+					<span class="cart-price price total"><?php echo ( ! WC()->cart->is_empty() ) ? WC()->cart->get_cart_subtotal() : wc_price( 0 ); ?></span>
+				</p>
+				<a class="wc-forward cart-icon" href="<?php echo esc_url( wc_get_cart_url() ); ?>">
+				<i class="fa fa-shopping-cart cart-icon-img"></i>
+				<span class="quantity cart-count"><?php echo is_callable( array( WC()->cart, 'get_cart_contents_count' ) ) ? WC()->cart->get_cart_contents_count() : sizeof( WC()->cart->get_cart() ); ?></span>
+				</a>
+			</div>
+		</li>
 
 	<?php endif; ?>
 
