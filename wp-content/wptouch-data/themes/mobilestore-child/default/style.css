@@ -1490,6 +1490,7 @@ input.age-gate-submit {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 }
 .payment {
     flex: auto;
