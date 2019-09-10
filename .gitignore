@@ -17,8 +17,6 @@ xcuserdata
 .vscode/
 CVS
 
-
-
 /*
 !.gitignore
 !README.md
@@ -46,3 +44,5 @@ CVS
 !/wp-content/plugins/woocommerce-new-product
 !/wp-content/plugins/woocommerce-archive-variants
 !/wp-content/plugins/perfect-woocommerce-brands
+
+wp-content/plugins/spine-app/assets/spine/node_modules
