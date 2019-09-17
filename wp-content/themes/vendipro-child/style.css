@@ -194,6 +194,14 @@ blockquote > p {
     display: none;
 }
 /*
+*
+*   MagicZoom
+*/
+.mz-figure img {
+    max-height: inherit !important;
+    max-width: inherit !important;
+}
+/*
  * WP Gallery
  *
  */
@@ -2846,7 +2854,7 @@ input.age-gate-submit {
 #interesting [class*="metaslider"] ul li img {
     position: relative;
 }
-#interesting [class*="metaslider"] ul li::after {
+#interesting___ [class*="metaslider"] ul li::after {
     content: "";
     display: inline-block !important;
     position: absolute;
