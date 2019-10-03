@@ -158,7 +158,7 @@ function disable_emojicons_tinymce( $plugins ) {
 	}
 }
 
-add_action( 'init', 'store_handle_query_vars', 999 );
+// add_action( 'init', 'store_handle_query_vars', 999 );
 function store_handle_query_vars() {
 	
 	$do_interrupt = false;
@@ -264,10 +264,28 @@ function vp_child_theme_styles() {
 }
 
 
+// Cookie Policy Settings
+add_action( 'wp_head', 'add_cookie_policy' );
+
+function add_cookie_policy() {
+	?>
+	<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="7e6f7d2a-48d7-4cf2-9863-2ab33603dc6d" data-blockingmode="auto" type="text/javascript"></script>
+	<?php
+}
+
+add_action( 'wp_footer', 'display_cookie_policy' );
+
+function display_cookie_policy() {
+	?>
+	<script id="CookieDeclaration" src="https://consent.cookiebot.com/7e6f7d2a-48d7-4cf2-9863-2ab33603dc6d/cd.js" type="text/javascript" async></script>
+	<?php
+}
+
 add_action( 'wp_enqueue_scripts', 'add_scripts' );
 function add_scripts() {
 	wp_register_script( 'kaeufersiegel', get_stylesheet_directory_uri() . '/js/kaeufersiegel.js', array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'kaeufersiegel' );
+
 
 	// Function to add analyticstracking.js to the site
 	if ( !IS_DEV_MODE && IS_PRODUCTION  ) {
@@ -753,7 +771,7 @@ function detectTrident($current_theme) {
 		add_action('wp_footer', 'unsupported_browsers_template', 100);
 
 		wp_register_script( 'browser_sniffer', get_stylesheet_directory_uri() . '/js/browser_support.js', ['jquery'], '0.1', true );
-		wp_localize_script('browser_sniffer', '__browser', array('name' => $browser['name'], 'version' => $browser['version'], 'platform' => $browser['platform'] ));
+		wp_localize_script( 'browser_sniffer', '__browser', array('name' => $browser['name'], 'version' => $browser['version'], 'platform' => $browser['platform'] ) );
 		wp_enqueue_script( 'browser_sniffer' );
 	}
 }
