@@ -9,7 +9,7 @@
     jQuery('.fancybox').each(function (galleryIndex) {
 
         jQuery('figure img', $(this)).each(function () {
-            var src = ( s =  ( $(this).data('lazy-src') || $(this).data('srcset') || $(this).attr('src') )) ? s : '',
+            var src = (s = ($(this).data('src') || $(this).data('lazy-src') || $(this).data('srcset') || $(this).attr('src') )) ? s : '',
                 a, c, caption, regex, subst, inner = $(this), outer;
             
             src_big = function (src) {
