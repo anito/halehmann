@@ -265,7 +265,7 @@ function vp_child_theme_styles() {
 
 
 // Cookie Policy Settings
-add_action( 'wp_head', 'add_cookie_policy', 0 );
+add_action( 'wp_head', 'add_cookie_policy' );
 
 function add_cookie_policy() {
 	?>
