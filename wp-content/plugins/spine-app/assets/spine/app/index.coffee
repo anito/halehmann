@@ -148,7 +148,7 @@ class App extends Spine.Controller
 
     overdue: (item) =>
         clss = ''
-        overdue = @settings.Overdue
+        return unless overdue = @settings.Overdue 
 
         dateNow = new Date( Date.now() )
         dateTimestamp = new Date( parseInt( item.timestamp ))
@@ -230,15 +230,12 @@ class App extends Spine.Controller
             func = =>
                 @getMysql( @getToken() )
                 buttonTextEl = $('[data-type='+@data.type+']').html( @localeSettings[@data.type].processDefault ).attr('disabled', false)
-            @delay func, 2000
+            @delay func, 2000 # take a breath after such hard work
 
     mysqlFail: =>
         (xhr, state, responseText) =>
             buttonTextEl = $('[data-type='+@data.type+']')
-            buttonTextEl.html( @localeSettings[@data.type].processFail + ': ' + responseText )
-            func = ->
-                buttonTextEl = $('[data-type='+@data.type+']').html( @localeSettings[@data.type].processDefault )
-            @delay func, 2000
+            buttonTextEl.html( @localeSettings[@data.type].processFail + ': ' + responseText ).attr('disabled', false)
 
     disableControl: ( type = '' ) =>
         if type then type = type.replace /mysql-/, ''
