@@ -1356,7 +1356,8 @@ ul.tabs li a {
 .woocommerce-breadcrumb .inner.last {
     color: #ddd;
 }
-.woocommerce ul.products li.product .star-rating {
+.woocommerce ul.products li.product .star-rating,
+.woocommerce p.stars a::before {
     display: none;
 }
 .woocommerce .widget_price_filter .price_slider_amount .button {
@@ -1988,13 +1989,20 @@ header#hmain .navbar ul li a:hover {
     font-size: 0.8em;
     font-weight: 100;
 }
+.alert_container {
+    border: 1px solid;
+    padding: 30px;
+    background: #ffffff60;
+}
 .alert_container h6 {
-    font-size: 1em;
+    font-size: 1.1em;
     font-weight: 100;
-    line-height: 1.3em;
+    line-height: 1.5em;
+    margin-bottom: 1em;
+    margin-top: 0em;
+    color: white;
 }
 .alert_container button {
-    padding: 0.2em .5em;
 	margin-top: 10px;
 }
 table.shop_table tr.cart_item td, table.shop_table thead tr th {
