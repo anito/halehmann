@@ -2915,6 +2915,9 @@ a.target-blank-icon:after {
     margin-right: 4px;
     opacity: .6;
 }
+.aws-container .aws-search-form {
+    height: 34px;
+}
 .aws-container .aws-search-form .aws-search-btn_icon {
     cursor: pointer;
 }
