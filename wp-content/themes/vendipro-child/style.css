@@ -168,6 +168,9 @@ a, a:hover, a:visited, a:focus {
 .pad {
     padding: 5%;
 }
+.pad-sm {
+    padding: 2%;
+}
 .nopadding {
     padding: 0;
     line-height: 0;
