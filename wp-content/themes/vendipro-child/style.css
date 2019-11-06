@@ -217,6 +217,9 @@ p.pee {
     margin-bottom: 1.2em;
     display: block;
 }
+.text-align-justify {
+    text-align: justify;
+}
 blockquote > p {
     border-left: 2px solid #EEE;
     padding-left: 1em;
