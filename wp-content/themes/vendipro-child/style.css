@@ -181,6 +181,9 @@ a, a:hover, a:visited, a:focus {
 p.pee {
     margin-bottom: 30px;
 }
+.google-maps-wrapper {
+	position: relative;
+}
 blockquote > p {
     border-left: 2px solid #EEE;
     padding-left: 1em;
