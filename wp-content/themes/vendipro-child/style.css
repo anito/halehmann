@@ -193,6 +193,21 @@ p.pee {
 .fs-1-3 {
     font-size: 1.3em;
 }
+.wp-block-group.news {
+    background: #908c54;
+    color: #1f1f1f;
+    border-radius:5px;
+
+}
+.wp-block-group.news ul {
+    padding: 50px 25px 30px;
+}
+.wp-block-group.news ul > li > a:first-child {
+    color: #1f1f1f;
+    font-size: 1.5em;
+    margin-bottom: 1.2em;
+    display: block;
+}
 blockquote > p {
     border-left: 2px solid #EEE;
     padding-left: 1em;
