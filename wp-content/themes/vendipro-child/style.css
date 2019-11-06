@@ -256,6 +256,14 @@ ul.page-numbers li a:hover, a .pag-item:hover {
 nav.woocommerce-pagination ul li a:focus, .woocommerce nav.woocommerce-pagination ul li a:hover, .woocommerce nav.woocommerce-pagination ul li span.current {
     color: #333;
 }
+@media (min-width: 660px) {
+
+    .wp-block-column:not(:first-child) {
+        padding-left: 32px;
+        border-left: 3px solid #444;
+    }
+
+}
 @media only screen and (min-width: 660px) and (max-width: 900px) {
     
     .woocommerce ul.products:not(.columns-3):not(.columns-2) li.product {
