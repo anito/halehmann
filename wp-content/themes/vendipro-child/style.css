@@ -184,6 +184,15 @@ p.pee {
 .google-maps-wrapper {
 	position: relative;
 }
+.fs-1-1 {
+    font-size: 1.1em;
+}
+.fs-1-2 {
+    font-size: 1.2em;
+}
+.fs-1-3 {
+    font-size: 1.3em;
+}
 blockquote > p {
     border-left: 2px solid #EEE;
     padding-left: 1em;
