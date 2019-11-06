@@ -182,13 +182,13 @@
 
         var news_wrapper = $('.news-wrapper'), news;
 
-        news = $( 'ul li', news-wrapper);
+        news = $( 'ul li', news_wrapper);
         if(!news.length) {
             news_wrapper.addClass('hide');
         }
 
     }
-    
+
     add_fb_div();
     add_adult_badge();
     add_background_image();
