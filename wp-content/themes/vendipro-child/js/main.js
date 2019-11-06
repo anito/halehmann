@@ -178,6 +178,17 @@
         
     };
     
+    var add_hide_empty_frontpage_news = function() {
+
+        var news_wrapper = $('.news-wrapper'), news;
+
+        news = $( 'ul li', news-wrapper);
+        if(!news.length) {
+            news_wrapper.addClass('hide');
+        }
+
+    }
+    
     add_fb_div();
     add_adult_badge();
     add_background_image();
@@ -188,6 +199,7 @@
     add_jQuery_blocking();
     add_animate_scroll();
     add_submit_search();
+    add_hide_empty_frontpage_news();
 //        add_readmore();
 
 })(jQuery)
