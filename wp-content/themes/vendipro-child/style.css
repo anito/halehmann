@@ -256,6 +256,27 @@ ul.page-numbers li a:hover, a .pag-item:hover {
 nav.woocommerce-pagination ul li a:focus, .woocommerce nav.woocommerce-pagination ul li a:hover, .woocommerce nav.woocommerce-pagination ul li span.current {
     color: #333;
 }
+/*
+ * Cat Post Widget
+ *
+ */
+ .cat-post-widget .cat-post-widget-excerpt {
+    opacity: 0.4;
+    display: block;
+}
+.cat-post-widget .cat-post-widget-excerpt {
+    opacity: 0.4;
+    display: block;
+}
+li.cat-post-item hr.cat-post-horizontal-rule {
+    margin: 22px 0;
+    display: block;
+    opacity: .2;
+}
+li.cat-post-item:last-child hr.cat-post-horizontal-rule {
+    visibility: hidden;
+    
+}
 @media (min-width: 660px) {
 
     .wp-block-column:not(:first-child) {

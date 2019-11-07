@@ -22,13 +22,19 @@ get_header(); ?>
 	
 		<div id="content" role="main">
 
-		<?php $default_category = get_option('default_category'); ?>
+		
 			
-		<?php if ( have_posts() && in_category($default_category) ) : ?>
+		<?php if ( have_posts() ) : ?>
+			
+			<?php $default_category = get_option('default_category'); ?>
 			
 			<?php while ( have_posts() ) : the_post(); ?>
 				
-				<?php get_template_part( 'content', get_post_format() ); ?>
+				<?php if( in_category($default_category) ) {
+					
+					get_template_part( 'content', get_post_format() );
+					
+				} ?>
 
 			<?php endwhile; ?>
 
