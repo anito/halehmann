@@ -260,9 +260,10 @@ nav.woocommerce-pagination ul li a:focus, .woocommerce nav.woocommerce-paginatio
  * Cat Post Widget
  *
  */
- .cat-post-widget .cat-post-widget-excerpt {
-    opacity: 0.4;
+ .cat-post-widget .cat-post-widget-excerpt * {
+    opacity: 0.7;
     display: block;
+    line-height: 1.2em;
 }
 .cat-post-widget .cat-post-widget-excerpt {
     opacity: 0.4;
