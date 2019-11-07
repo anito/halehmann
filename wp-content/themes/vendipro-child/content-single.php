@@ -6,7 +6,7 @@
  * @version 1.0.0
  */
 ?>
-<article test1 id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<div class="entry-post wrapper">
 
 		<header class="entry-header">
