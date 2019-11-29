@@ -1327,6 +1327,9 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
 .woocommerce ol.commentlist .star-rating {
     width: 6em;
 }
+.woocommerce-product-rating .star-rating {
+    width: 7em;
+}
 .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button,
 .woocommerce nav.woocommerce-pagination ul li a:focus, .woocommerce nav.woocommerce-pagination ul li span.current,
 .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt,
