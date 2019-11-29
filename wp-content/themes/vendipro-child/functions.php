@@ -347,8 +347,8 @@ function filter_woocommerce_output_related_products_args( $args ) {
 add_filter( 'woocommerce_upsell_display_args', 'filter_woocommerce_output_upsell_products_args' );
 function filter_woocommerce_output_upsell_products_args( $args ) {
 
-	$args['posts_per_page'] = 4;
-	$args['columns'] = 4; // arranged in n columns
+	$args['posts_per_page'] = 5;
+	$args['columns'] = 5; // arranged in n columns
 	return $args;
 	
 }
