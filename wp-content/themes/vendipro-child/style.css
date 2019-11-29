@@ -1367,11 +1367,11 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
     top: 11px;
     right: 4px;
 }
-.woocommerce-remove::before {
+.remove::before {
     font-family: WooCommerce;
     display: inline-block;
 }
-.woocommerce-remove::before {
+.remove::before {
     content: '\e013';
     color: #b81c23;
 }
@@ -1641,10 +1641,10 @@ p.mc4wp-checkbox-wp-registration-form, p.lost_password {
     color: #303030;
     text-decoration: none !important;
 }
-.woocommerce-remove::before {
+.remove::before {
     transition: color .3s linear !important;
 }
-.woocommerce-remove:hover::before {
+.remove:hover::before {
     color: #ffffff;
     transition: color .3s linear !important;
 }
