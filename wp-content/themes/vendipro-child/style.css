@@ -1321,8 +1321,11 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
     background: #fff;
 }
 
-.woocommerce .comment-text .description {
+.woocommerce  .comment-text .description {
     color: #555;
+}
+.woocommerce ol.commentlist .star-rating {
+    width: 6em;
 }
 .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button,
 .woocommerce nav.woocommerce-pagination ul li a:focus, .woocommerce nav.woocommerce-pagination ul li span.current,
