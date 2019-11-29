@@ -56,11 +56,6 @@ do_action( 'woocommerce_email_customer_details', $order, $sent_to_admin, $plain_
 if ( $additional_content ) {
 	echo wp_kses_post( wpautop( wptexturize( $additional_content ) ) );
 }
-?>
-<p>
-<?php esc_html_e( 'Thanks for shopping with us.', 'woocommerce' ); ?>
-</p>
-<?php
 
 /*
  * @hooked WC_Emails::email_footer() Output the email footer
