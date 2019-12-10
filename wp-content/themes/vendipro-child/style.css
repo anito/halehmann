@@ -1077,7 +1077,7 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
     position: fixed;
     top: 0;
     padding: 0;
-    background-color: #353434;
+    background-color: #333;
     z-index: 5001;
 }
 .cart-sidebar p {
@@ -1608,7 +1608,6 @@ p.mc4wp-checkbox-wp-registration-form, p.lost_password {
     transform-style: preserve-3d;
     width: 280px;
     width: 17.5rem;
-    background-color: #454545;
     position: fixed;
     top: 0;
     bottom: 0;
