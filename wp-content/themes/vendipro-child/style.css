@@ -2761,14 +2761,7 @@ table.shop_table td.product-thumbnail img {
     display: inline-block;
     background: #fff;
 }
-.pwb-single-product-brands > a > img {
-    display: block;
-    max-width: 100px;
-    height: auto;
-    padding: 1px;
-    background: #d4d4d4;
-    box-shadow: 0 0 2px 0px rgba(0,0,0,0.2);
-}
+
 .pwb-brands-cols-outer {
     display: flex;
     flex-flow: row wrap;
@@ -2802,10 +2795,13 @@ table.shop_table td.product-thumbnail img {
     border-radius: 10px;
     background: #303030;
 }
-.woocommerce-Tabs-panel--pwb_tab .attachment-thumbnail {
+.pwb-single-product-brands > a > img, .woocommerce-Tabs-panel--pwb_tab .attachment-thumbnail {
+    display: block;
     max-width: 100px;
+    height: auto;
     padding: 1px;
-    background: #aaa;
+    background: #a7a7a7;
+    border: 1px solid #828282;
     box-shadow: 0 0 2px 0px rgba(0,0,0,0.2);
 }
 [class*=pwb-brands-] small {
