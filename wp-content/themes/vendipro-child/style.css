@@ -1498,6 +1498,7 @@ li.product .added_to_cart {
     font-size: 1em;
     color: #c1c1c1 !important;
     border-left: 5px solid #c1c1c1;
+    border-radius: 0 !important;
 }
 .single .term-description > *:not(:first-child), .single .page-description > *:not(:first-child), .single .product[class*="ab-18"] i.note-ab-18 {
     margin: 1rem -1.3rem 1rem -1.3rem !important;
