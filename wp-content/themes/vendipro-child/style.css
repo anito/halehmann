@@ -136,7 +136,7 @@ label {
     /* margin-bottom: 8px; */
 }
 table {
-    background: inherit;
+    /* background: inherit; */
 }
 th {
     font-weight: normal;
@@ -371,7 +371,7 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         font-size: 1.1em;
     }
     .woocommerce-tabs td {
-        border: 1px solid #5a5b5d;
+        border: 0 none;
         border-spacing: 0;
     }
     .entry-content table tbody td {
