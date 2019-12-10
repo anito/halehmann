@@ -2888,6 +2888,7 @@ a.shipping-calculator-button {
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
+    overflow: hidden;
 }
 .woocommerce ul.products li.product .button {
     white-space: nowrap;
