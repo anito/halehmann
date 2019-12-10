@@ -1052,7 +1052,7 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
     .in-stock,
     .woocommerce div.product .delivery-time-info,
     .delivery-time-info {
-        color: rgb(7, 109, 93);
+        color: rgb(143, 174, 26);
         font-size: inherit !important;
     }
     .woocommerce div.product .out-of-stock {
