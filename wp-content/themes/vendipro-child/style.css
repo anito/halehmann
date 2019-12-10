@@ -2801,7 +2801,7 @@ table.shop_table td.product-thumbnail img {
     height: auto;
     padding: 1px;
     background: #a7a7a7;
-    border: 1px solid #828282;
+    border: 1px solid #f7f7f7;
     box-shadow: 0 0 2px 0px rgba(0,0,0,0.2);
 }
 [class*=pwb-brands-] small {
