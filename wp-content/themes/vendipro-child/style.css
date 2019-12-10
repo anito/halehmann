@@ -2755,6 +2755,7 @@ table.shop_table td.product-thumbnail img {
     height: auto;
     padding: 1px;
     background: #d4d4d4;
+    box-shadow: 0 0 2px 0px rgba(0,0,0,0.2);
 }
 .pwb-brands-cols-outer {
     display: flex;
@@ -2793,8 +2794,7 @@ table.shop_table td.product-thumbnail img {
     max-width: 100px;
     padding: 1px;
     background: #aaa;
-    border-radius: 5px;
-    box-shadow: 0 0 8px 0px rgba(0,0,0,.1);
+    box-shadow: 0 0 2px 0px rgba(0,0,0,0.2);
 }
 [class*=pwb-brands-] small {
     background: #3c3c3c;
