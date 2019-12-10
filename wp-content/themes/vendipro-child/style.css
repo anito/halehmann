@@ -3031,14 +3031,14 @@ li.product.product_tag-iwa-2019::after {
 div.product.product_tag-iwa-2019 > .entry-post.wrapper:after {
     content: "";
     position: absolute;
-    left: 13px;
-    top: 5px;
-    width: 7%;
-    height: 83px;
-    background: url(/wp-content/uploads/2019/04/iwa-badge.png) no-repeat;
-    background-size: cover;
-    z-index: 1;
-    box-shadow: 0 0 4px 0px rgba(0,0,0, .5);
+    right: 3%;
+    top: 6%;
+    width: 70px;
+    height: 70px;
+    padding: 6px;
+    background: #0003 url(/wp-content/uploads/2019/04/iwa-badge.png) 50% 50% no-repeat;
+    background-size: inherit;
+    box-shadow: 0 0 4px 0px rgba(0,0,0, .2);
     border-radius: 50%;
 }
 a.target-blank-icon:after {
