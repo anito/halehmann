@@ -2124,6 +2124,8 @@ header#hmain .navbar ul li a:hover {
     border: 1px solid;
     padding: 30px;
     background: #ffffff60;
+    width: 60%;
+    text-align: center;
 }
 .alert_container h6 {
     font-size: 1.1em;
@@ -2131,10 +2133,14 @@ header#hmain .navbar ul li a:hover {
     line-height: 1.5em;
     margin-bottom: 1em;
     margin-top: 0em;
-    color: white;
 }
 .alert_container button {
-	margin-top: 10px;
+	margin: 10px auto;
+	display: block;
+	width: 80%;
+}
+.alert_container input.stock_alert_email {
+    width: 80%;
 }
 table.shop_table tr.cart_item td, table.shop_table thead tr th {
     border-bottom: 1px solid #5a5a5a;
