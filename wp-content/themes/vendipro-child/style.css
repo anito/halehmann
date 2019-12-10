@@ -1425,7 +1425,16 @@ ul.tabs li.active a,
 ul.tabs li a {
     background-color: transparent;
 }
-
+.woocommerce div.product .woocommerce-tabs ul.tabs {
+    border-bottom: inherit;
+    margin-bottom: 0;
+}
+.woocommerce-Tabs-panel {
+    background: #fdfdfd;
+    padding: 20px !important;
+    color: #333;
+    box-shadow: 0px -17px 59px 0px rgba(0,0,0,.2) inset;
+}
 .woocommerce div.product .woocommerce-tabs ul.tabs li.active a,
 .woocommerce div.product .woocommerce-tabs ul.tabs li a,
 .woocommerce div.product .woocommerce-tabs ul.tabs li.active a:hover,
