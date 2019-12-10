@@ -402,7 +402,6 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
     }
     ul li.product {
         background: #FFFFFF;
-        overflow: hidden;
     }
     .price del .amount {
         font-size: 1.1em !important;
@@ -3000,8 +2999,8 @@ input.age-gate-submit {
 li.product.product_tag-iwa-2019::after {
     content: "";
     position: absolute;
-    right: 5px;
-    top: 16px;
+    right: -11px;
+    top: -13px;
     width: 58px;
     height: 58px;
     background: url(/wp-content/uploads/2019/04/iwa-badge.png) no-repeat;
