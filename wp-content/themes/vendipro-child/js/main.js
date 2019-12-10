@@ -76,10 +76,6 @@
         $('body').prepend('<div id="fb-root"></div>');
     }
 
-    var add_background_image = function () {
-        $('body').addClass('camouflage');
-    }
-
     //add icon to links with target _blank
     var add_target_blank_icon = function () {
         var arr;
@@ -191,7 +187,6 @@
 
     add_fb_div();
     add_adult_badge();
-    add_background_image();
     add_target_blank_icon();
     add_sidebar_cart();
     add_mini_cart();
