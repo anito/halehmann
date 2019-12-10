@@ -32,7 +32,7 @@ if ( post_password_required() ) {
 }
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
-	<div class="entry-post wrapper">
+	<div class="product-wrapper entry-post wrapper">
 
 		<?php
 			/**
