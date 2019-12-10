@@ -619,7 +619,7 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         position: relative;
         overflow: hidden;
     }
-    .wc-tabs-wrapper.entry-post.wrapper, body:not(.home) .entry-post.wrapper, .sidebar .widget, ul.products  {
+    .wc-tabs-wrapper.entry-post.wrapper, body:not(.home) .entry-post.wrapper:not(.product-wrapper), .sidebar .widget, ul.products  {
         padding: 20px !important;
         overflow: visible;
     }
