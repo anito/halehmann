@@ -138,6 +138,25 @@ label {
 table {
     /* background: inherit; */
 }
+.page-table table thead tr th {
+    color: inherit;
+    font-weight: 800;
+    background: transparent;
+    border-bottom: 1px solid;
+}
+.page-table table tr td:nth-child(even) {
+    border-left: 1px solid #fff;
+}
+.page-table table thead tr:nth-child(odd) {
+    background: #565656;
+    padding: 20px;
+}
+.page-table table thead tr th {
+    padding: 20px;
+}
+.page-table table tbody tr:nth-child(odd) {
+    background: #6a6a6a33;
+}
 th {
     font-weight: normal;
 }
