@@ -2122,10 +2122,11 @@ header#hmain .navbar ul li a:hover {
 }
 .alert_container {
     border: 1px solid;
-    padding: 30px;
+    padding: 9px;
     background: #ffffff60;
-    width: 60%;
+    width: 50%;
     text-align: center;
+    font-size: 0.6rem;
 }
 .alert_container h6 {
     font-size: 1.1em;
