@@ -2333,6 +2333,8 @@ table.shop_table td.product-thumbnail img {
 }
 .woocommerce-order .order_details,
 .woocommerce-order-details h2,
+.woocommerce-customer-details h2,
+.woocommerce-checkout .woocommerce-customer-details address,
 .woocommerce-order > p,
 .woocommerce-checkout table.shop_table {
     padding: 0 3rem;
@@ -2347,6 +2349,12 @@ table.shop_table td.product-thumbnail img {
 }
 .woocommerce-order {
     margin: 0 30px;
+}
+.wp-block-separator.is-style-default {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    width: 30%;
+    opacity: .2;
 }
 .payments {
     display: flex;
