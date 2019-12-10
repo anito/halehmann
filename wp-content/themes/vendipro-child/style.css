@@ -1435,11 +1435,19 @@ ul.tabs li a {
     color: #333;
     box-shadow: 0px -17px 59px 0px rgba(0,0,0,.2) inset;
 }
-.woocommerce div.product .woocommerce-tabs ul.tabs li.active a,
-.woocommerce div.product .woocommerce-tabs ul.tabs li a,
-.woocommerce div.product .woocommerce-tabs ul.tabs li.active a:hover,
-.woocommerce div.product .woocommerce-tabs ul.tabs li a:hover {
-    color: #666;
+.woocommerce div.product .woocommerce-tabs ul.tabs .active a,
+.woocommerce div.product .woocommerce-tabs ul.tabs .active a:hover,
+.woocommerce div.product .woocommerce-tabs ul.tabs a,
+.woocommerce div.product .woocommerce-tabs ul.tabs a:hover,
+.woocommerce div.product .woocommerce-tabs ul.tabs a:visited {
+    color: #515151 !important;
+}
+.woocommerce div.product .woocommerce-tabs .woocommerce-Tabs-panel a,
+.woocommerce div.product .woocommerce-tabs .woocommerce-Tabs-panel a:hover,
+.woocommerce div.product .woocommerce-tabs .woocommerce-Tabs-panel a,
+.woocommerce div.product .woocommerce-tabs .woocommerce-Tabs-panel a:hover,
+.woocommerce div.product .woocommerce-tabs .woocommerce-Tabs-panel a:visited {
+    color: inherit !important;
 }
 .woocommerce .woocommerce-breadcrumb a,
 .woocommerce-breadcrumb .inner.last {
