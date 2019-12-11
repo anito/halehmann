@@ -1,12 +1,11 @@
 <?php
 add_shortcode( 'my_sales','shortcode_handler_my_sales' );
 function shortcode_handler_my_sales($atts) {
-	global $post;
-	
+    
 	$default_atts =[];
-	write_log($atts);
-	$a = shortcode_atts($atts, $default_atts );
-	$my_sales_id = $a['cat_id'];
+	
+	$atts = shortcode_atts($atts, $default_atts );
+	$my_sales_id = $atts['cat_id'];
 	
 	$del = delete_from_sales($my_sales_id);
 	$add = add_to_sales($my_sales_id);
