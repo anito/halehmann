@@ -53,19 +53,16 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 	}
 
 	function init_new_products( $q ) {
-
-
 		
+		// return w/o filtering but still attach the correct label
 		if ( !is_options_auto() ) {
 			
-			// return w/o filtering but still attach the correct label
 			add_action( 'wp_enqueue_scripts', 'enqueue_script_add_badge' );
 			return;
 			
 		}
 				
 		add_action( 'wp_enqueue_scripts', 'enqueue_script_fix_url' );
-
 
 		if ( may_be_filtered_post() ) {
 
@@ -99,7 +96,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
             'category_slug' => get_main_category_slug()
 		);
 
-		// take care all new products are labeled also when Auto option isi disabled
+		// take care all new products are labeled also when Auto option is disabled
 		wp_register_script( 'new_cat_badge', plugins_url( '/assets/js/new_cat_badge.js', __FILE__ ), array( 'jquery' ), '1.0', true );
 		wp_enqueue_script( 'new_cat_badge' );
 		
@@ -110,9 +107,15 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 	
 	function enqueue_script_fix_url() {
 		
+		$params = array(
+			'days' => get_option( 'wc_nb_newness' )
+		);
 		// rewrite urls to point to the correct New Products Page
 		wp_register_script( 'fix_url', plugins_url( '/assets/js/fix_url.js', __FILE__ ), array( 'jquery' ), '1.0', true );
 		wp_enqueue_script( 'fix_url' );
+
+		// pass args to the document
+		wp_localize_script( 'fix_url', 'new_products_param', $params );
 		
 	}
 	
@@ -125,12 +128,14 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 
 	function filter_new_products( $where ) {
 
-		if ( is_page() )
-			return;
+		if ( is_page() ) return;
 
-		$days = get_option( 'wc_nb_newness' );
+		$days_param = get_option( 'wc_nb_newness' );
+		if( isset( $_GET['days'] ) && is_numeric( $d = $_GET['days'] ) ) {
+			$days_param = $d;
+		}
 
-		$date = date( 'Y-m-d', strtotime( '-' . $days . ' days' ) );
+		$date = date( 'Y-m-d', strtotime( '-' . $days_param . ' days' ) );
 		$where .= " AND post_date > '" . $date . "'";
 
 		return $where;
@@ -148,25 +153,24 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
     }
 
 	function new_archive_term_image() {
-		if ( may_be_filtered_post() ) {
-			global $wp_query;
-			$thumbnail_id = get_woocommerce_term_meta( get_main_category_id(), 'thumbnail_id', true );
-			if ( $thumbnail_id ) {
-				$thumbnail_post = get_post( $thumbnail_id );
-				$image = wp_get_attachment_url( $thumbnail_id );
-				if ( $image ) {
-					?>
-					<div class="cat-thumb">
-						<?php if ( !empty( $thumbnail_post->post_title ) || !empty( $thumbnail_post->post_excerpt ) ) : ?>
-							<div class="cat-thumb-overlay">
-								<?php echo (!empty( $thumbnail_post->post_title ) ? '<h4>' . $thumbnail_post->post_title . '</h4>' : '' ); ?>
-								<?php echo (!empty( $thumbnail_post->post_excerpt ) ? '<p>' . $thumbnail_post->post_excerpt . '</p>' : '' ); ?>
-							</div>
-						<?php endif; ?>
-						<img src="<?php echo $image ?>" alt="" />
-					</div>
-					<?php
-				}
+		global $wp_query;
+
+		$thumbnail_id = get_term_meta( get_main_category_id(), 'thumbnail_id', true );
+		if ( $thumbnail_id ) {
+			$thumbnail_post = get_post( $thumbnail_id );
+			$image = wp_get_attachment_url( $thumbnail_id );
+			if ( $image ) {
+				?>
+				<div class="cat-thumb">
+					<?php if ( !empty( $thumbnail_post->post_title ) || !empty( $thumbnail_post->post_excerpt ) ) : ?>
+						<div class="cat-thumb-overlay">
+							<?php echo (!empty( $thumbnail_post->post_title ) ? '<h3>' . $thumbnail_post->post_title . '</h3>' : '' ); ?>
+							<?php echo (!empty( $thumbnail_post->post_excerpt ) ? '<p>' . $thumbnail_post->post_excerpt . '</p>' : '' ); ?>
+						</div>
+					<?php endif; ?>
+					<img src="<?php echo $image ?>" alt="<?php echo get_post_meta( $thumbnail_post->ID, '_wp_attachment_image_alt', true ); ?>" />
+				</div>
+				<?php
 			}
 		}
 	}
@@ -185,13 +189,13 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 			public function __construct() {
                 if( !is_admin() ) {
                     add_action( 'wp_enqueue_scripts', array( $this, 'setup_styles' ), 999999 );  // Enqueue the styles
-                }
-                
-				if ( is_options_auto() ) {
-					add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'show_product_loop_new_badge' ), 30 );
-					add_filter( 'woocommerce_before_single_product_summary', array( $this, 'show_single_product_new_badge' ), 30 );
+					
+					if ( is_options_auto() ) {
+						add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'show_product_loop_new_badge' ), 30 );
+						add_filter( 'woocommerce_before_single_product_summary', array( $this, 'show_single_product_new_badge' ), 30 );
+					}
+					
 				}
-				
 				add_action( 'init', array($this, 'init_settings') );
 				
 			}

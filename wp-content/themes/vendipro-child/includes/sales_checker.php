@@ -1,4 +1,43 @@
 <?php
+add_shortcode( 'my_sales','shortcode_handler_my_sales' );
+function shortcode_handler_my_sales($atts) {
+	global $post;
+	
+	$default_atts =[];
+	write_log($atts);
+	$a = shortcode_atts($atts, $default_atts );
+	$my_sales_id = $a['cat_id'];
+	
+	$del = delete_from_sales($my_sales_id);
+	$add = add_to_sales($my_sales_id);
+	
+	$ret = sales_checker_start($my_sales_id, $del, $add);
+	
+	return $ret;
+}
+
+####### Fix Sales ########
+function fix_sales_handler_from_post($id) {
+	global $woocommerce;
+	
+	if ( !empty($_POST["fix_all"]) ) {
+		foreach ($_POST as $collection) {
+            if (array_key_exists('product_id', $_POST) && !empty($collection['product_id']) && !empty($collection['my_sales_id'])) {
+				$product_id = $collection['product_id'];
+				$my_sales_id = $collection['my_sales_id'];
+				fix_cat($product_id, $my_sales_id);
+			}
+		}
+	} else {
+		foreach ($_POST as $collection) {
+            if (array_key_exists('submit', $_POST) && !empty($collection['product_id']) && !empty($collection['my_sales_id'])) {
+				$product_id = $collection['product_id'];
+				$my_sales_id = $collection['my_sales_id'];
+				fix_cat($product_id, $my_sales_id);
+			}
+		}
+	}
+}
 function delete_from_sales ($my_sales_id) {
 	
 	$args = array(
@@ -110,104 +149,28 @@ function sales_checker_start($my_sales_id, $del, $add) {
 	$error_count_add = $add["errors"];
 	$error_count = $error_count_del + $error_count_add;
 	
-	$hide_del = 'hide';
-	$hide_add = 'hide';
+	$solution_1 = $solution_2 = '';
+	$hide_add = $hide_del = 'hide';
 	$f = $error_count > 0 ? "Upps" : "Alles Top";
 	if ($error_count_del > 0) {
 		$hide_del = '';
-		$solution_1 = "<div class='sales_header_top'><span class='header'>" . "folgende Artikel (" . $error_count_del . ") sind nicht reduziert und sollten aus <strong>" . $my_sales_name . "</strong> entfernt werden:</span></div>";
+		$solution_1 = "<div class='sales_header_top'><span class='header'>" . "folgende Artikel ({$error_count_del}) sind nicht reduziert und sollten aus <strong>{$my_sales_name}</strong> entfernt werden:</span></div>";
 	}
 	if ($error_count_add > 0) {
 		$hide_add = '';
-		$solution_2 = "<div class='sales_header_top'><span class='header'>" . "es fehlen " . $error_count_add . " reduzierte Artikel in der Kategorie <strong>" . $my_sales_name . "</strong> und sollten hinzufügt werden: </span></div>";
+		$solution_2 = "<div class='sales_header_top'><span class='header'>" . "es fehlen {$error_count_add} reduzierte Artikel in der Kategorie <strong>{$my_sales_name}</strong> und sollten hinzufügt werden: </span></div>";
 	}
-	$open_1 = "<div class='open " . $hide_del . "'>";
-	$open_2 = "<div class='open " . $hide_add . "'>";
+	$open_1 = "<div class='open {$hide_del}'>";
+	$open_2 = "<div class='open {$hide_add}'>";
 	$close = "</div>";
-	$resume   = "<h3><div><span>" . $f . " - " . $error_count . " Fehler entdeckt</span></div></h3>";
+	$resume   = "<h3><div><span>{$f}  - {$error_count} Fehler entdeckt</span></div></h3>";
 	$summary_start = "<div class='sales_summary'><form method='post' action=''>";
 	$summary  = "<div class=''>";
-	$summary .= "<div><span>Anzahl reduzierter Artikel: " . $all_products_count . "</span></div>";
-	$summary .= "<div class='sales_top'><span>Artikel in der Kategorie <strong>" . $my_sales_name . "</strong>: " . $my_sales_count . "</span></div>";
+	$summary .= "<div><span>Anzahl reduzierter Artikel: {$all_products_count}</span></div>";
+	$summary .= "<div class='sales_top'><span>Artikel in der Kategorie <strong>{$my_sales_name}</strong>: {$my_sales_count}</span></div>";
 	if($error_count > 0) {
 		$summary .= "<div class='main_button'><input type='submit' name='fix_all' value='alles reparieren' class='fixit'></div>";
 	}
 	$summary_end = "</form>";
 	return $resume . $summary_start . $summary . $close . $open_1 . $solution_1 . $del_html . $close . $open_2 . $solution_2 . $add_html . $close . $summary_end . $close;
-}
-function shortcode_handler_my_sales($atts) {
-	global $post;
-	
-	$a = shortcode_atts($atts );
-	$my_sales_id = $a['cat_id'];
-	
-	$del = delete_from_sales($my_sales_id);
-	$add = add_to_sales($my_sales_id);
-	
-	$ret = sales_checker_start($my_sales_id, $del, $add);
-	
-	return $ret;
-}
-
-####### Fix Sales ########
-
-function fix_sales_handler_from_post($id) {
-	global $woocommerce;
-	
-	if ( !empty($_POST["fix_all"]) ) {
-		foreach ($_POST as $collection) {
-            if (array_key_exists('product_id', $_POST) && !empty($collection['product_id']) && !empty($collection['my_sales_id'])) {
-				$product_id = $collection['product_id'];
-				$my_sales_id = $collection['my_sales_id'];
-				fix_cat($product_id, $my_sales_id);
-			}
-		}
-	} else {
-		foreach ($_POST as $collection) {
-            if (array_key_exists('submit', $_POST) && !empty($collection['product_id']) && !empty($collection['my_sales_id'])) {
-				$product_id = $collection['product_id'];
-				$my_sales_id = $collection['my_sales_id'];
-				fix_cat($product_id, $my_sales_id);
-			}
-		}
-	}
-}
-
-function fix_cat($post_id, $term_id) {
-	global $woocommerce;
-	
-	if( !defined( 'SALES_CAT_ID' ) )
-		return;
-	
-	$post_id = intval($post_id);
-	$term_id = intval($term_id);
-	
-	$product = wc_get_product($post_id);
-	
-	switch ($term_id) {
-		case SALES_CAT_ID:
-			$is_attribute = $product->is_on_sale();
-			break;
-		default:
-			return 0;
-	}
-	set_product_cats($product, $term_id, $is_attribute);
-	
-}
-function set_product_cats($product, $term_id, $is_attribute) {
-	$term_ids = $product->get_category_ids();
-	$term_ids = array_unique(array_map('intval', $term_ids));
-	
-	if ( !$is_attribute ) {
-		# remove id
-		$term_ids = array_diff($term_ids, array($term_id) );
-	} else {
-		# add id
-		$term_ids[] = $term_id;
-	}
-	wp_set_object_terms( $product->get_id(), $term_ids, 'product_cat' );
-
-}
-function loop_products() {
-	
 }

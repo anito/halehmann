@@ -1,8 +1,10 @@
 (function ($) {
 
     var rewrite = function () {
+
+        var days = new_products_param.days;
         $('a[href$="neu-im-shop/"]').each(function ($i) {
-            $(this).attr('href', '/shop/?new-products=1');
+            $(this).attr('href', `/shop/?new-products&days=${days}`);
         })
     }
 

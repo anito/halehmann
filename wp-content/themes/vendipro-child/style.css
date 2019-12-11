@@ -894,7 +894,7 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
     ul:not(.tabs) li.active a {
         color: rgb(227, 0, 1) !important;
     }
-    .woocommerce-breadcrumb {
+    .woocommerce .woocommerce-breadcrumb {
         font-size: 1.1em;
         margin-bottom: 1.5em;
     }
@@ -1506,7 +1506,7 @@ ul.tabs li a {
     color: inherit !important;
 }
 .woocommerce .woocommerce-breadcrumb a,
-.woocommerce-breadcrumb .inner.last {
+.woocommerce .woocommerce-breadcrumb .inner.last {
     color: #ddd;
 }
 .woocommerce ul.products li.product .star-rating,
@@ -2060,18 +2060,15 @@ li.product a.button {
 header#hmain .navbar ul li a:hover {
     text-decoration: underline !important;
 }
-.woocommerce-breadcrumb  {
-
-}
-.woocommerce-breadcrumb  .inner {
+.woocommerce .woocommerce-breadcrumb  .inner {
     padding: 2px 9px;
     margin-left: 15px;
 }
-.woocommerce-breadcrumb  .inner.last {
+.woocommerce .woocommerce-breadcrumb  .inner.last {
     padding: 2px 9px;
     margin-left: 5px;
 }
-.woocommerce-breadcrumb  a {
+.woocommerce .woocommerce-breadcrumb  a {
     text-decoration: none !important;
     font-size: 1.0em;
     border: 0px solid;
@@ -2083,7 +2080,7 @@ header#hmain .navbar ul li a:hover {
     -o-transition: all .2s linear;
     transition: all .2s linear;
 }
-.woocommerce-breadcrumb a:hover {
+.woocommerce  .woocommerce-breadcrumb a:hover {
     text-decoration: none;
     background-color: rgba(70, 70, 70, .1);
     -webkit-transition: all .2s linear;
@@ -2092,10 +2089,10 @@ header#hmain .navbar ul li a:hover {
     -o-transition: all .2s linear;
     transition: all .2s linear;
 }
-.woocommerce-breadcrumb .breadcrumb-wrapper {
+.woocommerce .woocommerce-breadcrumb .breadcrumb-wrapper {
     padding: 0 10px;
 }
-.woocommerce-breadcrumb .breadcrumb-wrapper:hover i {
+.woocommerce .woocommerce-breadcrumb .breadcrumb-wrapper:hover i {
     -webkit-transition: left .2s linear;
     -moz-transition: left .2s linear;
     -ms-transition: left .2s linear;
@@ -2103,13 +2100,13 @@ header#hmain .navbar ul li a:hover {
     transition: left .2s linear;
     left: 10px;
 }
-.woocommerce-breadcrumb .breadcrumb-wrapper:last-child:hover i {
+.woocommerce .woocommerce-breadcrumb .breadcrumb-wrapper:last-child:hover i {
     left: 0px;
 }
-.woocommerce-breadcrumb .breadcrumb-wrapper:first-child .inner {
+.woocommerce .woocommerce-breadcrumb .breadcrumb-wrapper:first-child .inner {
     margin-left: 0px;
 }
-.woocommerce-breadcrumb i {
+.woocommerce .woocommerce-breadcrumb i {
     padding-left: 0px;
     padding-right: 0px;
     position: relative;

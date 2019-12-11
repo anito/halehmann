@@ -1,10 +1,18 @@
 <?php
-require_once( __DIR__ . '/includes/my_cat_handler.php');
+require_once( __DIR__ . '/includes/product_cat_handler.php');
 require_once( __DIR__ . '/includes/sender_email.php');
 
-add_shortcode('my_sales','shortcode_handler_my_sales');
-add_action('init', 'fix_sales_handler_from_post', 998);
-add_action( 'init', 'reorder_upsell_action' );
+
+// load post_meta dependend scripts
+add_action( 'the_post', 'load_includes' );
+function load_includes() {
+	global $post;
+
+	$is_sales_checker = !empty( get_post_meta($post->ID, 'sales_checker' ));
+	if($is_sales_checker) {
+		require_once( __DIR__ . '/includes/sales_checker.php');
+	}
+}
 
 add_theme_support( 'html5', array( 'gallery' ) );
 
@@ -19,6 +27,7 @@ function retrieve_post_via_mail() {
 	}
 }
 
+add_action( 'init', 'reorder_upsell_action' );
 function reorder_upsell_action() {
 	remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 20 );
 	add_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 14 );
@@ -62,6 +71,19 @@ function new_products() {
 	}
 }
 
+function product_query( $q ) {
+	
+	$product_category = get_terms( 'product_cat', $args )[0];
+    $recent_product_ids = get_recent_product_ids();
+	$product_ids_on_sale = wc_get_product_ids_on_sale();
+	
+	echo("recent:<br>");
+	var_dump((array) $recent_product_ids);
+	echo("<br>");
+	
+    $q->set( 'post__in', (array) $recent_product_ids );
+	
+}
 function get_recent_product_ids() {
 	// Load from cache
 	$recent_product_ids = get_transient( 'recent_products' );
@@ -76,7 +98,6 @@ function get_recent_product_ids() {
 
 	return $recent_product_ids;
 }
-
 function get_recent_products() {
 	global $wpdb;
 
@@ -92,19 +113,6 @@ function get_recent_products() {
 		GROUP BY post.ID;
 	" );
 			
-}
-function product_query( $q ) {
-	
-	$product_category = get_terms( 'product_cat', $args )[0];
-    $recent_product_ids = get_recent_product_ids();
-	$product_ids_on_sale = wc_get_product_ids_on_sale();
-	
-	echo("recent:<br>");
-	var_dump((array) $recent_product_ids);
-	echo("<br>");
-	
-    $q->set( 'post__in', (array) $recent_product_ids );
-	
 }
 
 /**
@@ -219,11 +227,6 @@ function return_cart_redirect( $url ) {
 	}
 }
 
-//add_filter( 'wc_add_to_cart_message_html', 'clear_add_to_cart_message' );
-function clear_add_to_cart_message( $message ) {
-	return false;
-}
-
 /*
  * add woocommerce styles
  */
@@ -232,7 +235,6 @@ function woocommerce_styles() {
     return array(
         'woocommerce-layout' => array(
             'src' => plugins_url('woocommerce/assets/css/woocommerce-layout.css'),
-//            'src' => get_stylesheet_directory_uri() . '/css/woocommerce-layout.css',
             'deps' => '',
             'version' => WC_VERSION,
             'media' => 'all',
@@ -265,15 +267,6 @@ function vp_child_theme_styles() {
 	wp_enqueue_style( 'child-style', get_stylesheet_uri(), array( 'vendipro' ) );
 	wp_dequeue_style('fontawesome');
 	wp_enqueue_style( 'fontawesome', get_stylesheet_directory_uri() . '/assets/font-awesome/css/all' . (IS_PRODUCTION ? '.min' : '') . '.css');
-}
-
-// Cookie Policy Settings
-//add_action( 'wp_head', 'add_cookie_policy' );
-
-function add_cookie_policy() {
-	?>
-	<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="7e6f7d2a-48d7-4cf2-9863-2ab33603dc6d" data-blockingmode="auto" type="text/javascript"></script>
-	<?php
 }
 
 add_action( 'wp_enqueue_scripts', 'add_scripts' );
@@ -542,23 +535,11 @@ add_filter( 'woocommerce_email_settings', 'fallback_header_image', 20, 2 );
  *
  * @return array
  */
+add_filter( 'mc4wp_form_css_classes', 'prefix_add_css_class_to_form', 10, 2 );
 function prefix_add_css_class_to_form( $classes = array(), MC4WP_Form $form ) {
 	$classes[] = 'address-box';
 	return $classes;
 }
-add_filter( 'mc4wp_form_css_classes', 'prefix_add_css_class_to_form', 10, 2 );
-
-/*
- * Renamer
- */
-function my_filename_check( $new_filename, $old_filename_no_ext ) {
-	$uuid = wp_generate_uuid4();
-	write_log($new_filename);
-	write_log($old_filename_no_ext);
-	write_log($uuid);
-	return $new_filename;
-}
-add_filter( 'mfrh_new_filename', 'my_filename_check', 10, 2 );
 
 //add_action( 'rest_api_inserted_post',  'rest_api_inserted_post', 100, 3);
 function rest_api_inserted_post( $post_id, $insert, $new ) {
