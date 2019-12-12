@@ -2587,11 +2587,6 @@ table.shop_table td.product-thumbnail img {
 .open div:nth-child(2) {
     margin-top: 20px;
 }
-.sales_summary .main_button {
-    position: absolute;
-    right: 0;
-    top: 0;
-}
 .sales_summary .main_button input {
     padding: 20px;
 }

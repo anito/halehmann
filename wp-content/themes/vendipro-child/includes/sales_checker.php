@@ -1,7 +1,8 @@
 <?php
 add_shortcode( 'my_sales','shortcode_handler_my_sales' );
+
 function shortcode_handler_my_sales($atts) {
-    
+
 	$default_atts =[];
 	
 	$atts = shortcode_atts($atts, $default_atts );
@@ -18,7 +19,7 @@ function shortcode_handler_my_sales($atts) {
 ####### Fix Sales ########
 function fix_sales_handler_from_post($id) {
 	global $woocommerce;
-	
+    
 	if ( !empty($_POST["fix_all"]) ) {
 		foreach ($_POST as $collection) {
             if (array_key_exists('product_id', $_POST) && !empty($collection['product_id']) && !empty($collection['my_sales_id'])) {
@@ -29,9 +30,10 @@ function fix_sales_handler_from_post($id) {
 		}
 	} else {
 		foreach ($_POST as $collection) {
-            if (array_key_exists('submit', $_POST) && !empty($collection['product_id']) && !empty($collection['my_sales_id'])) {
+            if (array_key_exists('submit', $collection) && isset($collection['product_id']) && isset($collection['my_sales_id'])) {
 				$product_id = $collection['product_id'];
-				$my_sales_id = $collection['my_sales_id'];
+                $my_sales_id = $collection['my_sales_id'];
+                
 				fix_cat($product_id, $my_sales_id);
 			}
 		}
