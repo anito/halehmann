@@ -2846,6 +2846,7 @@ table.shop_table td.product-thumbnail img {
     background: #303030;
 }
 .pwb-single-product-brands > a > img, .woocommerce-Tabs-panel--pwb_tab .attachment-thumbnail {
+    display: block;
     max-width: 100px;
     height: auto;
     padding: 1px;
