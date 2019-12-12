@@ -2846,13 +2846,21 @@ table.shop_table td.product-thumbnail img {
     background: #303030;
 }
 .pwb-single-product-brands > a > img, .woocommerce-Tabs-panel--pwb_tab .attachment-thumbnail {
-    display: block;
     max-width: 100px;
     height: auto;
     padding: 1px;
     background: #a7a7a7;
     border: 1px solid #f7f7f7;
     box-shadow: 0 0 2px 0px rgba(0,0,0,0.2);
+    margin-top: -100px;
+}
+#tab-pwb_tab-content > div {
+    width: calc(100% - 100px - 5%);
+    text-align: justify;
+}
+#tab-pwb_tab-content img {
+    float: right;
+    margin-top: -100px;
 }
 [class*=pwb-brands-] small {
     background: #3c3c3c;
