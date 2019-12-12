@@ -1523,15 +1523,26 @@ li.product .added_to_cart {
     margin-bottom: 3em;
 }
 .info-box {
-    line-height: 1.6em;
+    line-height: 1.5em;
     border-radius: 0px;
     font-weight: normal;
     background-color: #3a3a3a;
-    display: block;
+    display: inline-block;
+    width: 100%;
     border-top: 1px solid #4a4a4a;
     border-right: 1px solid #2f2e2e;
     border-bottom: 1px solid #2f2e2e;
     border-left: 5px solid rgb(227, 0, 1);
+}
+#info-box-1.info-box {
+    max-width: 28%;
+    height: auto;
+    display: inline-block;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: #424242dd;
+    overflow: auto;
 }
 .info-red.fill {
     background-color: rgba(227, 0, 1, 1);
@@ -2629,29 +2640,6 @@ table.shop_table td.product-thumbnail img {
     left: -25px;
     top: -80px;
     transform: rotate(-22deg);
-}
-#primary .address-box::before {
-}
-.info-box {
-    background: #424242;
-    color: #c1c1c1;
-    padding: 14px 40px;
-    display: inline-block;
-    width: 100%;
-    line-height: 2em;
-}
-.info-box p {
-    line-height: 1.5em;
-}
-#info-box-1.info-box {
-    max-width: 28%;
-    height: auto;
-    display: inline-block;
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    background: #424242dd;
-    overflow: auto;
 }
 .sidebar .address-box:before {
     background: none; 
