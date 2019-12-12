@@ -266,7 +266,7 @@ function vp_child_theme_styles() {
 	wp_enqueue_style( 'child-style-forms', get_stylesheet_directory_uri() . '/css/forms.css' );
 	wp_enqueue_style( 'child-style-animations', get_stylesheet_directory_uri() . '/css/animations.css' );
 	wp_enqueue_style( 'child-style-payments', get_stylesheet_directory_uri() . '/css/payments.css' );
-	wp_enqueue_style( 'child-style', get_stylesheet_uri(), array( 'vendipro' ) );
+	wp_enqueue_style( 'child-style', get_stylesheet_uri(), array( 'vendipro' ), wp_get_theme()->get('Version') );
 	wp_dequeue_style('fontawesome');
 	wp_enqueue_style( 'fontawesome', get_stylesheet_directory_uri() . '/assets/font-awesome/css/all' . (IS_PRODUCTION ? '.min' : '') . '.css');
 }
