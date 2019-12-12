@@ -1576,7 +1576,7 @@ li.product .added_to_cart {
     border-right: 1px solid #2f2e2e;
     border-bottom: 1px solid #2f2e2e;
 }
-.page .entry-content > h2:not(.entry-title), .term-description > p:first-child, .tax-pwb-brand .term-description > h2, .term-description > h2:not(:first-child), .term-description > pre + h2:nth-child(2), .term-description > .metaslider + h2:nth-child(2), .page-description > p:first-child, .page-description > h2:first-child, h2.entry-title + h3 {
+.page .entry-content > h2:not(.entry-title), .term-description > p:first-child, .tax-pwb-brand .term-description > h2, .term-description > h2, .term-description > pre + h2:nth-child(2), .term-description > .metaslider + h2:nth-child(2), .page-description > p:first-child, .page-description > h2:first-child, h2.entry-title + h3 {
     padding: 8px 10px !important;
     margin: 20px 0px 0px 0px !important;
     color: rgb(250, 250, 250) !important;
