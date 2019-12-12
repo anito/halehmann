@@ -1547,7 +1547,7 @@ li.product .added_to_cart {
     border-left: 5px solid #c1c1c1;
 }
 #info-box-1 {
-    max-width: 25%;
+    min-width: 200px;
     width: 25%;
     padding: 20px;
     margin: 0px;
@@ -1560,7 +1560,7 @@ li.product .added_to_cart {
     background: #424242dd;
     overflow: auto;
     border: 0 none;
-    border-radius: 5px;
+    border-radius: 10px;
     line-height: 1em;
 }
 #info-box-1 dl {
