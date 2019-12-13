@@ -6,7 +6,7 @@
  Author URI: http://vendidero.de
  Template: vendipro
  wc_gzd_compatible: true
- Version: 1.2.1
+ Version: 1.2.2
 */
 
 /* =Theme customization starts here
@@ -1570,7 +1570,8 @@ li.product .added_to_cart {
     padding: 5px;
 }
 #info-box-1 dl dt {
-	font-weight: 700;
+    font-weight: 700;
+    margin: 10px 0 15px;
 }
 #info-box-1 dl dd {
 	margin-left: 20%;
