@@ -136,7 +136,7 @@ function on_save_post($post_id , $post, $is_update){
 		$product = wc_get_product($product_id);
 	}
 	if( defined( 'SALES_CAT_ID' ) ) {
-		fix_cat($product_id, SALES_CAT_ID);
+		// fix_cat($product_id, SALES_CAT_ID);
 	}
 	
 }
@@ -262,13 +262,13 @@ function woocommerce_styles() {
 add_action( 'wp_enqueue_scripts', 'vp_child_theme_styles', PHP_INT_MAX );
 function vp_child_theme_styles() {
 	$parent_style = 'vendipro-style';
-	wp_enqueue_style( 'child-style-fonts', get_stylesheet_directory_uri() . '/css/fonts.css' );
-	wp_enqueue_style( 'child-style-forms', get_stylesheet_directory_uri() . '/css/forms.css' );
-	wp_enqueue_style( 'child-style-animations', get_stylesheet_directory_uri() . '/css/animations.css' );
-	wp_enqueue_style( 'child-style-payments', get_stylesheet_directory_uri() . '/css/payments.css' );
+	wp_enqueue_style( 'child-style-fonts', get_stylesheet_directory_uri() . '/css/fonts.css', wp_get_theme()->get('Version') );
+	wp_enqueue_style( 'child-style-forms', get_stylesheet_directory_uri() . '/css/forms.css', wp_get_theme()->get('Version') );
+	wp_enqueue_style( 'child-style-animations', get_stylesheet_directory_uri() . '/css/animations.css', wp_get_theme()->get('Version') );
+	wp_enqueue_style( 'child-style-payments', get_stylesheet_directory_uri() . '/css/payments.css', wp_get_theme()->get('Version') );
 	wp_enqueue_style( 'child-style', get_stylesheet_uri(), array( 'vendipro' ), wp_get_theme()->get('Version') );
 	wp_dequeue_style('fontawesome');
-	wp_enqueue_style( 'fontawesome', get_stylesheet_directory_uri() . '/assets/font-awesome/css/all' . (IS_PRODUCTION ? '.min' : '') . '.css');
+	wp_enqueue_style( 'fontawesome', get_stylesheet_directory_uri() . '/assets/font-awesome/css/all' . (IS_PRODUCTION ? '.min' : '') . '.css', wp_get_theme()->get('Version'));
 }
 
 add_action( 'wp_enqueue_scripts', 'add_scripts' );
@@ -300,8 +300,8 @@ function add_scripts() {
 	if(is_page('action-galerie')) {// using the slug here
 		wp_enqueue_script('fancybox', get_stylesheet_directory_uri() . '/js/fancybox/jquery.fancybox' . (IS_PRODUCTION ? '.min' : '') . '.js', array( 'jquery' ), '1.0', true);
 		wp_enqueue_script('fancybox-helper', get_stylesheet_directory_uri() . '/js/fancybox-helper.js', array( 'jquery' ), '1.0', true);
-		wp_enqueue_style('fancybox', get_stylesheet_directory_uri() . '/css/fancybox/jquery.fancybox.css');
-		wp_enqueue_style('fancy-metaslider', get_stylesheet_directory_uri() . '/css/fancy-metaslider.css');
+		wp_enqueue_style('fancybox', get_stylesheet_directory_uri() . '/css/fancybox/jquery.fancybox.css', wp_get_theme()->get('Version'));
+		wp_enqueue_style('fancy-metaslider', get_stylesheet_directory_uri() . '/css/fancy-metaslider.css', wp_get_theme()->get('Version'));
 	}
 }
 
@@ -374,7 +374,6 @@ add_action( 'wp_enqueue_scripts', 'remove_styles', 30 );
 function remove_styles() {
     wp_dequeue_style( 'pac-styles' );
     wp_dequeue_style( 'pac-layout-styles' );
-//    wp_dequeue_style( 'pwb-styles-frontend' );
 }
 
 // cleanup Banner and Description Hooks from PWB Plugin

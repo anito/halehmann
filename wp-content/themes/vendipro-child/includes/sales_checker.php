@@ -1,49 +1,45 @@
 <?php
-add_shortcode( 'my_sales','shortcode_handler_my_sales' );
+add_shortcode( 'my_sales','shortcode_check_sales_handler' );
 
-function shortcode_handler_my_sales($atts) {
+function shortcode_check_sales_handler($atts) {
 
 	$default_atts =[];
 	
 	$atts = shortcode_atts($atts, $default_atts );
-	$my_sales_id = $atts['cat_id'];
+	$sales_id = $atts['cat_id'];
 	
-	$del = delete_from_sales($my_sales_id);
-	$add = add_to_sales($my_sales_id);
-	
-	$ret = sales_checker_start($my_sales_id, $del, $add);
-	
-	return $ret;
+    return sales_checker_start($sales_id);
+    
 }
-
 ####### Fix Sales ########
 function fix_sales_handler_from_post($id) {
 	global $woocommerce;
     
-	if ( !empty($_POST["fix_all"]) ) {
-		foreach ($_POST as $collection) {
-            if (array_key_exists('product_id', $_POST) && !empty($collection['product_id']) && !empty($collection['my_sales_id'])) {
-				$product_id = $collection['product_id'];
-				$my_sales_id = $collection['my_sales_id'];
-				fix_cat($product_id, $my_sales_id);
+	if ( !empty($_POST["fix_all_sales"]) ) {
+		foreach ($_POST as $collection => $value)  {
+            if ( $collection == 'fix_cat' && !empty( $value['product_id'] ) && !empty($value['sales_id'] ) ) {
+				$product_id = $value['product_id'];
+                $sales_id = $value['sales_id'];
+                
+				fix_cat($product_id, $sales_id);
 			}
 		}
 	} else {
-		foreach ($_POST as $collection) {
-            if (array_key_exists('submit', $collection) && isset($collection['product_id']) && isset($collection['my_sales_id'])) {
-				$product_id = $collection['product_id'];
-                $my_sales_id = $collection['my_sales_id'];
+		foreach ($_POST as $collection => $value) {
+            if ( $collection == 'fix_cat' && !empty( $value['product_id'] ) && !empty( $value['sales_id'] ) ) {
+				$product_id = $value['product_id'];
+                $sales_id = $value['sales_id'];
                 
-				fix_cat($product_id, $my_sales_id);
+				fix_cat($product_id, $sales_id);
 			}
 		}
 	}
 }
-function delete_from_sales ($my_sales_id) {
+function delete_sales_output ($sales_id) {
 	
 	$args = array(
 		'taxonomy' => 'product_cat',
-		'include'    => $my_sales_id
+		'include'    => $sales_id
 	);
 
 	$product_category = get_terms( $args )[0];
@@ -59,41 +55,42 @@ function delete_from_sales ($my_sales_id) {
 	
 	$products = get_posts( $args );
 	
-	$results = array("html" => [], "products" => [], "errors" => 0);
-	
-	$html = "";
-	$error_count = 0;
+	$results = array("output" => [], "products" => [], "error_count" => 0);
+    
+    $html = '';
+    $error_count = 0;
 	foreach( $products as $product )  { 
 		$product = wc_get_product($product->ID);
 		
 		if($product->is_on_sale() === FALSE) {
 			
-			$html .= "<div class='error sales_error'>".
-			"<span class='title'>{$product->get_title()}</span>".
-			"<input type='submit' name='fix_cat_{$error_count}' value='entfernen' class='fixit'>".
-			"<input type='hidden' name='fix_cat_{$error_count}[product_id]' value='{$product->get_id()}'>".
-			"<input type='hidden' name='fix_cat_{$error_count}[my_sales_id]' value='{$my_sales_id}'>".
-			"<a href=" . get_permalink($product->get_id()) . " target='_blank'>anzeigen</a>".
-			"<a href='wp-admin/post.php?post={$product->get_id()}&action=edit' target='_blank'>editieren</a>".
-			"</div>";
+			set_query_var( 'product', $product );
+            set_query_var( 'sales_id', $sales_id );
+            set_query_var( 'button_title', 'remove' );
+            
+            ob_start();
+            get_template_part('custom-templates/custom', 'sales-checker-item');
+            $html .= ob_get_clean();
+
 			$error_count++;
 			$results["products"] = $product; 
-			$results["html"] = $html; 
+			$results["output"] = $html; 
 		}
-		$results["errors"] = $error_count;
+		$results["error_count"] = $error_count;
 	}
 	return $results;
 }
-function add_to_sales($my_sales_id) {
+
+function add_sales_output($sales_id) {
 	
 	$ids = wc_get_product_ids_on_sale();
 	
 	$error_count = 0;
 	
-	$results = array("html" => [], "products" => [], "all_product_ids" => [], "errors" => 0);
-	
+	$results = array("output" => [], "products" => [], "all_product_ids" => [], "error_count" => 0);
+    
+    $html = '';
 	$id_list = [];
-	$html = "";
 	foreach($ids as $id) {
 		$product = wc_get_product( $id );
 		$product_id = $id;
@@ -104,74 +101,43 @@ function add_to_sales($my_sales_id) {
 			$product = wc_get_product($product_id);
 		}
 		
-		$product_title = $product->get_title();
 		if(!in_array( $product_id, $id_list )) {
+
 			$id_list[] = $product_id;
-			$cat_ids = $product->get_category_ids();
-			if( !in_array($my_sales_id, $cat_ids) ) {
+            $cat_ids = $product->get_category_ids();
+            
+			if( !in_array($sales_id, $cat_ids) ) {
 //				build_output();
-				$html .= "<div class='error sales_missing'>".
-				"<span class='title'>{$product_title}</span>".
-				"<input type='submit' name='fix_cat_{$error_count}[submit]' value='hinzufügen' class='fixit'>".
-				"<input type='hidden' name='fix_cat_{$error_count}[product_id]' value='{$product_id}'>".
-				"<input type='hidden' name='fix_cat_{$error_count}[my_sales_id]' value='{$my_sales_id}'>".
-				"<a href=" . get_permalink($id) . " target='_blank'>anzeigen</a>".
-				"<a href='" . get_home_url() . "/wp-admin/post.php?post={$product_id}&action=edit' target='_blank'>editieren</a>".
-				"</div>";
+
+                set_query_var( 'product', $product );
+                set_query_var( 'sales_id', $sales_id );
+                set_query_var( 'button_title', 'add' );
+                
+                ob_start();
+                get_template_part('custom-templates/custom', 'sales-checker-item');
+                $html .= ob_get_clean();
+                
 				$error_count++;
 				$results["products"] = $product; 
 				
 			}
-			$results["html"] = $html;
+			$results["output"] = $html;
 			$results["all_product_ids"][] = $product_id;
 		}
-		$results["errors"] = $error_count;
-	}
-	return $results;
+		$results["error_count"] = $error_count;
+    }
+    
+    return $results;
 }
-function sales_checker_start($my_sales_id, $del, $add) {
-	
-	$args = array(
-		'taxonomy' => 'product_cat',
-		'include'    => $my_sales_id
-	);
 
-	$product_category = get_terms( $args )[0];
+function sales_checker_start($sales_id) {
+    
+    wp_enqueue_style('sales-checker', get_stylesheet_directory_uri() . '/css/sales-checker.css', wp_get_theme()->get('Version'));
+
+    set_query_var( 'sales_id', $sales_id );
+
+    ob_start();
+    get_template_part('custom-templates/custom', 'sales-checker');
+    return ob_get_clean();
 	
-	$my_sales_name = $product_category->name;
-	$my_sales_count = $product_category->count;
-	
-	$del_html = $del["html"];
-	$add_html = $add["html"];
-	
-	$all_products_count = count($add["all_product_ids"]);
-	
-	$error_count_del = $del["errors"];
-	$error_count_add = $add["errors"];
-	$error_count = $error_count_del + $error_count_add;
-	
-	$solution_1 = $solution_2 = '';
-	$hide_add = $hide_del = 'hide';
-	$f = $error_count > 0 ? "Upps" : "Alles Top";
-	if ($error_count_del > 0) {
-		$hide_del = '';
-		$solution_1 = "<div class='sales_header_top'><span class='header'>" . "folgende Artikel ({$error_count_del}) sind nicht reduziert und sollten aus <strong>{$my_sales_name}</strong> entfernt werden:</span></div>";
-	}
-	if ($error_count_add > 0) {
-		$hide_add = '';
-		$solution_2 = "<div class='sales_header_top'><span class='header'>" . "es fehlen {$error_count_add} reduzierte Artikel in der Kategorie <strong>{$my_sales_name}</strong> und sollten hinzufügt werden: </span></div>";
-	}
-	$open_1 = "<div class='open {$hide_del}'>";
-	$open_2 = "<div class='open {$hide_add}'>";
-	$close = "</div>";
-	$resume   = "<h3><div><span>{$f}  - {$error_count} Fehler entdeckt</span></div></h3>";
-	$summary_start = "<div class='sales_summary'><form method='post' action=''>";
-	$summary  = "<div class=''>";
-	$summary .= "<div><span>Anzahl reduzierter Artikel: {$all_products_count}</span></div>";
-	$summary .= "<div class='sales_top'><span>Artikel in der Kategorie <strong>{$my_sales_name}</strong>: {$my_sales_count}</span></div>";
-	if($error_count > 0) {
-		$summary .= "<div class='main_button'><input type='submit' name='fix_all' value='alles reparieren' class='fixit'></div>";
-	}
-	$summary_end = "</form>";
-	return $resume . $summary_start . $summary . $close . $open_1 . $solution_1 . $del_html . $close . $open_2 . $solution_2 . $add_html . $close . $summary_end . $close;
 }

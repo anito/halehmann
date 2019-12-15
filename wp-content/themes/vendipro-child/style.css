@@ -906,12 +906,10 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
     }
     .woocommerce .woocommerce-breadcrumb {
         font-size: 1.1em;
-        margin-bottom: 1.5em;
+        margin-bottom: 2em;
     }
     .summary p, .summary table, .summary input {
         font-size: 0.9rem;
-    }
-    .summary p {
     }
     .summary p.price {
         display: inline-block !important;
@@ -1608,6 +1606,9 @@ li.product .added_to_cart {
     border-top: 1px solid #4a4a4a;
     border-right: 1px solid #2f2e2e;
     border-bottom: 1px solid #2f2e2e;
+}
+.info-red.success {
+    border-left-color: green;
 }
 .page .entry-content > h2:not(.entry-title), .term-description > p:first-child, .tax-pwb-brand .term-description > h2, .term-description > h2, .term-description > pre + h2:nth-child(2), .term-description > .metaslider + h2:nth-child(2), .page-description > p:first-child, .page-description > h2:first-child, h2.entry-title + h3 {
     padding: 8px 10px !important;
@@ -2524,79 +2525,8 @@ table.shop_table td.product-thumbnail img {
     margin: 40px 0;
     float: inherit;
 }
-.woocommerce-3 .product .images {
-}
-.sales_summary {
-    
-}
-.sales_summary input {
-    margin: 20px;
-}
-.error {
-    width: 100%;
-    padding-top: 20px;
-}
-.error > span, .error > a {
-    display: inline-block;
-}
-.error > a {
-    font-size: 0.9em;
-    width: 10%;
-    text-align: right;
-    vertical-align: top;
-}
-.error > span.title {
-    width: 50%;
-}
-.error form {
-    display: inline;
-}
-.error input.fixit {
-    font-size: 0.8em;
-    width: 20%;
-    margin: 0 0 0 43px;
-}
-.error.sales_error .title {
-    color: rgb(255, 61, 62);
-}
-
-.error.sales_missing .title {
-    color: #49ce2b;
-}
-.sales_summary hr {
-    margin: 10px 0 22px;
-}
-.sales_summary .top {
-    font-size: 1.0em;
-    /* text-transform: uppercase; */
-    font-weight: 600;
-    display: inline-table;
-    width: 100%;
-    margin-bottom: 24px;
-}
-.sales_summary .open {
-    padding: 20px;
-    border: 1px rgba(221, 221, 221, 0.4) solid;
-    margin: 10px 0;
-    border-radius: 10px;
-    position: relative;
-    overflow: hidden;
-}
-.sales_header_top {
-    width: 100%;
-    line-height: 3em;
-    background: #424141;
-    margin: 0px 0 0 -20px;
-    position: absolute;
-    top: 0;
-    display: inline-block;
-    padding: 10px 10px 0 15px;
-}
 .open div:nth-child(2) {
     margin-top: 20px;
-}
-.sales_summary .main_button input {
-    padding: 20px;
 }
 .mc4wp-form input[type="email"], .boxzilla .mc4wp-form input[type="submit"] {
     margin-bottom: 10px !important;

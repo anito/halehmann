@@ -1,5 +1,5 @@
 <?php
-require_once( __DIR__ . '/includes/my_cat_handler.php');
+require_once( __DIR__ . '/includes/product_cat_handler.php');
 require_once( __DIR__ . '/includes/sender_email.php');
 
 add_theme_support( 'html5', array( 'gallery' ) );
@@ -48,7 +48,6 @@ function add_scripts() {
         // hand over the userID to the analytics script
         wp_localize_script('google-analytics', 'atts', array('user_id' => $user_id, 'ga_id' => GA_ID ));
 	}
-	
 	
 	/*
 	*  Fonts & Payment Styles
@@ -188,9 +187,6 @@ function archive_term_image() {
 
 add_action( 'init', 'child_remove_parent_function' );
 add_action('wp_print_scripts', 'add_scripts');
-
-//add_filter('woocommerce_related_products_args','wc_remove_related_products', 10);
-//add_filter( 'woocommerce_is_attribute_in_product_name', function () { return false; } );#show meta for product like Größe XXL
 
 add_filter( 'woocommerce_output_related_products_args', 'woo_related_products_limit' );
 add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 20;' ), 999 );
