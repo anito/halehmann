@@ -285,6 +285,10 @@ blockquote > p {
 }
 .MagicToolboxContainer {
     flex-flow: row wrap;
+    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+    align-content: stretch;
 }
 
 .MagicToolboxContainer .magic-slide {flex: 1 1 auto;}
