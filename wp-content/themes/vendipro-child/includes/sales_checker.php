@@ -1,23 +1,11 @@
 <?php
-add_shortcode( 'my_sales','shortcode_check_sales_handler' );
 
-function shortcode_check_sales_handler($atts) {
-
-	$default_atts =[];
-	
-	$atts = shortcode_atts($atts, $default_atts );
-	$sales_id = $atts['cat_id'];
-	
-    return sales_checker_start($sales_id);
-    
-}
 ####### Fix Sales ########
 function fix_sales_handler_from_post($id) {
-	global $woocommerce;
     
 	if ( !empty($_POST["fix_all_sales"]) ) {
 		foreach ($_POST as $collection => $value)  {
-            if ( $collection == 'fix_cat' && !empty( $value['product_id'] ) && !empty($value['sales_id'] ) ) {
+            if ( !empty( $value['product_id'] ) && !empty($value['sales_id'] ) ) {
 				$product_id = $value['product_id'];
                 $sales_id = $value['sales_id'];
                 
@@ -25,15 +13,30 @@ function fix_sales_handler_from_post($id) {
 			}
 		}
 	} else {
-		foreach ($_POST as $collection => $value) {
-            if ( $collection == 'fix_cat' && !empty( $value['product_id'] ) && !empty( $value['sales_id'] ) ) {
-				$product_id = $value['product_id'];
-                $sales_id = $value['sales_id'];
+		foreach ($_POST as $collection) {
+            if ( array_key_exists('submit', $collection) && !empty( $collection['product_id'] ) && !empty( $collection['sales_id'] ) ) {
+                $product_id = $collection['product_id'];
+                $sales_id = $collection['sales_id'];
                 
-				fix_cat($product_id, $sales_id);
-			}
+                fix_cat($product_id, $sales_id);
+            }
 		}
-	}
+    }
+}
+function add_shortcode_sales_checker() {
+    
+    add_shortcode( 'my_sales','shortcode_check_sales_handler' );
+    
+}
+function shortcode_check_sales_handler($atts) {
+
+    $default_atts =[];
+    
+    $atts = shortcode_atts($atts, $default_atts );
+    $sales_id = $atts['cat_id'];
+    
+    return sales_checker_start($sales_id);
+    
 }
 function delete_sales_output ($sales_id) {
 	
@@ -55,7 +58,7 @@ function delete_sales_output ($sales_id) {
 	
 	$products = get_posts( $args );
 	
-	$results = array("output" => [], "products" => [], "error_count" => 0);
+	$results = array("output" => [], "error_count" => 0);
     
     $html = '';
     $error_count = 0;
@@ -73,7 +76,6 @@ function delete_sales_output ($sales_id) {
             $html .= ob_get_clean();
 
 			$error_count++;
-			$results["products"] = $product; 
 			$results["output"] = $html; 
 		}
 		$results["error_count"] = $error_count;
@@ -87,10 +89,9 @@ function add_sales_output($sales_id) {
 	
 	$error_count = 0;
 	
-	$results = array("output" => [], "products" => [], "all_product_ids" => [], "error_count" => 0);
+	$results = array("output" => [], "product_ids" => [], "error_count" => 0);
     
     $html = '';
-	$id_list = [];
 	foreach($ids as $id) {
 		$product = wc_get_product( $id );
 		$product_id = $id;
@@ -101,9 +102,8 @@ function add_sales_output($sales_id) {
 			$product = wc_get_product($product_id);
 		}
 		
-		if(!in_array( $product_id, $id_list )) {
+		if(!in_array( $product_id, $results["product_ids"] )) {
 
-			$id_list[] = $product_id;
             $cat_ids = $product->get_category_ids();
             
 			if( !in_array($sales_id, $cat_ids) ) {
@@ -118,11 +118,10 @@ function add_sales_output($sales_id) {
                 $html .= ob_get_clean();
                 
 				$error_count++;
-				$results["products"] = $product; 
 				
 			}
 			$results["output"] = $html;
-			$results["all_product_ids"][] = $product_id;
+			$results["product_ids"][] = $product_id;
 		}
 		$results["error_count"] = $error_count;
     }

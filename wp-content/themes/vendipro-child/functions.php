@@ -11,7 +11,8 @@ function load_includes() {
 	$is_sales_checker = !empty( get_post_meta($post->ID, 'sales_checker' ));
 	if($is_sales_checker) {
 		require_once( __DIR__ . '/includes/sales_checker.php');
-		add_action( 'shutdown', 'fix_sales_handler_from_post', 10 );
+		add_action( 'the_post', 'fix_sales_handler_from_post', 10 );
+		add_action( 'the_post', 'add_shortcode_sales_checker', 20 );
 	}
 }
 
@@ -136,7 +137,7 @@ function on_save_post($post_id , $post, $is_update){
 		$product = wc_get_product($product_id);
 	}
 	if( defined( 'SALES_CAT_ID' ) ) {
-		fix_cat($product_id, SALES_CAT_ID);
+		// fix_cat($product_id, SALES_CAT_ID);
 	}
 	
 }
