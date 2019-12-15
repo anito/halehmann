@@ -21,7 +21,7 @@ $add_output = $add["output"];
 $error_count = $del["error_count"] + $add["error_count"];
 
 ?>
-<h3 class="info-red m">
+<h3 class="info-red m <?php echo $error_count == 0 ? "success" : "" ?>">
     <div>
         <span>
             <?php ( $res = ( $error_count > 0 ? "Upps" : "Alles Top" ) );
