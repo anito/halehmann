@@ -2,6 +2,37 @@
 require_once( __DIR__ . '/includes/product_cat_handler.php');
 require_once( __DIR__ . '/includes/sender_email.php');
 
+/**
+ * WPTouch Add Extra Menu
+ * --------------------------
+ *
+ * 
+ *
+ */
+add_action( 'init', 'mobilestore_register_custom_nav_menus');
+function mobilestore_register_custom_nav_menus() {
+	register_nav_menus(
+		array(
+			'mobilestore-product-categories' => __( 'WPtouch Pro : MobileStore Product Categories Menu', 'wptouch-pro' ),
+			'mobilestore-navigation' => __( 'WPtouch Pro X: MobileStore Navigation Menu', 'wptouch-pro' )
+		)
+	);
+}
+add_action( 'init', 'mobilestore_register_custom_menus');
+function mobilestore_register_custom_menus() {
+	
+	wptouch_register_theme_menu(
+		array(
+			'name'            => 'navigation_menu',
+			'friendly_name'   => __( 'Alternate Navigation Menu', 'wptouch-pro' ),
+			'settings_domain' => MOBILESTORE_SETTING_DOMAIN,
+			'description'     => __( 'Choose a menu', 'wptouch-pro' ),
+			'tooltip'         => __( 'Off-Canvas left bottom menu', 'wptouch-pro' ),
+			'can_be_disabled' => false,
+		)
+	);
+
+}
 
 // load post_meta dependend scripts
 add_action( 'the_post', 'load_includes' );
