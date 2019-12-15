@@ -335,6 +335,9 @@ h1:not(.product_title)  {
     font-size: 80%;
     float: none; 
 }
+.woocommerce div.product div.images .woocommerce-product-gallery__image--placeholder {
+    display: none;
+}
 #order_review .shop_table td.product-name dl.variation {
     padding-left: 0;
 }
