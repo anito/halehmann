@@ -236,6 +236,9 @@ p.pee {
 .wp-block-columns.no-col-delimiter .wp-block-column:not(:first-child) {
     border-left: 0 none;
 }
+.same-margin-top-bottom {
+    margin: 25px 0;
+}
 .wp-block-group .frontpage-news ul {
     
 }
