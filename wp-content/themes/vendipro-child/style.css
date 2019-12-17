@@ -191,9 +191,12 @@ a, a:hover, a:visited, a:focus {
     padding: 3%;
 }
 .nopadding {
-    padding: 0;
+    padding: 0 !important;
     line-height: 0;
     margin: 0;
+}
+.overflow-hidden {
+    overflow: hidden;
 }
 .pee {
     padding: 15px 30px 0;
@@ -216,7 +219,7 @@ p.pee {
     font-size: 1.3em;
 }
 .wp-block-group .frontpage-news {
-    background: #8c8c8c;
+    background: #fffced;
     color: #1f1f1f;
     border-radius:5px;
     /* background: repeating-linear-gradient(
@@ -226,6 +229,9 @@ p.pee {
         #9a964a 30px,
         #9a964a 60px
     ) */
+}
+.wp-block-columns.no-col-delimiter .wp-block-column:not(:first-child) {
+    border-left: 0 none;
 }
 .wp-block-group .frontpage-news ul {
     
@@ -455,7 +461,7 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         /*background: #373737;*/ 
     }
     #nav-wrapper {
-        padding: 20px 0;
+        padding: 0 0 20px;
     }
     ul li.product {
         background: #FFFFFF;
