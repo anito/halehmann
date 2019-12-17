@@ -195,6 +195,9 @@ a, a:hover, a:visited, a:focus {
     line-height: 0;
     margin: 0;
 }
+.one-pixel-porder {
+    border: 1px #7b7a76 solid;
+}
 .overflow-hidden {
     overflow: hidden;
 }
