@@ -6,7 +6,7 @@
  Author URI: http://vendidero.de
  Template: vendipro
  wc_gzd_compatible: true
- Version: 1.2.4
+ Version: 1.2.5
 */
 
 /* =Theme customization starts here
@@ -286,7 +286,7 @@ blockquote > p {
 .MagicToolboxContainer {
     flex-flow: row wrap;
     align-items: flex-start;
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     align-content: stretch;
 }
