@@ -20,6 +20,9 @@ body {
 .nomargin {
     margin: 0 !important;
 }
+.margin-bottom-mobile {
+    margin-bottom: 25px;
+}
 related.products {
     display: inherit;
 }
