@@ -2,38 +2,6 @@
 require_once( __DIR__ . '/includes/product_cat_handler.php');
 require_once( __DIR__ . '/includes/sender_email.php');
 
-/**
- * WPTouch Add Extra Menu
- * --------------------------
- *
- * 
- *
- */
-add_action( 'init', 'mobilestore_register_custom_nav_menus');
-function mobilestore_register_custom_nav_menus() {
-	register_nav_menus(
-		array(
-			'mobilestore-product-categories' => __( 'WPtouch Pro : MobileStore Product Categories Menu', 'wptouch-pro' ),
-			'mobilestore-navigation' => __( 'WPtouch Pro X: MobileStore Navigation Menu', 'wptouch-pro' )
-		)
-	);
-}
-add_action( 'init', 'mobilestore_register_custom_menus');
-function mobilestore_register_custom_menus() {
-	
-	wptouch_register_theme_menu(
-		array(
-			'name'            => 'navigation_menu',
-			'friendly_name'   => __( 'Alternate Navigation Menu', 'wptouch-pro' ),
-			'settings_domain' => MOBILESTORE_SETTING_DOMAIN,
-			'description'     => __( 'Choose a menu', 'wptouch-pro' ),
-			'tooltip'         => __( 'Off-Canvas left bottom menu', 'wptouch-pro' ),
-			'can_be_disabled' => false,
-		)
-	);
-
-}
-
 // load post_meta dependend scripts
 add_action( 'the_post', 'load_includes' );
 function load_includes() {
@@ -411,23 +379,26 @@ function remove_styles() {
 // cleanup Banner and Description Hooks from PWB Plugin
 add_action('woocommerce_archive_description', 'override_pwb_brand_banner_and_description' );
 function override_pwb_brand_banner_and_description() {
-	$instance = \Perfect_Woocommerce_Brands\Perfect_Woocommerce_Brands::this();
-	
-	// remove banner and description from shop_loop
-	remove_action( 'woocommerce_after_main_content', array( $instance, 'print_brand_banner_and_desc' ), 9);
-	remove_action( 'woocommerce_after_main_content', array( $instance, 'print_brand_desc' ), 9 );
-	
-	remove_action( 'woocommerce_archive_description', array( $instance, 'print_brand_banner_and_desc' ), 15);
-	remove_action( 'woocommerce_archive_description', array( $instance, 'print_brand_banner' ), 15 );
-	remove_action( 'woocommerce_archive_description', array( $instance, 'print_brand_desc' ), 15 );
-	
+	if( is_plugin_active( 'perfect-woocommerce-brands/main.php') ) {
+		$instance = \Perfect_Woocommerce_Brands\Perfect_Woocommerce_Brands::this();
+
+		// remove banner and description from shop_loop
+		remove_action( 'woocommerce_after_main_content', array( $instance, 'print_brand_banner_and_desc' ), 9);
+		remove_action( 'woocommerce_after_main_content', array( $instance, 'print_brand_desc' ), 9 );
+
+		remove_action( 'woocommerce_archive_description', array( $instance, 'print_brand_banner_and_desc' ), 15);
+		remove_action( 'woocommerce_archive_description', array( $instance, 'print_brand_banner' ), 15 );
+		remove_action( 'woocommerce_archive_description', array( $instance, 'print_brand_desc' ), 15 );
+	}
 }
 
 // add banner to main_content
 add_action( 'woocommerce_before_main_content', 'add_perfect_brand_banner' );
 function add_perfect_brand_banner() {
-	$instance = \Perfect_Woocommerce_Brands\Perfect_Woocommerce_Brands::this();
-	add_action( 'woocommerce_before_main_content', array( $instance, 'print_brand_banner_and_desc'), 20 );
+	if( is_plugin_active( 'perfect-woocommerce-brands/main.php') ) {
+		$instance = \Perfect_Woocommerce_Brands\Perfect_Woocommerce_Brands::this();
+		add_action( 'woocommerce_before_main_content', array( $instance, 'print_brand_banner_and_desc'), 20 );
+	}
 }
 
 // add description, result count and button before main content

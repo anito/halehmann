@@ -65,9 +65,4 @@ class SpineApp_Public {
 		require_once(SPINEAPP_PLUGIN_DIR . 'class-help.php');
 	}
 
-	private static function test() {
-
-	}
-	
-
 }

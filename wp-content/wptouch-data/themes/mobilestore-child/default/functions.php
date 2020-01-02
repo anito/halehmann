@@ -4,21 +4,6 @@ require_once( __DIR__ . '/includes/sender_email.php');
 
 add_theme_support( 'html5', array( 'gallery' ) );
 
-add_action( 'foundation_init', 'mobilestore_register_custom_menus');
-function mobilestore_register_custom_menus() {
-	
-	wptouch_register_theme_menu(
-		array(
-			'name'            => 'navigation_menu',
-			'friendly_name'   => __( 'Alternate Navigation Menu', 'wptouch-pro' ),
-			'settings_domain' => MOBILESTORE_SETTING_DOMAIN,
-			'description'     => __( 'Choose a menu', 'wptouch-pro' ),
-			'tooltip'         => __( 'Off-Canvas left bottom menu', 'wptouch-pro' ),
-			'can_be_disabled' => false,
-		)
-	);
-
-}
 /**
  * WooCommerce Extra Feature Related Products
  * --------------------------
@@ -46,12 +31,6 @@ function woo_related_products_limit() {
 
 function wc_remove_related_products( $args ) {
 	return array();
-}
-
-add_filter( 'wptouch_menu_slugs_to_show', 'my_menu_slugs' );
-function my_menu_slugs($menu_slug) {
-	write_log($menu_slug);
-	return array('navigation_menu');
 }
 
 // Function to add custom javascript
