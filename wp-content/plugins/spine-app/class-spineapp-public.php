@@ -26,9 +26,9 @@ class SpineApp_Public {
 			self::$instance->includes();
 
 			if (is_admin() || get_site_option('spinejs_active')) {
-				self::$instance->spine_js = new spinejs_admin();
+				self::$instance->spine_js_admin = new spinejs_admin();
 				self::$instance->spine_js_help = new spine_js_help();
-
+				
 				$spine_js_help = self::$instance->spine_js_help;
 			}
 
@@ -44,7 +44,7 @@ class SpineApp_Public {
 		*/
 	private function hooks() {
 		if (is_admin()) {
-			add_action('plugins_loaded', array(self::$instance->spine_js, 'init'), 10);
+			add_action('plugins_loaded', array(self::$instance->spine_js_admin, 'init'), 10);
 		}
 	}
 	
@@ -63,6 +63,7 @@ class SpineApp_Public {
 	private function includes() {
 		require_once(SPINEAPP_PLUGIN_DIR . 'class-admin.php');
 		require_once(SPINEAPP_PLUGIN_DIR . 'class-help.php');
+		require_once(SPINEAPP_PLUGIN_DIR . 'class-wptouch-helper.php');
 	}
 
 }
