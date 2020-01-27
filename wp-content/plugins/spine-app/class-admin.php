@@ -1,32 +1,23 @@
 <?php
 defined('ABSPATH') or die("you do not have access to this page!");
 
-class spinejs_admin {
+class Spine_js_admin {
 
     private static $_this;
 
     public $default_tab = 'db_backup';
-    public $test = FALSE;
-    public $debug = FALSE;
-    public $show_db_notice = FALSE;
-    public $db_notice_id = 'spine_js_db_backup';
-
+    // public $default_tab = 'wpt_custom_menu';
     public $capability = 'activate_plugins';
     public $plugin_filename = "spine-app.php";
-
-    public $user = ['username' => '', 'password' => ''];
-    public $backup_domain = '';
-    public $debug_log;
+    public $plugin_slug = "spine_js";
 
     function __construct() {
         
         if (isset(self::$_this))
-            wp_die(sprintf(__('%s is a singleton class and you cannot create a second instance.', 'spine-js'), get_class($this)));
+            return self::$_this;
+            // wp_die(sprintf(__('%s is a singleton class and you cannot create a second instance.', 'spine-js'), get_class($this)));
 
         self::$_this = $this;
-
-        $this->get_options();
-        $this->get_admin_options();
 
         register_deactivation_hook(dirname(__FILE__) . "/" . $this->plugin_filename, array($this, 'deactivate'));
 
@@ -55,45 +46,60 @@ class spinejs_admin {
     }
 
     public function init() {
-
-        $is_on_settings_page = $this->is_settings_page();
-
-        //add the settings page for the plugin
-        add_action( "admin_notices", array($this, 'show_db_backup_notice'), 10 );
-        add_action( "db_backup_notice", array($this, 'db_backup_notice'), 10 );
-
-        add_filter( 'body_class', array ( $this, 'body_class' ) );
-        add_action( 'admin_enqueue_scripts', array ( $this, 'enqueue_assets' ) );
-        add_action( 'admin_init', array($this, 'load_translation'), 20 );
+        $opts = get_option('spine_js_settings_db');
         
-        //settings page, form  and settings link in the plugins page
-        add_action( 'admin_menu', array($this, 'add_settings_page'), 40 );
-        add_action( 'admin_init', array($this, 'create_form'), 40 );
-        add_action( 'admin_init', array($this, 'listen_for_deactivation'), 40 );
-
-        add_action( 'admin_footer', array ( $this, 'init_spine_js' ), 999) ;
+        $this->db = new Db_spine_js();
+        if( $opts['show_db_notice'] ) {
+            add_action( 'admin_enqueue_scripts', array ( $this->db, 'enqueue_assets' ), 10 );
+            add_action( "admin_notices", array($this->db, 'show_db_backup_notice'), 10 );
+            add_action( "db_backup_notice", array($this->db, 'db_backup_notice'), 10 );
+            add_action( 'admin_footer', array ( $this->db, 'init_spine_js' ), 999) ;
+        }
 
     }
 
+    public function edit() {
+        
+        $tab =  $this->get_tab();
+        switch($tab) {
+            case 'db_backup':
+                
+                add_action( 'admin_init', array($this->db, 'register_setting'), 10 );
+                add_action( 'admin_init', array($this->db, 'create_form'), 20 );
+
+            break;
+            
+            case 'wpt_custom_menu':
+
+                if( ! isset ( $this->$wpt ) ) $this->wpt = new Wpt_spine_js();
+                add_action( 'admin_init', array($this->wpt, 'register_setting'), 10 );
+                add_action( 'admin_init', array($this->wpt, 'create_form'), 20 );
+            break;
+
+            case 'woo_action_taxonomy':
+                include dirname( __FILE__ ) . '/classes/class-woo.php';
+                $woo = new Woo_spine_js();
+
+                add_action( 'admin_init', array($woo, 'register_setting'), 10 );
+                add_action( 'admin_init', array($woo, 'create_form'), 20 );
+            break;
+        }        
+
+    }
+
+    public function hooks() {
+        add_action( 'admin_menu', array($this, 'add_settings_page'), 0 );
+        add_action( 'admin_init', array($this, 'load_translation'), 20 );
+        add_filter( 'body_class', array ( $this, 'body_class' ) );
+        add_action( 'admin_init', array($this, 'listen_for_deactivation'), 40 );
+        add_action( 'admin_init', array($this, 'add_styles'), 999 );
+        
+    }
     public function get_options() {
         //
     }
     public function get_admin_options() {
-
-        $options = get_option('spine_js_options');
-        if (isset($options)) {
-            $this->test = isset($options['test']) ? $options['test'] : FALSE;
-            $this->debug = isset($options['debug']) ? $options['debug'] : FALSE;
-            $this->debug_log = isset($options['debug_log']) ? $options['debug_log'] : $this->debug_log;
-        }
-        $options = get_option('spine_js_db_options');
-        if (isset($options)) {
-            $this->user['username'] = isset($options['user']['username']) ? $options['user']['username'] : $this->user['username'];
-            $this->user['password'] = isset($options['user']['password']) ? $options['user']['password'] : $this->user['password'];
-            $this->show_db_notice = isset($options['show_db_notice']) ? $options['show_db_notice'] : FALSE;
-            $this->backup_domain = isset($options['backup_domain']) ? $options['backup_domain'] : $this->backup_domain;
-        }
-        
+        //        
     }
 
     /**
@@ -105,7 +111,6 @@ class spinejs_admin {
      *
      */
     public function add_settings_page() {
-
         if (!current_user_can($this->capability)) return;
 
         global $spine_js_admin_page;
@@ -114,28 +119,9 @@ class spinejs_admin {
             __("Lehmann GmbH", "spine-app"), //page title
             $this->capability, //capability
             'spine_js', //url
-            array($this, 'settings_page')); //function
-    }
-
-    public function show_db_backup_notice() {
-        //prevent showing the review on edit screen, as gutenberg removes the class which makes it editable.
-        $screen = get_current_screen();
-        if ( $screen->parent_base === 'edit' ) return;
-
-        if (!current_user_can($this->capability)) return;
-
-        do_action('db_backup_notice');
-
-    }
-
-    public function db_backup_notice() {
-        if ($this->show_db_notice) {
-
-            $notices[$this->db_notice_id] = array(
-                'class' => 'notice notice-info backup-info',
-            );
-            require_once(SPINEAPP_PLUGIN_DIR . 'templates/notice.php');
-        }
+            array($this, 'settings_page'), // function to output
+            0
+        ); //function
     }
 
     /*		
@@ -143,65 +129,6 @@ class spinejs_admin {
     */
     public function body_class( $classes ) {
         return $classes;
-    }
-    
-    /*
-    * Enqueue styles and scripts
-    * @since 2.0.0
-    */
-    public function enqueue_assets() {
-        wp_deregister_script('jquery');
-        
-        wp_enqueue_style('spine-app-styles', SPINEAPP_PLUGIN_URL . 'assets/spine/public/application.css', false, SPINEAPP_VERSION);
-        wp_enqueue_script ( 'jquery', SPINEAPP_PLUGIN_URL . 'assets/spine/public/application.js', false, SPINEAPP_VERSION, true );
-
-        /*
-        * Twitter Bootstrap
-        */
-        wp_register_script('bootstrap', SPINEAPP_PLUGIN_URL . 'assets/spine/node_modules/bootstrap/dist/js/bootstrap.js', array('jquery'), false, true);
-        // wp_enqueue_script('bootstrap'); // or load via hem library
-
-        wp_register_style('spine-js-css', SPINEAPP_PLUGIN_URL . 'assets/css/main.css', false, SPINEAPP_VERSION);
-        wp_enqueue_style('spine-js-css');
-        
-    }
-    
-    /*		
-    * Add SpineJS App	
-    * @since 2.0.0		
-    */
-    public function init_spine_js() {
-        echo '<!-- #spine-app -->';
-        $options = get_option('spine_js_db_options');
-        ?>
-        <script id="spine-app" type="text/javascript">
-
-            (function ($, exports) {
-                'use strict';
-
-                exports.base_url = '<?= $options['backup_domain']; ?>';
-
-                var initApp = function() {
-                    var App = require("index");
-                    exports.app = new App({
-                        el: "#<?= $this->db_notice_id ?>",
-                        savingProgressEl: $("#opt-db-saving"),
-                        isProduction:<?= (IS_PRODUCTION) ? 'true': 'false'; ?>,
-                        isAdmin:<?= (current_user_can('edit_pages')) ? 'true': 'false'; ?>,
-                        'user': <?= json_encode($options['user']) ?>,
-                        'url': "<?= $options['backup_domain'] ?>"
-                    });
-                }
-
-                if(!$('#modal-view').length) {
-                    $('body').append('<div tabindex="0" id="modal-view" class="modal fade"><div class="modal-dialog modal-lg" role="document">initially needed by Modal</div></div>');
-                }
-                initApp();
-            })(jQuery, this)
-
-        </script>
-
-        <?php
     }
 
     /**
@@ -226,21 +153,16 @@ class spinejs_admin {
     }
 
     /**
-     * Check to see if we are on the settings page, action hook independent
+     * Get the current Tab
      *
      * @since  2.1
      *
      * @access public
      *
      */
-    public function is_settings_page() {
-        if (!isset($_SERVER['QUERY_STRING'])) return false;
-
-        parse_str($_SERVER['QUERY_STRING'], $params);
-        if (array_key_exists("page", $params) && ($params["page"] == "spine_js")) {
-            return true;
-        }
-        return false;
+    public function get_tab() {
+        if (isset ($_POST['tab'])) $tab = $_POST['tab']; else if (isset ($_GET['tab'])) $tab = $_GET['tab']; else $tab = $this->default_tab;
+        return $tab;
     }
 
     /**
@@ -255,120 +177,53 @@ class spinejs_admin {
 
         if (!current_user_can($this->capability)) return;
 
-        if (isset ($_GET['tab'])) $this->admin_tabs($_GET['tab']); else $this->admin_tabs($this->default_tab);
-        if (isset ($_GET['tab'])) $tab = $_GET['tab']; else $tab = $this->default_tab;
+        if (isset ($_GET['tab'])) $this->admin_tabs($_GET['tab']); else $this->admin_tabs($this->default_tab); // print tabs
+        $tab = $this->get_tab();
 
         ?>
         <div class="spine-js-container">
-            <div class="spine-js-main"><?php
-
+            <div class="spine-js-main">
+                <form action="options.php" method="post">
+            <?php
                 switch ($tab) {
-                    case 'configuration' :
-                        /*
-                        *   First tab, configuration
-                        */
-                        ?>
-                        <h2><?php echo __("Setup", "spine-app"); ?></h2>
-                        <table class="spine-js-table">
-
-                            <?php if (1) { ?>
-                                <tr>
-                                    <td><?php echo $this->test ? $this->img("success") : $this->img("error"); ?></td>
-                                    <td><?php
-                                        if ($this->test) {
-                                            __("Test is enabled on your site.", "spine-app") . "&nbsp;";
-                                        } else {
-                                            __("Test is not enabled yet", "spine-app") . "&nbsp;";
-                                            $this->show_enable_test_button();
-                                        }
-                                        ?>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                            <?php } ?>
-
-                            <?php if (1) { ?>
-                                <tr>
-                                    <td><?php echo $this->test ? $this->img("success") : $this->img("error"); ?></td>
-                                    <td><?php
-                                        if ($this->test) {
-                                            __("Test is enabled on your site.", "spine-app") . "&nbsp;";
-                                        } else {
-                                            __("Test is not enabled yet", "spine-app") . "&nbsp;";
-                                            $this->show_enable_test_button();
-                                        }
-                                        ?>
-                                    </td>
-                                    <td></td>
-                                </tr>
-
-                            <?php } ?>
-
-                        </table>
-                        <?php do_action("spine_js_configuration_page"); ?>
-                        <?php
-                        break;
-
+                    
                     case 'db_backup' :
-                        /*
-                        *   Second tab, DB Backup
-                        */
-                        ?>
-                        <form action="options.php" method="post">
-                            <?php
-                            settings_fields('spine_js_db_options');
-                            do_settings_sections('spine_js');
-                            ?>
-                            <input class="button button-primary" name="Submit" type="submit"
-                                   value="<?php echo __("Save", "spine-app"); ?>"/>
-                        </form>
-                        <?php
-                        break;
-
-                    case 'debug' :
-                        /*
-                        *   third tab: debug
-                        */
+                        settings_fields('spine_js_settings_db'); // matches option group
+                        do_settings_sections('spine_js'); // prints form fields
+                    break;
+                    
+                    case 'wpt_custom_menu' :
+                        settings_fields('spine_js_settings_wpt'); // matches option group
+                        do_settings_sections('spine_js'); // prints form fields
                         ?>
                         <div>
                             <?php
-                            if ($this->debug) {
-                                echo "<h2>" . __("Log for debugging purposes", "spine-app") . "</h2>";
-                                echo "<p>" . __("Send me a copy of these lines if you have any issues. The log will be erased when debug is set to false", "spine-app") . "</p>";
-                                echo "<div class='debug-log'>";
-                                if (defined('RSSSL_SAFE_MODE') && RSSSL_SAFE_MODE) echo "SAFE MODE<br>";
-                                echo "Options:<br>";
-                                if (1) echo "* htaccess redirect<br>";
-                                if (1) echo "* WordPress redirect<br>";
-                                if (1) echo "* Mixed content fixer<br>";
-
-                                echo "SERVER: " . SPINEJS()->test() . "<br>";
-                                if (is_multisite()) {
-                                    echo "MULTISITE<br>";
-                                    echo (!RSSSL()->rsssl_multisite->ssl_enabled_networkwide) ? "SSL is being activated per site<br>" : "SSL is activated network wide<br>";
-                                }
-
-                                echo ($this->ssl_enabled) ? "SSL is enabled for this site<br>" : "SSL is not yet enabled for this site<br>";
-                                echo $this->debug_log;
-                                echo "</div>";
-                                //$this->debug_log.="<br><b>-----------------------</b>";
-                                $this->debug_log = "";
-                                $this->save_options();
-                            } else {
-                                echo "<br>";
-                                __("To view results here, enable the debug option in the settings tab.", "spine-app");
-                            }
-
-                            ?>
+                                // $this->save_options();
+                                ?>
                         </div>
                         <?php
-                        break;
+                    break;
+                    
+                    case 'action-products' :
+                        write_log(sprintf('2. setting fields for: %s', $tab));
+                        settings_fields('spine_js_settings_woo'); // matches option group
+                        do_settings_sections('spine_js'); // prints form fields
+                        ?>
+                        <div>
+                            <h2><?php echo __("Setup", "spine-app"); ?></h2>
+                        </div>
+                        <?php
+                    break;
+                    
                 }
                 //possibility to hook into the tabs.
                 do_action("show_tab_{$tab}");
                 ?>
-            </div><!-- end main-->
-            <?php
+                    <input class="button button-primary" name="Submit" type="submit" value="<?php echo __("Save", "spine-app"); ?>"/>
+                </form>
+            </div><!-- end spine-js-main-->
+        </div><!-- end spine-js-main-->
+        <?php
 
     }
 
@@ -380,121 +235,23 @@ class spinejs_admin {
      * @access public
      *
      */
-    public function admin_tabs($current = 'homepage') {
+    public function admin_tabs($current) {
         $tabs = array(
-            $this->default_tab => __("DB Backup Tool", "spine-app"),
-            // 'configuration' => __("Configuration", "spine-app"),
-            // 'debug' => __("Debug", "spine-app")
+            'db_backup'           => __("DB Backup Tool", "spine-app"),
+            'wpt_custom_menu'     => __("WP Touch", "spine-app"),
+            'woo_action_taxonomy' => __("Action Products", "spine-app")
         );
 
         $tabs = apply_filters("spine_js_tabs", $tabs);
 
         echo '<h2 class="nav-tab-wrapper">';
 
+        $page = $this->plugin_slug;
         foreach ($tabs as $tab => $name) {
             $class = ($tab == $current) ? ' nav-tab-active' : '';
-            echo "<a class='nav-tab$class' href='?page=spine_js&tab=$tab'>$name</a>";
+            echo "<a class='nav-tab$class' href='?page=$page&tab=$tab'>$name</a>";
         }
         echo '</h2>';
-    }
-
-    /**
-     * Create the settings page form
-     *
-     * @since  2.0
-     *
-     * @access public
-     *
-     */
-    public function create_form() {
-        register_setting('spine_js_db_options', 'spine_js_db_options', array($this, 'options_validate'));
-
-        add_settings_section('spine_js_settings', __("Settings", "spine-app"), array($this, 'section_text'), 'spine_js');
-
-        add_settings_field('id_backup_domain', __("Backup Domain", "spine-app"), array($this, 'get_backup_domain'), 'spine_js', 'spine_js_settings');
-        add_settings_field('id_username', __("Username", "spine-app"), array($this, 'get_option_username'), 'spine_js', 'spine_js_settings');
-        add_settings_field('id_password', __("Password", "spine-app"), array($this, 'get_option_password'), 'spine_js', 'spine_js_settings');
-        add_settings_field('id_show_db_notice', __("Show DB Notice", "spine-app"), array($this, 'get_option_show_db_notice'), 'spine_js', 'spine_js_settings');
-    }
-
-    /**
-     * @since 2.3
-     * Returns button to enable Test.
-     */
-    public function show_enable_test_button() {
-        if ($this->test) {
-            ?>
-            <p>
-                <div class="spine-js-test-button">
-                    <form action="" method="post">
-                        <?php wp_nonce_field('spine_js_nonce', 'spine_js_nonce'); ?>
-                        <input type="submit" class='button button-primary'
-                            value="<?php __("Go ahead, activate test!", "spine-app"); ?>" id="spine-js-test"
-                            name="spine_js_test">
-                        <br><?php __("You may need to login in again.", "spine-app") ?>
-                    </form>
-                </div>
-            </p>
-            <?php
-        }
-    }
-
-    public function get_backup_domain() {
-        $user = $this->user;
-
-        ?>
-        <label class="spine-js-">
-            <input id="spine_js_options_backup_domain" name="spine_js_db_options[backup_domain]" size="40" value="<?= $this->backup_domain ?>" placeholder="<?= __('Domain for Backup', "spine-app") ?>"
-                   type="text"  />
-        </label>
-        <?php
-        SPINEJS()->spine_js_help->get_help_tip(__("Domain where DB Backup Tool is located", "spine-app"));
-    }
-
-    public function get_option_username() {
-        $user = $this->user;
-
-        ?>
-        <label class="spine-js-">
-            <input id="spine_js_options_username" name="spine_js_db_options[user][username]" size="40" value="<?= $user['username'] ?>" placeholder="<?= __('Username', "spine-app") ?>"
-                   type="text"  />
-        </label>
-        <?php
-        SPINEJS()->spine_js_help->get_help_tip(__("Your DB Backup Tool Username", "spine-app"));
-    }
-
-    public function get_option_password() {
-        $user = $this->user;
-
-        ?>
-        <label class="spine-js-">
-            <input id="spine_js_options_password" name="spine_js_db_options[user][password]" size="40" value="<?=$user['password'] ?>" placeholder="<?= __('Password', "spine-app") ?>" 
-                   type="password"  />
-        </label>
-        <?php
-        SPINEJS()->spine_js_help->get_help_tip(__("Your DB Backup Tool Password", "spine-app"));
-        if( $this->backup_domain ) { ?>
-        <p>
-            <a href="<?= $this->backup_domain . '/register' ?>" target="_blank"><?= __("Register new user", "spine-app") ?></a>
-            <?php
-            SPINEJS()->spine_js_help->get_help_tip(__("Register new user", "spine-app"));
-            ?>
-        </p>
-        <?php };
-    }
-
-    public function get_option_show_db_notice()
-    {
-
-        ?>
-        <label class="spine-js-switch">
-            <input id="spine_js_show_db_notice_options" name="spine_js_db_options[show_db_notice]" size="40" value="1"
-                   type="checkbox" <?php checked(1, $this->show_db_notice, true) ?> />
-            <span class="spine-js-slider spine-js-round"></span>
-        </label>
-        <?php
-        SPINEJS()->spine_js_help->get_help_tip(__("Enable this option to show DB Tool notice", "spine-app"));
-
     }
 
     /**
@@ -506,8 +263,24 @@ class spinejs_admin {
      *
      */
     public function section_text() {
+
+        $tab = $this->get_tab();
+        switch($tab) {
+            case 'db_backup':
+                $text = __("Please authorize in DB Backup Tool", "spine-app");
+                break;
+            case 'wpt_custom_menu':
+                $text = __("Replace default Pages Menu in WP Touch", "spine-app");
+                break;
+            case 'woo_action_taxonomy':
+                $text = __("Use Action Products", "spine-app");
+                break;
+            default:
+                $text = __("Short description here", "spine-app");
+
+        }
         ?>
-        <p><?= __("Settings needed for Authorization in DB Backup Tool", "spine-app"); ?></p>
+        <?=  '<p>' . $text . '</p>'?>
         <?php
     }
 
@@ -519,31 +292,8 @@ class spinejs_admin {
      * @access public
      *
      */
-    public function options_validate($input) {
-        //fill array with current values, so we don't lose any
-        write_log('Validating Options...');
-        write_log($input);
-
-        $newinput = array();
-        $newinput['test'] = $this->test;
-        $newinput['debug'] = $this->debug;
-
-        $newinput['user']['username'] = $input['user']['username'];
-        $newinput['user']['password'] = $input['user']['password'];
-        $newinput['backup_domain'] = $input['backup_domain'];
-
-        if (!empty($input['test']) && $input['test'] == '1') {
-            $newinput['test'] = TRUE;
-        } else {
-            $newinput['test'] = FALSE;
-        }
-        if (!empty($input['show_db_notice']) && $input['show_db_notice'] == '1') {
-            $newinput['show_db_notice'] = TRUE;
-        } else {
-            $newinput['show_db_notice'] = FALSE;
-        }
-
-        return $newinput;
+    public function options_validate( array $new_settings ) {
+        return $new_settings;
     }
 
     /**
@@ -556,10 +306,7 @@ class spinejs_admin {
      */
     public function save_options() {
         //any options added here should also be added to function options_validate()
-        $options = array(
-            'test_option' => $this->test,
-            'debug' => $this->debug,
-        );
+        $options = array();
 
         update_option('spine_js_options', $options);
     }
@@ -585,6 +332,10 @@ class spinejs_admin {
         }
     }
 
+    public function add_styles() {
+        wp_register_style('spine-js-css', SPINEAPP_PLUGIN_URL . 'assets/css/main.css', false, SPINEAPP_VERSION);
+        wp_enqueue_style('spine-js-css');
+    }
     /**
      * Handles deactivation of this plugin
      *

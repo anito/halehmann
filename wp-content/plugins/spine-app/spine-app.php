@@ -18,16 +18,10 @@ function SPINEJS()
 }
 
 if ( is_admin() ) {
-	require_once dirname( __FILE__ ) . '/class-spineapp-public.php';
-	add_action('plugins_loaded', 'SPINEJS', 8);
+	// require_once dirname( __FILE__ ) . '/class-spineapp-public.php';
 } else {
 	//	do nothing
 }
 
-
-// WPTouch Off Canvas Menu (the left one) defaults to pages list
-// We change that here by giving the option for an "Alternate Pages Menu" in Menu Settings
-// Additionally adijust the header-bottom.php template in your mobilestore theme accordingly for this to take effect
-require_once dirname( __FILE__ ) . '/class-wptouch-helper.php';
-$spine_wptouch_helper = new spine_wptouch_helper();
-$spine_wptouch_helper->init();
+require_once dirname( __FILE__ ) . '/class-spineapp-public.php';
+add_action('plugins_loaded', 'SPINEJS', 8);

@@ -1,15 +1,16 @@
 <?php
 defined('ABSPATH') or die("you do not have access to this page!");
 
-if ( ! class_exists( 'spine_wptouch_helper' ) ) {
+if ( ! class_exists( 'spine_js_wpt' ) ) {
 
-    class spine_wptouch_helper {
+    class Spine_js_wpt {
         
         private static $_this;
 
         function __construct() {
             if ( isset( self::$_this ) )
-                wp_die( sprintf( __( '%s is a singleton class and you cannot create a second instance.','spine-app' ), get_class( $this ) ) );
+                return self::$_this;
+                // wp_die( sprintf( __( '%s is a singleton class and you cannot create a second instance.','spine-app' ), get_class( $this ) ) );
 
             self::$_this = $this;
 
@@ -21,6 +22,7 @@ if ( ! class_exists( 'spine_wptouch_helper' ) ) {
 
         public function init() {
             add_action('foundation_init', array($this, 'mobilestore_register_custom_menu'), 0);
+            add_action( 'admin_init', array( $this, 'register_setting' ) );
         }
 
         public function mobilestore_register_custom_menu() {

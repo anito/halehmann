@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Spine App\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-27 16:47+0000\n"
+"POT-Creation-Date: 2020-01-27 11:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -15,58 +15,70 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.3.0; wp-5.2.2"
 
-#: class-admin.php:117
+#: class-admin__.php:120 class-admin.php:115
 msgid "Lehmann Settings"
 msgstr ""
 
 #. link title
-#: class-admin.php:118
+#: class-admin__.php:121 class-admin.php:116
 msgid "Lehmann GmbH"
 msgstr ""
 
-#: class-admin.php:212
+#: class-admin__.php:213 class-admin.php:210
 msgid "Setup"
 msgstr ""
 
-#: class-admin.php:221
+#: class-admin__.php:218 class-admin.php:219
 msgid "Save"
 msgstr ""
 
-#: class-admin.php:239
+#: class-admin__.php:239 class-admin.php:237
 msgid "DB Backup Tool"
 msgstr ""
 
-#: class-admin.php:240
-msgid "WP Touch"
+#: class-admin__.php:240
+msgid "WPTouch Menü"
 msgstr ""
 
-#: class-admin.php:241
+#: class-admin__.php:241 class-admin.php:239
 msgid "Action Products"
 msgstr ""
 
-#: class-admin.php:269
+#: class-admin__.php:267 class-admin__.php:270 class-admin__.php:273
+msgid "Settings needed for Authorization in DB Backup Tool"
+msgstr ""
+
+#: class-admin__.php:276
+msgid "You must enter a short description"
+msgstr ""
+
+#: class-admin.php:238
+msgid "WP Touch"
+msgstr ""
+
+#: class-admin.php:267
 msgid "Please authorize in DB Backup Tool"
 msgstr ""
 
-#: class-admin.php:272
+#: class-admin.php:270
 msgid "Replace default Pages Menu in WP Touch"
 msgstr ""
 
-#: class-admin.php:275
+#: class-admin.php:273
 msgid "Use Action Products"
 msgstr ""
 
-#: class-admin.php:278
+#: class-admin.php:276
 msgid "Short description here"
 msgstr ""
 
-#: class-help.php:9 classes/class-db.php:18 classes/class-wptouch-helper.php:12
-#: classes/class-wpt.php:16
+#: class-wptouch-helper.php:12 class-wpt.php:12 class-help.php:9
+#: classes/class-db.php:18 classes/class-wpt.php:16
 #, php-format
 msgid "%s is a singleton class and you cannot create a second instance."
 msgstr ""
 
-#: classes/class-db.php:55
+#: classes/class-db.php:55 classes/class-wpt.php:50
 msgid "Settings"
 msgstr ""
 
@@ -74,11 +86,11 @@ msgstr ""
 msgid "Backup Domain"
 msgstr ""
 
-#: classes/class-db.php:58 classes/class-db.php:216
+#: classes/class-db.php:58 classes/class-db.php:219
 msgid "Username"
 msgstr ""
 
-#: classes/class-db.php:59 classes/class-db.php:228
+#: classes/class-db.php:59 classes/class-db.php:231
 msgid "Password"
 msgstr ""
 
@@ -86,32 +98,28 @@ msgstr ""
 msgid "Show DB Notice"
 msgstr ""
 
-#: classes/class-db.php:204
+#: classes/class-db.php:207
 msgid "Domain for Backup"
 msgstr ""
 
-#: classes/class-db.php:208
+#: classes/class-db.php:211
 msgid "Domain where DB Backup Tool is located"
 msgstr ""
 
-#: classes/class-db.php:220
+#: classes/class-db.php:223
 msgid "Your DB Backup Tool Username"
 msgstr ""
 
-#: classes/class-db.php:232
+#: classes/class-db.php:235
 msgid "Your DB Backup Tool Password"
 msgstr ""
 
-#: classes/class-db.php:235 classes/class-db.php:237
+#: classes/class-db.php:238 classes/class-db.php:240
 msgid "Register new user"
 msgstr ""
 
-#: classes/class-db.php:253
+#: classes/class-db.php:256
 msgid "Enable this option to show DB Tool notice"
-msgstr ""
-
-#: classes/class-wpt.php:50
-msgid "Overwrite Pages Menü"
 msgstr ""
 
 #: classes/class-wpt.php:52

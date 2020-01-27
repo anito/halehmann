@@ -34,7 +34,8 @@
 		</div>
 	<?php } ?>
 		<div class="wptouch-menu menu">
-			<h3><?php _e( 'Navigation', 'wordpress' ); ?></h3>
+			<?php $spine_js_opts = get_option('spine_js_settings_wpt'); write_log($spine_js_opts);?>
+			<h3><?php if( isset ( $spine_js_opts['title'] ) ) echo $spine_js_opts['title']; else _e( 'Site Menu', 'wptouch-pro' ); ?></h3>
 			<?php if ( wptouch_has_menu( 'primary_menu' ) ) { wptouch_show_menu( 'alternate_pages_menu' ); } ?>
 		</div>
 	</div>

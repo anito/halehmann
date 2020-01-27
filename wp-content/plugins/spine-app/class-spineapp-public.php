@@ -25,31 +25,36 @@ class SpineApp_Public {
 			self::$instance->setup_constants();
 			self::$instance->includes();
 
-			if (is_admin() || get_site_option('spinejs_active')) {
-				self::$instance->spine_js_admin = new spinejs_admin();
-				self::$instance->spine_js_help = new spine_js_help();
+			if ( is_admin() ) {
+				self::$instance->spine_js_admin = new Spine_js_admin();
+				self::$instance->spine_js_help = new Spine_js_help();
 				
 				$spine_js_help = self::$instance->spine_js_help;
 			}
-
-			self::$instance->hooks();
 		}
+		self::$instance->spine_js_front = new Spine_js_front();
+		self::$instance->spine_js_front->init();
+		self::$instance->hooks();
 
 		return self::$instance;
 
 	}
 	/*		
-		* Initialize the class and start calling our hooks and filters		
-		* @since 2.0.0		
-		*/
+	* Initialize the class and start calling our hooks and filters		
+	* @since 2.0.0		
+	*/
 	private function hooks() {
 		if (is_admin()) {
 			add_action('plugins_loaded', array(self::$instance->spine_js_admin, 'init'), 10);
+			add_action('plugins_loaded', array(self::$instance->spine_js_admin, 'edit'), 11);
+			add_action('plugins_loaded', array(self::$instance->spine_js_admin, 'hooks'), 10);
+
 		}
 	}
 	
+	
 	/**
-	 * Define constants
+	 * Constants
 	 **/
 	private function setup_constants() {
 		define( 'SPINEAPP_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -61,9 +66,13 @@ class SpineApp_Public {
 	}
 	
 	private function includes() {
-		require_once(SPINEAPP_PLUGIN_DIR . 'class-admin.php');
-		require_once(SPINEAPP_PLUGIN_DIR . 'class-help.php');
-		require_once(SPINEAPP_PLUGIN_DIR . 'class-wptouch-helper.php');
+		require_once SPINEAPP_PLUGIN_DIR . 'class-front.php';
+		require_once SPINEAPP_PLUGIN_DIR . 'class-admin.php';
+		require_once SPINEAPP_PLUGIN_DIR . 'class-help.php';
+
+		// subclasses
+		require_once dirname( __FILE__ ) . '/classes/class-db.php';
+		require_once dirname( __FILE__ ) . '/classes/class-wpt.php';
 	}
 
 }

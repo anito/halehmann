@@ -1,7 +1,7 @@
 <?php
 defined('ABSPATH') or die("you do not have access to this page!");
 if ( ! class_exists( 'spine_js_help' ) ) {
-    class spine_js_help {
+    class Spine_js_help {
         private static $_this;
 
         function __construct() {
