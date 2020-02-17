@@ -77,11 +77,9 @@ class Spine_js_admin {
             break;
 
             case 'woo_action_taxonomy':
-                include dirname( __FILE__ ) . '/classes/class-woo.php';
-                $woo = new Woo_spine_js();
-
-                add_action( 'admin_init', array($woo, 'register_setting'), 10 );
-                add_action( 'admin_init', array($woo, 'create_form'), 20 );
+                if( ! isset ( $this->woo ) ) $this->woo = new Woo_spine_js();
+                add_action( 'admin_init', array($this->woo, 'register_setting'), 10 );
+                add_action( 'admin_init', array($this->woo, 'create_form'), 20 );
             break;
         }        
 
@@ -195,24 +193,11 @@ class Spine_js_admin {
                     case 'wpt_custom_menu' :
                         settings_fields('spine_js_settings_wpt'); // matches option group
                         do_settings_sections('spine_js'); // prints form fields
-                        ?>
-                        <div>
-                            <?php
-                                // $this->save_options();
-                                ?>
-                        </div>
-                        <?php
                     break;
                     
-                    case 'action-products' :
-                        write_log(sprintf('2. setting fields for: %s', $tab));
+                    case 'woo_action_taxonomy' :
                         settings_fields('spine_js_settings_woo'); // matches option group
                         do_settings_sections('spine_js'); // prints form fields
-                        ?>
-                        <div>
-                            <h2><?php echo __("Setup", "spine-app"); ?></h2>
-                        </div>
-                        <?php
                     break;
                     
                 }
@@ -273,7 +258,7 @@ class Spine_js_admin {
                 $text = __("Replace default Pages Menu in WP Touch", "spine-app");
                 break;
             case 'woo_action_taxonomy':
-                $text = __("Use Action Products", "spine-app");
+                $text = __("Ativiert zusätzliche Merkmale eines Produktes.", "spine-app");
                 break;
             default:
                 $text = __("Short description here", "spine-app");

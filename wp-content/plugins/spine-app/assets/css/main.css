@@ -479,7 +479,8 @@ hr {
   width: 40px;
   height: 21px;
 }
-.spine-js-switch input {
+.spine-js-switch input[type=checkbox],
+.spine-js-switch input[type=radio] {
   display: none;
 }
 .spine-js-slider {

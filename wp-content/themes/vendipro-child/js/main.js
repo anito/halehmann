@@ -176,12 +176,18 @@
     
     var add_hide_empty_frontpage_news = function() {
 
-        var news_wrapper = $('.news-wrapper'), news;
+        var news_wrapper = $('.news-wrapper'), news, list, elm, ret, cols=[];
 
-        news = $( 'ul li', news_wrapper);
-        if(!news.length) {
-            news_wrapper.addClass('hide');
-        }
+        news_wrapper.each( (i, el)  => {
+            lists = $('ul' , el);
+            lists.each( ( i, ul ) => {
+                var col = $(ul).parent('.wp-block-column');
+                if( $( 'li', ul ).length ) {
+                    col.show().addClass('shown');
+                    cols.push(col)
+                }
+            })
+        });
 
     }
 

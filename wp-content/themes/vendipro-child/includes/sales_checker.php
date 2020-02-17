@@ -9,7 +9,7 @@ function fix_sales_handler_from_post($id) {
 				$product_id = $value['product_id'];
                 $sales_id = $value['sales_id'];
                 
-				fix_cat($product_id, $sales_id);
+				process_sales_cat($product_id, $sales_id);
 			}
 		}
 	} else {
@@ -18,7 +18,7 @@ function fix_sales_handler_from_post($id) {
                 $product_id = $collection['product_id'];
                 $sales_id = $collection['sales_id'];
                 
-                fix_cat($product_id, $sales_id);
+                process_sales_cat($product_id, $sales_id);
             }
 		}
     }

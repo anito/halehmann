@@ -1,31 +1,15 @@
 <?php
-add_shortcode( 'my_sales','shortcode_check_sales_handler' );
-
-function shortcode_check_sales_handler($atts) {
-
-	$default_atts =['cat_id' => ''];
-	
-	$atts = shortcode_atts($default_atts, $atts );
-	$sales_id = $atts['cat_id'];
-	
-	$del = delete_from_sales($sales_id);
-	$add = add_to_sales($sales_id);
-	
-	ob_start();
-	sales_checker_start($sales_id, $del, $add);
-	
-}
 
 ####### Fix Sales ########
-function fix_sales_handler_from_post($id) {
+function process_sales_handler_from_post($id) {
 	global $woocommerce;
     
-	if ( !empty($_POST["fix_all"]) ) {
+	if ( !empty($_POST["process_all"]) ) {
 		foreach ($_POST as $collection) {
             if (array_key_exists('product_id', $_POST) && !empty($collection['product_id']) && !empty($collection['sales_id'])) {
 				$product_id = $collection['product_id'];
 				$sales_id = $collection['sales_id'];
-				fix_cat($product_id, $sales_id);
+				process_sales_cat($product_id, $sales_id);
 			}
 		}
 	} else {
@@ -34,7 +18,7 @@ function fix_sales_handler_from_post($id) {
 				$product_id = $collection['product_id'];
                 $sales_id = $collection['sales_id'];
                 
-				fix_cat($product_id, $sales_id);
+				process_sales_cat($product_id, $sales_id);
 			}
 		}
 	}
@@ -70,9 +54,9 @@ function delete_from_sales ($sales_id) {
 			
 			$html .= "<div class='error sales_error'>".
 			"<span class='title'>{$product->get_title()}</span>".
-			"<input type='submit' name='fix_cat_{$error_count}' value='entfernen' class='fixit'>".
-			"<input type='hidden' name='fix_cat_{$error_count}[product_id]' value='{$product->get_id()}'>".
-			"<input type='hidden' name='fix_cat_{$error_count}[sales_id]' value='{$sales_id}'>".
+			"<input type='submit' name='process_cat_{$error_count}' value='entfernen' class='processit'>".
+			"<input type='hidden' name='process_cat_{$error_count}[product_id]' value='{$product->get_id()}'>".
+			"<input type='hidden' name='process_cat_{$error_count}[sales_id]' value='{$sales_id}'>".
 			"<a href=" . get_permalink($product->get_id()) . " target='_blank'>anzeigen</a>".
 			"<a href='wp-admin/post.php?post={$product->get_id()}&action=edit' target='_blank'>editieren</a>".
 			"</div>";
@@ -112,9 +96,9 @@ function add_to_sales($sales_id) {
 //				build_output();
 				$html .= "<div class='error sales_missing'>".
 				"<span class='title'>{$product_title}</span>".
-				"<input type='submit' name='fix_cat_{$error_count}[submit]' value='hinzufügen' class='fixit'>".
-				"<input type='hidden' name='fix_cat_{$error_count}[product_id]' value='{$product_id}'>".
-				"<input type='hidden' name='fix_cat_{$error_count}[sales_id]' value='{$sales_id}'>".
+				"<input type='submit' name='process_cat_{$error_count}[submit]' value='hinzufügen' class='processit'>".
+				"<input type='hidden' name='process_cat_{$error_count}[product_id]' value='{$product_id}'>".
+				"<input type='hidden' name='process_cat_{$error_count}[sales_id]' value='{$sales_id}'>".
 				"<a href=" . get_permalink($id) . " target='_blank'>anzeigen</a>".
 				"<a href='" . get_home_url() . "/wp-admin/post.php?post={$product_id}&action=edit' target='_blank'>editieren</a>".
 				"</div>";
@@ -184,7 +168,7 @@ function sales_checker_start($sales_id, $del, $add) {
 					<span>Artikel in der Kategorie <strong><?php $my_sales_name ?></strong>: <?php $my_sales_count ?></span>
 				</div>
 				<?php if($error_count > 0) { ?>
-					<div class='main_button'><input type='submit' name='fix_all' value='alles reparieren' class='fixit'></div>
+					<div class='main_button'><input type='submit' name='process_all' value='alles reparieren' class='fixit'></div>
 				<?php } ?>
 			</div>
 			<div class='open <?php $hide_del ?>'>

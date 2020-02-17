@@ -6,16 +6,16 @@ $args = array(
 );
 
 $product_category = get_terms( $args )[0]; // -> WP_Term Object
-write_log($product_category);
-write_log($product_category->name);
-write_log($product_category->count);
+// write_log($product_category);
+// write_log($product_category->name);
+// write_log($product_category->count);
 
 
 $query = new WP_Term_Query( $args ); // -> WP_Term_Query Object
 $product_category = $query->get_terms( $args )[0]; // -> WP_Term Object
-write_log($product_category);
-write_log($product_category->name);
-write_log($product_category->count);
+// write_log($product_category);
+// write_log($product_category->name);
+// write_log($product_category->count);
 
 
 $args = array(
@@ -31,7 +31,7 @@ $args = array(
 );
 $query = new WP_Query( $args );
 $products = $query->get_posts();
-write_log(count($products));
+// write_log(count($products));
 
 
 $args = array(
@@ -41,7 +41,7 @@ $args = array(
 );
 
 $products = get_posts( $args );
-write_log(count($products));
+// write_log(count($products));
 
 
 $args = array(
@@ -52,12 +52,12 @@ $args = array(
 );
 $query = new WC_Product_Query( $args );
 $products = $query->get_products();
-write_log(count($products));
+// write_log(count($products));
 
-foreach($products as $key => $val) {
-    $has_sale = in_array($sales_id, $val->get_category_ids());
-    write_log( $key . ' -> on sale: ' . $val->is_on_sale() . ' has sale: ' . $has_sale . ' - ' . $val->get_name());
-}
+// foreach($products as $key => $val) {
+//     $has_sale = in_array($sales_id, $val->get_category_ids());
+//     write_log( $key . ' -> on sale: ' . $val->is_on_sale() . ' has sale: ' . $has_sale . ' - ' . $val->get_name());
+// }
 
 $delete_obj = delete_sales_output($sales_id);
 $add_obj = add_sales_output($sales_id);

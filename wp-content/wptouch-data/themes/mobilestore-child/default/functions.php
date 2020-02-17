@@ -1,4 +1,5 @@
 <?php
+// require_once( __DIR__ . '/includes/cat_process_helper.php');
 require_once( __DIR__ . '/includes/product_cat_handler.php');
 require_once( __DIR__ . '/includes/sender_email.php');
 
@@ -143,7 +144,8 @@ function mobilestore_products_per_page_override( $query ) {
 	$settings = mobilestore_get_settings();
 	set_query_var( 'posts_per_page', $settings->mobilestore_products_per_page );
 }
-function child_remove_parent_function() {
+function ha_l_init_hooks() {
+	// remove conntent structure from parent theme templates
     remove_action( 'woocommerce_after_main_content', 'wptouch_mobilestore_output_content_wrapper_end', 10 );
 	add_action( 'woocommerce_after_main_content', 'wptouch_mobilestore_output_content_wrapper_end_override', 10 );
 	
@@ -152,11 +154,21 @@ function child_remove_parent_function() {
 	
 	remove_action( 'pre_get_posts', 'mobilestore_products_per_page', 30 );
 	add_action( 'pre_get_posts', 'mobilestore_products_per_page_override', 30 );
+
+	
 }
 function remove_styles() {
-    wp_dequeue_style( 'nb-styles' );
+	wp_dequeue_style( 'nb-styles' );
     wp_dequeue_style( 'pac-styles' );
-    wp_dequeue_style( 'pac-layout-styles' );
+	wp_dequeue_style( 'pac-layout-styles' );
+	
+	check_post_meta_dependencies();
+}
+function check_post_meta_dependencies() {
+	global $post;
+	if( $shortcode = get_post_meta($post->ID, 'shortcode' ) ) {
+		include __DIR__ . "/includes/{shortcode}-shortcode.php";
+	}
 }
 function archive_term_image() {
 	
@@ -185,7 +197,7 @@ function archive_term_image() {
 	
 }
 
-add_action( 'init', 'child_remove_parent_function' );
+add_action( 'init', 'ha_l_init_hooks' );
 
 add_action('wp_print_scripts', 'add_scripts');
 

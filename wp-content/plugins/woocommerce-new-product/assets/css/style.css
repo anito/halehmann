@@ -31,11 +31,6 @@
     padding-top: 5px;
     padding-bottom: 5px;
 }
-@media only screen and (min-width: 769px) {
-    .wc-new-badge {
-        
-    }
-}
 @media only screen and (max-width: 768px) {
     
     .wc-new-badge.left {
@@ -46,8 +41,6 @@
         line-height: 1em;
     }
     .wc-new-badge.right {
-        right: -30px;
-        top: 10px;
         padding: .4em 0;
         line-height: 1em;
     }

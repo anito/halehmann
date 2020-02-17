@@ -136,7 +136,7 @@ function on_save_post($post_id , $post, $is_update){
 		$product = wc_get_product($product_id);
 	}
 	if( defined( 'SALES_CAT_ID' ) ) {
-		// fix_cat($product_id, SALES_CAT_ID);
+		process_sales_cat($product_id, SALES_CAT_ID);
 	}
 	
 }

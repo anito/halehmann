@@ -33,7 +33,6 @@ class SpineApp_Public {
 			}
 		}
 		self::$instance->spine_js_front = new Spine_js_front();
-		self::$instance->spine_js_front->init();
 		self::$instance->hooks();
 
 		return self::$instance;
@@ -73,6 +72,8 @@ class SpineApp_Public {
 		// subclasses
 		require_once dirname( __FILE__ ) . '/classes/class-db.php';
 		require_once dirname( __FILE__ ) . '/classes/class-wpt.php';
+		require_once dirname( __FILE__ ) . '/classes/class-woo.php';
+		require_once dirname( __FILE__ ) . '/classes/class-woo-settings-field.php';
 	}
 
 }

@@ -78,9 +78,10 @@ if ( ! class_exists( 'wpt_spine_js' ) ) {
             write_log('Validating Options...');
             write_log($new_settings);
 
-            $settings = array();
-            $settings['active'] = $new_settings['active'];
-            $settings['title'] = $new_settings['title'];
+            $settings = array(
+                'active' => $new_settings['active'],
+                'title' => $new_settings['title']
+            );
 
             if (!empty($new_settings['active']) && $new_settings['active'] == '1') {
                 $settings['active'] = TRUE;

@@ -1,5 +1,5 @@
 <?php
-function fix_cat($post_id, $term_id) {
+function process_sales_cat($post_id, $term_id) {
 	global $woocommerce;
 	
 	if( !defined( 'SALES_CAT_ID' ) )
@@ -12,19 +12,19 @@ function fix_cat($post_id, $term_id) {
 	
 	switch ($term_id) {
 		case SALES_CAT_ID:
-			$is_attribute = $product->is_on_sale();
+			$add = $product->is_on_sale();
 			break;
 		default:
 			return 0;
 	}
-	set_product_cats($product, $term_id, $is_attribute);
+	set_product_cats($product, $term_id, $add);
 	
 }
-function set_product_cats($product, $term_id, $is_attribute) {
+function set_product_cats($product, $term_id, $add) {
 	$term_ids = $product->get_category_ids();
 	$term_ids = array_unique(array_map('intval', $term_ids));
 	
-	if ( !$is_attribute ) {
+	if ( !$add ) {
 		# remove id
 		$term_ids = array_diff($term_ids, array($term_id) );
 	} else {

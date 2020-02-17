@@ -20,7 +20,6 @@ $url_logo  = array(
 );
 
 $mobile_badge = get_option( 'header_image_mobile_indicator' );
-write_log($mobile_badge);
 foreach ($url_logo as $logo) {
     $image = '';
 	
