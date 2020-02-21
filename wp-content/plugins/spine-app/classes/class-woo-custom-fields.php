@@ -163,7 +163,7 @@ if ( ! class_exists( 'Spine_js_woo' ) ) {
 
                 write_log('The custom meta_key:checkbox ?');
                 $meta_key = "_hal_checkbox_{$cmf['slug']}"; // The custom meta_key
-                
+
                 if ( ! empty( $query_vars[$meta_key] ) ) {
                     write_log($cmf);
                     $query['meta_query'][] = array(
@@ -208,7 +208,7 @@ if ( ! class_exists( 'Spine_js_woo' ) ) {
                 // $woocommerce_number_field = $_POST['_hal_number_field'];
                 // if( !empty( $woocommerce_number_field ) )
                 //     update_post_meta( $post_id, '_hal_number_field', esc_attr( $woocommerce_number_field ) );
-                
+
                 // Select
                 // $woocommerce_select = $_POST['_hal_select'];
                 // if( !empty( $woocommerce_select ) )
@@ -222,6 +222,13 @@ if ( ! class_exists( 'Spine_js_woo' ) ) {
             }
         }
 
+        public  function get_product_meta( $id, $key_part, $slug = '' ) {
+            $product = wc_get_product( $id );
+            if( !empty( $product ) ) {
+                return $product->get_meta( "{$key_part}_{$slug}" );
+            }
+            return '';
+        }
         public function reset_meta( $meta_field, $value ) {
             global $post;
 
@@ -237,7 +244,7 @@ if ( ! class_exists( 'Spine_js_woo' ) ) {
                 'numberposts' => -1,
                 'posts_per_page' => 5
             ) );
-            
+
             // reset posts
             $active_posts = $query->posts;
             foreach( $active_posts as $active_post ) {
@@ -274,7 +281,7 @@ if ( ! class_exists( 'Spine_js_woo' ) ) {
 
             return $products;
         }
-        
+
         // generic query
         public function get_products_from_slug( $slug ) {
             write_log('#### get_products_from_slug ####');
