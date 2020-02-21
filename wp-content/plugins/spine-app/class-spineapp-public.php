@@ -58,6 +58,9 @@ class SpineApp_Public {
 	private function setup_constants() {
 		define( 'SPINEAPP_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 		define( 'SPINEAPP_PLUGIN_DIR', trailingslashit(plugin_dir_path(__FILE__) ) );
+		if ( ! defined( 'IS_PRODUCTION' ) ) {
+			define( 'IS_PRODUCTION', true );
+		}
 		
 		require_once(ABSPATH . 'wp-admin/includes/plugin.php');
 		$plugin_data = get_plugin_data(dirname(__FILE__) . "/" . $this->plugin_filename);
