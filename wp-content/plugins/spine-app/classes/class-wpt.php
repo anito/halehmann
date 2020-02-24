@@ -54,7 +54,6 @@ if ( ! class_exists( 'wpt_spine_js' ) ) {
             add_settings_field('title', __("Menu Title", "spine-app"), array($this, 'get_wpt_title'), $this->plugin_slug, 'spine_js_settings_sections_wpt');
             add_settings_field('id_option_group', "", array($this, 'get_hidden_input'), $this->plugin_slug, 'spine_js_settings_sections_wpt');
 
-            // register_setting('spine_js_settings_wpt', 'spine_js_settings_wpt', array($this, 'options_validate'));
         }
 
         /**
@@ -75,8 +74,6 @@ if ( ! class_exists( 'wpt_spine_js' ) ) {
          */
         public function options_validate( $new_settings ) {
             //fill array with current values, so we don't lose any
-            write_log('Validating Options...');
-            write_log($new_settings);
 
             $settings = array(
                 'active' => $new_settings['active'],
