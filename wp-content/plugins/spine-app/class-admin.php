@@ -254,7 +254,7 @@ class Spine_js_admin {
                 $text = __("Please authorize in DB Backup Tool", "spine-app");
                 break;
             case 'wpt_custom_menu':
-                $text = sprintf( __( "Provides a custum menu instead of the default <i>Pages Menu </i> (below the optional product categories menu).</br>Please refer to position <i>WPtouch Pro: Alternate Pages Menu</i> in <a alt='Menü Settings' href='%s'>Menu Settings</a> when selecting your own menu.", "spine-app" ), '/wp-admin/nav-menus.php'  );
+                $text = sprintf( __( "Provides a custum menu instead of the default <i>Pages Menu</i> (below the optional product categories menu).</br>Please refer to position <i>WPtouch Pro: Alternate Pages Menu</i> in <a alt='Menü Settings' href='%s'>Menu Settings</a> when selecting your own menu.", "spine-app" ), '/wp-admin/nav-menus.php'  );
                 break;
             case 'woo_action_taxonomy':
                 $text = __("Ativiert zusätzliche Merkmale eines Produktes.", "spine-app");
