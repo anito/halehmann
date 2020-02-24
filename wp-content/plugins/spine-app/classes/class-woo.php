@@ -4,9 +4,9 @@ defined('ABSPATH') or die("you do not have access to this page!");
 if ( ! class_exists( 'woo_spine_js' ) ) {
 
     class Woo_spine_js extends Spine_js_admin {
-        
+
         private static $_this;
-        
+
         public $active = true;
         public $option_group = 'woo_action_taxonomy';
         public $custom_meta_fields = array();
@@ -32,7 +32,7 @@ if ( ! class_exists( 'woo_spine_js' ) ) {
         public function get_admin_options() {
 
             $this->admin_options = get_option('spine_js_settings_woo');
-            
+
             if (isset($this->admin_options)) {
                 $this->active = isset($this->admin_options['active']) ? $this->admin_options['active'] : $this->active;
                 // RESET ALL FIELDS
@@ -50,13 +50,13 @@ if ( ! class_exists( 'woo_spine_js' ) ) {
          */
         public function create_form() {
             add_settings_section('spine_js_settings_sections_woo', __('"Action Produkt" & "Produkt Angebot der Woche" aktivieren', "spine-app"), array($this, 'section_text'), $this->plugin_slug);
-            
+
             add_settings_field('active', __("Active", "spine-app"), array($this, 'get_woo_active'), $this->plugin_slug, 'spine_js_settings_sections_woo');
             $this->add_settings_fields();
             add_settings_field('id_option_group', "", array($this, 'get_hidden_input'), $this->plugin_slug, 'spine_js_settings_sections_woo');
 
         }
-        
+
         /**
          * Register settings
          */
@@ -74,12 +74,12 @@ if ( ! class_exists( 'woo_spine_js' ) ) {
          *
          */
         public function options_validate( $new_settings ) {
-            
+
             //fill array with current values, so we don't lose any
             if(array_key_exists('name', $new_settings['add_new']['new']) && ! empty ($new_settings['add_new']['new']['name'])) {
                 $new_settings['custom_meta_fields'][] = $new_settings['add_new']['new'];
             }
-            
+
             if( ! empty ($new_settings['custom_meta_fields'] ) ) {
 
                 $settings = array(
@@ -97,8 +97,6 @@ if ( ! class_exists( 'woo_spine_js' ) ) {
                 $settings['active'] = FALSE;
             }
 
-            write_log('Validating Options::afterValidating');
-            write_log($settings);
             return $settings;
         }
 
@@ -106,8 +104,8 @@ if ( ! class_exists( 'woo_spine_js' ) ) {
 
             ?>
             <label class="spine-js-switch">
-                <input type="checkbox" id="spine_js_settings_woo_active" name="spine_js_settings_woo[active]" size="40" value="1"
-                    <?php checked(1, $this->active, true) ?> />
+                <input type="checkbox" id="spine_js_settings_woo_active" name="spine_js_settings_woo[active]" size="40" value="0"
+                    <?php checked(0, $this->active, false) ?> />
                 <span class="spine-js-slider spine-js-round"></span>
             </label>
             <?php

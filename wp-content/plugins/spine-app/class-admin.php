@@ -6,13 +6,12 @@ class Spine_js_admin {
     private static $_this;
 
     public $default_tab = 'db_backup';
-    // public $default_tab = 'wpt_custom_menu';
     public $capability = 'activate_plugins';
     public $plugin_filename = "spine-app.php";
     public $plugin_slug = "spine_js";
 
     function __construct() {
-        
+
         if (isset(self::$_this))
             return self::$_this;
             // wp_die(sprintf(__('%s is a singleton class and you cannot create a second instance.', 'spine-js'), get_class($this)));
@@ -28,7 +27,7 @@ class Spine_js_admin {
     static function this() {
         return self::$_this;
     }
-	
+
     public function add_privacy_info() {
         if (!function_exists('wp_add_privacy_policy_content')) {
             return;
@@ -47,7 +46,7 @@ class Spine_js_admin {
 
     public function init() {
         $opts = get_option('spine_js_settings_db');
-        
+
         $this->db = new Db_spine_js();
         if( $opts['show_db_notice'] ) {
             add_action( 'admin_enqueue_scripts', array ( $this->db, 'enqueue_assets' ), 10 );
@@ -59,16 +58,16 @@ class Spine_js_admin {
     }
 
     public function edit() {
-        
+
         $tab =  $this->get_tab();
         switch($tab) {
             case 'db_backup':
-                
+
                 add_action( 'admin_init', array($this->db, 'register_setting'), 10 );
                 add_action( 'admin_init', array($this->db, 'create_form'), 20 );
 
             break;
-            
+
             case 'wpt_custom_menu':
 
                 if( ! isset ( $this->$wpt ) ) $this->wpt = new Wpt_spine_js();
@@ -81,7 +80,7 @@ class Spine_js_admin {
                 add_action( 'admin_init', array($this->woo, 'register_setting'), 10 );
                 add_action( 'admin_init', array($this->woo, 'create_form'), 20 );
             break;
-        }        
+        }
 
     }
 
@@ -91,13 +90,13 @@ class Spine_js_admin {
         add_filter( 'body_class', array ( $this, 'body_class' ) );
         add_action( 'admin_init', array($this, 'listen_for_deactivation'), 40 );
         add_action( 'admin_init', array($this, 'add_styles'), 999 );
-        
+
     }
     public function get_options() {
         //
     }
     public function get_admin_options() {
-        //        
+        //
     }
 
     /**
@@ -122,8 +121,8 @@ class Spine_js_admin {
         ); //function
     }
 
-    /*		
-    * Public Functions	
+    /*
+    * Public Functions
     */
     public function body_class( $classes ) {
         return $classes;
@@ -140,7 +139,7 @@ class Spine_js_admin {
     public function load_translation() {
         load_plugin_textdomain('spine-js', FALSE, dirname(plugin_basename(__FILE__)) . '/languages/');
     }
-    
+
     /*
      * Deactivate the plugin while keeping SSL
      * Activated when the 'uninstall_keep_ssl' button is clicked in the settings tab
@@ -184,22 +183,22 @@ class Spine_js_admin {
                 <form action="options.php" method="post">
             <?php
                 switch ($tab) {
-                    
+
                     case 'db_backup' :
                         settings_fields('spine_js_settings_db'); // matches option group
                         do_settings_sections('spine_js'); // prints form fields
                     break;
-                    
+
                     case 'wpt_custom_menu' :
                         settings_fields('spine_js_settings_wpt'); // matches option group
                         do_settings_sections('spine_js'); // prints form fields
                     break;
-                    
+
                     case 'woo_action_taxonomy' :
                         settings_fields('spine_js_settings_woo'); // matches option group
                         do_settings_sections('spine_js'); // prints form fields
                     break;
-                    
+
                 }
                 //possibility to hook into the tabs.
                 do_action("show_tab_{$tab}");

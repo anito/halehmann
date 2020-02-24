@@ -17,7 +17,7 @@ class SpineApp_Public {
 	private function __construct() {
 		//
 	}
-	
+
 	public static function instance() {
 
 		if(!isset(self::$instance) && !(self::$instance instanceof SpineApp_Public)) {
@@ -28,7 +28,7 @@ class SpineApp_Public {
 			if ( is_admin() ) {
 				self::$instance->spine_js_admin = new Spine_js_admin();
 				self::$instance->spine_js_help = new Spine_js_help();
-				
+
 				$spine_js_help = self::$instance->spine_js_help;
 			}
 		}
@@ -38,9 +38,9 @@ class SpineApp_Public {
 		return self::$instance;
 
 	}
-	/*		
-	* Initialize the class and start calling our hooks and filters		
-	* @since 2.0.0		
+	/*
+	* Initialize the class and start calling our hooks and filters
+	* @since 2.0.0
 	*/
 	private function hooks() {
 		if (is_admin()) {
@@ -50,8 +50,7 @@ class SpineApp_Public {
 
 		}
 	}
-	
-	
+
 	/**
 	 * Constants
 	 **/
@@ -61,12 +60,12 @@ class SpineApp_Public {
 		if ( ! defined( 'IS_PRODUCTION' ) ) {
 			define( 'IS_PRODUCTION', true );
 		}
-		
+
 		require_once(ABSPATH . 'wp-admin/includes/plugin.php');
 		$plugin_data = get_plugin_data(dirname(__FILE__) . "/" . $this->plugin_filename);
 		define('SPINEAPP_VERSION', $plugin_data['Version']);
 	}
-	
+
 	private function includes() {
 		require_once SPINEAPP_PLUGIN_DIR . 'class-front.php';
 		require_once SPINEAPP_PLUGIN_DIR . 'class-admin.php';

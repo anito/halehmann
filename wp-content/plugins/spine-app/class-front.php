@@ -4,9 +4,9 @@ defined('ABSPATH') or die("you do not have access to this page!");
 class Spine_js_front {
 
     private static $_this;
-    
+
     function __construct() {
-        
+
         $this->wpt_active = false;
         $this->woo_active = false;
 
@@ -24,8 +24,8 @@ class Spine_js_front {
     }
 
     public function hooks() {
-        add_action( 'init', array( $this, 'add_wpt_support' ));
-        add_action( 'init', array( $this, 'add_woo_support' ));
+        add_action( 'foundation_init', array( $this, 'add_wpt_support' ) );
+        add_action( 'init', array( $this, 'add_woo_support' ) );
     }
     public function add_wpt_support() {
 
@@ -35,22 +35,20 @@ class Spine_js_front {
         // Additionally adijust the header-bottom.php template in your mobilestore theme accordingly for this to take effect
         $wpt_opt = get_option('spine_js_settings_wpt');
         if( ! empty( $wpt_opt ) && true == $wpt_opt['active'] ) {
-            $this->wpt_active = true;
 
             require_once dirname( __FILE__ ) . '/classes/class-wptouch-helper.php';
             $spine_wptouch_helper = new Spine_js_wpt();
+            $spine_wptouch_helper->mobilestore_register_custom_menu();
         }
     }
     public function add_woo_support() {
-        // Product Taxonomies Custom Fields
+        // Product Custom Meta Fields
         $woo_opt = get_option('spine_js_settings_woo');
         if( ! empty( $woo_opt ) && true == $woo_opt['active'] ) {
             $this->woo_active = true;
-            
+
             require_once dirname( __FILE__ ) . '/classes/class-woo-custom-fields.php';
             $spine_woo_tax = new Spine_js_woo();
         }
-
     }
-            
 }

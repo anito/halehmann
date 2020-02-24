@@ -4,10 +4,10 @@ defined('ABSPATH') or die("you do not have access to this page!");
 if ( ! class_exists( 'wpt_spine_js' ) ) {
 
     class Wpt_spine_js extends Spine_js_admin {
-        
+
         private static $_this;
-        
-        public $title = 'Test';
+
+        public $title = 'Navigation';
         public $active = true;
         public $option_group = 'wpt_custom_menu';
 
@@ -30,12 +30,12 @@ if ( ! class_exists( 'wpt_spine_js' ) ) {
         public function get_admin_options() {
 
             $options = get_option('spine_js_settings_wpt');
-            
+
             if (isset($options)) {
                 $this->title = isset($options['title']) ? $options['title'] : $this->title;
                 $this->active = isset($options['active']) ? $options['active'] : $this->active;
             }
-            
+
         }
 
         /**
@@ -47,16 +47,16 @@ if ( ! class_exists( 'wpt_spine_js' ) ) {
          *
          */
         public function create_form() {
-            
+
             add_settings_section('spine_js_settings_sections_wpt', __("Overwrite Pages Menü", "spine-app"), array($this, 'section_text'), $this->plugin_slug);
-            
+
             add_settings_field('active', __("Active", "spine-app"), array($this, 'get_wpt_active'), $this->plugin_slug, 'spine_js_settings_sections_wpt');
             add_settings_field('title', __("Menu Title", "spine-app"), array($this, 'get_wpt_title'), $this->plugin_slug, 'spine_js_settings_sections_wpt');
             add_settings_field('id_option_group', "", array($this, 'get_hidden_input'), $this->plugin_slug, 'spine_js_settings_sections_wpt');
 
             // register_setting('spine_js_settings_wpt', 'spine_js_settings_wpt', array($this, 'options_validate'));
         }
-        
+
         /**
          * Register settings
          */

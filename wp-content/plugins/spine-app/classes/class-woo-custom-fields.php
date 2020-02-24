@@ -109,7 +109,7 @@ if ( ! class_exists( 'Spine_js_woo' ) ) {
             //             )
             //     )
             // );
-            
+
             // Select
             // woocommerce_wp_select(
             //     array(
@@ -122,7 +122,7 @@ if ( ! class_exists( 'Spine_js_woo' ) ) {
             //         )
             //     )
             // );
-            
+
             // Checkbox
             woocommerce_wp_checkbox(
                 array(
@@ -161,11 +161,9 @@ if ( ! class_exists( 'Spine_js_woo' ) ) {
 
                 // Prepare WOO Products Query
 
-                write_log('The custom meta_key:checkbox ?');
                 $meta_key = "_hal_checkbox_{$cmf['slug']}"; // The custom meta_key
 
                 if ( ! empty( $query_vars[$meta_key] ) ) {
-                    write_log($cmf);
                     $query['meta_query'][] = array(
                         'key'   => $meta_key,
                         'value' => esc_attr( $query_vars[$meta_key] ),
@@ -252,7 +250,6 @@ if ( ! class_exists( 'Spine_js_woo' ) ) {
             }
         }
         public function woo_add_taxonomies() {
-            // write_log($this->tax_data);
             foreach( $this->tax_data as $key => $val ) {
                 register_taxonomy( $key, 'product', $val[1] );
                 register_taxonomy_for_object_type( $key, 'product' );
@@ -284,16 +281,11 @@ if ( ! class_exists( 'Spine_js_woo' ) ) {
 
         // generic query
         public function get_products_from_slug( $slug ) {
-            write_log('#### get_products_from_slug ####');
-            write_log($slug);
             $meta_key = "_hal_checkbox_{$slug}";
             $queried_products = wc_get_products( array(
                 $meta_key => 'yes',
                 'return' => 'ids'
             ) );
-            write_log("(NEW) ANZAHL {$slug}s");
-            write_log(count($queried_products));
-            // write_log($queried_products);
 
             return $queried_products;
         }

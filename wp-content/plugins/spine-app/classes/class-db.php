@@ -122,8 +122,6 @@ if ( ! class_exists( 'db_spine_js' ) ) {
          */
         public function options_validate( $new_settings ) {
             //fill array with current values, so we don't lose any
-            write_log('Validating Options...');
-            write_log($new_settings);
 
             $settings = array();
             $settings['user']['username'] = $new_settings['user']['username'];

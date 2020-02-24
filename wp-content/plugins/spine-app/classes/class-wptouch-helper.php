@@ -4,7 +4,7 @@ defined('ABSPATH') or die("you do not have access to this page!");
 if ( ! class_exists( 'spine_js_wpt' ) ) {
 
     class Spine_js_wpt {
-        
+
         private static $_this;
 
         function __construct() {
@@ -12,7 +12,7 @@ if ( ! class_exists( 'spine_js_wpt' ) ) {
                 return self::$_this;
                 // wp_die( sprintf( __( '%s is a singleton class and you cannot create a second instance.','spine-app' ), get_class( $this ) ) );
 
-            $this->hook();
+            $this->init();
             self::$_this = $this;
 
         }
@@ -22,7 +22,12 @@ if ( ! class_exists( 'spine_js_wpt' ) ) {
         }
 
         protected function hook() {
+            write_log('Spine_js_wpt::hook');
             add_action('foundation_init', array($this, 'mobilestore_register_custom_menu'), 0);
+        }
+
+        public function init() {
+            //
         }
 
         public function mobilestore_register_custom_menu() {
@@ -41,8 +46,8 @@ if ( ! class_exists( 'spine_js_wpt' ) ) {
                 );
 
             }
-		
+
         }
-      
+
     }//class closure
 } //if class exists closure

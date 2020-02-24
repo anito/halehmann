@@ -1,6 +1,6 @@
 <?php
 /**
- * Template for displaying Footer
+ * Template for displaying Payments in Footer
  *
  * @author Vendidero
  * @version 1.0.0
