@@ -257,7 +257,7 @@ class Spine_js_admin {
                 $text = sprintf( __( "Provides a custom menu instead of the default <i>Pages Menu</i> (below the optional product categories menu).</br>Please refer to position <i>WPtouch Pro: Alternate Pages Menu</i> in <a alt='Menü Settings' href='%s'>Menu Settings</a> when selecting your own menu.", "spine-app" ), '/wp-admin/nav-menus.php'  );
                 break;
             case 'woo_action_taxonomy':
-                $text = __("Ativiert zusätzliche Merkmale eines Produktes.", "spine-app");
+                $text = __("Activate additional product information like <i>Product of the Day</i>", "spine-app");
                 break;
             default:
                 $text = __("Short description here", "spine-app");
