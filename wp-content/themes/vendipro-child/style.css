@@ -6,7 +6,7 @@
  Author URI: http://vendidero.de
  Template: vendipro
  wc_gzd_compatible: true
- Version: 1.2.8
+ Version: 1.2.9
 */
 
 /* =Theme customization starts here
@@ -194,6 +194,9 @@ a, a:hover, a:visited, a:focus {
 }
 .pad-sm {
     padding: 3%;
+}
+.pad-x-sm {
+    padding: 1%;
 }
 .nopadding {
     padding: 0 !important;
