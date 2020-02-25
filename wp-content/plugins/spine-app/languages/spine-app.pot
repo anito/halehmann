@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Spine App\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-25 08:19+0000\n"
+"POT-Creation-Date: 2020-02-25 10:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -54,7 +54,7 @@ msgid ""
 msgstr ""
 
 #: class-admin.php:260
-msgid "Ativiert zusätzliche Merkmale eines Produktes."
+msgid "Activate additional product information like <i>Product of the Day</i>"
 msgstr ""
 
 #: class-admin.php:263
