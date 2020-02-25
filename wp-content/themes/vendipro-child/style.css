@@ -2462,7 +2462,7 @@ header#hmain .navbar ul li:hover > ul > li > ul {
     max-width: 40% !important;
     left: 0;
     color: white;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.5) !important;
     padding: 0.3em;
     margin: 0;
     display: block;
