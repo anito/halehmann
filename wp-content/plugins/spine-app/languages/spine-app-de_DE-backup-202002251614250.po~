@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Spine App\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-25 10:41+0000\n"
-"PO-Revision-Date: 2020-02-25 10:47+0000\n"
-"Last-Translator: Axel Nitzschner <axelnitzschner@mac.com>\n"
+"PO-Revision-Date: 2020-02-25 16:13+0000\n"
+"Last-Translator: Axel <axel@webpremiere.dev>\n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
@@ -51,14 +51,15 @@ msgid ""
 "Pro: Alternate Pages Menu</i> in <a alt='Menü Settings' href='%s'>Menu "
 "Settings</a> when selecting your own menu."
 msgstr ""
-"Bietet ein eigenes Menü anstelle des normalen Seitenmenüs (unterhalb des "
-"optionalen Kategorie Menüs) in der linken Seitenleiste. Verweise auf die "
-"Position <i>WPtouch: Alternate Pages Menu</i> in <a alt='Menü Einstellungen' "
-"href='%s'>Menü Einstellungen</a> deines ausgewählten Menüs."
+"Verwende ein eigenes Menü anstelle des Seitenmenüs (unterhalb des optionalen "
+"Produkt-Kategorie Menüs)<br>Beziehe dich bei der Position des Menüs auf <i>"
+"WPtouch Pro: Alternate Pages Menu</i> in <a alt='Menü Settings' href='%s'>"
+"Menu Settings</a>."
 
 #: class-admin.php:260
 msgid "Activate additional product information like <i>Product of the Day</i>"
-msgstr "Aktiviere zusätzliche Produktmerkmale wie <i>Produkt des Tages</i>"
+msgstr ""
+"Aktiviere zusätzliche Produkt Informationen wie <i>Produkt des Tages</i>"
 
 #: class-admin.php:263
 msgid "Short description here"
@@ -139,7 +140,7 @@ msgstr "Seitenmenü überschreiben"
 
 #: classes/class-wpt.php:54
 msgid "Menu Title"
-msgstr "Menü Titel"
+msgstr ""
 
 #: classes/class-wpt.php:108
 msgid "WP Touch Menu Tile"
@@ -151,7 +152,7 @@ msgstr "Titel des benutzerdefinierten Menüs"
 
 #: classes/class-woo-settings-field.php:43
 msgid "Custom Meta Name"
-msgstr "Eigener Meta Name"
+msgstr ""
 
 #. Name of the plugin
 msgid "Spine App"
