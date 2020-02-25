@@ -3,7 +3,7 @@ defined('ABSPATH') or die("you do not have access to this page!");
 
 if ( ! class_exists( 'Spine_js_woo' ) ) {
 
-    class Spine_js_woo {
+    class Spine_js_woo extends Woo_spine_js {
 
         private static $_this;
 
@@ -47,13 +47,16 @@ if ( ! class_exists( 'Spine_js_woo' ) ) {
         }
 
         static function instance() {
+            if ( ! isset( self::$_this ) ) {
+                self::$_this = new self();
+            }
             return self::$_this;
         }
-        protected function init() {
+        public function init() {
             $this->hooks();
             $this->woo_add_taxonomies();
         }
-        protected function hooks() {
+        public function hooks() {
             // adds custom input fields to generals tab in product editor
             add_action( 'woocommerce_product_options_general_product_data', array( $this, 'woo_add_custom_general_fields') ); // Display Fields
             add_action( 'woocommerce_process_product_meta', array( $this, 'woo_add_custom_general_fields_save' )); // Save Fields
@@ -69,12 +72,6 @@ if ( ! class_exists( 'Spine_js_woo' ) ) {
 
         // public data_store_cpt_callback(  )
 
-        protected function get_custom_fields() {
-
-            $options = get_option('spine_js_settings_woo');
-            return $options['custom_meta_fields'];
-
-        }
         public function woo_add_custom_general_fields () {
             global $post;
 
@@ -82,7 +79,7 @@ if ( ! class_exists( 'Spine_js_woo' ) ) {
 
             echo '<div class="options_group">';
 
-            $custom_fields = $this->get_custom_fields();
+            $custom_fields = $this->custom_fields();
 
             foreach( $custom_fields as $cmf ) {
 
@@ -155,7 +152,7 @@ if ( ! class_exists( 'Spine_js_woo' ) ) {
 
         public function woo_product_data_store_cpt_get_products_query_checkbox( $query, $query_vars, $data_store_cpt ) {
 
-            $custom_fields = $this->get_custom_fields();
+            $custom_fields = $this->custom_fields();
 
             foreach( $custom_fields as $cmf ) {
 
@@ -181,7 +178,7 @@ if ( ! class_exists( 'Spine_js_woo' ) ) {
             global $woocommerce, $post;
 
             $post_id = $post->ID;
-            $custom_fields = $this->get_custom_fields();
+            $custom_fields = $this->custom_fields();
 
             foreach( $custom_fields as $cmf ) {
                 $name = $cmf['name'];
@@ -260,7 +257,7 @@ if ( ! class_exists( 'Spine_js_woo' ) ) {
         public function get_metas() {
 
             $metas = array();
-            $custom_fields = $this->get_custom_fields();
+            $custom_fields = $this->custom_fields();
 
             foreach( $custom_fields as $cmf ) {
 
@@ -273,37 +270,26 @@ if ( ! class_exists( 'Spine_js_woo' ) ) {
         public function get_products_from_meta( $id ) {
 
             $metas = $this->get_metas();
-            $slug = $metas[$id]['slug'];
+            $slug = ! empty( $metas ) ? $metas[$id]['slug'] : '';
             $products = $this->get_products_from_slug( $slug );
 
             return $products;
         }
 
-        // generic query
-        public function get_products_from_slug( $slug ) {
+        public function get_products_from_slug( $slug = '' ) {
+            // prevent wc_get_products from returning results when slug is empty
+            if ( empty( $slug ) ) {
+                add_filter( 'woocommerce_product_object_query', function( $query_vars ) {
+                    return  [];
+                } );
+            }
             $meta_key = "_hal_checkbox_{$slug}";
             $queried_products = wc_get_products( array(
                 $meta_key => 'yes',
-                'return' => 'ids'
+                'status'  => 'publish',
+                'return'  => 'ids'
             ) );
-
             return $queried_products;
-        }
-
-        public function rest_api_includes() {
-            include_once dirname( __FILE__ ) . '/RestApi/ProductAow.php';
-        }
-
-        public function register_rest_routes() {
-            $controllers = array(
-                // REST API v1 controllers.
-                'ProductAow'
-            );
-
-            foreach ( $controllers as $controller ) {
-                $this->$controller = new $controller();
-                $this->$controller->register_routes();
-            }
         }
 
     }//class closure

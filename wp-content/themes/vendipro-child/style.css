@@ -767,7 +767,6 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         text-decoration: none !important;
         font-size: 0.8em;
     }
-    
     .term-description p {
 
     }
@@ -777,8 +776,8 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
     .page-id-1008 #main-wrapper.container {
         padding-top: 0 !important;
     }
-    .page-id-1008 .promotion, .page-id-1008 .entry-post {
-        margin-bottom: 13px;
+    .page-id-1008 .promotion, .entry-post {
+        margin-bottom: 13px !important;
     }
     .page-id-1008 .promotion img {
         margin: 0 !important;

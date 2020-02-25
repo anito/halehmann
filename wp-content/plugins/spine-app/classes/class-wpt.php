@@ -94,7 +94,7 @@ if ( ! class_exists( 'wpt_spine_js' ) ) {
             ?>
             <label class="spine-js-switch">
                 <input type="checkbox" id="spine_js_settings_wpt_active" name="spine_js_settings_wpt[active]" size="40" value="1"
-                        type="checkbox" <?php checked(1, $this->active, true) ?> />
+                    <?php checked(1, $this->active, true) ?> />
                 <span class="spine-js-slider spine-js-round"></span>
             </label>
             <?php

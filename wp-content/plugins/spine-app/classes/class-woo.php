@@ -28,15 +28,17 @@ if ( ! class_exists( 'woo_spine_js' ) ) {
         static function this() {
             return self::$_this;
         }
-
         public function get_admin_options() {
 
             $this->admin_options = get_option('spine_js_settings_woo');
-
-            if (isset($this->admin_options)) {
+            write_log('ADMIN OPTIONS');
+            write_log($this->admin_options);
+            if ( isset( $this->admin_options ) ) {
                 $this->active = isset($this->admin_options['active']) ? $this->admin_options['active'] : $this->active;
+                write_log($this->admin_options['active']);
                 // RESET ALL FIELDS
                 // $this->custom_meta_fields = array();
+
                 $this->custom_meta_fields = isset($this->admin_options['custom_meta_fields']) ? $this->admin_options['custom_meta_fields'] : $this->custom_meta_fields;
             }
         }
@@ -99,13 +101,27 @@ if ( ! class_exists( 'woo_spine_js' ) ) {
 
             return $settings;
         }
+        public function active() {
+            $options = get_option('spine_js_settings_woo');
+            return $options['active'];
+        }
+        protected function custom_fields() {
+            $options = get_option('spine_js_settings_woo');
+
+            write_log( 'THIS ACTIVE 2' );
+            write_log( $this->active() );
+            if( ! empty( $this->active() ) ) {
+                return $options['custom_meta_fields'];
+            }
+            return [];
+        }
 
         public function get_woo_active() {
 
             ?>
             <label class="spine-js-switch">
-                <input type="checkbox" id="spine_js_settings_woo_active" name="spine_js_settings_woo[active]" size="40" value="0"
-                    <?php checked(0, $this->active, false) ?> />
+                <input type="checkbox" id="spine_js_settings_woo_active" name="spine_js_settings_woo[active]" value="1"
+                    <?php checked(1, $this->active, true) ?> />
                 <span class="spine-js-slider spine-js-round"></span>
             </label>
             <?php
