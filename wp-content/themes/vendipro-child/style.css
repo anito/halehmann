@@ -1615,7 +1615,7 @@ li.product .added_to_cart {
     margin-bottom: 3em;
 }
 .opening-times {
-
+    background-color: #444444;
 }
 .opening-times dl {
     margin: 20px 0;
