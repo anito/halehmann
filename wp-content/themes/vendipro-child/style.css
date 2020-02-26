@@ -1614,6 +1614,23 @@ li.product .added_to_cart {
 .term-description, .page-description {
     margin-bottom: 3em;
 }
+.opening-times {
+
+}
+.opening-times dl {
+    margin: 20px 0;
+}
+.opening-times dl dt, .info-box dl dd {
+    padding: 5px;
+}
+.opening-times dl dt {
+    font-weight: 700;
+    margin: 10px 0 15px;
+}
+.opening-times dl dd {
+	margin-left: 20%;
+	display: block !important;
+}
 .info-box {
     line-height: 2em !important;
     border-radius: 0px;
