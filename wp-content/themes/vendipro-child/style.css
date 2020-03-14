@@ -243,6 +243,25 @@ p.pee {
         #fbe7db 82px
     );
 }
+.stripes.orange {
+    background-image: repeating-linear-gradient(
+        45deg,
+        #fdd2c5,
+        #fdd2c5 41px,
+        #fbe7db 41px,
+        #fbe7db 82px
+    );
+}
+.stripes.dark-orange {
+    background-image: repeating-linear-gradient(
+        45deg,
+        #ff8433,
+        #ff8433 41px,
+        #d05911 41px,
+        #d05911 82px
+    );
+    color: #ffffff;
+}
 .wp-block-group .frontpage-specials {
     background: #ffffff;
     color: #1f1f1f;
@@ -263,6 +282,45 @@ p.pee {
 }
 .news-wrapper .wp-block-column.frontpage-news {
     display: none;
+    flex-grow: 1;
+}
+.frontpage-news.flex li {
+    display: flex;
+}
+
+.frontpage-news.flex li .wp-block-latest-posts__featured-image + a {
+    position: absolute;
+    left: 28.5%;
+    margin-top: 20px;
+    font-size: 2em;
+    height: 30px;
+}
+.frontpage-news.flex li a + div:first-child {
+    left: 30%;
+}
+
+.frontpage-news.flex li .wp-block-latest-posts__featured-image {
+    width: 30%;
+}
+.frontpage-news.flex li .wp-block-latest-posts__featured-image img {
+    height: 100% !important;
+}
+
+.frontpage-news.flex li div:last-child {
+    position: relative;
+    margin-top: 64px;
+    padding: 0 20px 20px 10px;
+    height: 60%;
+}
+
+.frontpage-news.flex ul {
+    margin: 0;
+}
+.wp-block-group .frontpage-news.virus {
+    background-color: #672b0e;
+    color: #bfbfbf;
+    border-radius: 5px;
+    border: 9px solid #9c3301;
 }
 .wp-block-group .frontpage-news ul > li > a:first-child {
     color: #1f1f1f;
