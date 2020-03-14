@@ -2629,8 +2629,22 @@ table.shop_table td.product-thumbnail img {
 .open div:nth-child(2) {
     margin-top: 20px;
 }
-div[id*="boxzilla-"] {
+div[id*="boxzilla-"]:not(.boxzilla-content) {
     border-radius: 5px;
+    padding: 0;
+    overflow: hidden;
+}
+.boxzilla header.virus {
+    background-image: url('https://staging.ha-lehmann.at/wp-content/uploads/2020/03/Fotolia_84708342_XXL.jpg');
+    background-size: cover;
+}
+header.virus::after {
+    content: "";
+    height: 150px;
+    display: block;
+}
+.boxzilla main {
+    padding: 20px;
 }
 .mc4wp-form input[type="email"], .boxzilla .mc4wp-form input[type="submit"] {
     margin-bottom: 10px !important;

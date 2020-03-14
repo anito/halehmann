@@ -1121,8 +1121,22 @@ h3#billing_fields_heading, h3#order_review_heading {
     top: 3px;
     right: 13px;
 }
-div[id*="boxzilla-"] {
+div[id*="boxzilla-"]:not(.boxzilla-content) {
     border-radius: 5px;
+    padding: 0;
+    overflow: hidden;
+}
+.boxzilla header.virus {
+    background-image: url('https://staging.ha-lehmann.at/wp-content/uploads/2020/03/Fotolia_84708342_XXL.jpg');
+    background-size: cover;
+}
+header.virus::after {
+    content: "";
+    height: 150px;
+    display: block;
+}
+.boxzilla main {
+    padding: 20px;
 }
 .boxzilla {
     overflow-y: visible !important;
