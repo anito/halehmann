@@ -24,10 +24,6 @@ class Spine_js_admin {
 
     }
 
-    static function this() {
-        return self::$_this;
-    }
-
     public function add_privacy_info() {
         if (!function_exists('wp_add_privacy_policy_content')) {
             return;

@@ -1121,9 +1121,8 @@ h3#billing_fields_heading, h3#order_review_heading {
     top: 3px;
     right: 13px;
 }
-.back-button,
-.smartphone.web-app-mode.pushit-active .back-button{
-
+div[id*="boxzilla-"] {
+    border-radius: 5px;
 }
 .boxzilla {
     overflow-y: visible !important;
