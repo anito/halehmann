@@ -2634,6 +2634,10 @@ div[id*="boxzilla-"]:not(.boxzilla-content) {
     padding: 0;
     overflow: hidden;
 }
+/** workaround ghosted empty pees **/
+.boxzilla header + p, .boxzilla main > p:first-child {
+    display: none;
+}
 .boxzilla header.virus {
     background-image: url('https://staging.ha-lehmann.at/wp-content/uploads/2020/03/Fotolia_84708342_XXL.jpg');
     background-size: cover;
