@@ -2659,6 +2659,7 @@ header.virus::after {
 }
 .boxzilla-newsletter-box {
     overflow-y: visible !important;
+    overflow: visible !important;
 }
 .boxzilla .mc4wp-form {
     text-align: center;
