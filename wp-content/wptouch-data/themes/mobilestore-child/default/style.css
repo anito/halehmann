@@ -1131,7 +1131,7 @@ div[id*="boxzilla-"]:not(.boxzilla-content) {
     display: none;
 }
 .boxzilla header.virus {
-    background-image: url('https://staging.ha-lehmann.at/wp-content/uploads/2020/03/Fotolia_84708342_XXL.jpg');
+    background-image: url('/wp-content/uploads/2020/03/Fotolia_84708342_XXL.jpg');
     background-size: cover;
 }
 header.virus::after {
