@@ -259,7 +259,7 @@ function woocommerce_styles() {
     );
 }
 
-add_action( 'wp_enqueue_scripts', 'vp_child_theme_styles', PHP_INT_MAX );
+add_action( 'wp_enqueue_scripts', 'vp_child_theme_styles', 10 );
 function vp_child_theme_styles() {
 	$parent_style = 'vendipro-style';
 	wp_enqueue_style( 'child-style-fonts', get_stylesheet_directory_uri() . '/css/fonts.css', wp_get_theme()->get('Version') );
@@ -267,8 +267,9 @@ function vp_child_theme_styles() {
 	wp_enqueue_style( 'child-style-animations', get_stylesheet_directory_uri() . '/css/animations.css', wp_get_theme()->get('Version') );
 	wp_enqueue_style( 'child-style-payments', get_stylesheet_directory_uri() . '/css/payments.css', wp_get_theme()->get('Version') );
 	wp_enqueue_style( 'child-style', get_stylesheet_uri(), array( 'vendipro' ), wp_get_theme()->get('Version') );
-	wp_dequeue_style('fontawesome');
-	wp_enqueue_style( 'fontawesome', get_stylesheet_directory_uri() . '/assets/font-awesome/css/all' . (IS_PRODUCTION ? '.min' : '') . '.css', wp_get_theme()->get('Version'));
+	// wp_dequeue_style('fontawesome');
+	// wp_dequeue_style('vendipro');
+	// wp_enqueue_style( 'fontawesome', get_stylesheet_directory_uri() . '/assets/font-awesome/css/all' . (IS_PRODUCTION ? '.min' : '') . '.css', wp_get_theme()->get('Version'));
 }
 
 add_action( 'wp_enqueue_scripts', 'add_scripts' );
@@ -293,7 +294,7 @@ function add_scripts() {
 	wp_enqueue_script( 'main' );
 	wp_register_script( 'sidebar-cart', get_stylesheet_directory_uri() . '/js/sidebar.cart.js', array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'sidebar-cart' );
-	
+
 	/*
 	 *  Require Fancybox JS for Action Gallery Page only
 	 */
