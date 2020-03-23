@@ -22,9 +22,9 @@ function woo_related_products_limit() {
 
 /*
  * wc_remove_related_products
- * 
+ *
  * Clear the query arguments for related products so none show.
- * Add this code to your theme functions.php file.  
+ * Add this code to your theme functions.php file.
  */
 
 // wc_remove_related_products
@@ -49,14 +49,14 @@ function add_scripts() {
         // hand over the userID to the analytics script
         wp_localize_script('google-analytics', 'atts', array('user_id' => $user_id, 'ga_id' => GA_ID ));
 	}
-	
+
 	/*
 	*  Fonts & Payment Styles
 	*/
 	wp_enqueue_style( 'child-style-fonts', get_stylesheet_directory_uri() . '/css/fonts.css' );
 	wp_enqueue_style( 'child-style-payments', get_stylesheet_directory_uri() . '/css/payments.css' );
 	wp_enqueue_style( 'font-awesome', get_stylesheet_directory_uri() . '/assets/font-awesome/font-awesome' . (IS_PRODUCTION ? '.min' : '') . '.css' );
-	
+
 	/*
 	*  Require Fancybox JS for Action Gallery Page only
 	*/
@@ -66,7 +66,7 @@ function add_scripts() {
 		wp_enqueue_style('fancybox', get_stylesheet_directory_uri() . '/css/fancybox/jquery.fancybox.css');
 		wp_enqueue_style('fancy-metaslider', get_stylesheet_directory_uri() . '/css/fancy-metaslider.css');
 	}
-	
+
 	$translation_array = array(
 		'login_toggle_start' => __( 'Login now', 'wptouch-pro' ),
 		'login_toggle_close' => __( 'Close', 'wptouch-pro' ),
@@ -91,7 +91,7 @@ function add_scripts() {
 
 /**
  * Manipulates the sale badge to show percentage instead of just SALE
- *  
+ *
  * @param string $html current sale badge html
  * @param object $post current post object
  * @param object $product current product object
