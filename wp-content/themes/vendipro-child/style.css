@@ -2718,6 +2718,11 @@ header.virus::after {
     position: absolute;
     z-index: 0;
 }
+.addressbox-container .address-box::before {
+    right: 30px;
+    top: -40px;
+    transform: rotate(22deg);
+}
 .boxzilla .address-box::before {
     left: 0px;
     top: -50px;

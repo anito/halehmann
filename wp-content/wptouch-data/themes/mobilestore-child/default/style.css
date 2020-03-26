@@ -1188,7 +1188,7 @@ header.virus::after {
 .page-wrapper .address-box::before {
     right: 9px;
     top: -28px;
-    transform: rotate(17deg);
+    transform: rotate(17deg) scale(0.7);
 }
 .powered-by-webpremiere .logo {
     height: 23px;
