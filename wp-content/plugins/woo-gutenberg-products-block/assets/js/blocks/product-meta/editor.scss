@@ -1,0 +1,17 @@
+.wc-block-product-meta {
+	&.components-placeholder {
+		// Reset the background for the placeholders.
+		background-color: rgba(139, 139, 150, 0.1);
+	}
+
+	.components-resizable-box__handle {
+		z-index: 10;
+	}
+}
+.wc-block-product-meta__message {
+	margin-bottom: 16px;
+}
+
+.wc-block-product-meta__selection {
+	width: 100%;
+}

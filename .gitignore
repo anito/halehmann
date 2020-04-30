@@ -44,5 +44,6 @@ CVS
 !/wp-content/plugins/woocommerce-new-product
 !/wp-content/plugins/woocommerce-archive-variants
 !/wp-content/plugins/perfect-woocommerce-brands
+!/wp-content/plugins/woo-gutenberg-products-block
 
 wp-content/plugins/spine-app/assets/spine/node_modules

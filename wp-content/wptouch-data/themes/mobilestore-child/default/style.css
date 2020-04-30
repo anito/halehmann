@@ -1046,9 +1046,6 @@ h3.label, h4.label {
 .pwb-all-brands .pwb-pagination-wrapper {
     border-top: 0 none;
 }
-[class*="pwb-brand"] img {
-    display: flex;
-}
 .wc-gzd-edit-data-notice {
     background: #EEE;
     color: #000;
