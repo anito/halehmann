@@ -141,7 +141,7 @@ class ProductMeta extends AbstractDynamicBlock {
 
 		$note_str = sprintf(
 			'<div class="wc-block-product-meta__footer"><div>%s</div></div>',
-			wp_kses_post( $footer )
+			'*** '.wp_kses_post( $footer ).' ***'
 		);
 
 		$output = '<div class="block-wrapper">';
@@ -161,6 +161,7 @@ class ProductMeta extends AbstractDynamicBlock {
 			$output .= $price_str;
 		}
 
+		$content = preg_replace( '/(href\=\")([^"]*)(")/i', '${1}'.$product->get_permalink().'${3}', $content ) ;
 		$output .= '<div class="wc-block-product-meta__link">' . $content . '</div>';
 		$output .= '</div>';
 		$output .= $note_str;
