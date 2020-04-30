@@ -36,6 +36,7 @@ class ProductMeta extends AbstractDynamicBlock {
 		'iconId'             => 0,
 		'showDesc'           => false,
 		'showPrice'          => true,
+		'showIcon'           => true,
 		'hasInclineFooter'   => false,
 		'hasButtonBorder'    => false,
 	);
@@ -104,17 +105,16 @@ class ProductMeta extends AbstractDynamicBlock {
 		$icon = sprintf(
 			'<div class="wc-block-product-meta__icon-wrapper">
 				<div class="wc-block-product-meta__icon">
-					<div class="wc-block-product-meta__header">
+					<div class="icon-text">
 						<div>%1$s</div>
 					</div>
-					<div>
-						<img src="%2$s" alt="icon" data-src=%3$s />
+					<div class="icon-img">
+						<img src="%2$s" alt="icon" />
 					</div>
 				</div>
 			</div>',
 			wp_kses_post( $header ),
 			esc_url( $attributes['iconSrc'] ),
-			'test'
 		);
 
 		$title = sprintf(
@@ -140,12 +140,17 @@ class ProductMeta extends AbstractDynamicBlock {
 		);
 
 		$note_str = sprintf(
-			'<div class="wc-block-product-meta__footer">%s</div>',
+			'<div class="wc-block-product-meta__footer"><div>%s</div></div>',
 			wp_kses_post( $footer )
 		);
 
-		$output  = sprintf( '<div class="%1$s" style="%2$s">', $this->get_classes( $attributes ), $this->get_styles( $attributes, $product ) );
-		$output .= $icon;
+		$output = '<div class="block-wrapper">';
+
+		if ( $attributes['showIcon'] ) {
+			$output .= $icon;
+		}
+
+		$output  .= sprintf( '<div class="%1$s" style="%2$s">', $this->get_classes( $attributes ), $this->get_styles( $attributes, $product ) );
 		$output .= '<div class="wc-block-product-meta__wrapper">';
 		$output .= $title;
 
@@ -157,6 +162,7 @@ class ProductMeta extends AbstractDynamicBlock {
 		}
 
 		$output .= '<div class="wc-block-product-meta__link">' . $content . '</div>';
+		$output .= '</div>';
 		$output .= $note_str;
 		$output .= '</div>';
 		$output .= '</div>';

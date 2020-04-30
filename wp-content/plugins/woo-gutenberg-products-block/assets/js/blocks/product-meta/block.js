@@ -368,67 +368,67 @@ const ProductMeta = ( {
 		setExtraProductMetas();
 
 		return (
-			<ResizableBox
-				className={ classes }
-				height={ height }
-				minHeight={ MIN_HEIGHT }
-				maxHeight={ MAX_HEIGHT }
-				enable={ { bottom: true } }
-				onResizeStop={ onResizeStop }
-				style={ style }
-			>
+			<div className="block-wrapper">
 				{ showIcon && (
 					<div className="wc-block-product-meta__icon-wrapper">
 						<div className="wc-block-product-meta__icon">
-							<div className="wc-block-product-meta__header">
-								{ renderHeader() }
-							</div>
-							<div>
+							<div className="icon-text">{ renderHeader() }</div>
+							<div className="icon-img">
 								<img src={ iconSrc } alt="icon" rel="icon" />
 							</div>
 						</div>
 					</div>
 				) }
-				<div className="wc-block-product-meta__wrapper">
-					<h2
-						className="wc-block-product-meta__title"
-						dangerouslySetInnerHTML={ {
-							__html: product.name,
-						} }
-					/>
+				<ResizableBox
+					className={ classes }
+					height={ height }
+					minHeight={ MIN_HEIGHT }
+					maxHeight={ MAX_HEIGHT }
+					enable={ { bottom: true } }
+					onResizeStop={ onResizeStop }
+					style={ style }
+				>
+					<div className="wc-block-product-meta__wrapper">
+						<h2
+							className="wc-block-product-meta__title"
+							dangerouslySetInnerHTML={ {
+								__html: product.name,
+							} }
+						/>
 
-					{ ! isEmpty( product.variation ) && (
-						<h3
-							className="wc-block-product-meta__variation"
-							dangerouslySetInnerHTML={ {
-								__html: product.variation,
-							} }
-						/>
-					) }
-					{ showDesc && (
-						<div
-							className="wc-block-product-meta__description"
-							dangerouslySetInnerHTML={ {
-								__html: product.description,
-							} }
-						/>
-					) }
-					{ showPrice && (
-						<div
-							className="wc-block-product-meta__price"
-							dangerouslySetInnerHTML={ {
-								__html: product.price_html,
-							} }
-						/>
-					) }
-					<div className="wc-block-product-meta__link">
-						{ renderButton() }
+						{ ! isEmpty( product.variation ) && (
+							<h3
+								className="wc-block-product-meta__variation"
+								dangerouslySetInnerHTML={ {
+									__html: product.variation,
+								} }
+							/>
+						) }
+						{ showDesc && (
+							<div
+								className="wc-block-product-meta__description"
+								dangerouslySetInnerHTML={ {
+									__html: product.description,
+								} }
+							/>
+						) }
+						{ showPrice && (
+							<div
+								className="wc-block-product-meta__price"
+								dangerouslySetInnerHTML={ {
+									__html: product.price_html,
+								} }
+							/>
+						) }
+						<div className="wc-block-product-meta__link">
+							{ renderButton() }
+						</div>
 					</div>
 					<div className="wc-block-product-meta__footer">
 						{ renderFooter() }
 					</div>
-				</div>
-			</ResizableBox>
+				</ResizableBox>
+			</div>
 		);
 	};
 
@@ -477,19 +477,21 @@ const ProductMeta = ( {
 	};
 
 	const renderHeader = () => {
-		const headerClasses = classnames();
 		const headerStyle = {
 			backgroundColor: 'transparent',
 			color: '#e5e5e5',
 		};
 		return (
-			<PlainText
-				className={ headerClasses }
-				tagName={ attributes.tagName }
-				value={ attributes.heading }
-				onChange={ ( value ) => setAttributes( { heading: value } ) }
-				style={ headerStyle }
-			/>
+			<div className="icon-text-inner">
+				<PlainText
+					tagName={ attributes.tagName }
+					value={ attributes.heading }
+					onChange={ ( value ) =>
+						setAttributes( { heading: value } )
+					}
+					style={ headerStyle }
+				/>
+			</div>
 		);
 	};
 	const renderFooter = () => {
