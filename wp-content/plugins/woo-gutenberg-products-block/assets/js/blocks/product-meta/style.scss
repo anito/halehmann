@@ -179,6 +179,7 @@
 		font-size: 1rem;
 		line-height: 1.1em;
 		font-family: "Noto Serif"; /* stylelint-disable-line */
+		padding-top: 10px;
 
 		div {
 			display: inline-block;
@@ -186,6 +187,18 @@
 			vertical-align: middle;
 		}
 
+	}
+
+	.wc-block-product-meta__footer:before {
+		content: '';
+		height: 1px;
+		background: rgba(255, 255, 255, 0.3);
+		width: calc(100% - 100px);
+		top: 0px;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		position: absolute;
 	}
 
 	&.has-button-border .wp-block-button__link {
