@@ -114,7 +114,7 @@ class ProductMeta extends AbstractDynamicBlock {
 				</div>
 			</div>',
 			wp_kses_post( $header ),
-			esc_url( $attributes['iconSrc'] )
+			esc_url( $attributes['iconSrc'] ),
 		);
 
 		$title = sprintf(
