@@ -177,6 +177,12 @@ a, a:hover, a:visited, a:focus {
 .alignnone {
     margin: 0 !important;
 }
+.gold {
+    color: #82704c;
+}
+.border-9 {
+    border: 9px solid;
+}
 .flex, .col2-set {
     display: flex;
 }
@@ -193,12 +199,6 @@ a, a:hover, a:visited, a:focus {
     display: flex;
     flex-flow: column;
     justify-content: center;
-}
-.font-lg p {
-    font-size: 1.4em;
-}
-.font-x-lg p {
-    font-size: 1.8em;
 }
 .pad {
     padding: 5%;
