@@ -172,7 +172,7 @@ dl dt, dl dd {
     display: inline-block;
 }
 a, a:hover, a:visited, a:focus {
-     color: #ffffff; 
+     color: #ffffff;
 }
 .alignnone {
     margin: 0 !important;
@@ -188,6 +188,17 @@ a, a:hover, a:visited, a:focus {
     width: auto;
     padding: 0;
     margin: 0;
+}
+.vertical-align-center {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+}
+.font-lg p {
+    font-size: 1.5em;
+}
+.font-x-lg p {
+    font-size: 1.8em;
 }
 .pad {
     padding: 5%;
