@@ -74,8 +74,17 @@ class ProductMeta extends AbstractDynamicBlock {
 	 */
 	public function render( $attributes = array(), $content = '' ) {
 
+		/**
+		 * check for Spine App Plugin
+		 */
+		if( ! defined( 'SPINEAPP_PLUGIN_DIR' ) )
+			return;
+
 		require_once \SPINEAPP_PLUGIN_DIR . 'classes/class-woo-custom-fields.php';
 
+		/**
+		 * check for Custom Product Meta definitions
+		 */
 		$id = ! empty( $attributes['metas'] ) ? (int) $attributes['metas'][0] : null;
 		if ( ! isset( $id ) ) {
 			return '';
