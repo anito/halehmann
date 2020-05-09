@@ -36,11 +36,12 @@ function wc_remove_related_products( $args ) {
 
 // Function to add custom javascript
 function add_scripts() {
-	wp_register_script('readmore', get_stylesheet_directory_uri() . '/js/node_modules/readmore-js/readmore.js', array('jquery'), '1.0', true);
-	wp_enqueue_script('readmore');
+	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+	wp_register_script( 'readmore', get_stylesheet_directory_uri() . '/js/readmore-js/readmore' . $suffix . '.js' , array('jquery'), '1.0', true );
+	wp_enqueue_script( 'readmore');
 	wp_register_script( 'kaeufersiegel', get_stylesheet_directory_uri() . '/js/kaeufersiegel.js', array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'kaeufersiegel' );
-	if( !IS_DEV_MODE && IS_PRODUCTION ) {
+	if( !IS_DEV_MODE ) {
 		$current_user = wp_get_current_user();
         $user_id =  (0 == $current_user->ID) ? '' : $current_user->ID;
 		// Register analyticstracking.php file (Google Analytics)

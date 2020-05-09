@@ -61,7 +61,7 @@ function new_products() {
 			)
 		)
 	);
-	
+
 	$loop = new WP_Query( $args );
 
 	while ( $loop->have_posts() ) {
@@ -73,17 +73,17 @@ function new_products() {
 }
 
 function product_query( $q ) {
-	
+
 	$product_category = get_terms( 'product_cat', $args )[0];
     $recent_product_ids = get_recent_product_ids();
 	$product_ids_on_sale = wc_get_product_ids_on_sale();
-	
+
 	echo("recent:<br>");
 	var_dump((array) $recent_product_ids);
 	echo("<br>");
-	
+
     $q->set( 'post__in', (array) $recent_product_ids );
-	
+
 }
 function get_recent_product_ids() {
 	// Load from cache
@@ -103,7 +103,7 @@ function get_recent_products() {
 	global $wpdb;
 
 	$date = date( 'Y-m-d', strtotime( '-30 days' ) );
-	
+
 	$ret = $wpdb->get_results( "
 		SELECT post.ID as id, post.post_parent as parent_id FROM `$wpdb->posts` AS post
 		LEFT JOIN `$wpdb->postmeta` AS meta ON post.ID = meta.post_id
@@ -113,7 +113,7 @@ function get_recent_products() {
 			AND post.post_date > '{$date}'
 		GROUP BY post.ID;
 	" );
-			
+
 }
 
 /**
@@ -124,12 +124,12 @@ function get_recent_products() {
 add_action("save_post", "on_save_post", 99, 3);
 function on_save_post($post_id , $post, $is_update){
 	global $woocommerce;
-	
+
 	$product_id = $post_id;
 	$product = wc_get_product( $product_id );
-	
+
 	if(!$product) return 0;
-	
+
 	if($product->is_type('variation')) {
 		$variation = new WC_Product_Variation($product);
 		$product_id = $variation->get_parent_id();
@@ -138,7 +138,7 @@ function on_save_post($post_id , $post, $is_update){
 	if( defined( 'SALES_CAT_ID' ) ) {
 		process_sales_cat($product_id, SALES_CAT_ID);
 	}
-	
+
 }
 
 /** check for featured product attribute and if true add FEATURED Category to it */
@@ -174,7 +174,7 @@ function disable_emojicons_tinymce( $plugins ) {
 
 // add_action( 'init', 'store_handle_query_vars', 999 );
 function store_handle_query_vars() {
-	
+
 	$do_interrupt = false;
 
 	if ( isset( $_REQUEST['store_action'] ) ) {
@@ -261,6 +261,7 @@ function woocommerce_styles() {
 
 add_action( 'wp_enqueue_scripts', 'vp_child_theme_styles', 10 );
 function vp_child_theme_styles() {
+	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 	$parent_style = 'vendipro-style';
 	wp_enqueue_style( 'child-style-fonts', get_stylesheet_directory_uri() . '/css/fonts.css', wp_get_theme()->get('Version') );
 	wp_enqueue_style( 'child-style-forms', get_stylesheet_directory_uri() . '/css/forms.css', wp_get_theme()->get('Version') );
@@ -268,11 +269,12 @@ function vp_child_theme_styles() {
 	wp_enqueue_style( 'child-style-payments', get_stylesheet_directory_uri() . '/css/payments.css', wp_get_theme()->get('Version') );
 	wp_enqueue_style( 'child-style', get_stylesheet_uri(), array( 'vendipro' ), wp_get_theme()->get('Version') );
 	// wp_dequeue_style('fontawesome');
-	// wp_enqueue_style( 'fontawesome', get_stylesheet_directory_uri() . '/assets/font-awesome/css/all' . (IS_PRODUCTION ? '.min' : '') . '.css', wp_get_theme()->get('Version'));
+	// wp_enqueue_style( 'fontawesome', get_stylesheet_directory_uri() . '/assets/font-awesome/css/all' . $suffix  . '.css', wp_get_theme()->get('Version'));
 }
 
 add_action( 'wp_enqueue_scripts', 'add_scripts' );
 function add_scripts() {
+	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 	wp_register_script( 'kaeufersiegel', get_stylesheet_directory_uri() . '/js/kaeufersiegel.js', array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'kaeufersiegel' );
 
@@ -298,7 +300,7 @@ function add_scripts() {
 	 *  Require Fancybox JS for Action Gallery Page only
 	 */
 	if(is_page('action-galerie')) {// using the slug here
-		wp_enqueue_script('fancybox', get_stylesheet_directory_uri() . '/js/fancybox/jquery.fancybox' . (IS_PRODUCTION ? '.min' : '') . '.js', array( 'jquery' ), '1.0', true);
+		wp_enqueue_script('fancybox', get_stylesheet_directory_uri() . '/js/fancybox/jquery.fancybox' . $suffix . '.js', array( 'jquery' ), '1.0', true);
 		wp_enqueue_script('fancybox-helper', get_stylesheet_directory_uri() . '/js/fancybox-helper.js', array( 'jquery' ), '1.0', true);
 		wp_enqueue_style('fancybox', get_stylesheet_directory_uri() . '/css/fancybox/jquery.fancybox.css', wp_get_theme()->get('Version'));
 		wp_enqueue_style('fancy-metaslider', get_stylesheet_directory_uri() . '/css/fancy-metaslider.css', wp_get_theme()->get('Version'));
@@ -329,7 +331,7 @@ function filter_woocommerce_output_related_products_args( $args ) {
 	$args['posts_per_page'] = 5;
 	$args['columns'] = 5; // arranged in n columns
 	return $args;
-	
+
 }
 /**
  * WooCommerce Upsell Products
@@ -345,7 +347,7 @@ function filter_woocommerce_output_upsell_products_args( $args ) {
 	$args['posts_per_page'] = 5;
 	$args['columns'] = 5; // arranged in n columns
 	return $args;
-	
+
 }
 
 // show an extra variation attributes line in cart
@@ -354,15 +356,15 @@ function filter_woocommerce_output_upsell_products_args( $args ) {
 // add wrapper classes to multistep checkout
 add_filter('woocommerce_gzdp_checkout_wrapper_classes', 'active_step_wrapper_classes');
 function active_step_wrapper_classes($classes) {
-    
+
     $ret = array_merge($classes, array('entry-post', 'wrapper'));
     return $ret;
-    
+
 }
 
 add_filter('woocommerce_form_field_email', 'form_field_email', 10);
 function form_field_email( $field ) {
-	
+
 	$classes = array(
 		'step-wrapper',
 		'step-wrapper-active'
@@ -423,9 +425,9 @@ function is_brand_archive_page() {
 }
 /*
  * wc_remove_related_products (disabled)
- * 
+ *
  * Clear the query arguments for related products so none show.
- *  
+ *
  */
 
 //add_filter('woocommerce_related_products_args','wc_remove_related_products', 10);
@@ -450,7 +452,7 @@ function my_enqueue($hook) {
 		// Only applies to dashboard panel
 		return;
     }
-	
+
 	wp_enqueue_script( 'ajax-script', get_stylesheet_directory_uri() . '/js/user.js' , array('jquery') );
 
 	// hand over the userID to the analytics script
@@ -475,13 +477,13 @@ function my_enqueue($hook) {
 //add_action( 'wp_ajax_action', 'action' );
 function action() {
 	global $wpdb;
-	
+
 	$id = intval( $_POST['id'] );
 	$whatever = intval( $_POST['whatever'] );
 	$whatever += 100;
-	
+
 	echo 'Whatever: ' . $whatever . ' / User ID: ' . $id;
-	
+
 	wp_die();
 }
 
@@ -497,9 +499,9 @@ function allow_svg_upload( $m ) {
  * add extra field for png image in header
  */
 function fallback_header_image( $arr ) {
-	
+
 	$offset = array_search( 'woocommerce_email_header_image', array_column( $arr, 'id'))+2;
-	
+
 	$insert = array(
 			$offset+3 => array(
 				'title'       => __( 'Fallback Header Bild', 'woocommerce' ),
@@ -525,9 +527,9 @@ function fallback_header_image( $arr ) {
 			)
 		);
 	array_splice($arr, $offset, 0, $insert );
-	
+
 	return $arr;
-	
+
 }
 add_filter( 'woocommerce_email_settings', 'fallback_header_image', 20, 2 );
 
@@ -548,7 +550,7 @@ function prefix_add_css_class_to_form( $classes = array(), MC4WP_Form $form ) {
 //add_action( 'rest_api_inserted_post',  'rest_api_inserted_post', 100, 3);
 function rest_api_inserted_post( $post_id, $insert, $new ) {
 	write_log( '--------- rest_api_inserted_post START---------' );
-	
+
 	if( !empty( $_FILES ) ) {
 		write_log( '$_FILES:');
 		write_log( $_FILES);
@@ -559,7 +561,7 @@ function rest_api_inserted_post( $post_id, $insert, $new ) {
 	write_log($insert);
 	write_log($new);
 	write_log( '--------- rest_api_inserted_post END---------' );
-	
+
 }
 
 //add_filter( 'wp_insert_attachment_data', 'wp_insert_attachment_data_via_rest', 20, 2 );
@@ -591,7 +593,7 @@ function js_age_gate_after( $ret ) {
  */
 add_filter( 'woocommerce_get_availability', 'wcs_custom_get_availability', 1, 2);
 function wcs_custom_get_availability( $availability, $_product ) {
-   
+
    	// Change In Stock Text
     if ( $_product->is_in_stock() ) {
         $availability['availability'] = __('In stock', 'woocommerce');
