@@ -1560,7 +1560,7 @@ label[for*="quantity_"] {
     padding: 3px;
     line-height: 2.2em;
 }
-.promotion-code code span {
+.promotion-code code > *:first-child {
     color: #4b4e3f ! important;
 }
 /*

@@ -3251,7 +3251,7 @@ a.target-blank-icon:after {
     word-wrap: break-word;
     background-color: #f2fdc7;
 }
-.promotion-code code span {
+.promotion-code code > *:first-child {
     color: #4b4e3f ! important;
 }
 @media (max-width: 660px) {
