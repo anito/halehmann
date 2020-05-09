@@ -1556,6 +1556,13 @@ label[for*="quantity_"] {
     margin-left: 5px;
     position: initial !important;
 }
+.promotion-code code {
+    padding: 3px;
+    line-height: 2.2em;
+}
+.promotion-code code span {
+    color: #4b4e3f ! important;
+}
 /*
 *
 *   MagicZoom

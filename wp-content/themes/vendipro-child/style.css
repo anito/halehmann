@@ -122,7 +122,7 @@ body {
     position: relative;
 }
 p {
-    
+
 }
 fieldset {
     border: none;
@@ -430,7 +430,7 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         padding-left: 32px;
         border-left: 3px solid #444;
     }
-    
+
     .two-col-text-with-separator .wp-block-column:first-child {
         margin-right: -32px;
         padding-right: 32px;
@@ -451,17 +451,17 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
     .wp-block-group .frontpage-news {
         margin-bottom: 15px;
     }
-    
+
     .wp-block-column.shown {
         flex-basis: 100%;
     }
 }
 @media only screen and (min-width: 660px) and (max-width: 900px) {
-    
+
     .woocommerce ul.products:not(.columns-3):not(.columns-2) li.product {
             width: 22% !important;
     }
-    
+
 }
 @media only screen and (min-width: 268px) {
     body {
@@ -655,7 +655,7 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         margin-top: 8px;
     }
     header#hmain .navbar ul.slimmenu > li:last-child a {
-        
+
     }
     header#hmain .navbar ul.slimmenu > li:last-child a i::before {
         font-size: 2em;
@@ -1272,7 +1272,7 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
     border-bottom: 1px solid rgba(0, 0, 0, .2);
 }
 .cart-sidebar .cart-collaterals {
-    
+
 }
 .cart-sidebar .cart-collaterals.sidebar-cart-subtotals {
     font-size: 0.8em;
@@ -2222,7 +2222,7 @@ li.product a.button {
     .columns-4 ul.products li.product:nth-child(4n) {
         margin-right: 2% !important; 
     }
-    
+
 }
 @media only screen and (min-width: 1120px) {
     .product section.upsells ul.products.columns-2 li.product,
@@ -3244,19 +3244,26 @@ a.target-blank-icon:after {
     width: 130px;
     border-radius: 3px;
 }
+.promotion-code code {
+    padding: 3px;
+    line-height: 2.2em;
+}
+.promotion-code code span {
+    color: #4b4e3f ! important;
+}
 @media (max-width: 660px) {
-    
+
     .woocommerce ul.products:not(.columns-2):not(.columns-3) li.product:nth-child(3n) {
         margin-right: 2% !important;
     }
-    
+
 }
 @media (max-width: 900px) {
-    
+
     .woocommerce ul.products:not(.columns-3):not(.columns-2) li.product:nth-child(4n) {
         margin-right: 2% !important;
     }
-    
+
 }
 /* IE Hack */
 @media all and (-ms-high-contrast:none)
