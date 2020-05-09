@@ -3247,6 +3247,9 @@ a.target-blank-icon:after {
 .promotion-code code {
     padding: 3px;
     line-height: 2.2em;
+    border: 1px solid #ffd478;
+    word-wrap: break-word;
+    background-color: #f2fdc7;
 }
 .promotion-code code span {
     color: #4b4e3f ! important;
