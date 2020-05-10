@@ -85,6 +85,12 @@ class ProductMetas extends WC_REST_Products_Controller {
 	 */
 	public function get_item( $request ) {
 
+		/**
+		 * check for Spine App Plugin
+		 */
+		if( ! defined( 'SPINEAPP_PLUGIN_DIR' ) )
+			return;
+
 		require_once \SPINEAPP_PLUGIN_DIR . 'classes/class-woo-custom-fields.php';
 
 		$meta = $request['id'];

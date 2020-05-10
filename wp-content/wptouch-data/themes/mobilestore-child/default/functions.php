@@ -13,6 +13,7 @@ add_theme_support( 'html5', array( 'gallery' ) );
  * Set your own value for 'posts_per_page'
  *
  */
+add_filter( 'woocommerce_output_related_products_args', 'woo_related_products_limit' );
 function woo_related_products_limit() {
 	global $product;
 
@@ -24,7 +25,6 @@ function woo_related_products_limit() {
  * wc_remove_related_products
  *
  * Clear the query arguments for related products so none show.
- * Add this code to your theme functions.php file.
  */
 
 // wc_remove_related_products
@@ -35,6 +35,7 @@ function wc_remove_related_products( $args ) {
 }
 
 // Function to add custom javascript
+add_action('wp_print_scripts', 'add_scripts');
 function add_scripts() {
 	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 	wp_register_script( 'readmore', get_stylesheet_directory_uri() . '/js/readmore-js/readmore' . $suffix . '.js' , array('jquery'), '1.0', true );
@@ -98,6 +99,7 @@ function add_scripts() {
  * @param object $product current product object
  * @return string sale badge html containing percentage
  */
+add_filter( 'woocommerce_sale_flash', 'set_sale_flash', 1, 3 );
 function set_sale_flash( $html, $post, $product ) {
 	$html = '';
 	if ( $product->get_type() != 'variable' ) {
@@ -145,24 +147,28 @@ function mobilestore_products_per_page_override( $query ) {
 	$settings = mobilestore_get_settings();
 	set_query_var( 'posts_per_page', $settings->mobilestore_products_per_page );
 }
+
+add_action( 'init', 'ha_l_init_hooks' );
 function ha_l_init_hooks() {
 	// remove conntent structure from parent theme templates
     remove_action( 'woocommerce_after_main_content', 'wptouch_mobilestore_output_content_wrapper_end', 10 );
 	add_action( 'woocommerce_after_main_content', 'wptouch_mobilestore_output_content_wrapper_end_override', 10 );
-	
+
     remove_action( 'wp', 'wptouch_maybe_stop_responsive_images' );
 	add_action( 'wp', 'wptouch_maybe_stop_responsive_images_override' );
-	
+
 	remove_action( 'pre_get_posts', 'mobilestore_products_per_page', 30 );
 	add_action( 'pre_get_posts', 'mobilestore_products_per_page_override', 30 );
 
-	
+
 }
+
+add_action( 'wp_enqueue_scripts', 'remove_styles', 30 );
 function remove_styles() {
 	wp_dequeue_style( 'nb-styles' );
     wp_dequeue_style( 'pac-styles' );
 	wp_dequeue_style( 'pac-layout-styles' );
-	
+
 	check_post_meta_dependencies();
 }
 function check_post_meta_dependencies() {
@@ -172,20 +178,20 @@ function check_post_meta_dependencies() {
 	}
 }
 function archive_term_image() {
-	
+
 	if ( is_product_category() ) {
 		global $wp_query;
-		
+
 		$cat = $wp_query->get_queried_object();
 		$thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
-		
+
 	} elseif ( function_exists( 'may_be_filtered_post' )  && may_be_filtered_post() ) {
-		
+
 		$thumbnail_id = get_woocommerce_term_meta( get_main_category_id(), 'thumbnail_id', true );
-		
+
 	}
 	if ( !empty( $thumbnail_id ) ) {
-		
+
 		$thumbnail_post = get_post( $thumbnail_id );
 		$image = wp_get_attachment_url( $thumbnail_id );
 		if ( $image ) { ?>
@@ -195,20 +201,21 @@ function archive_term_image() {
 		<?php
 		}
 	}
-	
+
 }
 
-add_action( 'init', 'ha_l_init_hooks' );
-
-add_action('wp_print_scripts', 'add_scripts');
-
-add_filter( 'woocommerce_output_related_products_args', 'woo_related_products_limit' );
-add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 20;' ), 999 );
-add_filter( 'woocommerce_sale_flash', 'set_sale_flash', 1, 3 );
-add_action( 'wp_enqueue_scripts', 'remove_styles', 30 );
+/**
+ * Change number of products that are displayed per page (shop page)
+ */
+add_filter( 'loop_shop_per_page', 'webpremiere_filter_loop_shop_per_page', 10 );
+function webpremiere_filter_loop_shop_per_page( $cols ) {
+	$cols = 2;
+	write_log( 'loop_shop_per_page' );
+	return $cols;
+}
 
 // we dont need the the cat-thumb overlay
-// remove_action() must be called inside a function and cannot be called directly in your plugin or theme.
+// remove_action() must be called inside a function and cannot be called directly in plugin or theme.
 add_action( 'woocommerce_before_main_content', 'remove_new_archive_term_image_action' );
 function remove_new_archive_term_image_action() {
 	remove_action( 'woocommerce_before_main_content', 'new_archive_term_image', 20 );
@@ -219,19 +226,20 @@ add_action('woocommerce_archive_description', 'get_brands_template', 1);
 function get_brands_template() {
 	wc_get_template( 'templ/badge/brand.php' );
 }
+
 // cleanup Banner and Description Hooks from PWB Plugin
 add_action('woocommerce_archive_description', 'override_pwb_brand_banner_and_description' );
 function override_pwb_brand_banner_and_description() {
 	$instance = \Perfect_Woocommerce_Brands\Perfect_Woocommerce_Brands::this();
-	
+
 	// remove banner and description from shop_loop
 	remove_action( 'woocommerce_after_main_content', array( $instance, 'print_brand_banner_and_desc' ), 9);
 	remove_action( 'woocommerce_after_main_content', array( $instance, 'print_brand_desc' ), 9 );
-	
+
 	remove_action( 'woocommerce_archive_description', array( $instance, 'print_brand_banner_and_desc' ), 15);
 	remove_action( 'woocommerce_archive_description', array( $instance, 'print_brand_banner' ), 15 );
 	remove_action( 'woocommerce_archive_description', array( $instance, 'print_brand_desc' ), 15 );
-	
+
 }
 
 // add banner to main_content
@@ -270,11 +278,11 @@ function is_brand_archive_page() {
  *
  * @return array
  */
+add_filter( 'mc4wp_form_css_classes', 'prefix_add_css_class_to_form', 10, 2 );
 function prefix_add_css_class_to_form( $classes = array(), MC4WP_Form $form ) {
 	$classes[] = 'address-box';
 	return $classes;
 }
-add_filter( 'mc4wp_form_css_classes', 'prefix_add_css_class_to_form', 10, 2 );
 
 /**
  * Add some javascript to the age gate form
@@ -290,7 +298,7 @@ function js_age_gate_after( $ret ) {
  */
 add_filter( 'woocommerce_get_availability', 'wcs_custom_get_availability', 1, 2);
 function wcs_custom_get_availability( $availability, $_product ) {
-   
+
    	// Change In Stock Text
     if ( $_product->is_in_stock() ) {
         $availability['availability'] = __('In stock', 'woocommerce');
