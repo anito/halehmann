@@ -204,16 +204,6 @@ function archive_term_image() {
 
 }
 
-/**
- * Change number of products that are displayed per page (shop page)
- */
-add_filter( 'loop_shop_per_page', 'webpremiere_filter_loop_shop_per_page', 10 );
-function webpremiere_filter_loop_shop_per_page( $cols ) {
-	$cols = 2;
-	write_log( 'loop_shop_per_page' );
-	return $cols;
-}
-
 // we dont need the the cat-thumb overlay
 // remove_action() must be called inside a function and cannot be called directly in plugin or theme.
 add_action( 'woocommerce_before_main_content', 'remove_new_archive_term_image_action' );
