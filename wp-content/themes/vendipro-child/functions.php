@@ -622,7 +622,7 @@ function register_subfooter_widget_area() {
 */
 add_action( 'wp_enqueue_scripts', 'detectTrident' );
 function detectTrident($current_theme) {
-	$ua = $_SERVER['HTTP_USER_AGENT']; 
+	$ua = $_SERVER['HTTP_USER_AGENT'];
 	$browser = ['name' => '', 'version' => '', 'platform' => ''];
 	if(preg_match('/Trident\/([0-9.]*)/u', $ua, $match)) {
 		$match = (int) array_pop($match) + 4;

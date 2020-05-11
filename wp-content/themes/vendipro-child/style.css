@@ -785,12 +785,15 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         position: relative;
         margin-top: 0 !important;
     }
-    i.link {
-        min-width: 220px;
+    .wp-block-buttons.links {
         position: absolute;
-        bottom: 2rem;
-        right: 2rem;
-        font-size: 1.2rem;
+        bottom: 3em;
+        right: 1em;
+        z-index: 2;
+    }
+    .link .wp-block-button__link, i.link {
+        min-width: 220px;
+        font-size: 1rem;
         color: #ddd;
         text-transform: uppercase;
         font-style: normal;
@@ -799,7 +802,6 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         background-color: #de0303;
         border-radius: .2em;
         line-height: 1em;
-        z-index: 2;
         box-shadow: rgba(0,0,0,1) 0px 0px 10px;
     }
     i.link.link-2 {
