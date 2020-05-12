@@ -1580,22 +1580,22 @@ label[for*="quantity_"] {
     left: auto;
     bottom: auto;
 }
-.scale-0-5 {
+.scale-mobile-0-5 {
     transform: scale(0.5);
 }
-.scale-0-6 {
+.scale-mobile-0-6 {
     transform: scale(0.6);
 }
-.scale-0-7 {
+.scale-mobile-0-7 {
     transform: scale(0.7);
 }
-.scale-0-8 {
+.scale-mobile-0-8 {
     transform: scale(0.8);
 }
-.scale-0-9 {
+.scale-mobile-0-9 {
     transform: scale(0.9);
 }
-.scale-1-5 {
+.scale-mobile-1-5 {
     transform: scale(1.5);
 }
 .promotion-code code > *:first-child {
