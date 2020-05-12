@@ -842,6 +842,8 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         text-align: right;
     }
     header#hmain .widget_text div {
+        margin-left: 0.8rem;
+        margin-right: 0.8rem;
         display: inline-block;
     }
     header#hmain .widget_search, header#hmain .widget_product_search {
@@ -871,19 +873,19 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         width: 20%;
     }
     header#hmain .widgets .grid-6 .widget:nth-child(1) {
-        width: 23%;
+        width: 25%;
     }
     header#hmain .widgets .grid-6 .widget:nth-child(2) {
-        width: 12%;
+        width: 10%;
     }
     header#hmain .widgets .grid-6 .widget:nth-child(3) {
-        width: 15%;
+        width: 19%;
     }
     header#hmain .widgets .grid-6 .widget:nth-child(4) {
         width: 25%;
     }
     header#hmain .widgets .grid-6 .widget:nth-child(5) {
-        width: 12%;
+        width: 15%;
     }
     header#hmain .widgets .grid-6 .widget:nth-child(6) {
         text-align: right;
@@ -893,11 +895,9 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         width: 10%;
     }
     header#hmain .widgets .widget, div.textwidget, div.textwidget p {
+        line-height: 0 !important;
         margin-top: 0;
         margin-bottom: 0;
-        margin-left: 0;
-        margin-right: 0;
-        line-height: 0;
     }
     div.textwidget p {
         display: inline-block;
@@ -2138,9 +2138,9 @@ span.disclaimer {
     line-height: 1.2em;
 }
 .mini-cart {
-    position: relative;
+    position: absolute;
     right: 30px;
-    bottom: 18px;
+    top: -7px;
 }
 .widget_shopping_cart .cart-price {
     font-size: 1.2em;
