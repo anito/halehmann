@@ -800,6 +800,9 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         text-decoration: none !important;
         font-size: 0.8em;
     }
+    .promotion-cover-cols .wp-block-column {
+        margin: 0;
+    }
     .page-id-1008 #main-wrapper.container {
         padding-top: 0 !important;
     }
