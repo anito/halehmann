@@ -768,7 +768,13 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         position: absolute;
         top: 0;
         right: 0;
-        margin: 10px;
+        margin: 20px;
+    }
+    .bottom-left-icon {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        margin: 20px;
     }
     .wp-block-buttons.links {
         position: absolute;
@@ -839,8 +845,24 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
     .grid-5 .column {
         width: 20%;
     }
-    header#hmain .widgets .grid-6 .widget:nth-child(1) {
+    header#hmain .widgets .grid-5 .widget:nth-child(1) {
         width: 23%;
+    }
+    header#hmain .widgets .grid-5 .widget:nth-child(2) {
+        width: 12%;
+    }
+    header#hmain .widgets .grid-5 .widget:nth-child(3) {
+        width: 35%;
+    }
+    header#hmain .widgets .grid-5 .widget:nth-child(4) {
+        width: 10%;
+    }
+    header#hmain .widgets .grid-5 .widget:nth-child(5) {
+        width: 10%;
+    }
+    header#hmain .widgets .grid-6 .widget:nth-child(6) {
+        text-align: right;
+        width: 13%;
     }
     header#hmain .widgets .grid-6 .widget:nth-child(2) {
         width: 16%;
@@ -867,7 +889,7 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
     header#hmain .widgets .widget, div.textwidget, div.textwidget p {
         margin-top: 0;
         margin-bottom: 0;
-        margin-left: 0;
+        margin-left: 20px;
         margin-right: 0;
         line-height: 0;
     }
@@ -945,7 +967,7 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         display: inline-block;
         text-align: right;
         padding-top: 0.5em;
-        margin-right: 0.5em;
+        /* margin-right: 0.5em; */
         cursor: pointer;
     }
     .widget_shopping_cart .cart-icon .cart-icon-img {
@@ -2139,15 +2161,10 @@ span.disclaimer {
 .mini-cart .cart-text {
     position: absolute;
     color: #c5c5c5;
-    top: 61px;
-    /* border-radius: 15px; */
-    /* border: 1px solid #524e4e; */
-    /* background: rgba(0,0,0,0.4); */
-    padding: 6px 10px;
-    /* line-height: 1em; */
-    z-index: 99; 
-    font-size: 1.2em;
-    right: -51px;
+    top: 70px;
+    right: 0px;
+    z-index: 99;
+    font-size: 1.3em;
 }
 .coupon label {
     display: inline;
