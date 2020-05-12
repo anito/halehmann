@@ -832,7 +832,7 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         vertical-align: bottom;
         text-align: center;
     }
-    #hmain .widgets .grid {
+    header#hmain .widgets .grid {
         margin-bottom: 29px;
     }
     header#hmain .widget:first-child {
@@ -866,6 +866,9 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
     header#hmain .widgets .grid-5 .widget:nth-child(5) {
         text-align: right;
         width: 14%;
+    }
+    header#hmain .widget_text div {
+        margin-left: 0;
     }
     .grid-5 .column {
         width: 20%;
