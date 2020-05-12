@@ -1557,8 +1557,10 @@ label[for*="quantity_"] {
     position: initial !important;
 }
 .promotion-code code {
-    padding: 3px;
     line-height: 2.2em;
+    border: 1px solid #820607;
+    background-color: #e6cbcc;
+    padding: 5px;
 }
 .promotion-code code > *:first-child {
     color: #4b4e3f ! important;
