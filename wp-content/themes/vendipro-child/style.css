@@ -135,6 +135,9 @@ label {
 .mobile-only {
     display: none !important;
 }
+.mobile[class*=-icon] {
+    display: initial;
+}
 .page-table table thead tr th {
     color: inherit;
     font-weight: 800;
@@ -761,41 +764,36 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         position: relative;
         margin-top: 0 !important;
     }
-    .top-right-icon {
+    .desktop[class$='-icon'] {
         position: absolute;
+        margin: 20px;
+        padding: 0;
+        line-height: 1em;
+        z-index: 10;
+    }
+    .desktop.desktop-top-right-icon, .top-right-icon {
         top: 0;
         right: 0;
         bottom: auto;
         left: auto;
-        margin: 20px;
-        padding: 0;
     }
-    .bottom-right-icon {
-        position: absolute;
+    .desktop.desktop-bottom-right-icon, .bottom-right-icon {
         top: auto;
         right: 0;
         bottom: 0;
         left: auto;
-        margin: 20px;
-        padding: 0;
     }
-    .bottom-left-icon {
-        position: absolute;
+    .desktop.desktop-bottom-left-icon, .bottom-left-icon {
         top: auto;
         right: auto;
         bottom: 0;
         left: 0;
-        margin: 20px;
-        padding: 0;
     }
-    .top-left-icon {
-        position: absolute;
+    .desktop.desktop-top-left-icon, .top-left-icon {
         top: 0;
         right: auto;
         bottom: auto;
         left: 0;
-        margin: 20px;
-        padding: 0;
     }
     .wp-block-buttons.links {
         position: absolute;
