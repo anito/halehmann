@@ -765,20 +765,37 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         position: absolute;
         top: 0;
         right: 0;
+        bottom: auto;
+        left: auto;
         margin: 20px;
+        padding: 0;
     }
     .bottom-right-icon {
         position: absolute;
         top: auto;
-        bottom: 0;
         right: 0;
+        bottom: 0;
+        left: auto;
         margin: 20px;
+        padding: 0;
     }
     .bottom-left-icon {
         position: absolute;
+        top: auto;
+        right: auto;
         bottom: 0;
         left: 0;
         margin: 20px;
+        padding: 0;
+    }
+    .top-left-icon {
+        position: absolute;
+        top: 0;
+        right: auto;
+        bottom: auto;
+        left: 0;
+        margin: 20px;
+        padding: 0;
     }
     .wp-block-buttons.links {
         position: absolute;
