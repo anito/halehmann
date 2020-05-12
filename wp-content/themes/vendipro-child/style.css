@@ -394,13 +394,29 @@ li.cat-post-item hr.cat-post-horizontal-rule {
 li.cat-post-item:last-child hr.cat-post-horizontal-rule {
     visibility: hidden;
 }
+@media only screen and (min-width: 1120px) {
+    header#hmain .widgets .grid-6 .widget:nth-child(2) {
+        width: 12%;
+    }
+    header#hmain .widgets .grid-6 .widget:nth-child(3) {
+        width: 15%;
+    }
+    header#hmain .widgets .grid-6 .widget:nth-child(4) {
+        width: 25%;
+    }
+    header#hmain .widgets .grid-6 .widget:nth-child(5) {
+        display: inline-block;
+        width: 12%;
+    }
+    header#hmain .widgets .grid-6 .widget:nth-child(6) {
+        width: 10%;
+    }
+}
 @media (min-width: 600px) {
 
-    .wp-block-columns.cols-1-2 {}
     .wp-block-columns.cols-1-2 .wp-block-column:first-child { flex-basis: 33.3%; }
     .wp-block-columns.cols-1-2 .wp-block-column { flex-basis: 66.6%; }
 
-    .wp-block-columns.cols-2-1 {}
     .wp-block-columns.cols-2-1 .wp-block-column:first-child { flex-basis: 66.6%; }
     .wp-block-columns.cols-2-1 .wp-block-column { flex-basis: 33.3%; }
 
@@ -550,12 +566,6 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
     .entry-content table tbody td:first-child {
         vertical-align: top;
     }
-    .entry-content table tbody tr:nth-child(odd) {
-        /*background: #424242;*/
-    }
-    .entry-content table tbody tr:nth-child(even) {
-        /*background: #373737;*/ 
-    }
     #nav-wrapper {
         padding: 0 0 20px;
     }
@@ -578,8 +588,6 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         background-color: rgb(227, 0, 1);
         color: #dddddd;
     }
-    ul .price-unit {}
-    ul .price-unit {}
     .product p.price-unit .amount {
         color: #dddddd !important;
     }
@@ -644,9 +652,6 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
     .container {
         max-width: 1215px;
     }
-    header#hmain .navbar ul.slimmenu > li {
-
-    }
     header#hmain .navbar ul li > ul {
         background-color: rgba(50, 50, 50, 1);
         border: 0 none;
@@ -654,13 +659,9 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         box-shadow: 1px 1px 3px rgba(0, 0, 0, .5);
         margin-top: 8px;
     }
-    header#hmain .navbar ul.slimmenu > li:last-child a {
-
-    }
     header#hmain .navbar ul.slimmenu > li:last-child a i::before {
         font-size: 2em;
     }
-
     header#hmain .navbar ul.slimmenu > li {
         padding: 0.5em 0;
     }
@@ -723,7 +724,6 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         content: "\f0d8";
         color: rgba(50, 50, 50, 1);
     }
-    /*@media only screen and (min-width:268px)*/
     h3.label, h4.label, .related > h2, .upsells > h2 {
         width: 100%;
         background-color: rgba(53, 53, 53, 1);
@@ -851,22 +851,6 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
     header#hmain .widget_search input[type=search], header#hmain .widget_product_search input[type=search] {
         width: 70%;
     }
-    header#hmain .widgets .grid-5 .widget:nth-child(1) {
-        width: 30%;
-    }
-    header#hmain .widgets .grid-5 .widget:nth-child(2) {
-        width: 13%;
-    }
-    header#hmain .widgets .grid-5 .widget:nth-child(3) {
-        width: 33%;
-    }
-    header#hmain .widgets .grid-5 .widget:nth-child(4) {
-        width: 10%;
-    }
-    header#hmain .widgets .grid-5 .widget:nth-child(5) {
-        text-align: right;
-        width: 14%;
-    }
     header#hmain .widget_text div {
         margin-left: 0;
     }
@@ -877,20 +861,23 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         width: 23%;
     }
     header#hmain .widgets .grid-6 .widget:nth-child(2) {
-        width: 12%;
+        width: 16%;
     }
     header#hmain .widgets .grid-6 .widget:nth-child(3) {
-        width: 15%;
+        width: 18%;
     }
     header#hmain .widgets .grid-6 .widget:nth-child(4) {
-        width: 25%;
+        width: 28%;
     }
     header#hmain .widgets .grid-6 .widget:nth-child(5) {
         width: 12%;
     }
+    header#hmain .widgets .grid-6 .widget:nth-child(5) {
+        display: none;
+    }
     header#hmain .widgets .grid-6 .widget:nth-child(6) {
         text-align: right;
-        width: 10%;
+        width: 13%;
     }
     .grid-6 .column {
         width: 10%;
