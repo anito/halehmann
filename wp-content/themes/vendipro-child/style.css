@@ -794,13 +794,8 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
     .link .wp-block-button__link, i.link {
         min-width: 220px;
         font-size: 1rem;
-        color: #ddd;
         text-transform: uppercase;
-        font-style: normal;
-        text-align: center;
         padding: 1rem 1.5rem;
-        background-color: #de0303;
-        border-radius: .2em;
         line-height: 1em;
         box-shadow: rgba(0,0,0,1) 0px 0px 10px;
     }
