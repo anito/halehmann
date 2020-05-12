@@ -2,15 +2,15 @@
 body {
     color: #000000 !important;
 }
-
 .product .woocommerce-tabs .active a {
     background: #ffffff !important;
 }
-
+.desktop-only {
+    display: none !important;
+}
 .wptouch-menu ul ul {
     padding-left: 1em;
 }
-
 .wptouch-menu ul ul {
     background: rgb(55, 55, 55);
 }
@@ -1562,23 +1562,41 @@ label[for*="quantity_"] {
     background-color: #e6cbcc;
     padding: 5px;
 }
-.top-right-icon {
+.mobile.mobile-top-right-icon {
     position: absolute;
     top: 0;
     right: 0;
-    margin: 10px;
+    bottom: auto;
+    left: auto;
+    margin: 20px;
+    padding: 0;
 }
-.bottom-left-icon {
+.mobile.mobile-bottom-right-icon {
     position: absolute;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    margin: 20px;
+    padding: 0;
+}
+.mobile.mobile-bottom-left-icon {
+    position: absolute;
+    top: auto;
+    right: auto;
     bottom: 0;
     left: 0;
     margin: 20px;
+    padding: 0;
 }
-.mobile-top-right-icon {
+.mobile.mobile-top-left-icon {
+    position: absolute;
     top: 0;
-    right: 0;
-    left: auto;
+    right: auto;
     bottom: auto;
+    left: 0;
+    margin: 20px;
+    padding: 0;
 }
 .scale-mobile-0-5 {
     transform: scale(0.5);

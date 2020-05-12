@@ -121,9 +121,6 @@ body {
     line-height: 1em;
     position: relative;
 }
-p {
-
-}
 fieldset {
     border: none;
 }
@@ -135,8 +132,8 @@ label {
     display: inline-block;
     /* margin-bottom: 8px; */
 }
-table {
-    /* background: inherit; */
+.mobile-only {
+    display: none !important;
 }
 .page-table table thead tr th {
     color: inherit;
@@ -767,6 +764,13 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
     .top-right-icon {
         position: absolute;
         top: 0;
+        right: 0;
+        margin: 20px;
+    }
+    .bottom-right-icon {
+        position: absolute;
+        top: auto;
+        bottom: 0;
         right: 0;
         margin: 20px;
     }
