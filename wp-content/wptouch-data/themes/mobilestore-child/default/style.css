@@ -112,7 +112,7 @@ ul.products .price del {
     width: 100%;
 }
 .home .promotion, .home .entry-post {
-    margin-bottom: 3px;
+    margin-bottom: 0;
 }
 .home .entry-post.wrapper {
     position: relative;
