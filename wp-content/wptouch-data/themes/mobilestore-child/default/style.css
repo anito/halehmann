@@ -1562,6 +1562,12 @@ label[for*="quantity_"] {
     background-color: #e6cbcc;
     padding: 5px;
 }
+.top-right-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+}
 .promotion-code code > *:first-child {
     color: #4b4e3f ! important;
 }

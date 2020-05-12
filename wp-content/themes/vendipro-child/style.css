@@ -782,6 +782,12 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         position: relative;
         margin-top: 0 !important;
     }
+    .top-right-icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 10px;
+    }
     .wp-block-buttons.links {
         position: absolute;
         bottom: 3em;
