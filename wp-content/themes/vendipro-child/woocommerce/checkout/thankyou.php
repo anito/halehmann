@@ -42,7 +42,7 @@ defined( 'ABSPATH' ) || exit;
 			<p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received"><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', esc_html__( 'Thank you. Your order has been received.', 'woocommerce' ), $order ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 
 			<?php
-				$xc_label = 'SA00xxx';
+				$xc_label = 'S00034424';
 				$email = $order->get_billing_email();
 				$order_value = $order->get_total();
 				$order_shipping = $order->get_shipping_total();
@@ -63,8 +63,8 @@ defined( 'ABSPATH' ) || exit;
 						'url': '<?= $url_shop; ?>',
 						'token': '<?= $token; ?>' }
 				</script>
-				<!-- <script type="text/javascript" src="https://rba.shopauskunft.de/js/rba_widget.js" id="rba_widget" async></script> -->
-				<script type="text/javascript" src="https://rba.shopauskunft.de/js/sandbox_widget.js" async></script>
+				<script type="text/javascript" src="https://rba.shopauskunft.de/js/rba_widget.js" id="rba_widget" async></script>
+				<!-- <script type="text/javascript" src="https://rba.shopauskunft.de/js/sandbox_widget.js" async></script> -->
 
 			<ul class="woocommerce-order-overview woocommerce-thankyou-order-details order_details">
 
