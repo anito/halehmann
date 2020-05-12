@@ -275,10 +275,6 @@ function vp_child_theme_styles() {
 add_action( 'wp_enqueue_scripts', 'add_scripts' );
 function add_scripts() {
 	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-	wp_register_script( 'kaeufersiegel', get_stylesheet_directory_uri() . '/js/kaeufersiegel.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'kaeufersiegel' );
-
-
 	// Function to add analyticstracking.js to the site
 	if ( !IS_DEV_MODE && IS_PRODUCTION  ) {
 		$current_user = wp_get_current_user();

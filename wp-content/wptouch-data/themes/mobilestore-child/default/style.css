@@ -1568,6 +1568,15 @@ label[for*="quantity_"] {
     right: 0;
     margin: 10px;
 }
+.bottom-left-icon {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 20px;
+}
+.scale-0-5 {
+    scale: 0.5;
+}
 .promotion-code code > *:first-child {
     color: #4b4e3f ! important;
 }
