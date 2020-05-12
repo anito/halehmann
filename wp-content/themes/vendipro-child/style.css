@@ -1172,7 +1172,7 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         color: #fff;
     }
 }
-@media only screen and (min-width: 1120px) {
+@media only screen and (min-width: 1200px) {
     header#hmain .widgets .grid-6 .widget:nth-child(2) {
         width: 12%;
     }
