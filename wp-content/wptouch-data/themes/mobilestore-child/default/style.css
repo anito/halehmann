@@ -1562,41 +1562,36 @@ label[for*="quantity_"] {
     background-color: #e6cbcc;
     padding: 5px;
 }
-.mobile.mobile-top-right-icon {
+.mobile[class*='-icon'] {
     position: absolute;
+    margin: 20px;
+    padding: 0;
+    line-height: 1em;
+    z-index: 10;
+}
+.mobile.mobile-top-right-icon {
     top: 0;
     right: 0;
     bottom: auto;
     left: auto;
-    margin: 20px;
-    padding: 0;
 }
 .mobile.mobile-bottom-right-icon {
-    position: absolute;
     top: auto;
     right: 0;
     bottom: 0;
     left: auto;
-    margin: 20px;
-    padding: 0;
 }
 .mobile.mobile-bottom-left-icon {
-    position: absolute;
     top: auto;
     right: auto;
     bottom: 0;
     left: 0;
-    margin: 20px;
-    padding: 0;
 }
 .mobile.mobile-top-left-icon {
-    position: absolute;
     top: 0;
     right: auto;
     bottom: auto;
     left: 0;
-    margin: 20px;
-    padding: 0;
 }
 .scale-mobile-0-5 {
     transform: scale(0.5);

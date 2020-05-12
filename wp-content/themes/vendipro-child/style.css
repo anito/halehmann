@@ -764,7 +764,7 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         position: relative;
         margin-top: 0 !important;
     }
-    .desktop[class$='-icon'] {
+    .desktop[class*='-icon'] {
         position: absolute;
         margin: 20px;
         padding: 0;
