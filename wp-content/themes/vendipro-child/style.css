@@ -394,24 +394,6 @@ li.cat-post-item hr.cat-post-horizontal-rule {
 li.cat-post-item:last-child hr.cat-post-horizontal-rule {
     visibility: hidden;
 }
-@media only screen and (min-width: 1120px) {
-    header#hmain .widgets .grid-6 .widget:nth-child(2) {
-        width: 12%;
-    }
-    header#hmain .widgets .grid-6 .widget:nth-child(3) {
-        width: 15%;
-    }
-    header#hmain .widgets .grid-6 .widget:nth-child(4) {
-        width: 25%;
-    }
-    header#hmain .widgets .grid-6 .widget:nth-child(5) {
-        display: inline-block;
-        width: 12%;
-    }
-    header#hmain .widgets .grid-6 .widget:nth-child(6) {
-        width: 10%;
-    }
-}
 @media (min-width: 600px) {
 
     .wp-block-columns.cols-1-2 .wp-block-column:first-child { flex-basis: 33.3%; }
@@ -1188,6 +1170,24 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
     .age-gate-form .button {
         font-style: normal;
         color: #fff;
+    }
+}
+@media only screen and (min-width: 1120px) {
+    header#hmain .widgets .grid-6 .widget:nth-child(2) {
+        width: 12%;
+    }
+    header#hmain .widgets .grid-6 .widget:nth-child(3) {
+        width: 15%;
+    }
+    header#hmain .widgets .grid-6 .widget:nth-child(4) {
+        width: 25%;
+    }
+    header#hmain .widgets .grid-6 .widget:nth-child(5) {
+        display: inline-block;
+        width: 12%;
+    }
+    header#hmain .widgets .grid-6 .widget:nth-child(6) {
+        width: 10%;
     }
 }
 /*
