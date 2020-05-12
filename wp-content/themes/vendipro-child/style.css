@@ -799,10 +799,6 @@ li.cat-post-item:last-child hr.cat-post-horizontal-rule {
         line-height: 1em;
         box-shadow: rgba(0,0,0,1) 0px 0px 10px;
     }
-    i.link.link-2 {
-        bottom: 6rem;
-        right: 2rem;
-    }
     .link > a {
         text-decoration: none !important;
         font-size: 0.8em;
