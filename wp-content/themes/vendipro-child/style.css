@@ -2013,6 +2013,24 @@ p.mc4wp-checkbox-wp-registration-form, p.lost_password {
     font-size: 12px;
     font-size: 1.2rem;
 }
+.scale-0-5 {
+    transform: scale(0.5);
+}
+.scale-0-6 {
+    transform: scale(0.6);
+}
+.scale-0-7 {
+    transform: scale(0.7);
+}
+.scale-0-8 {
+    transform: scale(0.8);
+}
+.scale-0-9 {
+    transform: scale(0.9);
+}
+.scale-1-5 {
+    transform: scale(1.5);
+}
 .btn.is--icon-right {
     padding-right: 36px;
     padding-right: 2.25rem;
