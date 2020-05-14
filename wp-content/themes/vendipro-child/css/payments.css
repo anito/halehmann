@@ -1,5 +1,5 @@
 .grid-5-2 .paymenticon {
-    margin: 0 12px;
+    margin: 0 4px;
 }
 .paymenticonsbox {
     text-align:center;
@@ -9,10 +9,16 @@
     width:100px;
     height:69px;
     background-image:url(images/paymenticons.png)
-}.paymenticonsbox.paymentspritemedium .paymenticon {
+}
+.paymenticonsbox.paymentspritemedium .paymenticon {
     width:75px;
     height:52px;
     background-image:url(images/paymenticonsmedium.png)
+}
+.paymenticonsbox.paymentspritesmall.monochrom .paymenticon {
+    width:50px;
+    height:35px;
+    background-image:url(images/paymenticonssmall_monochrome.png)
 }
 .paymenticonsbox.paymentspritesmall .paymenticon {
     width:50px;

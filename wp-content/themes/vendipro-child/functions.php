@@ -15,12 +15,12 @@ function load_includes() {
 	}
 }
 
-add_theme_support( 'html5', array( 'gallery' ) );
+// add_theme_support( 'html5', array( 'gallery' ) );
 
 add_action( 'shutdown', 'retrieve_post_via_mail' );
 function retrieve_post_via_mail() {
 	flush(); // Display the page before the mail fetching begins
-	if ( get_transient( 'retrieve_post_via_mail' ) ) { 
+	if ( get_transient( 'retrieve_post_via_mail' ) ) {
 		return; // The mail has been checked recently; don't check again
 	} else { // The mail has not been checked in more than 15 minutes
 		do_action( 'wp-mail.php' );
@@ -117,9 +117,8 @@ function get_recent_products() {
 }
 
 /**
- * 
  * check for sales attribute and if true add SALES Category to it
- * 
+ *
  */
 add_action("save_post", "on_save_post", 99, 3);
 function on_save_post($post_id , $post, $is_update){
@@ -215,7 +214,6 @@ function store_handle_ajax_add_to_cart_failure() {
 }
 
 /*
- * 
  * Cart behavior from wptouch
  * Intercepting $REQUEST
  * Add to Cart functionality for variations
@@ -600,11 +598,21 @@ function wcs_custom_get_availability( $availability, $_product ) {
     }
     return $availability;
 }
-add_action( 'widgets_init', 'register_subfooter_widget_area' );
+add_action( 'widgets_init', 'register_subfooter_widget_area', 11 );
 function register_subfooter_widget_area() {
 	register_sidebar( array(
-		'name' => __( 'Sub Footer Widget', 'vendipro-child' ),
+		'name' => __( 'Sub Footer 1', 'vendipro-child' ),
 		'id' => 'vp_sub_footer',
+		'before_widget' => '<div class="column widget %2$s" id="%1$s">',
+		'after_widget' => '</div>',
+		'before_title'  => '<span class="widgettitle">',
+		'after_title' => '</span>',
+		'description' => __( 'Choose which Widgets to display below the Footer', 'vendipro-child' ),
+	));
+
+	register_sidebar( array(
+		'name' => __( 'Sub Footer 2', 'vendipro-child' ),
+		'id' => 'vp_sub_footer_2',
 		'before_widget' => '<div class="column widget %2$s" id="%1$s">',
 		'after_widget' => '</div>',
 		'before_title'  => '<span class="widgettitle">',
