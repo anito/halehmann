@@ -3252,6 +3252,9 @@ a.target-blank-icon:after {
 .promotion-code code > *:first-child {
     color: #4b4e3f ! important;
 }
+#widgets-subfooter-2 img {
+    width: 130px;
+}
 @media (max-width: 660px) {
 
     .woocommerce ul.products:not(.columns-2):not(.columns-3) li.product:nth-child(3n) {
