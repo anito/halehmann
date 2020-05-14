@@ -15,8 +15,6 @@ function load_includes() {
 	}
 }
 
-// add_theme_support( 'html5', array( 'gallery' ) );
-
 add_action( 'shutdown', 'retrieve_post_via_mail' );
 function retrieve_post_via_mail() {
 	flush(); // Display the page before the mail fetching begins
@@ -294,6 +292,8 @@ function add_scripts() {
 	 *  Require Fancybox JS for Action Gallery Page only
 	 */
 	if(is_page('action-galerie')) {// using the slug here
+		add_theme_support( 'html5', array( 'gallery' ) );
+
 		wp_enqueue_script('fancybox', get_stylesheet_directory_uri() . '/js/fancybox/jquery.fancybox' . $suffix . '.js', array( 'jquery' ), '1.0', true);
 		wp_enqueue_script('fancybox-helper', get_stylesheet_directory_uri() . '/js/fancybox-helper.js', array( 'jquery' ), '1.0', true);
 		wp_enqueue_style('fancybox', get_stylesheet_directory_uri() . '/css/fancybox/jquery.fancybox.css', wp_get_theme()->get('Version'));
