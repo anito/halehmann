@@ -8,6 +8,9 @@
 					<?php get_template_part( 'footer-payments' ); ?>
 				</a>
 			</div>
+			<style type="text/css">
+				#shopauskunft-widget_wrapper img { width: 100px; height: auto;}
+			</style>
 			<?php wptouch_footer(); ?>
 		</div>
 
