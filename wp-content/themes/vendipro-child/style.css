@@ -1128,6 +1128,9 @@ div.product .images .thumbnails {
     font-style: normal;
     color: #fff;
 }
+.right-column-is-colored .wp-block-column:not(:first-child) {
+    margin: 0;
+}
 @media (min-width: 600px) {
 
     .wp-block-columns.cols-1-2 .wp-block-column:first-child { flex-basis: 33.3%; }
