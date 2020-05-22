@@ -282,6 +282,10 @@ form textarea {
 a, a:hover, a:visited, a:focus {
     color: #d30001;
 }
+#tab-description a, #tab-description a:hover, #tab-description a:visited, #tab-description a:focus {
+    text-decoration: underline;
+    color: inherit;
+}
 .woocommerce-account .post a,
 .woocommerce-account .post a:hover,
 .woocommerce-account .post a:visited,
