@@ -3051,6 +3051,11 @@ a.shipping-calculator-button {
 .grecaptcha-badge {
     z-index: 5002;
 }
+.woocommerce ul.products li.product .woocommerce-loop-product__title, .woocommerce ul.products li.product h3 {
+    padding: .5em 0;
+    margin: 20px 2px;
+    font-size: 1em;
+}
 .woocommerce ul.products li.product .woocommerce-loop-product__title + .price {
     display: flex;
     justify-content: center;
