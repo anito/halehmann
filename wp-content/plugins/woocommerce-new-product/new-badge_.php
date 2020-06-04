@@ -2,7 +2,7 @@
 /*
   Plugin Name: WooCommerce Neue Produkte
   Plugin URI: http:/webpremiere.de
-  Version: 0.4
+  Version: 0.5
   Description: Label für kürzlich veröffentlichte WooCommerce Produkte
   Author: Axel Nitzschner
   Author URI: http:/webpremiere.de
@@ -18,17 +18,42 @@
  * */
 if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 
+	add_action( 'init', 'plugin_init' );
+	add_action( 'pre_get_posts', 'init_new_products' );
+	// add_action( 'get_posts', 'init_new_products' );
+
 	/**
 	 * Localisation (with WPML support)
 	 * */
-	add_action( 'init', 'plugin_init' );
-
 	function plugin_init() {
 		load_plugin_textdomain( 'woocommerce-new-badge', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 
 	function may_be_filtered_post() {
-		return ( get_queried_object() && is_shop() && isset( $_GET['new-products'] ) && is_options_auto() ) ? TRUE : FALSE;
+		global $wp_query;
+
+		$args = array(
+			'posts_per_page' => -1,
+			'tax_query' => array(
+				'relation' => 'AND',
+				array(
+					'taxonomy' => 'product_cat',
+					'field' => 'slug',
+					'terms' => 'neu-im-shop'
+				),
+			),
+			'post_type' => 'page',
+			'orderby' => 'title',
+		);
+		$wp_query = new WP_Query( $args );
+
+		write_log( $wp_query->is_main_query );
+		// if( ! empty( $queried ) && 'product_cat' === $queried->taxonomy && get_option_category_id() == $queried->term_id ) {
+		if( ! empty( $queried )  ) {
+			add_filter( 'posts_where', 'filter_new_products' );
+
+		}
+
 	}
 
 	function is_options_auto() {
@@ -42,17 +67,21 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		return ( "" == get_option( 'wc_nb_label' )) ? WC_nb::$default_label : get_option( 'wc_nb_label' );
 	}
 
-	function get_main_category_id() {
+	function get_option_category_id() {
 
 		return get_option( 'wc_nb_categories' );
 	}
 
-	function get_main_category_slug() {
+	function get_option_category_slug() {
 
 		return get_option( 'wc_nb_category_slug' );
 	}
 
 	function init_new_products( $q ) {
+		global $wp_query;
+
+		if ( !$q->is_main_query() )
+			return;
 
 		// return w/o filtering but still attach the correct label
 		if ( !is_options_auto() ) {
@@ -62,27 +91,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 
 		}
 
-		add_action( 'wp_enqueue_scripts', 'enqueue_script_fix_url' );
-
-		if ( may_be_filtered_post() ) {
-
-			add_action( 'wp_enqueue_scripts', 'enqueue_script_hide_description' );
-
-			add_filter( 'woocommerce_page_title', 'new_products_title', 10, 2 );
-			add_action( 'woocommerce_archive_description', 'new_archive_term_description' );
-			add_action( 'woocommerce_before_main_content', 'new_archive_term_image', 20 );
-
-			// start filtering
-			add_filter( 'posts_where', 'filter_new_products' );
-
-		}
-	}
-
-	function enqueue_script_hide_description() {
-
-		// hide shop page description
-		wp_register_script( 'hide_description', plugins_url( '/assets/js/hide_description.js', __FILE__ ), array( 'jquery' ), '1.0', true );
-		wp_enqueue_script( 'hide_description' );
+		may_be_filtered_post(  );
 
 	}
 
@@ -93,7 +102,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 
 		$params = array(
 			'label' => get_wc_nb_label(),
-            'category_slug' => get_main_category_slug()
+            'category_slug' => get_option_category_slug()
 		);
 
 		// take care all new products are labeled also when Auto option is disabled
@@ -105,30 +114,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 
 	}
 
-	function enqueue_script_fix_url() {
-
-		$params = array(
-			'days' => get_option( 'wc_nb_newness' )
-		);
-		// rewrite urls to point to the correct New Products Page
-		wp_register_script( 'fix_url', plugins_url( '/assets/js/fix_url.js', __FILE__ ), array( 'jquery' ), '1.0', true );
-		wp_enqueue_script( 'fix_url' );
-
-		// pass args to the document
-		wp_localize_script( 'fix_url', 'new_products_param', $params );
-
-	}
-
-	function new_products_title( $title ) {
-
-		$title = get_the_category_by_ID( get_main_category_id() );
-
-		return $title;
-	}
-
 	function filter_new_products( $where ) {
-
-		if ( is_page() ) return;
 
 		$days_param = get_option( 'wc_nb_newness' );
 		if( isset( $_GET['days'] ) && is_numeric( $d = $_GET['days'] ) ) {
@@ -138,44 +124,9 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		$date = date( 'Y-m-d', strtotime( '-' . $days_param . ' days' ) );
 		$where .= " AND post_date > '" . $date . "'";
 
+		write_log( $where );
 		return $where;
 	}
-
-	function new_archive_term_description() {
-
-		if ( may_be_filtered_post() && 0 === absint( get_query_var( 'paged' ) ) ) {
-			$description = wc_format_content( category_description( get_main_category_id() ) );
-			if ( $description ) {
-				echo '<div class="term-description">' . $description . '</div>';
-			}
-		}
-
-    }
-
-	function new_archive_term_image() {
-		global $wp_query;
-
-		$thumbnail_id = get_term_meta( get_main_category_id(), 'thumbnail_id', true );
-		if ( $thumbnail_id ) {
-			$thumbnail_post = get_post( $thumbnail_id );
-			$image = wp_get_attachment_url( $thumbnail_id );
-			if ( $image ) {
-				?>
-				<div class="cat-thumb">
-					<?php if ( !empty( $thumbnail_post->post_title ) || !empty( $thumbnail_post->post_excerpt ) ) : ?>
-						<div class="cat-thumb-overlay">
-							<?php echo (!empty( $thumbnail_post->post_title ) ? '<h3>' . $thumbnail_post->post_title . '</h3>' : '' ); ?>
-							<?php echo (!empty( $thumbnail_post->post_excerpt ) ? '<p>' . $thumbnail_post->post_excerpt . '</p>' : '' ); ?>
-						</div>
-					<?php endif; ?>
-					<img src="<?php echo $image ?>" alt="<?php echo get_post_meta( $thumbnail_post->ID, '_wp_attachment_image_alt', true ); ?>" />
-				</div>
-				<?php
-			}
-		}
-	}
-
-	add_action( 'pre_get_posts', 'init_new_products' );
 
 	/**
 	 * New Badge class
