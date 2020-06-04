@@ -2,7 +2,7 @@
 /*
   Plugin Name: WooCommerce Neue Produkte
   Plugin URI: http:/webpremiere.de
-  Version: 0.4
+  Version: 0.5
   Description: Label für kürzlich veröffentlichte WooCommerce Produkte
   Author: Axel Nitzschner
   Author URI: http:/webpremiere.de
