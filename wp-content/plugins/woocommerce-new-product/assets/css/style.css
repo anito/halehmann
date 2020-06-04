@@ -5,6 +5,7 @@
     font-size:.75em;
     line-height: 1em;
     width: 100px;
+    height: auto;
     max-width: 100px;
     text-transform: uppercase;
     display: inline-block;
@@ -12,6 +13,7 @@
     font-weight: 800;
     background: #e40002;
     color: #eee;
+    text-align: center;
 }
 .wc-new-badge.right {
     transform: rotate(-45deg);

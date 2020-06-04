@@ -191,7 +191,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                     add_action( 'wp_enqueue_scripts', array( $this, 'setup_styles' ), 999999 );  // Enqueue the styles
 
 					if ( is_options_auto() ) {
-						add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'show_product_loop_new_badge' ), 30 );
+						add_action( 'woocommerce_before_shop_loop_item', array( $this, 'show_product_loop_new_badge' ), 30 );
 						add_filter( 'woocommerce_before_single_product_summary', array( $this, 'show_single_product_new_badge' ), 30 );
 					}
 
