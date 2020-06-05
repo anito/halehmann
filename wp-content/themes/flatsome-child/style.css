@@ -29,6 +29,10 @@ Version: 3.0
     color: inherit;
 }
 
+aside .product_list_widget .wc-gzd-additional-info {
+    display: none;
+}
+
 /* Age Gate */
 .age-gate-heading.age-gate-logo img {
     max-width: 10%;
