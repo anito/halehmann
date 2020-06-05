@@ -10,6 +10,19 @@ Version: 3.0
 .products .product.type-product .col-inner {
     overflow: hidden;
 }
+.shop-container > .term-description {
+    padding: 10px;
+    border: 1px solid #d6d6d6;
+    box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.shop-container > .term-description *:not(:first-child) {
+    font-size: 1em;
+    font-weight: 100;
+    color: inherit;
+}
+
 /* Age Gate */
 .age-gate-heading.age-gate-logo img {
     max-width: 10%;
