@@ -17,7 +17,7 @@ function process_sales_cat($post_id, $term_id) {
 		default:
 			return 0;
 	}
-	set_product_cats($product, $term_id, $add);
+	set_product_cat($product, $term_id, $add);
 
 }
 function set_product_cat($product, $term_id, $add) {
