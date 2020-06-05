@@ -18,7 +18,6 @@ function process_sales_cat($post_id, $term_id) {
 			return 0;
 	}
 	set_product_cat($product, $term_id, $add);
-
 }
 function set_product_cat($product, $term_id, $add) {
 	$term_ids = $product->get_category_ids();
@@ -32,5 +31,4 @@ function set_product_cat($product, $term_id, $add) {
 		$term_ids[] = $term_id;
 	}
 	wp_set_object_terms( $product->get_id(), $term_ids, 'product_cat' );
-
 }
