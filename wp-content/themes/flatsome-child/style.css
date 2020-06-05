@@ -10,20 +10,21 @@ Version: 3.0
 .products .product.type-product .col-inner {
     overflow: hidden;
 }
-.shop-container > .term-description {
+.shop-container > [class*="-description"] {
     padding: 20px;
     border: 1px solid #e4e4e4;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px -2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     margin-bottom: 65px;
+    background-color: #fefefe;
 }
 
-.shop-container > .term-description > *:first-child {
+.shop-container > [class*="-description"] > *:first-child {
     font-size: 1.5em;
     font-weight:600;
     color: inherit;
 }
 
-.shop-container > .term-description > *:not(:first-child) {
+.shop-container > [class*="-description"] > *:not(:first-child) {
     font-size: 1em;
     font-weight: 100;
     color: inherit;
