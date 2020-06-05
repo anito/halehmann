@@ -30,11 +30,11 @@ Version: 3.0
     color: inherit;
 }
 
-aside .product_list_widget .wc-gzd-additional-info {
+.product_list_widget .wc-gzd-additional-info {
     display: none;
 }
 
-aside .product_list_widget .wc-gzd-additional-info.delivery-time-info {
+.product_list_widget .wc-gzd-additional-info.delivery-time-info {
     display: inherit;
 }
 
