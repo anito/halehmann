@@ -10,6 +10,10 @@ Version: 3.0
 .products .product.type-product .col-inner {
     overflow: hidden;
 }
+/* Age Gate */
+.age-gate-heading.age-gate-logo img {
+    max-width: 10%;
+}
 
 @media only screen and (max-width: 48em) {
 /*************** ADD MOBILE ONLY CSS HERE  ***************/
