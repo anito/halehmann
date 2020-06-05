@@ -34,6 +34,10 @@ aside .product_list_widget .wc-gzd-additional-info {
     display: none;
 }
 
+aside .product_list_widget .wc-gzd-additional-info.delivery-time-info {
+    display: inherit;
+}
+
 .badge-container {
     margin: 58px 0 0 0;
 }
