@@ -42,12 +42,12 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		return ( "" == get_option( 'wc_nb_label' )) ? WC_nb::$default_label : get_option( 'wc_nb_label' );
 	}
 
-	function get_main_category_id() {
+	function get_new_products_category_id() {
 
 		return get_option( 'wc_nb_categories' );
 	}
 
-	function get_main_category_slug() {
+	function get_new_products_category_slug() {
 
 		return get_option( 'wc_nb_category_slug' );
 	}
@@ -70,7 +70,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 
 			add_filter( 'woocommerce_page_title', 'new_products_title', 10, 2 );
 			add_action( 'woocommerce_archive_description', 'new_archive_term_description' );
-			add_action( 'woocommerce_before_main_content', 'new_archive_term_image', 20 );
+			// add_action( 'woocommerce_before_main_content', 'new_archive_term_image', 20 );
 
 			// start filtering
 			add_filter( 'posts_where', 'filter_new_products' );
@@ -93,7 +93,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 
 		$params = array(
 			'label' => get_wc_nb_label(),
-            'category_slug' => get_main_category_slug()
+            'category_slug' => get_new_products_category_slug()
 		);
 
 		// take care all new products are labeled also when Auto option is disabled
@@ -121,7 +121,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 
 	function new_products_title( $title ) {
 
-		$title = get_the_category_by_ID( get_main_category_id() );
+		$title = get_the_category_by_ID( get_new_products_category_id() );
 
 		return $title;
 	}
@@ -144,7 +144,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 	function new_archive_term_description() {
 
 		if ( may_be_filtered_post() && 0 === absint( get_query_var( 'paged' ) ) ) {
-			$description = wc_format_content( category_description( get_main_category_id() ) );
+			$description = wc_format_content( category_description( get_new_products_category_id() ) );
 			if ( $description ) {
 				echo '<div class="term-description">' . $description . '</div>';
 			}
@@ -155,7 +155,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 	function new_archive_term_image() {
 		global $wp_query;
 
-		$thumbnail_id = get_term_meta( get_main_category_id(), 'thumbnail_id', true );
+		$thumbnail_id = get_term_meta( get_new_products_category_id(), 'thumbnail_id', true );
 		if ( $thumbnail_id ) {
 			$thumbnail_post = get_post( $thumbnail_id );
 			$image = wp_get_attachment_url( $thumbnail_id );
