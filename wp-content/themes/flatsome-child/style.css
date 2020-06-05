@@ -33,6 +33,10 @@ aside .product_list_widget .wc-gzd-additional-info {
     display: none;
 }
 
+.badge-container {
+    margin: 58px 0 0 0;
+}
+
 /* Age Gate */
 .age-gate-heading.age-gate-logo img {
     max-width: 10%;
