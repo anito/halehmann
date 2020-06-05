@@ -147,6 +147,7 @@ function before_product_object_save($product, $data_store) {
 }
 
 add_action( 'init', 'disable_wp_emojicons' );
+
 function disable_wp_emojicons() {
 
 	// all actions related to emojis

@@ -19,8 +19,8 @@
 if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 
 	add_action( 'init', 'plugin_init' );
-	add_action( 'pre_get_posts', 'init_new_products' );
-	// add_action( 'get_posts', 'init_new_products' );
+	// add_action( 'get_posts', 'get_newest_products' );
+	add_action( 'pre_get_posts', 'get_newest_products' );
 
 	/**
 	 * Localisation (with WPML support)
@@ -29,31 +29,77 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		load_plugin_textdomain( 'woocommerce-new-badge', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 
-	function may_be_filtered_post() {
+	function get_newest_products( $query ) {
 		global $wp_query;
+		$print = true;
 
-		$args = array(
-			'posts_per_page' => -1,
-			'tax_query' => array(
-				'relation' => 'AND',
-				array(
-					'taxonomy' => 'product_cat',
-					'field' => 'slug',
-					'terms' => 'neu-im-shop'
-				),
-			),
-			'post_type' => 'page',
-			'orderby' => 'title',
-		);
-		$wp_query = new WP_Query( $args );
-
-		write_log( $wp_query->is_main_query );
-		// if( ! empty( $queried ) && 'product_cat' === $queried->taxonomy && get_option_category_id() == $queried->term_id ) {
-		if( ! empty( $queried )  ) {
-			add_filter( 'posts_where', 'filter_new_products' );
-
+		$queried = get_queried_object();
+		if( ! $query->is_main_query() || 'product_cat' != $queried->taxonomy || get_option_category_id() != $queried->term_id ) {
+			return;
 		}
 
+		$taxonomy = $queried->taxonomy;
+		$terms = get_terms( $taxonomy );
+		$term_ids = wp_list_pluck( $terms, 'term_id' );
+
+		$tax_query = array(
+			'relation' => 'AND',
+			array(
+				'taxonomy' => $taxonomy,
+				'field' => 'term_id',
+				'terms' => $term_ids,
+				'include_children' => true,
+				'operator' => 'IN',
+			),
+		);
+		$args = array(
+			'post_type' => 'product',
+			'posts_per_page' => 1,
+			'post_status'    => 'publish',
+			'tax_query' => $tax_query
+		);
+
+		// $query = new WP_Query( $args );
+		// $query->init();
+		$query->set( 'post_type', 'product' );
+		$query->set( 'post_status', 'publish' );
+		$query->set( 'posts_per_page', 20 );
+		$query->set( 'tax_query', $tax_query );
+
+		$output = $query;
+
+		// return $query;
+
+		// $terms = array( $queried->term_id, 158 );
+		// $terms = $queried->term_id;
+		// $query->set( 'product_cat', array( $queried->term_id, 2625, 167 ) );
+
+		// $query = new WP_Query( $args );
+		// $query->set( 'post_type', 'product' );
+
+		// write_log( $query );
+		// $wp_query = new WP_Query( $args );
+		// return $query;
+		// $query = new WP_Query( $args );
+		// if($query->have_posts() ) : while ($query->have_posts() ) : $query->the_post();
+		// 	the_title();
+			// endwhile;
+		// else:
+			// echo '<pre>';
+			// var_dump($query);
+			// echo '</pre>';
+		// endif;
+
+		// write_log( $wp_query->is_main_query );
+		// if( ! empty( $queried ) && 'product_cat' === $queried->taxonomy && get_option_category_id() == $queried->term_id ) {
+		if( ! empty( $queried )  ) {
+			// add_filter( 'posts_where', 'filter_new_products', 10, 2 );
+		}
+		if( $print ) {
+			echo '<pre>';
+			var_dump($output);
+			echo '</pre>';
+		}
 	}
 
 	function is_options_auto() {
@@ -78,7 +124,8 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 	}
 
 	function init_new_products( $q ) {
-		global $wp_query;
+
+		// $terms = wp_get_post_terms( $post->ID, 'product_cat' );
 
 		if ( !$q->is_main_query() )
 			return;
@@ -91,7 +138,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 
 		}
 
-		may_be_filtered_post(  );
+		may_be_filtered_post( $q );
 
 	}
 
@@ -114,7 +161,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 
 	}
 
-	function filter_new_products( $where ) {
+	function filter_new_products( $where, $query ) {
 
 		$days_param = get_option( 'wc_nb_newness' );
 		if( isset( $_GET['days'] ) && is_numeric( $d = $_GET['days'] ) ) {
@@ -124,6 +171,8 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		$date = date( 'Y-m-d', strtotime( '-' . $days_param . ' days' ) );
 		$where .= " AND post_date > '" . $date . "'";
 
+
+		write_log( $query );
 		write_log( $where );
 		return $where;
 	}
@@ -142,7 +191,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                     add_action( 'wp_enqueue_scripts', array( $this, 'setup_styles' ), 999999 );  // Enqueue the styles
 
 					if ( is_options_auto() ) {
-						add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'show_product_loop_new_badge' ), 30 );
+						add_action( 'woocommerce_before_shop_loop_item', array( $this, 'show_product_loop_new_badge' ), 30 );
 						add_filter( 'woocommerce_before_single_product_summary', array( $this, 'show_single_product_new_badge' ), 30 );
 					}
 
