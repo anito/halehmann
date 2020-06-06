@@ -53,6 +53,8 @@ function add_scripts() {
 
 	wp_register_script( 'fb', get_stylesheet_directory_uri() . '/js/fb.js', array( 'jquery' ), '1.0', true );
     wp_enqueue_script( 'fb' );
+    wp_register_script( 'main', get_stylesheet_directory_uri() . '/js/main.js', array( 'jquery' ), '1.0', true );
+	wp_enqueue_script( 'main' );
 
 
 	/*
