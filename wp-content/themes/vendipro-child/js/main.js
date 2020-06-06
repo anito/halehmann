@@ -71,7 +71,7 @@
         })
     }
     $('[itemscope].product[class*="ab-18"]').prepend('<i class="note note-ab-18"><i>');
-    
+
     var add_fb_div = function () {
         $('body').prepend('<div id="fb-root"></div>');
     }
@@ -143,37 +143,37 @@
             message: "Hi"
         };
     };
-    
+
     var add_animate_scroll = function() {
-        
+
         $('.animate-scroll a[href^="#"]').on('click', function(e){
-            
+
             var href = $(this).attr('href');
             $('html, body').animate({
                 scrollTop:$(href).offset().top
             },'slow');
-            
+
             e.preventDefault();
-            
+
         });
-        
+
     };
-    
+
     var add_submit_search = function() {
-        
+
         var $form = $('.aws-search-form');
-        
+
         $('.aws-search-btn', $form).on('click', function(e){
-            
+
             if( $form.hasClass( 'aws-form-active' ) ) {
                 e.preventDefault();
                 $form.submit();
             }
-            
+
         });
-        
+
     };
-    
+
     var add_hide_empty_frontpage_news = function() {
 
         var news_wrapper = $('.news-wrapper'), news, list, elm, ret, cols=[];

@@ -3,6 +3,44 @@ require_once( __DIR__ . '/includes/product_cat_handler.php');
 require_once( __DIR__ . '/includes/sender_email.php');
 // require_once( __DIR__ . '/includes/create_new_product_tax.php');
 
+add_action( 'woocommerce_before_shop_loop_item', 'halehmann_show_product_loop_adult_flash', 20 );
+if ( ! function_exists( 'halehmann_show_product_loop_adult_flash' ) ) {
+
+	/**
+	 * Output the product adult flash.
+	 */
+	function halehmann_show_product_loop_adult_flash() {
+		wc_get_template( 'loop/adult-flash.php' );
+	}
+}
+add_action( 'flatsome_adult_flash','halehmann_show_product_adult_flash', 10 );
+if ( ! function_exists( 'halehmann_show_product_adult_flash' ) ) {
+
+	/**
+	 * Output the product adult flash.
+	 */
+	function halehmann_show_product_adult_flash() {
+		wc_get_template( 'single-product/adult-flash.php' );
+	}
+}
+if ( ! function_exists( 'is_adult_product' ) ) {
+
+	/**
+	 * Output the product adult flash.
+	 */
+	function is_adult_product() {
+        global $post;
+
+        $terms = get_the_terms( get_the_ID(), 'product_tag' );
+        foreach( $terms as $term ) {
+            if( $term->slug === "ab-18" ) {
+                return true;
+            }
+        }
+		return false;
+	}
+}
+
 /**
  * check for sales attribute and if true add SALES Category to it
  *

@@ -1084,7 +1084,7 @@ ul.product_list_widget li {
     transform: rotate(-17deg);
     background: #000000;
 }
-i.adult:before {
+.adult:before {
     top: 100px;
     right: 0px;
 }

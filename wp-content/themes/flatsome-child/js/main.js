@@ -1,13 +1,5 @@
 (function ($) {
 
-    //Init Adult Badges
-    var add_adult_badge = function () {
-        $('.product_tag-ab-18 .images').each(function ($i) {
-            $(this).append('<i class="adult"><i>');
-        })
-    }
-    $('[itemscope].product[class*="ab-18"]').prepend('<i class="note note-ab-18"><i>');
-
     var add_fb_div = function () {
         $('body').prepend('<div id="fb-root"></div>');
     }
@@ -23,9 +15,9 @@
     };
 
     //add disclaimer to MagicToolbox Container
-    var disclaimer = "Abbildung kann ähnlich sein. Änderungen und Irrtümer vorbehalten.<br\>Mögliches Zubehör auf Bildern ist nicht Teil des Angebots.";
+    var disclaimer = "Abbildung kann ähnlich sein. Änderungen und Irrtümer vorbehalten. Mögliches Zubehör auf Bildern ist nicht Teil des Angebots.";
     var add_image_disclaimer = function () {
-        $('.MagicToolboxContainer').append('<span class="disclaimer">' + disclaimer + '</span>');
+        $('.woocommerce-product-gallery').after('<div class="product-gallery-disclaimer">' + disclaimer + '</div>');
     }
 
     //add readmore behaviour
@@ -38,7 +30,6 @@
     };
 
     add_fb_div();
-    add_adult_badge();
     add_target_blank_icon();
     add_image_disclaimer();
     add_readmore();

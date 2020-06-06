@@ -31,7 +31,7 @@ Version: 3.0
 }
 
 .product_list_widget .wc-gzd-additional-info {
-    display: none;
+    display: none !important;
 }
 
 .product_list_widget .wc-gzd-additional-info.delivery-time-info {
@@ -47,6 +47,19 @@ Version: 3.0
     max-width: 10%;
 }
 
+/* Adult Badge */
+.badge-container ~ .badge-container.for-adult {
+    margin-top: 116px;
+}
+.badge-container ~ .badge-container.for-adult.loop {
+    margin-top: 102px;
+}
+.product-gallery-disclaimer {
+    display: block;
+    font-size: 0.6em;
+    line-height: 1.3em;
+    margin-bottom: 10px;
+}
 @media only screen and (max-width: 48em) {
 /*************** ADD MOBILE ONLY CSS HERE  ***************/
 
