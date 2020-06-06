@@ -51,6 +51,8 @@ function add_scripts() {
         wp_localize_script('google-analytics', 'atts', array('user_id' => $user_id, 'ga_id' => GA_ID ));
 	}
 
+    wp_register_script( 'readmore', get_stylesheet_directory_uri() . '/js/readmore-js/readmore' . $suffix . '.js' , array('jquery'), '1.0', true );
+	wp_enqueue_script( 'readmore');
 	wp_register_script( 'fb', get_stylesheet_directory_uri() . '/js/fb.js', array( 'jquery' ), '1.0', true );
     wp_enqueue_script( 'fb' );
     wp_register_script( 'main', get_stylesheet_directory_uri() . '/js/main.js', array( 'jquery' ), '1.0', true );
