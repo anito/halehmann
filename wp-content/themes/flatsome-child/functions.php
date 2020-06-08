@@ -3,6 +3,42 @@ require_once( __DIR__ . '/includes/product_cat_handler.php');
 require_once( __DIR__ . '/includes/sender_email.php');
 // require_once( __DIR__ . '/includes/create_new_product_tax.php');
 
+add_theme_support( 'editor-styles');
+add_editor_style( 'style-editor.css' );
+
+add_action( 'admin_init', 'flatsome_add_editor_styles' );
+
+function theme_setup_theme_supported_features() {
+    add_theme_support( 'editor-color-palette', array(
+        array(
+            'name' => __( 'lehmann red', 'flatsome-child' ),
+            'slug' => 'lehmann-red',
+            'color' => '#de0303',
+        ),
+        array(
+            'name' => __( 'light grayish magenta', 'flatsome-child' ),
+            'slug' => 'light-gray',
+            'color' => '#d0a5db',
+        ),
+        array(
+            'name' => __( 'very light gray', 'flatsome-child' ),
+            'slug' => 'very-light-gray',
+            'color' => '#eee',
+        ),
+        array(
+            'name' => __( 'very dark gray', 'flatsome-child' ),
+            'slug' => 'very-dark-gray',
+            'color' => '#444',
+        ),
+        array(
+            'name' => __( 'light white', 'flatsome-child' ),
+            'slug' => 'light-white',
+            'color' => '#fbf8f9',
+        ),
+    ) );
+}
+add_action( 'after_setup_theme', 'theme_setup_theme_supported_features' );
+
 add_action( 'woocommerce_before_shop_loop_item', 'halehmann_show_product_loop_adult_flash', 20 );
 if ( ! function_exists( 'halehmann_show_product_loop_adult_flash' ) ) {
 

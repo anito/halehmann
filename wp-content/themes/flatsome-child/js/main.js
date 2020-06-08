@@ -29,9 +29,26 @@
         });
     };
 
+    // broken image handler
+    var add_broken_img = function() {
+        // $('img').one( 'error',  function() {
+            // console.log(this)
+            // e.srcElement.src = '/wp-content/uploads/woocommerce-placeholder.png';
+            // $(this).attr('src' , '/wp-content/uploads/woocommerce-placeholder.png')
+        // } )
+        document.querySelectorAll('img').forEach((img) => {
+            img.onerror = function() {
+                // this.style.display = 'none';
+                this.src = '/wp-content/uploads/woocommerce-placeholder.png';
+                return false;
+            }
+        });
+    }
+
     add_fb_div();
     add_target_blank_icon();
     add_image_disclaimer();
     add_readmore();
+    // add_broken_img()
 
 })(jQuery)
