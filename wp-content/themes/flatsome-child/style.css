@@ -19,6 +19,34 @@ Version: 3.3.2
     margin-bottom: 0;
 }
 
+/* Stock Alert */
+.alert_container {
+    border: 1px solid #00000022;
+    padding: 9px;
+    background: #ffffff60;
+    width: 100%;
+    text-align: center;
+    font-size: 0.8rem;
+}
+.alert_container h6 {
+    font-size: 1.1em;
+    font-weight: 100;
+    line-height: 1.5em;
+    margin-bottom: 1em;
+    margin-top: 0em;
+}
+.alert_container button {
+	margin: 10px auto;
+	display: block;
+	width: 80%;
+	color: #fff;
+	background-color: var(--primary-color);
+	border-color: rgba(0,0,0,0.05);
+}
+.alert_container input.stock_alert_email {
+    width: 90%;
+}
+
 /* AWS Search */
 .aws-container .aws-search-form {
     height: 40px;
