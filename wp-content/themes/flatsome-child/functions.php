@@ -6,8 +6,6 @@ require_once( __DIR__ . '/includes/sender_email.php');
 add_theme_support( 'editor-styles');
 add_editor_style( 'style-editor.css' );
 
-add_action( 'admin_init', 'flatsome_add_editor_styles' );
-
 function theme_setup_theme_supported_features() {
     add_theme_support( 'editor-color-palette', array(
         array(
