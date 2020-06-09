@@ -164,7 +164,7 @@ function wcs_custom_get_availability( $availability, $_product ) {
     }
     // Change Out of Stock Text
     if ( ! $_product->is_in_stock() ) {
-    	$availability['availability'] = __('leider nicht vorrätig', 'woocommerce');
+    	$availability['availability'] = __('Leider nicht vorrätig', 'woocommerce');
     }
     return $availability;
 }
