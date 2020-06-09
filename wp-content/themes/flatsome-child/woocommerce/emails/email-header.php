@@ -11,22 +11,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-$url_logo  = array(
-
-    get_option( 'woocommerce_email_header_image' ),
-
-);
-
-foreach ($url_logo as $logo) {
-    $image = '';
-
-    if( ( !empty(pathinfo($logo)['extension']) && 'svg' === pathinfo($logo)['extension'] ) || '' === $logo )
-        continue;
-    else {
-        $image = $logo;
-        break;
-    }
-}
+$image  = get_option( 'woocommerce_email_header_image' );
 
 // Load colours
 $bg         = get_option( 'woocommerce_email_background_color' );
