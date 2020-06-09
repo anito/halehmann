@@ -13,9 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 $url_logo  = array(
 
-    get_option( 'fallback_email_header_image' ),
     get_option( 'woocommerce_email_header_image' ),
-    vp_get_option( 'logo' ),
 
 );
 
