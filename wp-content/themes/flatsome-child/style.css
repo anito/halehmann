@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.2
+Version: 3.3
 */
 
 /*************** flatsome nav submenu fix for active element  ***************/
@@ -67,5 +67,7 @@ Version: 3.2
 @media only screen and (max-width: 48em) {
 /*************** ADD MOBILE ONLY CSS HERE  ***************/
 
-
+    .wc-block-product-meta {
+        padding-top: 30px;
+    }
 }
