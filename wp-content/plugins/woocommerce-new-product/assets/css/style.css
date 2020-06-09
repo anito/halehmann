@@ -1,3 +1,6 @@
+.badge-container.new-product {
+    margin-top: 0;
+}
 .product-gallery {
     overflow: hidden;
 }
@@ -40,7 +43,7 @@
     padding-bottom: 5px;
 }
 @media only screen and (max-width: 768px) {
-    
+
     .wc-new-badge.left {
         left: -30px;
         top: 10px;
@@ -58,5 +61,5 @@
         max-width: 200px;
         width: 200px;
     }
-    
+
 }
