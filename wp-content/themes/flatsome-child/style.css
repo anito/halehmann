@@ -3,14 +3,14 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.3.7
+Version: 3.3.8
 */
 
 .is-larger {
     font-size: 1em !important;
 }
 #main {
-    padding-bottom: 30px;
+    padding-bottom: 50px;
 }
 /*
 /*************** flatsome nav submenu fix for active element  ***************/
