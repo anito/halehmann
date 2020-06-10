@@ -19,6 +19,14 @@ Version: 3.3.2
     margin-bottom: 0;
 }
 
+/* Shopauskunft Widget */
+.shopauskunft {
+    padding: 0 20px;
+}
+.shopauskunft img {
+    max-width: 79px;
+}
+
 /* Stock Alert */
 .alert_container {
     border: 1px solid #00000022;
