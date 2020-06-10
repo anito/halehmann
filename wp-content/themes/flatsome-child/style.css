@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.3.2
+Version: 3.3.3
 */
 
 /*************** flatsome nav submenu fix for active element  ***************/
@@ -66,7 +66,7 @@ Version: 3.3.2
     background: none;
     border: 0 none;
     border-left: none;
-    margin-left: -53px;
+    margin-left: -40px;
 }
 .aws-container .aws-search-form .aws-search-btn_icon {
     color:inherit;
