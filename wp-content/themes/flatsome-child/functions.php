@@ -168,3 +168,29 @@ function wcs_custom_get_availability( $availability, $_product ) {
     }
     return $availability;
 }
+
+/**
+ * Register some extra Footer
+ */
+add_action( 'widgets_init', 'register_subfooter_widget_area', 11 );
+function register_subfooter_widget_area() {
+	register_sidebar( array(
+		'name' => __( 'Sub Footer 1', 'vendipro-child' ),
+		'id' => 'vp_sub_footer',
+		'before_widget' => '<div class="column widget %2$s" id="%1$s">',
+		'after_widget' => '</div>',
+		'before_title'  => '<span class="widgettitle">',
+		'after_title' => '</span>',
+		'description' => __( 'Choose which Widgets to display below the Footer', 'vendipro-child' ),
+	));
+
+	register_sidebar( array(
+		'name' => __( 'Sub Footer 2', 'vendipro-child' ),
+		'id' => 'vp_sub_footer_2',
+		'before_widget' => '<div class="column widget %2$s" id="%1$s">',
+		'after_widget' => '</div>',
+		'before_title'  => '<span class="widgettitle">',
+		'after_title' => '</span>',
+		'description' => __( 'Choose which Widgets to display below the Footer', 'vendipro-child' ),
+	));
+}
