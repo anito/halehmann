@@ -22,7 +22,7 @@
 		</div>
 		<div class="widgets subfooter-container" id="widgets-subfooter">
 			<div class="subfooter items-<?php echo vendipro()->widgets->get_widget_count( 'vp_sub_footer' ); ?>">
-					<?php dynamic_sidebar( 'vp_sub_footer' ); ?>
+				<?php dynamic_sidebar( 'vp_sub_footer' ); ?>
 			</div>
 		</div>
 		<div class="subfooter-container" id="widgets-subfooter-2">

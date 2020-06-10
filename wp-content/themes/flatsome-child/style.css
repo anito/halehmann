@@ -9,6 +9,7 @@ Version: 3.3.6
 .is-larger {
     font-size: 1em !important;
 }
+/* 
 /*************** flatsome nav submenu fix for active element  ***************/
 .active>ul.sub-menu {
     display: table !important;
@@ -21,8 +22,10 @@ Version: 3.3.6
 .no-bottom-margin {
     margin-bottom: 0;
 }
-
-/* Shopauskunft Widget */
+/* Subfooter */
+.footer-widgets.footer.footer-3 {
+    background: #636363;
+}
 /* Shopauskunft Widget */
 .shopauskunft {
     margin: 0 20px;
