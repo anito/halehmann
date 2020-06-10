@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.3.4
+Version: 3.3.5
 */
 
 /*************** flatsome nav submenu fix for active element  ***************/
@@ -20,14 +20,15 @@ Version: 3.3.4
 }
 
 /* Shopauskunft Widget */
+/* Shopauskunft Widget */
 .shopauskunft {
-    padding: 0 20px;
+    margin: 0 20px;
 }
 .shopauskunft img {
     max-width: 79px;
 }
-.header-wrapper.stuck .shopauskunft {
-    display: none;4
+.header-wrapper.stuck .shopauskunft > div {
+    display: none;
 }
 
 /* Stock Alert */
