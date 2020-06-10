@@ -5,7 +5,7 @@
  * @author      WooThemes
  * @package     WooCommerce/Templates/Emails
  * @version     2.4.0
- * 
+ *
  * changes: hardcoded path to email header logo: $url_logo
  */
 
@@ -139,7 +139,7 @@ $header_image = "
             }
             a, a:hover, a:visited, a:focus {
                 color: #333 !important;
-                text-decoration: underline; 
+                text-decoration: underline;
             }
         </style>
         </head>
