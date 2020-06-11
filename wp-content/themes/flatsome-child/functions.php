@@ -194,7 +194,3 @@ function wbp_register_subfooter_widget_area() {
 		'description' => __( 'Choose which Widgets to display below the Footer', 'flatsome-child' ),
 	));
 }
-function wbp_flatsome_page_footer(){
-	get_template_part( 'template-parts/footer/sub-footer' );
-}
-add_action( 'flatsome_footer', 'wbp_flatsome_page_footer', 10 );
