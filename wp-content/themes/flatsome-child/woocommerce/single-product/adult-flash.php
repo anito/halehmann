@@ -24,7 +24,7 @@ if($badge_style == 'style3') $badge_style = 'frame';
 <div class="badge-container is-larger for-adult absolute left top z-1">
 <?php if ( is_adult_product() ) : ?>
 	<?php
-		$text = __( 'Ab 18. J!', 'halehmann' );
+		$text = __( 'Ab 18!', 'halehmann' );
 	?>
 	<?php echo apply_filters( 'woocommerce_sale_flash', '<div class="callout badge badge-'.$badge_style.'"><div class="badge-inner secondary for-adult"><span class="for-adult">' .  $text . '</span></div></div>', $post, $product ); ?>
 
