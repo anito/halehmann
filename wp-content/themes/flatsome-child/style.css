@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.4.0
+Version: 3.4.1
 */
 
 .is-larger {
@@ -44,6 +44,11 @@ Version: 3.4.0
 .product-small {
     display: flex;
     flex-direction: column;
+}
+
+/* Product Flickity Slider */
+.flickity-slider .ivpa-content {
+    display: none;
 }
 
 .product-small .box-text {
