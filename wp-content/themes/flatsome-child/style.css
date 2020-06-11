@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.3.9
+Version: 3.4.0
 */
 
 .is-larger {
@@ -92,6 +92,11 @@ Version: 3.3.9
 }
 .alert_container input.stock_alert_email {
     width: 90%;
+}
+
+/* PWB Brands */
+.pwb-single-product-brands {
+    margin-bottom: 20px;
 }
 
 /* AWS Search */
