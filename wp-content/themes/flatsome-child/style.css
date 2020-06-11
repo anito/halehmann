@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.3.8
+Version: 3.3.9
 */
 
 .is-larger {
@@ -38,6 +38,32 @@ Version: 3.3.8
 }
 .header-wrapper.stuck .shopauskunft > div {
     display: none;
+}
+
+/* Flexbox Single Product */
+.product-small {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-small .box-text {
+    display: flex;
+    flex-flow: column wrap;
+    flex: 1 0 auto;
+    justify-content: flex-end;
+}
+
+.product-small .col-inner {
+    display: flex;
+}
+
+.price-wrapper {
+    margin: 10px 0;
+}
+
+/* White Products Column for Blocks */
+.white-products-col .col-inner .product-small {
+    background: #fff;
 }
 
 /* Stock Alert */
@@ -87,10 +113,9 @@ Version: 3.3.8
 
 .shop-container > [class*="-description"] {
     padding: 20px;
-    border: 1px solid #e4e4e4;
-    box-shadow: 0 1px 3px -2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow: 1px 4px 9px 0px rgba(0,0,0,0.12), 0px 0px 2px rgba(0,0,0,0.24);
     margin-bottom: 65px;
-    background-color: #fefefe;
+    background-color: #f9f9f9;
 }
 
 .shop-container > [class*="-description"] > *:first-child {
