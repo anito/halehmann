@@ -9,15 +9,13 @@ Version: 3.4.1
 .is-larger {
     font-size: 1em !important;
 }
-#main {
-    padding-bottom: 50px;
-}
-/*
+
 /*************** flatsome nav submenu fix for active element  ***************/
 .active>ul.sub-menu {
     display: table !important;
 }
 /* fix end */
+
 .products .product.type-product .col-inner {
     overflow: hidden;
 }

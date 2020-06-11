@@ -25,7 +25,7 @@ if($badge_style == 'style3') $badge_style = 'frame';
 	<?php
 		$text = __( 'Ab 18. J!', 'halehmann' );
 	?>
-	<?php echo apply_filters( 'woocommerce_sale_flash', '<div class="callout badge badge-'.$badge_style.'"><div class="badge-inner secondary for-adult on-sale"><span class="for-adult">' .  $text . '</span></div></div>', $post, $product ); ?>
+	<?php echo apply_filters( 'woocommerce_sale_flash', '<div class="callout badge badge-'.$badge_style.'"><div class="badge-inner secondary for-adult"><span class="for-adult">' .  $text . '</span></div></div>', $post, $product ); ?>
 
 <?php endif; ?>
 <?php echo apply_filters( 'flatsome_product_labels', '', $post, $product, $badge_style); ?>

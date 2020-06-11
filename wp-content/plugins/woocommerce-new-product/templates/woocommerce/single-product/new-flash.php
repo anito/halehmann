@@ -22,7 +22,7 @@ if($badge_style == 'style3') $badge_style = 'frame';
 
 ?>
 <div class="badge-container is-larger new-product absolute left top z-1">
-<?php echo apply_filters( 'woocommerce_sale_flash', '<div class="callout badge badge-'.$badge_style.'"><div class="badge-inner secondary new-product on-sale"><span class="for-adult">' .  $text . '</span></div></div>', $post, $product ); ?>
+<?php echo apply_filters( 'woocommerce_sale_flash', '<div class="callout badge badge-'.$badge_style.'"><div class="badge-inner secondary new-product"><span class="for-adult">' .  $text . '</span></div></div>', $post, $product ); ?>
 
 <?php echo apply_filters( 'flatsome_product_labels', '', $post, $product, $badge_style); ?>
 </div>
