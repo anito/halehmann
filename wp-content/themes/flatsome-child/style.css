@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.4.4
+Version: 3.4.5
 */
 
 .is-larger {
@@ -19,10 +19,15 @@ Version: 3.4.4
 .products .product.type-product .col-inner {
     overflow: hidden;
 }
-
 .no-bottom-margin {
     margin-bottom: 0;
 }
+
+/* Reposition Recaptcha */
+.grecaptcha-badge {
+    bottom: 75px;
+}
+
 /* Subfooter */
 .footer-widgets.footer.footer-3 {
     background: #636363;
