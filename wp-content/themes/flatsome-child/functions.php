@@ -194,3 +194,29 @@ function wbp_register_subfooter_widget_area() {
 		'description' => __( 'Choose which Widgets to display below the Footer', 'flatsome-child' ),
 	));
 }
+
+/**
+ * Unsupprted Browsers IE 11 and lower
+ */
+add_action( 'wp_enqueue_scripts', 'detectTrident' );
+function detectTrident($current_theme) {
+	$ua = $_SERVER['HTTP_USER_AGENT'];
+	$browser = ['name' => '', 'version' => '', 'platform' => ''];
+	if(preg_match('/Trident\/([0-9.]*)/u', $ua, $match)) {
+		$match = (int) array_pop($match) + 4;
+	} else if (preg_match('/MSIE\s{1}([0-9.]*)/u', $ua, $match)) {
+		$match = (int) array_pop($match);
+	}
+	if(!empty( $match ) && ( $match <= 11 ) ) {
+		$browser['name'] = 'ie';
+		$browser['version'] = $match;
+		add_action('wp_footer', 'unsupported_browsers_template', 100);
+
+		wp_register_script( 'browser_sniffer', get_stylesheet_directory_uri() . '/js/browser_support.js', ['jquery'], '0.1', true );
+		wp_localize_script( 'browser_sniffer', '__browser', array('name' => $browser['name'], 'version' => $browser['version'], 'platform' => $browser['platform'] ) );
+		wp_enqueue_script( 'browser_sniffer' );
+	}
+}
+function unsupported_browsers_template() {
+	get_template_part('template-parts/custom', 'unsupported-browser');
+}
