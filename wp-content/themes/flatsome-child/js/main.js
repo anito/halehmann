@@ -29,9 +29,28 @@
         });
     };
 
+    // animate scroll
+    var add_animate_scroll = function() {
+        const headerEl = document.querySelector('#header'),
+        headerHeight = headerEl.offsetHeight;
+
+        $('.animate-scroll a[href^="#"]').on('click', function(e){
+
+            var href = $(this).attr('href');
+            $('html, body').animate({
+                scrollTop:$(href).offset().top - headerHeight
+            },'slow');
+
+            e.preventDefault();
+
+        });
+
+    };
+
     add_fb_div();
     add_target_blank_icon();
     add_image_disclaimer();
+    add_animate_scroll();
     // add_readmore();
 
 })(jQuery)
