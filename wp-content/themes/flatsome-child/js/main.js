@@ -56,13 +56,14 @@
         let replace = function() {
             source.forEach( (element, id) => {
                 parent = element.parentNode;
-                console.log( element, id )
                 html = parent.innerHTML;
                 targetEl = document.getElementById( `${internal}-${str}-${id}` );
+                targetEl = targetEl.querySelector( '.elementor-widget-container' )
                 targetEl.innerHTML = html;
             } );
         }
-        setTimeout( replace, 3000 );
+        // wait for parallax scripts to be executed
+        setTimeout( replace, 300 );
 
     }
     add_fb_div();
