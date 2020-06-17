@@ -47,10 +47,29 @@
 
     };
 
+    var add_replace_product_meta_elements = function( str ) {
+        const internal = 'product-meta';
+        let source, parent, html, targetEl, metaEls;
+        metaEls = document.querySelectorAll( `[class*=${internal}-${str}]` );
+        source = Array.from( metaEls );
+        console.log( source )
+        let replace = function() {
+            source.forEach( (element, id) => {
+                parent = element.parentNode;
+                console.log( element, id )
+                html = parent.innerHTML;
+                targetEl = document.getElementById( `${internal}-${str}-${id}` );
+                targetEl.innerHTML = html;
+            } );
+        }
+        setTimeout( replace, 3000 );
+
+    }
     add_fb_div();
     add_target_blank_icon();
     add_image_disclaimer();
     add_animate_scroll();
+    add_replace_product_meta_elements( 'test' );
     // add_readmore();
 
 })(jQuery)
