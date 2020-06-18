@@ -53,7 +53,7 @@
         metaEls = document.querySelectorAll( `[class*=${internal}-${str}]` );
         source = Array.from( metaEls );
         console.log( source )
-        let replace = function() {
+        !(function() {
             source.forEach( (element, id) => {
                 parent = element.parentNode;
                 html = parent.innerHTML;
@@ -61,9 +61,7 @@
                 targetEl = targetEl.querySelector( '.elementor-widget-container' )
                 targetEl.innerHTML = html;
             } );
-        }
-        // wait for parallax scripts to be executed
-        setTimeout( replace, 300 );
+        })();
 
     }
     add_fb_div();
