@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.4.8
+Version: 3.4.9
 */
 
 .hide {
@@ -15,6 +15,7 @@ Version: 3.4.8
     height: 1px;
     top: 0;
     right: 0;
+    z-index: -10000;
 }
 .is-larger {
     font-size: 1em !important;
