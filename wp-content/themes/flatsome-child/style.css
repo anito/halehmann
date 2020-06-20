@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.5.0
+Version: 3.5.1
 */
 
 .hide {
@@ -235,5 +235,12 @@ Version: 3.5.0
 
     .wc-block-product-meta {
         padding-top: 30px;
+    }
+    /* PWB Brands */
+    .pwb-all-brands .pwb-brands-cols-outer [class*="pwb-brands-col"] {
+        flex: 46% 0;
+        border: 1px solid #cccccc;
+        padding: 12px 12px;
+        margin: 5px;
     }
 }
