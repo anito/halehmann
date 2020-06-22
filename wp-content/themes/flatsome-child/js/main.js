@@ -52,7 +52,6 @@
         let source, parent, html, targetEl, metaEls;
         metaEls = document.querySelectorAll( `[class*=${internal}-${str}]` );
         source = Array.from( metaEls );
-        console.log( source )
         !(function() {
             source.forEach( (element, id) => {
                 parent = element.parentNode;

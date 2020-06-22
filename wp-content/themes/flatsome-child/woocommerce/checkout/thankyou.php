@@ -76,6 +76,15 @@ defined( 'ABSPATH' ) || exit;
 					</script>
 					<script type="text/javascript" src="https://rba.shopauskunft.de/js/rba_widget.js" id="rba_widget" async></script>
 					<!-- <script type="text/javascript" src="https://rba.shopauskunft.de/js/sandbox_widget.js" async></script> -->
+					<script type="text/javascript" id="rba_widget_custom" >
+						window.addEventListener( 'load', function() {
+							let buttons = document.querySelectorAll( '.sa-widget button' );
+							buttons = Array.from( buttons );
+							buttons.forEach( el => {
+								el.classList.add( 'button' );
+							} )
+						} )
+					</script>
 
 				<ul class="woocommerce-order-overview woocommerce-thankyou-order-details order_details">
 

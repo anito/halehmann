@@ -2,14 +2,28 @@
 /**
  * Email Header
  *
+ * This template can be overridden by copying it to yourtheme/woocommerce/emails/email-header.php.
+
  * @author      WooThemes
  * @package     WooCommerce/Templates/Emails
- * @version     2.4.0
+ * @version     4.0.0
  *
+ * HOWEVER, on occasion WooCommerce will need to update template files and you
+ * (the theme developer) will need to copy the new files to your theme to
+ * maintain compatibility. We try to do this as little as possible, but it does
+ * happen. When this occurs the version of the template file will be bumped and
+ * the readme will list any important changes.
+ *
+ * @see     https://docs.woocommerce.com/document/template-structure/
+ * @package WooCommerce/Templates/Emails
+ * @version 4.0.0
+
  * changes: hardcoded path to email header logo: $url_logo
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
 $image  = get_option( 'woocommerce_email_header_image' );
 
@@ -77,12 +91,11 @@ $header_image = "
 	width: 300px;"
 ;
 ?>
-
 <!DOCTYPE html>
-<html>
+<html <?php language_attributes(); ?>>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title><?php echo get_bloginfo( 'name' ); ?></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=<?php bloginfo( 'charset' ); ?>" />
+		<title><?php echo get_bloginfo( 'name', 'display' ); ?></title>
         <style type="text/css">
             h2 {
                 font-size: 1.3em !important;
@@ -126,24 +139,24 @@ $header_image = "
             }
         </style>
         </head>
-        <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
-       <div id="wrapper" style="<?php echo $wrapper; ?>">
-                <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
+    	<body <?php echo is_rtl() ? 'rightmargin' : 'leftmargin'; ?>="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
+        <div id="wrapper" dir="<?php echo is_rtl() ? 'rtl' : 'ltr';?>" style="<?php echo $wrapper;?>" >
+            <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
                 <tr>
-                        <td align="center" valign="top">
-                            <div id="template_header_image">
-								<?php if ( $image ) : ?>
-                                    <p style="margin-top: 0;">
-                                        <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
-                                            <img style="<?php echo $header_image; ?>" src="<?php echo $image; ?>" alt="<?php echo get_bloginfo( 'name', 'display' ) ?>" />
-                                        </a>
-                                    </p>
-                                <?php else : ?>
+                    <td align="center" valign="top">
+                        <div id="template_header_image">
+                            <?php if ( $image ) : ?>
+                                <p style="margin-top: 0;">
                                     <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
-                                        <h1 style="font-size: 1em; color: #333; text-align: center;"><?php echo bloginfo( 'name' );?></h1>
+                                        <img style="<?php echo $header_image; ?>" src="<?php echo $image; ?>" alt="<?php echo get_bloginfo( 'name', 'display' ) ?>" />
                                     </a>
-                                <?php endif; ?>
-                            </div>
+                                </p>
+                            <?php else : ?>
+                                <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+                                    <h1 style="font-size: 1em; color: #333; text-align: center;"><?php echo bloginfo( 'name', 'display' );?></h1>
+                                </a>
+                            <?php endif; ?>
+                        </div>
                             <table border="0" cellpadding="0" cellspacing="0" width="600" id="template_container">
 							<tr>
 								<td align="center" valign="top">
