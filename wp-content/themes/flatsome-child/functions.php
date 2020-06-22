@@ -3,6 +3,19 @@ require_once( __DIR__ . '/includes/product_cat_handler.php');
 require_once( __DIR__ . '/includes/sender_email.php');
 // require_once( __DIR__ . '/includes/create_new_product_tax.php');
 
+// load post_meta dependend scripts
+add_action( 'the_post', 'load_includes' );
+function load_includes() {
+	global $post;
+
+	$is_sales_checker = !empty( get_post_meta($post->ID, 'sales_checker' ));
+	if($is_sales_checker) {
+		require_once( __DIR__ . '/includes/sales_checker.php');
+		add_action( 'the_post', 'fix_sales_handler_from_post', 10 );
+		add_action( 'the_post', 'add_shortcode_sales_checker', 20 );
+	}
+}
+
 add_theme_support( 'editor-styles');
 add_editor_style( 'style-editor.css' );
 
@@ -222,5 +235,5 @@ function detectTrident($current_theme) {
 	}
 }
 function unsupported_browsers_template() {
-	get_template_part('template-parts/custom', 'unsupported-browser');
+	get_template_part('custom-templates/custom', 'unsupported-browser');
 }

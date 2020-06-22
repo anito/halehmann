@@ -162,6 +162,27 @@ Version: 3.5.1
     padding-top: 8px;
     margin: 0;
 }
+.pwb-all-brands .pwb-brands-cols-outer .pwb-brands-col3 > p:first-child {
+    height: inherit;
+    padding: 0 8px 8px;
+}
+.pwb-all-brands .pwb-brands-cols-outer .pwb-brands-col3 > p small {
+    display: inline-block;
+    background: #ff3636;
+    color: #fff;
+    border-radius: 99%;
+    width: 20px;
+    height: 20px;
+    line-height: 1.7em;
+}
+.pwb-all-brands .pwb-brands-cols-outer .pwb-brands-col3 > p a {
+    display: inline-block;
+    width: 65%;
+    vertical-align: middle;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 
 /* AWS Search */
 .aws-container .aws-search-form {
