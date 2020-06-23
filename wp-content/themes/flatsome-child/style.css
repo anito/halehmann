@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.5.6
+Version: 3.5.7
 */
 
 .hide {
@@ -301,10 +301,11 @@ Version: 3.5.6
         margin: 5px;
         max-width: 46%;
     }
-    .message-notice {
+    .message-notice, .message-container.alert-color, .message-container.success-color {
         border-top: 1px solid;
         border-right: none;
         border-bottom: 1px solid;
         border-left: none;
+        margin: 0;
     }
 }
