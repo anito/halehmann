@@ -318,6 +318,8 @@ ul.nav > li.primary-link a {
     ul.nav > li.primary-link a {
         color: #fff;
         margin: 10px;
+        margin-left: 20px;
+        padding-left: 10px !important;
         flex-grow: 0;
     }
 }
