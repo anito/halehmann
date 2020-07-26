@@ -74,6 +74,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 
 			// start filtering
 			add_filter( 'posts_where', 'filter_new_products' );
+			// add_filter( 'posts_orderby', 'sort_by_date', 10, 2 ); --> not really working, using GET params instead (in fix_url.js	)
 
 		}
 	}
@@ -139,6 +140,19 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		$where .= " AND post_date > '" . $date . "'";
 
 		return $where;
+	}
+
+	function sort_by_date( $orderby, $wp_query ) {
+
+		global $wpdb;
+		if ( !$wp_query->is_main_query() ||  $wp_query->get("post_type") !== "product")  return $orderby;
+
+		write_log( $wp_query );
+		$order = 'DESC';
+		$orderby = `wp_posts.date $order`;
+
+		return $orderby;
+
 	}
 
 	function new_archive_term_description() {
