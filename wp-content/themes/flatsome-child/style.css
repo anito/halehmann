@@ -85,6 +85,13 @@ Version: 3.5.7
     text-align: center;
 }
 
+/***************  nav   ***************/
+ul.nav > li.primary-link a {
+    background: #e30005;
+    border-radius: 15px;
+    padding: 5px 10px;
+}
+
 /*************** flatsome nav submenu fix for active element  ***************/
 .active>ul.sub-menu {
     display: table !important;
