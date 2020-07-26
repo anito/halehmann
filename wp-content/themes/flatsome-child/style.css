@@ -315,4 +315,9 @@ ul.nav > li.primary-link a {
         border-left: none;
         margin: 0;
     }
+    ul.nav > li.primary-link a {
+        color: #fff;
+        margin: 10px;
+        flex-grow: 0;
+    }
 }
