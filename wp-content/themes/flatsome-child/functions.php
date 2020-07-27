@@ -1,7 +1,6 @@
 <?php
 require_once( __DIR__ . '/includes/product_cat_handler.php');
 require_once( __DIR__ . '/includes/sender_email.php');
-// require_once( __DIR__ . '/includes/create_new_product_tax.php');
 
 // load post_meta dependend scripts
 add_action( 'the_post', 'load_includes' );
@@ -19,6 +18,7 @@ function load_includes() {
 add_theme_support( 'editor-styles');
 add_editor_style( 'style-editor.css' );
 
+add_action( 'after_setup_theme', 'theme_setup_theme_supported_features' );
 function theme_setup_theme_supported_features() {
     add_theme_support( 'editor-color-palette', array(
         array(
@@ -48,7 +48,6 @@ function theme_setup_theme_supported_features() {
         ),
     ) );
 }
-add_action( 'after_setup_theme', 'theme_setup_theme_supported_features' );
 
 add_action( 'woocommerce_before_shop_loop_item', 'halehmann_show_product_loop_adult_flash', 20 );
 if ( ! function_exists( 'halehmann_show_product_loop_adult_flash' ) ) {
@@ -206,6 +205,33 @@ function wbp_register_subfooter_widget_area() {
 		'after_title' => '</span>',
 		'description' => __( 'Choose which Widgets to display below the Footer', 'flatsome-child' ),
 	));
+}
+
+/**
+ * Default sort for shop and specific categories
+ */
+add_filter( 'woocommerce_default_catalog_orderby', 'custom_default_orderby' );
+function custom_default_orderby( $sortby ) {
+
+	if( is_shop() ) {
+		return 'date';
+	}
+
+	global $wp_query;
+
+	// categories sorting table
+	$orderby = array(
+		'sale' => 'date',
+	);
+
+	$cat = $wp_query->get_queried_object();
+	$slug = $cat->slug;
+
+	if( array_key_exists( $slug, $orderby ) ) {
+		$sortby = $orderby[$slug];
+	}
+
+	return $sortby;
 }
 
 /**
