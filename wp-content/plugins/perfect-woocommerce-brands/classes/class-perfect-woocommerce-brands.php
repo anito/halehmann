@@ -225,6 +225,10 @@ class Perfect_Woocommerce_Brands {
 			'\Perfect_Woocommerce_Brands\Shortcodes\PWB_All_Brands_Shortcode',
 			'all_brands_shortcode'
 		) );
+		add_shortcode( 'pwb-all-brands-az', array(
+			'\Perfect_Woocommerce_Brands\Shortcodes\PWB_All_Brands_Az_Shortcode',
+			'all_brands_az_shortcode'
+		) );
 		add_shortcode( 'pwb-az-listing', array(
 			'\Perfect_Woocommerce_Brands\Shortcodes\PWB_AZ_Listing_Shortcode',
 			'shortcode'
