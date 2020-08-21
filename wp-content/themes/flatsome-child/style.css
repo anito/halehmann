@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.5.8
+Version: 3.5.9
 */
 
 /**
@@ -14,7 +14,7 @@ a {
 }
 li a,
 nav a,
-.product-title > a,
+.product-title a,
 .product-name a,
 .tagcloud a
 {
