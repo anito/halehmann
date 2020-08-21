@@ -325,6 +325,9 @@ ul.nav > li.primary-link a {
 /*************** ADD MOBILE ONLY CSS HERE  ***************/
 @media only screen and (max-width: 48em) {
 
+    .pwb-all-brands .pwb-brands-cols-outer {
+        justify-content: center;
+    }
     .wc-block-product-meta {
         padding-top: 30px;
     }
