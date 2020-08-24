@@ -3,22 +3,16 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.6.2
+Version: 3.6.3
 */
 
 /**
  *  change link behaviour
  */
-a {
-    text-decoration: underline;
-}
-li a,
-nav a,
-.product-title a,
-.product-name a,
-.tagcloud a
+
+#tab-description a
 {
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 .hide {
